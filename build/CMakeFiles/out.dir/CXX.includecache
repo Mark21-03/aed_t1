@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+../include/Aviao.hpp
+iostream
+-
+vector
+-
+Voo.hpp
+../include/Voo.hpp
+
 ../include/Date.hpp
 iostream
 -
@@ -14,9 +22,33 @@ string
 sstream
 -
 
-/home/m/Desktop/AED/Trabalho/T1/main.cpp
+../include/Voo.hpp
 iostream
 -
 Date.hpp
+../include/Date.hpp
+
+/home/m/Desktop/AED/Trabalho/T1/main.cpp
+iostream
+-
+vector
+-
+Date.hpp
 /home/m/Desktop/AED/Trabalho/T1/Date.hpp
+Aviao.hpp
+/home/m/Desktop/AED/Trabalho/T1/Aviao.hpp
+Voo.hpp
+/home/m/Desktop/AED/Trabalho/T1/Voo.hpp
+
+/home/m/Desktop/AED/Trabalho/T1/src/Aviao.cpp
+Aviao.hpp
+/home/m/Desktop/AED/Trabalho/T1/src/Aviao.hpp
+
+/home/m/Desktop/AED/Trabalho/T1/src/Date.cpp
+Date.hpp
+/home/m/Desktop/AED/Trabalho/T1/src/Date.hpp
+
+/home/m/Desktop/AED/Trabalho/T1/src/Voo.cpp
+Voo.hpp
+/home/m/Desktop/AED/Trabalho/T1/src/Voo.hpp
 

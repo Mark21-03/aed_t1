@@ -16,6 +16,7 @@ class Aviao{
 
     Aviao(){}
     Aviao(string matricula, int capacidade);
+    Aviao(string matricula, int capacidade,vector<Voo> plano);
 
     void setPlanoVoo(const vector<Voo>& plano);
     void setCapacidade(int capacidade);

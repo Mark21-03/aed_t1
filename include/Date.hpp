@@ -6,10 +6,7 @@
 
 using namespace std;
 
-class Date{    
-    //friend istream& operator>>(istream &in,Date &date);
-    //friend ostream& operator<<(ostream &out,Date &date);
-
+class Date{
     private: 
         int day;
         int month;
@@ -35,7 +32,7 @@ class Date{
 
 };
 
-
+//custom Exception
 class InvalidDateException: public exception{
     public:
         InvalidDateException(){
