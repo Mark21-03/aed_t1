@@ -6,7 +6,17 @@
 
 #IncludeRegexTransform: 
 
+../include/Date.hpp
+iostream
+-
+string
+-
+sstream
+-
+
 /home/m/Desktop/AED/Trabalho/T1/main.cpp
 iostream
 -
+Date.hpp
+/home/m/Desktop/AED/Trabalho/T1/Date.hpp
 

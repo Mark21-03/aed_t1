@@ -1,19 +1,5 @@
 #include "Date.hpp"
 
-
-
-ostream& operator<<(ostream &out,Date &date){
-    out<<date.getDay()<<"/"<<date.getMonth()<<"/"<<date.getYear();
-    return out;
-}
-
-istream& operator>>(istream &in,Date &date){
-    int day,month,year;
-    in>>day>>month>>year;
-    date.setDate(day,month,year);
-    return in;
-}
-
 Date::Date(int day, int month, int year){
     this->setDate(day, month, year);
 }
@@ -30,9 +16,9 @@ Date::Date(string date){
     int year,month,day;
     char sep;
     inStr>>day>>sep;
-    if(sep=='/'){
+    if(sep=='/' or sep=='-'){
         inStr>>month>>sep>>year;
-        if(sep=='/')
+        if(sep=='/' or sep=='-')
             setDate(day,month,year);
         else
             throw InvalidDateException("Wrong Format. Use DD/MM/YYYY");
@@ -53,6 +39,18 @@ void Date::setMonth(int month){
         this->month = month;
     else 
         throw InvalidDateException("Invalid Month. Must be between 1 and 12.");
+}
+
+ostream& operator<<(ostream &out,Date &date){
+    out<<date.getDay()<<"/"<<date.getMonth()<<"/"<<date.getYear();
+    return out;
+}
+
+istream& operator>>(istream &in,Date &date){
+    int day,month,year;
+    in>>day>>month>>year;
+    date.setDate(day,month,year);
+    return in;
 }
 
 

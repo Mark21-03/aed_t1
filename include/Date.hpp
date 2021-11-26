@@ -46,3 +46,7 @@ class InvalidDateException: public exception{
         }
 };
 
+
+ostream& operator<<(ostream &out,Date &date);
+
+istream& operator>>(istream &in,Date &date);

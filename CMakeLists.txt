@@ -8,3 +8,6 @@ file(GLOB_RECURSE SRC_FILES src/*.cpp)
 add_executable(out main.cpp ${SRC_FILES})
 target_include_directories(out PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+
+
+

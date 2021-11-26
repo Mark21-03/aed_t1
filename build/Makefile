@@ -150,6 +150,87 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/out.dir/build.make CMakeFiles/out.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/Aviao.o: src/Aviao.cpp.o
+
+.PHONY : src/Aviao.o
+
+# target to build an object file
+src/Aviao.cpp.o:
+	$(MAKE) -f CMakeFiles/out.dir/build.make CMakeFiles/out.dir/src/Aviao.cpp.o
+.PHONY : src/Aviao.cpp.o
+
+src/Aviao.i: src/Aviao.cpp.i
+
+.PHONY : src/Aviao.i
+
+# target to preprocess a source file
+src/Aviao.cpp.i:
+	$(MAKE) -f CMakeFiles/out.dir/build.make CMakeFiles/out.dir/src/Aviao.cpp.i
+.PHONY : src/Aviao.cpp.i
+
+src/Aviao.s: src/Aviao.cpp.s
+
+.PHONY : src/Aviao.s
+
+# target to generate assembly for a file
+src/Aviao.cpp.s:
+	$(MAKE) -f CMakeFiles/out.dir/build.make CMakeFiles/out.dir/src/Aviao.cpp.s
+.PHONY : src/Aviao.cpp.s
+
+src/Date.o: src/Date.cpp.o
+
+.PHONY : src/Date.o
+
+# target to build an object file
+src/Date.cpp.o:
+	$(MAKE) -f CMakeFiles/out.dir/build.make CMakeFiles/out.dir/src/Date.cpp.o
+.PHONY : src/Date.cpp.o
+
+src/Date.i: src/Date.cpp.i
+
+.PHONY : src/Date.i
+
+# target to preprocess a source file
+src/Date.cpp.i:
+	$(MAKE) -f CMakeFiles/out.dir/build.make CMakeFiles/out.dir/src/Date.cpp.i
+.PHONY : src/Date.cpp.i
+
+src/Date.s: src/Date.cpp.s
+
+.PHONY : src/Date.s
+
+# target to generate assembly for a file
+src/Date.cpp.s:
+	$(MAKE) -f CMakeFiles/out.dir/build.make CMakeFiles/out.dir/src/Date.cpp.s
+.PHONY : src/Date.cpp.s
+
+src/Voo.o: src/Voo.cpp.o
+
+.PHONY : src/Voo.o
+
+# target to build an object file
+src/Voo.cpp.o:
+	$(MAKE) -f CMakeFiles/out.dir/build.make CMakeFiles/out.dir/src/Voo.cpp.o
+.PHONY : src/Voo.cpp.o
+
+src/Voo.i: src/Voo.cpp.i
+
+.PHONY : src/Voo.i
+
+# target to preprocess a source file
+src/Voo.cpp.i:
+	$(MAKE) -f CMakeFiles/out.dir/build.make CMakeFiles/out.dir/src/Voo.cpp.i
+.PHONY : src/Voo.cpp.i
+
+src/Voo.s: src/Voo.cpp.s
+
+.PHONY : src/Voo.s
+
+# target to generate assembly for a file
+src/Voo.cpp.s:
+	$(MAKE) -f CMakeFiles/out.dir/build.make CMakeFiles/out.dir/src/Voo.cpp.s
+.PHONY : src/Voo.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -162,6 +243,15 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/Aviao.o"
+	@echo "... src/Aviao.i"
+	@echo "... src/Aviao.s"
+	@echo "... src/Date.o"
+	@echo "... src/Date.i"
+	@echo "... src/Date.s"
+	@echo "... src/Voo.o"
+	@echo "... src/Voo.i"
+	@echo "... src/Voo.s"
 .PHONY : help
 
 
