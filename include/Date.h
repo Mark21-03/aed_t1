@@ -1,6 +1,8 @@
 #ifndef Date_H
 #define Date_H
 
+#include "../Exceptions/InvalidDate.h"
+
 #include <string>
 #include <istream>
 #include <ostream>
@@ -89,16 +91,6 @@ private:
     unsigned int year;
     unsigned int month;
     unsigned int day;
-};
-
-class InvalidDate
-{
-public:
-    InvalidDate(std::string reason) :reason(reason) {};
-    const std::string& what()const;
-private:
-    std::string reason;
-
 };
 
 inline std::ostream& operator <<(std::ostream& os,const Date& right) {

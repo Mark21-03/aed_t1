@@ -1,1 +1,0 @@
-/usr/bin/c++ -g CMakeFiles/out.dir/main.cpp.o CMakeFiles/out.dir/src/Date.cpp.o CMakeFiles/out.dir/src/Flight.cpp.o CMakeFiles/out.dir/src/Plane.cpp.o -o out 
