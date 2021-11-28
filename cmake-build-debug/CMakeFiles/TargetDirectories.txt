@@ -1,3 +1,0 @@
-/home/m/Desktop/AED/Trabalho/T1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/m/Desktop/AED/Trabalho/T1/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/m/Desktop/AED/Trabalho/T1/cmake-build-debug/CMakeFiles/out.dir

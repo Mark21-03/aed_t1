@@ -1,13 +1,12 @@
 cmake_minimum_required(VERSION 3.10)
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+project(aed_t1)
 
-project(project1 VERSION 1.0)
+set(CMAKE_CXX_STANDARD 11)
 
-file(GLOB_RECURSE SRC_FILES src/*.cpp)
-add_executable(out main.cpp ${SRC_FILES})
-target_include_directories(out PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+add_subdirectory(lib/googletest-master)
+include_directories(lib/googletest-master/googletest/include)
+include_directories(lib/googletest-master/googlemock/include)
 
+add_executable(aed_t1 main.cpp include/Plane.hpp include/Date.hpp include/Flight.hpp src/Plane.cpp src/Date.cpp src/Flight.cpp)
 
-
-
+target_link_libraries(aed_t1 gtest gtest_main)
