@@ -1,5 +1,6 @@
 #pragma once
 
+#include "DateException.hpp"
 #include <iostream>
 #include <string>
 #include <sstream> //alows stringstream
@@ -11,6 +12,7 @@ class Date{
         int day;
         int month;
         int year;
+        string acceptedSep = "/-";
 
     public:
     Date(){}
@@ -18,31 +20,19 @@ class Date{
     Date(int day, int month, int year);
     Date(string date);
 
-    int getDay(){return this->day;}
-    int getMonth(){return this->month;}
-    int getYear(){return this->year;}
+    inline int getDay() const{return this->day;}
+    inline int getMonth() const{return this->month;}
+    inline int getYear() const{return this->year;}
 
     void setDay(int day);
     void setMonth(int month);
-    void setYear(int year){this->year = year;}
+    void setYear(int year);
+    void setDate(int day, int month, int year);
+    void setDate(string date);
 
-    void setDate(int day, int month, int year){
-        setDay(day);setMonth(month);setYear(year);
-    }
+
 
 };
-
-//custom Exception
-class InvalidDateException: public exception{
-    public:
-        InvalidDateException(){
-            cout<<"Invalid Date!"<<endl;
-        }
-        InvalidDateException(const char*errorMsg){
-            cout<<errorMsg<<endl;
-        }
-};
-
 
 ostream& operator<<(ostream &out,Date &date);
 

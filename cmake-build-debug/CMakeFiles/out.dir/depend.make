@@ -3,18 +3,22 @@
 
 CMakeFiles/out.dir/main.cpp.o: \
  ../include/Date.hpp \
+ ../include/DateException.hpp \
  ../include/Flight.hpp \
  ../include/Plane.hpp \
  ../main.cpp
 CMakeFiles/out.dir/src/Date.cpp.o: \
  ../include/Date.hpp \
+ ../include/DateException.hpp \
  ../src/Date.cpp
 CMakeFiles/out.dir/src/Flight.cpp.o: \
  ../include/Date.hpp \
+ ../include/DateException.hpp \
  ../include/Flight.hpp \
  ../src/Flight.cpp
 CMakeFiles/out.dir/src/Plane.cpp.o: \
  ../include/Date.hpp \
+ ../include/DateException.hpp \
  ../include/Flight.hpp \
  ../include/Plane.hpp \
  ../src/Plane.cpp

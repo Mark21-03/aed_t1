@@ -7,11 +7,17 @@
 #IncludeRegexTransform: 
 
 ../include/Date.hpp
+DateException.hpp
+../include/DateException.hpp
 iostream
 -
 string
 -
 sstream
+-
+
+../include/DateException.hpp
+iostream
 -
 
 ../include/Flight.hpp
@@ -39,4 +45,8 @@ Plane.hpp
 /home/m/Desktop/AED/Trabalho/T1/Plane.hpp
 Flight.hpp
 /home/m/Desktop/AED/Trabalho/T1/Flight.hpp
+
+/home/m/Desktop/AED/Trabalho/T1/src/Date.cpp
+Date.hpp
+/home/m/Desktop/AED/Trabalho/T1/src/Date.hpp
 
