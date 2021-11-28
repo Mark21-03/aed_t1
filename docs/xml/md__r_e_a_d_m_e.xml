@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+  <compounddef id="md__r_e_a_d_m_e" kind="page">
+    <compoundname>md_README</compoundname>
+    <title>aed_t1</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Trabalho 1 da Cadeira AED</para>
+<para>Compatível com CLion.</para>
+<para>Localização dos ficheiros: cpp -&gt; src; hpp -&gt; include; other project files -&gt; files; </para>
+    </detaileddescription>
+    <location file="README.md"/>
+  </compounddef>
+</doxygen>

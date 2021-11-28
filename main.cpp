@@ -11,7 +11,7 @@ using namespace std;
 
 int main(){
 
-    Date d("20-05-2010");
+    Date d;
     cout<<d<<endl;
 
     Flight f(21368,d,12.3,"Lisbon","Porto");
