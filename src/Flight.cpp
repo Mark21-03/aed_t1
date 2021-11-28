@@ -1,6 +1,8 @@
+
 #include "../include/Flight.h"
 
 Flight::Flight(int number,const Date& departureDate,float duration,std::string origin,std::string destiny){
+
     this->number = number;
     this->departureDate = departureDate;
     this->duration = duration;
@@ -29,3 +31,4 @@ void Flight::setDuration(float duration) {this->duration = duration;}
 void Flight::setOrigin(std::string origin) {this->origin = origin;}
 
 void Flight::setDestiny(std::string destiny) {this->destiny = destiny;}
+

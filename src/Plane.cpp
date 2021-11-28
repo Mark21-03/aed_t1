@@ -7,7 +7,9 @@ Plane::Plane(std::string numberPlate, int capacity){
     this->capacity = capacity;
 }
 
+
 Plane::Plane(std::string numberPlate, int capacity,std::vector<Flight> flightPlan){
+
     this->numberPlate = numberPlate;
     this->capacity = capacity;
     this->flightPlan = flightPlan;
@@ -25,4 +27,5 @@ void Plane::setFlightPlan(const std::vector<Flight> &flightPlan) { this->flightP
 void Plane::setCapacity(int capacity) {this->capacity = capacity;}
 
 void Plane::setNumberPlate(std::string numberPlate) {this->numberPlate = numberPlate;}
+
 

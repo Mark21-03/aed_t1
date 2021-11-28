@@ -71,6 +71,7 @@ unsigned int Date::getMonth() const {
 
 unsigned int Date::getDay() const {
     return this->day;
+
 }
 
 std::string Date::getDate()const {
