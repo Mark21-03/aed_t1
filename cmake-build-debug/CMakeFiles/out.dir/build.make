@@ -79,22 +79,9 @@ CMakeFiles/out.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/out.dir/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m/Desktop/AED/Trabalho/T1/main.cpp -o CMakeFiles/out.dir/main.cpp.s
 
-CMakeFiles/out.dir/src/Aviao.cpp.o: CMakeFiles/out.dir/flags.make
-CMakeFiles/out.dir/src/Aviao.cpp.o: ../src/Aviao.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/m/Desktop/AED/Trabalho/T1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/out.dir/src/Aviao.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/out.dir/src/Aviao.cpp.o -c /home/m/Desktop/AED/Trabalho/T1/src/Aviao.cpp
-
-CMakeFiles/out.dir/src/Aviao.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/out.dir/src/Aviao.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m/Desktop/AED/Trabalho/T1/src/Aviao.cpp > CMakeFiles/out.dir/src/Aviao.cpp.i
-
-CMakeFiles/out.dir/src/Aviao.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/out.dir/src/Aviao.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m/Desktop/AED/Trabalho/T1/src/Aviao.cpp -o CMakeFiles/out.dir/src/Aviao.cpp.s
-
 CMakeFiles/out.dir/src/Date.cpp.o: CMakeFiles/out.dir/flags.make
 CMakeFiles/out.dir/src/Date.cpp.o: ../src/Date.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/m/Desktop/AED/Trabalho/T1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/out.dir/src/Date.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/m/Desktop/AED/Trabalho/T1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/out.dir/src/Date.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/out.dir/src/Date.cpp.o -c /home/m/Desktop/AED/Trabalho/T1/src/Date.cpp
 
 CMakeFiles/out.dir/src/Date.cpp.i: cmake_force
@@ -105,33 +92,46 @@ CMakeFiles/out.dir/src/Date.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/out.dir/src/Date.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m/Desktop/AED/Trabalho/T1/src/Date.cpp -o CMakeFiles/out.dir/src/Date.cpp.s
 
-CMakeFiles/out.dir/src/Voo.cpp.o: CMakeFiles/out.dir/flags.make
-CMakeFiles/out.dir/src/Voo.cpp.o: ../src/Voo.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/m/Desktop/AED/Trabalho/T1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/out.dir/src/Voo.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/out.dir/src/Voo.cpp.o -c /home/m/Desktop/AED/Trabalho/T1/src/Voo.cpp
+CMakeFiles/out.dir/src/Flight.cpp.o: CMakeFiles/out.dir/flags.make
+CMakeFiles/out.dir/src/Flight.cpp.o: ../src/Flight.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/m/Desktop/AED/Trabalho/T1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/out.dir/src/Flight.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/out.dir/src/Flight.cpp.o -c /home/m/Desktop/AED/Trabalho/T1/src/Flight.cpp
 
-CMakeFiles/out.dir/src/Voo.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/out.dir/src/Voo.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m/Desktop/AED/Trabalho/T1/src/Voo.cpp > CMakeFiles/out.dir/src/Voo.cpp.i
+CMakeFiles/out.dir/src/Flight.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/out.dir/src/Flight.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m/Desktop/AED/Trabalho/T1/src/Flight.cpp > CMakeFiles/out.dir/src/Flight.cpp.i
 
-CMakeFiles/out.dir/src/Voo.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/out.dir/src/Voo.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m/Desktop/AED/Trabalho/T1/src/Voo.cpp -o CMakeFiles/out.dir/src/Voo.cpp.s
+CMakeFiles/out.dir/src/Flight.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/out.dir/src/Flight.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m/Desktop/AED/Trabalho/T1/src/Flight.cpp -o CMakeFiles/out.dir/src/Flight.cpp.s
+
+CMakeFiles/out.dir/src/Plane.cpp.o: CMakeFiles/out.dir/flags.make
+CMakeFiles/out.dir/src/Plane.cpp.o: ../src/Plane.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/m/Desktop/AED/Trabalho/T1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/out.dir/src/Plane.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/out.dir/src/Plane.cpp.o -c /home/m/Desktop/AED/Trabalho/T1/src/Plane.cpp
+
+CMakeFiles/out.dir/src/Plane.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/out.dir/src/Plane.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m/Desktop/AED/Trabalho/T1/src/Plane.cpp > CMakeFiles/out.dir/src/Plane.cpp.i
+
+CMakeFiles/out.dir/src/Plane.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/out.dir/src/Plane.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m/Desktop/AED/Trabalho/T1/src/Plane.cpp -o CMakeFiles/out.dir/src/Plane.cpp.s
 
 # Object files for target out
 out_OBJECTS = \
 "CMakeFiles/out.dir/main.cpp.o" \
-"CMakeFiles/out.dir/src/Aviao.cpp.o" \
 "CMakeFiles/out.dir/src/Date.cpp.o" \
-"CMakeFiles/out.dir/src/Voo.cpp.o"
+"CMakeFiles/out.dir/src/Flight.cpp.o" \
+"CMakeFiles/out.dir/src/Plane.cpp.o"
 
 # External object files for target out
 out_EXTERNAL_OBJECTS =
 
 out: CMakeFiles/out.dir/main.cpp.o
-out: CMakeFiles/out.dir/src/Aviao.cpp.o
 out: CMakeFiles/out.dir/src/Date.cpp.o
-out: CMakeFiles/out.dir/src/Voo.cpp.o
+out: CMakeFiles/out.dir/src/Flight.cpp.o
+out: CMakeFiles/out.dir/src/Plane.cpp.o
 out: CMakeFiles/out.dir/build.make
 out: CMakeFiles/out.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/m/Desktop/AED/Trabalho/T1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable out"

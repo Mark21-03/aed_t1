@@ -153,30 +153,6 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/out.dir/build.make CMakeFiles/out.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-src/Aviao.o: src/Aviao.cpp.o
-.PHONY : src/Aviao.o
-
-# target to build an object file
-src/Aviao.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/out.dir/build.make CMakeFiles/out.dir/src/Aviao.cpp.o
-.PHONY : src/Aviao.cpp.o
-
-src/Aviao.i: src/Aviao.cpp.i
-.PHONY : src/Aviao.i
-
-# target to preprocess a source file
-src/Aviao.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/out.dir/build.make CMakeFiles/out.dir/src/Aviao.cpp.i
-.PHONY : src/Aviao.cpp.i
-
-src/Aviao.s: src/Aviao.cpp.s
-.PHONY : src/Aviao.s
-
-# target to generate assembly for a file
-src/Aviao.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/out.dir/build.make CMakeFiles/out.dir/src/Aviao.cpp.s
-.PHONY : src/Aviao.cpp.s
-
 src/Date.o: src/Date.cpp.o
 .PHONY : src/Date.o
 
@@ -201,29 +177,53 @@ src/Date.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/out.dir/build.make CMakeFiles/out.dir/src/Date.cpp.s
 .PHONY : src/Date.cpp.s
 
-src/Voo.o: src/Voo.cpp.o
-.PHONY : src/Voo.o
+src/Flight.o: src/Flight.cpp.o
+.PHONY : src/Flight.o
 
 # target to build an object file
-src/Voo.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/out.dir/build.make CMakeFiles/out.dir/src/Voo.cpp.o
-.PHONY : src/Voo.cpp.o
+src/Flight.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/out.dir/build.make CMakeFiles/out.dir/src/Flight.cpp.o
+.PHONY : src/Flight.cpp.o
 
-src/Voo.i: src/Voo.cpp.i
-.PHONY : src/Voo.i
+src/Flight.i: src/Flight.cpp.i
+.PHONY : src/Flight.i
 
 # target to preprocess a source file
-src/Voo.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/out.dir/build.make CMakeFiles/out.dir/src/Voo.cpp.i
-.PHONY : src/Voo.cpp.i
+src/Flight.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/out.dir/build.make CMakeFiles/out.dir/src/Flight.cpp.i
+.PHONY : src/Flight.cpp.i
 
-src/Voo.s: src/Voo.cpp.s
-.PHONY : src/Voo.s
+src/Flight.s: src/Flight.cpp.s
+.PHONY : src/Flight.s
 
 # target to generate assembly for a file
-src/Voo.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/out.dir/build.make CMakeFiles/out.dir/src/Voo.cpp.s
-.PHONY : src/Voo.cpp.s
+src/Flight.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/out.dir/build.make CMakeFiles/out.dir/src/Flight.cpp.s
+.PHONY : src/Flight.cpp.s
+
+src/Plane.o: src/Plane.cpp.o
+.PHONY : src/Plane.o
+
+# target to build an object file
+src/Plane.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/out.dir/build.make CMakeFiles/out.dir/src/Plane.cpp.o
+.PHONY : src/Plane.cpp.o
+
+src/Plane.i: src/Plane.cpp.i
+.PHONY : src/Plane.i
+
+# target to preprocess a source file
+src/Plane.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/out.dir/build.make CMakeFiles/out.dir/src/Plane.cpp.i
+.PHONY : src/Plane.cpp.i
+
+src/Plane.s: src/Plane.cpp.s
+.PHONY : src/Plane.s
+
+# target to generate assembly for a file
+src/Plane.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/out.dir/build.make CMakeFiles/out.dir/src/Plane.cpp.s
+.PHONY : src/Plane.cpp.s
 
 # Help Target
 help:
@@ -237,15 +237,15 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... src/Aviao.o"
-	@echo "... src/Aviao.i"
-	@echo "... src/Aviao.s"
 	@echo "... src/Date.o"
 	@echo "... src/Date.i"
 	@echo "... src/Date.s"
-	@echo "... src/Voo.o"
-	@echo "... src/Voo.i"
-	@echo "... src/Voo.s"
+	@echo "... src/Flight.o"
+	@echo "... src/Flight.i"
+	@echo "... src/Flight.s"
+	@echo "... src/Plane.o"
+	@echo "... src/Plane.i"
+	@echo "... src/Plane.s"
 .PHONY : help
 
 

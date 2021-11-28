@@ -9,9 +9,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/m/Desktop/AED/Trabalho/T1/main.cpp" "/home/m/Desktop/AED/Trabalho/T1/cmake-build-debug/CMakeFiles/out.dir/main.cpp.o"
-  "/home/m/Desktop/AED/Trabalho/T1/src/Aviao.cpp" "/home/m/Desktop/AED/Trabalho/T1/cmake-build-debug/CMakeFiles/out.dir/src/Aviao.cpp.o"
   "/home/m/Desktop/AED/Trabalho/T1/src/Date.cpp" "/home/m/Desktop/AED/Trabalho/T1/cmake-build-debug/CMakeFiles/out.dir/src/Date.cpp.o"
-  "/home/m/Desktop/AED/Trabalho/T1/src/Voo.cpp" "/home/m/Desktop/AED/Trabalho/T1/cmake-build-debug/CMakeFiles/out.dir/src/Voo.cpp.o"
+  "/home/m/Desktop/AED/Trabalho/T1/src/Flight.cpp" "/home/m/Desktop/AED/Trabalho/T1/cmake-build-debug/CMakeFiles/out.dir/src/Flight.cpp.o"
+  "/home/m/Desktop/AED/Trabalho/T1/src/Plane.cpp" "/home/m/Desktop/AED/Trabalho/T1/cmake-build-debug/CMakeFiles/out.dir/src/Plane.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

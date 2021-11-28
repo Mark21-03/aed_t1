@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/out.dir/main.cpp.o"
-  "CMakeFiles/out.dir/src/Aviao.cpp.o"
   "CMakeFiles/out.dir/src/Date.cpp.o"
-  "CMakeFiles/out.dir/src/Voo.cpp.o"
+  "CMakeFiles/out.dir/src/Flight.cpp.o"
+  "CMakeFiles/out.dir/src/Plane.cpp.o"
   "out"
   "out.pdb"
 )

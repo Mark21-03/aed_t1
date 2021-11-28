@@ -87,13 +87,13 @@
 		<Unit filename="/home/m/Desktop/AED/Trabalho/T1/main.cpp">
 			<Option target="out"/>
 		</Unit>
-		<Unit filename="/home/m/Desktop/AED/Trabalho/T1/src/Aviao.cpp">
-			<Option target="out"/>
-		</Unit>
 		<Unit filename="/home/m/Desktop/AED/Trabalho/T1/src/Date.cpp">
 			<Option target="out"/>
 		</Unit>
-		<Unit filename="/home/m/Desktop/AED/Trabalho/T1/src/Voo.cpp">
+		<Unit filename="/home/m/Desktop/AED/Trabalho/T1/src/Flight.cpp">
+			<Option target="out"/>
+		</Unit>
+		<Unit filename="/home/m/Desktop/AED/Trabalho/T1/src/Plane.cpp">
 			<Option target="out"/>
 		</Unit>
 		<Unit filename="/home/m/Desktop/AED/Trabalho/T1/CMakeLists.txt">
