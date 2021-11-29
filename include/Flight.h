@@ -9,7 +9,8 @@
 class Flight{
 private:
     int number;
-    Date departureDate;
+    Date departureDate; // TODO: THE DATE CLASS DOES NOT HAVE HOURS AND MINUTES, consider creating a time class to this and then a attribute should tell the time
+    // Time departureTime
     float duration; //hours
     std::string origin,destiny; // MAYBE IT WOULD BE GOOD TO STORE THIS IN A ARRAY OF CHARS
     // maybe add a mile counter
@@ -28,7 +29,7 @@ public:
 
     //Getters
     int getNumber() const;
-    Date getDepartureDate() const;
+    Date& getDepartureDate();
     float getDuration() const;
     std::string getOrigin() const;
     std::string getDestiny() const;

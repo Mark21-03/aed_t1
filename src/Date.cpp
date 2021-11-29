@@ -159,7 +159,3 @@ Date::Date() {
     day = now.tm_mday;
 
 }
-
-const std::string& InvalidDate::what()const {
-    return reason;
-};

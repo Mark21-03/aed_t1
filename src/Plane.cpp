@@ -3,16 +3,16 @@
 #include <utility>
 
 Plane::Plane(std::string numberPlate, int capacity){
-    this->numberPlate = numberPlate;
+    this->numberPlate = std::move(numberPlate);
     this->capacity = capacity;
 }
 
 
 Plane::Plane(std::string numberPlate, int capacity,std::vector<Flight> flightPlan){
 
-    this->numberPlate = numberPlate;
+    this->numberPlate = std::move(numberPlate);
     this->capacity = capacity;
-    this->flightPlan = flightPlan;
+    this->flightPlan = std::move(flightPlan);
 }
 //Getters
 std::string Plane::getNumberPlate() const{return this->numberPlate;}
@@ -26,6 +26,6 @@ void Plane::setFlightPlan(const std::vector<Flight> &flightPlan) { this->flightP
 
 void Plane::setCapacity(int capacity) {this->capacity = capacity;}
 
-void Plane::setNumberPlate(std::string numberPlate) {this->numberPlate = numberPlate;}
+void Plane::setNumberPlate(std::string numberPlate) {this->numberPlate = std::move(numberPlate);}
 
 
