@@ -18,11 +18,11 @@ class Plane{
 private:
     std::string numberPlate;
     int capacity;
-    std::vector<Flight> flightPlan; // secalhar uma queue com sequencia de voos consoante o horario de partida
+    std::vector<Flight> flightPlan; // se calhar uma queue com sequencia de voos consoante o horario de partida
 
 public:
 
-    Plane(){};
+    Plane() = default ;
     Plane(std::string numberPlate, int capacity);
     Plane(std::string numberPlate, int capacity,std::vector<Flight> flightPlan);
 

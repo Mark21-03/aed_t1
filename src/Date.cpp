@@ -153,12 +153,13 @@ bool Date::isBefore(const Date& date) const {
 Date::Date() {
     std::time_t t = std::time(nullptr);   // get time now
     struct std::tm now{};
-    localtime_s(&now, &t);
+    //localtime_s(&now, &t); //TODO line causes error
     year = now.tm_year + 1900;
     month = now.tm_mon + 1;
     day = now.tm_mday;
 
 }
+
 const std::string& InvalidDate::what()const {
     return reason;
 };
