@@ -15,7 +15,7 @@ private:
 
 public:
 
-    Flight(){}
+    Flight() = default;
     Flight(int number,const Date& departureDate,float duration,std::string origin,std::string destiny);
 
     //Setters
