@@ -1,12 +1,9 @@
-//
-// Created by ricar on 29/11/2021.
-//
-
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 #include "../include/Passenger.h"
 
 using testing::Eq;
+
 
 TEST(test_Passenger, genericTestOnClassPassenger) {
 
@@ -28,13 +25,14 @@ TEST(test_ticket_passenger, passengerBuyingTickets) {
     Passenger aP(123456789, "Joaquim");
 
     Date d;
-    Flight f(140,d,3.5,"Porto", "Lisbon");
-    Ticket at(f,"c2",'C','E',15.5f);
+    Flight f(140, d, 3.5, "Porto", "Lisbon");
+    Ticket at(f, "c2", 'C', 'E', 15.5f);
 
-    aP.buyTicket(at);
+    aP.
+    buyTicket(at);
 
     Ticket r = aP.getNextFlights().front();
-    ASSERT_EQ(r, at);
-
+    ASSERT_EQ(r, at
+    );
 
 }

@@ -1,7 +1,3 @@
-//
-// Created by ricar on 29/11/2021.
-//
-
 #ifndef PASSENGER_H
 #define PASSENGER_H
 
