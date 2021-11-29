@@ -1,18 +1,19 @@
 #include <iostream>
-//#include "gtest/gtest.h"
-//#include "gmock/gmock.h"
+#include "gtest/gtest.h"
+#include "gmock/gmock.h"
 
 #include <vector>
 
 #include "include/Date.h"
 #include "include/Plane.h"
+#include "include/Passenger.h"
 
-using namespace std;
+int main(int argc, char* argv[]){
 
-int main(){
+    testing::InitGoogleTest(&argc, argv);
 
     Date d;
-    cout<<d<<endl;
+    std::cout<<d<<std::endl;
 
     Flight f(21368,d,12.3,"Lisbon","Porto");
     vector<Flight> v = {f};
@@ -21,6 +22,12 @@ int main(){
 
     string str = a.getFlightPlan()[0].getOrigin();
 
-    cout<<str<<endl;
+    std::cout<<str<<std::endl;
 
+    Passenger me(293939,"Ricardo");
+
+    std::cout << me.getName() << std::endl;
+
+
+    return RUN_ALL_TESTS();
 }

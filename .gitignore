@@ -3,3 +3,4 @@ cmake-build-default-visual-studio/
 build/
 cmake-build-debug/
 build/CMakeFiles/out.dir
+cmake-build-debug-visual-studio/

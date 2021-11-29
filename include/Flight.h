@@ -11,7 +11,8 @@ private:
     int number;
     Date departureDate;
     float duration; //hours
-    std::string origin,destiny;
+    std::string origin,destiny; // MAYBE IT WOULD BE GOOD TO STORE THIS IN A ARRAY OF CHARS
+    // maybe add a mile counter
 
 public:
 
@@ -31,6 +32,9 @@ public:
     float getDuration() const;
     std::string getOrigin() const;
     std::string getDestiny() const;
+
+
+    // TODO: DO A CHECK IN FUNCTION WHICH WILL TAKE A PASSENGER
 };
 
 #endif //FLIGHT_H
