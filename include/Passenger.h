@@ -1,7 +1,3 @@
-//
-// Created by ricar on 29/11/2021.
-//
-
 #ifndef PASSENGER_H
 #define PASSENGER_H
 
@@ -15,6 +11,7 @@
 
 class Passenger {
 public:
+    Passenger() = default;
     Passenger(unsigned int ssn,const std::string& name){
         int i = 0;
         for (auto c: name) {
@@ -22,7 +19,9 @@ public:
         }
         this->name[i] = '\0';
         ID = ssn;
-    };
+    }
+
+
 
     //getters
 

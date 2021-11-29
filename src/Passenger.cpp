@@ -1,8 +1,4 @@
-//
-// Created by ricar on 29/11/2021.
-//
-
-#include "Passenger.h"
+#include "../include/Passenger.h"
 
 
 std::string Passenger::getName() {

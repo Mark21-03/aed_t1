@@ -1,15 +1,13 @@
-#include <iostream>
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
 
-#include <vector>
-
 #include "include/Date.h"
 #include "include/Plane.h"
-
 #include "include/Passenger.h"
-#include "include/binaryTree.h"
-#include "include/bst.h"
+#include "include/BST.h"
+
+#include <iostream>
+#include <vector>
 
 int main(int argc, char* argv[]){
 
@@ -19,8 +17,6 @@ int main(int argc, char* argv[]){
     std::cout<<d<<std::endl;
 
     BST<int> bst;
-    BinaryTree<int> bt;
-
 
     for(int i=0;i<100;i++) bst.insert(i);
 
@@ -37,9 +33,9 @@ int main(int argc, char* argv[]){
 
     std::cout<<str<<std::endl;
 
-    Passenger me(293939,"Ricardo");
+    Passenger passenger1(293939,"Ricardo");
 
-    std::cout << me.getName() << std::endl;
+    std::cout << passenger1.getName() << std::endl;
 
 
     return RUN_ALL_TESTS();

@@ -8,7 +8,12 @@ include_directories(lib/googletest-master/googletest/include)
 include_directories(lib/googletest-master/googlemock/include)
 
 
-add_executable(aed_t1 main.cpp include/Plane.h include/Date.h include/Flight.h src/Plane.cpp src/Date.cpp src/Flight.cpp include/Passenger.cpp include/Passenger.h Tests/tests.cpp include/binaryTree.h include/bst.h)
+add_executable(aed_t1
+
+        main.cpp src/Baggage.cpp src/Plane.cpp src/Date.cpp src/Flight.cpp src/Passenger.cpp src/Service.cpp Tests/tests.cpp
+        include/Date.h include/Plane.h include/Flight.h include/Passenger.h  include/BST.h include/Baggage.h include/Service.h
+)
+
 
 
 target_link_libraries(aed_t1 gtest gtest_main)
