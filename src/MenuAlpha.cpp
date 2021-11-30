@@ -1,9 +1,8 @@
-#ifndef AED_T1_MENUPROTOTYPE_H
-#define AED_T1_MENUPROTOTYPE_H
 
 
 
 #include <iostream>
+#include <vector>
 
 //WORK IN PROGRESS MENU EXAMPLE
 
@@ -15,6 +14,88 @@ using namespace std;
 #else //In any other OS
 #define CLEAR "clear"
 #endif
+
+
+//___________________________TEMPORARY_TESTING_______________________________
+
+void funcCreatePassanger(){
+    cout<<"\n!funcCreatePassanger!\n";getchar();
+}
+void funcCreatePlane(){
+    cout<<"\n!funcCreatePlane!\n";getchar();
+}
+void funcCreateFlight(){
+    cout<<"\n!funcCreateFlight!\n";getchar();
+}
+void funcCreateService(){
+    cout<<"\n!funcCreateService!\n";getchar();
+}
+void funcCreateTicket(){
+    cout<<"\n!funcCreateTicket!\n";getchar();
+}
+
+
+void funcReadPassanger(){
+    cout<<"\n!funcReadPassanger!\n";getchar();
+}
+void funcReadPlane(){
+    cout<<"\n!funcReadPlane!\n";getchar();
+}
+void funcReadFlight(){
+    cout<<"\n!funcReadFlight!\n";getchar();
+}
+void funcReadService(){
+    cout<<"\n!funcReadService!\n";getchar();
+}
+void funcReadTicket(){
+    cout<<"\n!funcReadTicket!\n";getchar();
+}
+
+
+void funcUpdatePassanger(){
+    cout<<"\n!funcUpdatePassanger!\n";getchar();
+}
+void funcUpdatePlane(){
+    cout<<"\n!funcUpdatePlane!\n";getchar();
+}
+void funcUpdateFlight(){
+    cout<<"\n!funcUpdateFlight!\n";getchar();
+}
+void funcUpdateService(){
+    cout<<"\n!funcUpdateService!\n";getchar();
+}
+void funcUpdateTicket(){
+    cout<<"\n!funcUpdateTicket!\n";getchar();
+}
+
+
+void funcDeletePassanger(){
+    cout<<"\n!funcDeletePassanger!\n";getchar();
+}
+void funcDeletePlane(){
+    cout<<"\n!funcDeletePlane!\n";getchar();
+}
+void funcDeleteFlight(){
+    cout<<"\n!funcDeleteFlight!\n";getchar();
+}
+void funcDeleteService(){
+    cout<<"\n!funcDeleteService!\n";getchar();
+}
+void funcDeleteTicket(){
+    cout<<"\n!funcDeleteTicket!\n";getchar();
+}
+
+vector<void (*)()>  createFuncs = {funcCreatePassanger,funcCreatePlane,funcCreateFlight,funcCreateService,funcCreateTicket};
+vector<void (*)()>  readFuncs = {funcReadPassanger,funcReadPlane,funcReadFlight,funcReadService,funcReadTicket};
+vector<void (*)()>  updateFuncs = {funcUpdatePassanger,funcUpdatePlane,funcUpdateFlight,funcUpdateService,funcUpdateTicket};
+vector<void (*)()>  deleteFuncs = {funcDeletePassanger,funcDeletePlane,funcDeleteFlight,funcDeleteService,funcDeleteTicket};
+
+
+//___________________________TEMPORARY_TESTING_______________________________
+
+
+
+
 
 
 string trimStr(string str){
@@ -33,11 +114,11 @@ bool emptyCin() {
 }
 
 void giveMenuInputError(string &s){
-    s =  "Invalid input was given.\nPlease provide a number from the menu.\n\n";
+    s =  "\nInvalid input was given.\nPlease provide a number from the menu.\n\n";
 }
 
 
-void subMenu(const string& menuTitle) {
+void subMenu(const string& menuTitle,vector<void (*)()> funcs) {
     char userInput;
     string inputError;
 
@@ -52,11 +133,12 @@ void subMenu(const string& menuTitle) {
         cout << "=================" << endl;
         cout << menuTitle<< endl;
         cout << "=================" << endl;
-        cout << "  1)  Create" << endl;
-        cout << "  2)  Read" << endl;
-        cout << "  3)  Update" << endl;
-        cout << "  4)  Delete" << endl;
-        cout << "  5)  Go Back" << endl;
+        cout << "  1)  Passanger" << endl;
+        cout << "  2)  Plane" << endl;
+        cout << "  3)  Flight" << endl;
+        cout << "  4)  Service" << endl;
+        cout << "  5)  Ticket" << endl;
+        cout << "  6)  Go Back" << endl;
         cout << "  0)  Exit" << endl;
         cout << "================" << endl;
         cout << " > ";
@@ -77,28 +159,29 @@ void subMenu(const string& menuTitle) {
                     cout<<"End of program.\n";
                     exit(1);
 
-                case '1'://CREATE
-
+                case '1'://Passanger
+                    funcs[0]();
                     break;
-                case '2'://READ
-
+                case '2'://Plane
+                    funcs[1]();
                     break;
-                case '3'://UPDATE
-
+                case '3'://Flight
+                    funcs[2]();
                     break;
-                case '4'://DELETE
-
+                case '4'://Service
+                    funcs[3]();
                     break;
-                case '5'://Go Back
+                case '5'://Ticket
+                    funcs[4]();
+                    break;
+                case '6'://Go Back
                     goto END_MENU;
                 default:
                     giveMenuInputError(inputError);
                     break;
             }
             //END OF MENU SELECTION
-
             continue;
-
         }else
         {
             //deals with errors when trying to get the char
@@ -156,16 +239,16 @@ void mainMenu() {
                     cout<<"End of program.\n";
                     exit(1);
                 case '1'://CREATE
-                    subMenu("   CREATE MENU");
+                    subMenu("   CREATE MENU",createFuncs);
                     break;
                 case '2'://READ
-                    subMenu("   READ MENU");
+                    subMenu("    READ MENU",readFuncs);
                     break;
                 case '3'://UPDATE
-                    subMenu("  UPDATE MENU");
+                    subMenu("   UPDATE MENU",updateFuncs);
                     break;
                 case '4'://DELETE
-                    subMenu("  DELETE MENU");
+                    subMenu("   DELETE MENU",deleteFuncs);
                     break;
                 default:
                     giveMenuInputError(inputError);
@@ -192,4 +275,7 @@ void mainMenu() {
 
 
 
-#endif //AED_T1_MENUPROTOTYPE_H
+
+int main(){
+    mainMenu();
+}
