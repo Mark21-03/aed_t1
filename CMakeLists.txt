@@ -1,7 +1,7 @@
-cmake_minimum_required(VERSION 3.19)
+cmake_minimum_required(VERSION 3.10)
 project(aed_t1)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 11)
 
 add_subdirectory(lib/googletest-master)
 include_directories(lib/googletest-master/googletest/include)
