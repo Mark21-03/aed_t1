@@ -10,8 +10,9 @@
 #include <queue>
 #include <numeric>
 
-#define LONGEST_ACCEPTED_NAME 1000
+#define LONGEST_ACCEPTED_NAME 150
 // INFO: the longest name in the world as 950 chars
+
 
 class Passenger {
 public:

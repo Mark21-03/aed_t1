@@ -1,6 +1,4 @@
 #include "../include/Date.h"
-#include "../lib/googletest-master/googletest/include/gtest/internal/gtest-port.h"
-
 
 Date::Date(unsigned int year, unsigned int month, unsigned int day) {
     try {

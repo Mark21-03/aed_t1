@@ -10,7 +10,7 @@ private:
    float width;
    float thickness;
 public:
-    Baggage(float weigth, float length, float width, float thickness);
+    Baggage(float weight, float length, float width, float thickness);
     void setWeight(float weight);
     void setLength(float length);
     void setWidth(float width);

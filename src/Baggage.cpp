@@ -16,7 +16,7 @@ void Baggage::setWidth(float width) {this->width=width;}
 //getters
 float Baggage::getLength() const {return this->length;}
 float Baggage::getThickness() const {return this->thickness;}
-float Baggage::getWeight() const {return this->weigth;}
+float Baggage::getWeight() const {return this->weight;}
 float Baggage::getWidth() const {return this->width;}
 
 //fazer funçao com restriçao de peso, comprimento, tamanho, profundidade

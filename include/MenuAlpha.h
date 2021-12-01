@@ -1,8 +1,10 @@
 
-
+#ifndef T
+#define T
 
 #include <iostream>
 #include <vector>
+#include <string>
 
 //WORK IN PROGRESS MENU EXAMPLE
 
@@ -272,10 +274,4 @@ void mainMenu() {
         }
     }
 }
-
-
-
-
-int main(){
-    mainMenu();
-}
+#endif
