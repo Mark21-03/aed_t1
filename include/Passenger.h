@@ -23,7 +23,7 @@ public:
 
     // booking
 
-    void buyTicket(Ticket& ticket);
+    void addTicket(Ticket& ticket);
 
     // boarding
 
@@ -37,6 +37,9 @@ public:
     // getters
 
     std::string getName() const;
+    char* getNameC() {
+        return name;
+    }
     unsigned int getID() const;
     std::list<Ticket>& getPastFlights();
     std::list<Ticket>& getNextFlights();
@@ -57,6 +60,28 @@ private:
     std::list<Ticket> nextFlights; // ticket should have the information about the flights
 
 };
+
+inline std::ostream & operator<<(std::ostream& os, Passenger& l) {
+
+    os << l.getID() << " ";
+
+    for (int i = 0; i < LONGEST_ACCEPTED_NAME; ++i) {
+        os << (l.getNameC()[i]);
+    }
+
+    os << " " << l.getPastFlights().size() << " ";
+    for (auto& t: l.getPastFlights()) {
+        os << t.getFlightInfo().getNumber() << " "; // maybe the rest of the ticket information can go away( leaving only ticket with parameter flight and owner)
+    }
+
+    os << l.getNextFlights().size() << " ";
+
+    for (auto& t: l.getNextFlights()) {
+        os << t.getFlightInfo().getNumber() << " "; // maybe the rest of the ticket information can go away( leaving only ticket with parameter flight and owner)
+    }
+    os << std::endl;
+    return os;
+}
 
 
 #endif //PASSENGER_H

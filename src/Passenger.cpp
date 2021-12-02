@@ -39,16 +39,16 @@ Passenger& Passenger::setID(unsigned int ID) {
 
     return *this;
 }
-
+/*
 float Passenger::moneySpent() const {
     float sum = 0.0f;
     for (auto t: pastFlights) {
         sum += t.getPrice();
     }
     return sum;
-}
+}*/
 
-void Passenger::buyTicket(Ticket& ticket) { // this should be different when we make the flight has a time associated
+void Passenger::addTicket(Ticket &ticket) { // this should be different when we make the flight has a time associated
 
     for (auto t = nextFlights.begin(); t != nextFlights.end(); t++) {
         if (t->getFlightInfo().getDepartureDate() > ticket.getFlightInfo().getDepartureDate()) {

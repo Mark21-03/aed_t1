@@ -10,9 +10,9 @@ private:
     list<Service> doneServices;
     queue<Service> toDoServices;
 public:
-    void setdoneServices(list doneServices);
+    void setDoneServices(list<Service> doneServices);
     void setToDoServices(queue<Service> toDoServices);
-    list<Service> getdoneServices() const;
+    list<Service> getDoneServices() const;
     queue<Service> getToDoServices() const;
 };
 

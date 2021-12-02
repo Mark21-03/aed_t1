@@ -15,7 +15,7 @@ if(CMAKE_BUILD_TYPE MATCHES Debug)
         include/BST.h include/Baggage.h include/Service.h
         Exceptions/InvalidIDException.h
         Exceptions/NameToLongException.h src/Ticket.cpp include/Ticket.h
-        include/MenuAlpha.h)
+        include/MenuAlpha.h include/Manager.h src/Manager.cpp include/ServiceManagement.h src/ServiceManagement.cpp)
     target_link_libraries(aed_t1 gtest gtest_main)
     message("Debug mode")
 endif()
@@ -27,7 +27,8 @@ if (CMAKE_BUILD_TYPE MATCHES Release)
             include/BST.h include/Baggage.h include/Service.h
             Exceptions/InvalidIDException.h
             Exceptions/NameToLongException.h src/Ticket.cpp include/Ticket.h
-            include/MenuAlpha.h )
+            include/MenuAlpha.h src/Manager.cpp include/Manager.h
+            include/ServiceManagement.h src/ServiceManagement.cpp)
     message("Release mode")
 
 endif ()

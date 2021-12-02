@@ -11,7 +11,7 @@
 class NameToLongException : public std::exception {
     const char* what() const noexcept override
     {
-        return "The Name of the passenger is too long to be accepted.";
+        return "The String passed is too long to be accepted.";
     }
 };
 #endif //AED_T1_NAMETOLONGEXCEPTION_H

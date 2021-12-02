@@ -19,7 +19,7 @@ private:
     std::string numberPlate;
     int capacity;
     std::vector<Flight> flightPlan; // se calhar uma queue com sequencia de voos consoante o horario de partida
-
+    // TODO: VER ENCUNCIADO RELATIVAMENTE AO TIPO DE DADOS ACIMA
 public:
 
     Plane() = default ;

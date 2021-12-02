@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "Manager.h"
 
 //WORK IN PROGRESS MENU EXAMPLE
 
@@ -17,6 +18,8 @@ using namespace std;
 #define CLEAR "clear"
 #endif
 
+
+Manager manager; // TODO: IT's a global ...
 
 //___________________________TEMPORARY_TESTING_______________________________
 
@@ -38,13 +41,14 @@ void funcCreateTicket(){
 
 
 void funcReadPassanger(){
-    cout<<"\n!funcReadPassanger!\n";getchar();
+    manager.showSortedPassengers();
 }
 void funcReadPlane(){
     cout<<"\n!funcReadPlane!\n";getchar();
 }
 void funcReadFlight(){
-    cout<<"\n!funcReadFlight!\n";getchar();
+    manager.showSortedFlights(); // TODO: in here we will have to ask in what order to sort
+                                    // TODO: tb temos de ver a questão das listagens várias
 }
 void funcReadService(){
     cout<<"\n!funcReadService!\n";getchar();

@@ -101,7 +101,8 @@ inline std::ostream& operator <<(std::ostream& os,const Date& right) {
 }
 inline std::istream& operator >>(std::istream& is, Date& right) {
     int year, m, d;
-    is >> year >> m >> d;
+    char s;
+    is >> year >> s >> m >> s >> d;
     right.setDate(year, m, d);
     return is;
 }

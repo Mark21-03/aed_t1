@@ -1,5 +1,6 @@
 
 #include "../include/Flight.h"
+#include "../Exceptions/NameToLongException.h"
 
 #include <utility>
 
@@ -8,8 +9,14 @@ Flight::Flight(int number,const Date& departureDate,float duration,std::string o
     this->number = number;
     this->departureDate = departureDate;
     this->duration = duration;
-    this->origin = std::move(origin);
-    this->destiny = std::move(destiny);
+
+
+    if (origin.size() > STRING_MAX_VALUE || destiny.size() > STRING_MAX_VALUE) {
+        throw NameToLongException();
+    }
+
+    setOrigin(origin).setDestiny(destiny);
+
 }
 
 //Getters
@@ -19,18 +26,62 @@ Date& Flight::getDepartureDate() {return (this->departureDate);}
 
 float Flight::getDuration() const {return this->duration;}
 
-std::string Flight::getOrigin() const {return this->origin;}
+std::string Flight::getOrigin() const {
+    int i=0;
+    string s;
+    char c;
+    while ((c = origin[i++] )!= '\0') {
+        s+=c;
+    }
+    return s;
+}
 
-std::string Flight::getDestiny() const {return this->destiny;}
+std::string Flight::getDestiny() const {
+    int i=0;
+    string s;
+    char c;
+    while ((c = destiny[i++] )!= '\0') {
+        s+=c;
+    }
+    return s;
+}
 
 //Setters
-void Flight::setNumber(int number) {this->number = number;}
+Flight& Flight::setNumber(int number) {this->number = number;return *this;}
 
-void Flight::setDepartureDate(Date departureDate) {this->departureDate = departureDate;}
+Flight& Flight::setDepartureDate(Date departureDate) {this->departureDate = departureDate;return *this;}
 
-void Flight::setDuration(float duration) {this->duration = duration;}
+Flight& Flight::setDuration(float duration) {this->duration = duration; return *this;}
 
-void Flight::setOrigin(std::string origin) {this->origin = std::move(origin);}
+Flight& Flight::setOrigin(std::string origin) {
+    int i = 0;
+    for (auto c: origin) {
+        if (i > STRING_MAX_VALUE)
+            throw NameToLongException();
+        this->origin[i++] = c;
+    }
+    this->origin[i] = '\0';
 
-void Flight::setDestiny(std::string destiny) {this->destiny = std::move(destiny);}
+    return *this;
+}
+
+Flight& Flight::setDestiny(std::string destiny) {
+    int i = 0;
+    for (auto c: destiny) {
+        if (i > STRING_MAX_VALUE)
+            throw NameToLongException();
+        this->destiny[i++] = c;
+    }
+    this->destiny[i] = '\0';
+
+    return *this;
+}
+
+char* Flight::getOriginC()  {
+    return origin;
+}
+
+char *Flight::getDestinyC()  {
+    return destiny;
+}
 

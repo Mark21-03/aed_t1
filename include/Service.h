@@ -5,9 +5,15 @@
 #include "Date.h"
 #include <queue>
 
+enum ServiceType {
+    maintenance,
+    cleaning,
+    other
+};
+
 class Service{
 private:
-    char type; //m=manutenção, l=limpeza
+    ServiceType type;
     Date date;
     string employer;
 public:
@@ -18,7 +24,7 @@ public:
     void setDate(Date date);
     void setEmployer(string employer);
 
-    char getType() const;
+    ServiceType getType() const;
     Date getDate() const;
     string getEmployer() const;
 };
