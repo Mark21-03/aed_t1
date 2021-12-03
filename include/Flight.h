@@ -47,6 +47,14 @@ inline bool operator == (const Flight&l, const Flight& r) {
     return l.getNumber() == r.getNumber();
 }
 
+inline bool operator != (const Flight&l, const Flight& r) {
+    return !(l.getNumber() == r.getNumber());
+}
+
+inline bool operator < (const Flight&l, const Flight& r) {
+    return l.getNumber() < r.getNumber();
+}
+
 inline std::ostream& operator<< (std::ostream& os, Flight& r) {
     os << r.getNumber()  << " " << r.getDepartureDate().getDate() << " ";
 

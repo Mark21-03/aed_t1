@@ -35,4 +35,22 @@ public:
     std::vector<Flight> getFlightPlan() const;
 };
 
+inline std::ostream & operator<<(std::ostream& os, Plane& p) {
+    os << p.getNumberPlate() << " "<<p.getCapacity();
+    return os;
+}
+
+inline bool operator<(const Plane &p1, const Plane &p2){
+    return p1.getNumberPlate()<p2.getNumberPlate();
+}
+
+inline bool operator==(const Plane &p1, const Plane &p2){
+    return p1.getNumberPlate()==p2.getNumberPlate();
+}
+
+inline bool operator!=(const Plane &p1, const Plane &p2){
+    return p1.getNumberPlate()!=p2.getNumberPlate();
+}
+
+
 #endif //PLANE_H

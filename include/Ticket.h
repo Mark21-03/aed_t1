@@ -39,6 +39,10 @@ inline bool operator==(const Ticket& l, const Ticket& r) {
     return l.getFlightInfo() == r.getFlightInfo() ;
 }
 
+inline bool operator<(const Ticket& t1, const Ticket& t2){
+    return 1; //TODO resolver problema do ID do ticket associado a um flight
+}
+
 inline std::ostream& operator <<(std::ostream & os, Ticket& l) {
 
     os << l.getFlightInfo().getNumber() << " ";

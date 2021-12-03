@@ -3,6 +3,8 @@ project(aed_t1)
 
 set(CMAKE_CXX_STANDARD 11)
 
+set(CREATE_EXE TRUE)  #creates a exe folder for the execution file in cmake-buid-release
+
 if(CMAKE_BUILD_TYPE MATCHES Debug)
     add_subdirectory(lib/googletest-master)
     include_directories(lib/googletest-master/googletest/include)
@@ -20,6 +22,14 @@ if(CMAKE_BUILD_TYPE MATCHES Debug)
     message("Debug mode")
 endif()
 if (CMAKE_BUILD_TYPE MATCHES Release)
+
+    #creates exe file (easier to run mainMenu() in the terminal)
+    if(CREATE_EXE MATCHES TRUE)
+        set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY exe/)
+        set(CMAKE_LIBRARY_OUTPUT_DIRECTORY exe/)
+        set(CMAKE_RUNTIME_OUTPUT_DIRECTORY exe/)
+    endif()
+
     add_executable(aed_t1
             main.cpp src/Baggage.cpp src/Plane.cpp src/Date.cpp src/Flight.cpp
             src/Passenger.cpp  src/Service.cpp

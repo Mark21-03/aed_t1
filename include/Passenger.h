@@ -15,7 +15,16 @@
 
 
 class Passenger {
+private:
+    unsigned int ID;
+    char name[LONGEST_ACCEPTED_NAME]{};
+
+    std::list<Ticket> pastFlights; // it is useful to keep track of flights ---> WE COULD EVEN DO A MILEAGE CAMPAIGN TODO
+    std::list<Ticket> nextFlights; // ticket should have the information about the flights
+
 public:
+    Passenger() = default;
+
     Passenger(unsigned int ID, const std::string& name){
         setName(name);
         this->ID = ID;
@@ -51,14 +60,6 @@ public:
     Passenger& setPastFlights(const std::list<Ticket>& lFlights);
     Passenger& setNextFlights(const std::list<Ticket>& lFlights);
 
-
-private:
-    unsigned int ID;
-    char name[LONGEST_ACCEPTED_NAME]{};
-
-    std::list<Ticket> pastFlights; // it is useful to keep track of flights ---> WE COULD EVEN DO A MILEAGE CAMPAIGN TODO
-    std::list<Ticket> nextFlights; // ticket should have the information about the flights
-
 };
 
 inline std::ostream & operator<<(std::ostream& os, Passenger& l) {
@@ -83,5 +84,25 @@ inline std::ostream & operator<<(std::ostream& os, Passenger& l) {
     return os;
 }
 
+
+inline std::istream & operator>>(std::istream& is, Passenger& l) {
+    unsigned int temp_ID;
+    char temp_Name[LONGEST_ACCEPTED_NAME];
+    is >> temp_ID >> temp_Name;
+    l.setName(temp_Name);
+    l.setID(temp_ID);
+
+}
+
+inline bool operator<(const Passenger& l1,const Passenger& l2){
+    return l1.getID()<l2.getID();
+}
+
+inline bool operator==(const Passenger& l1,const Passenger& l2){
+    return l1.getID()==l2.getID();
+}
+inline bool operator!=(const Passenger& l1,const Passenger& l2){
+    return !(l1.getID()==l2.getID());
+}
 
 #endif //PASSENGER_H
