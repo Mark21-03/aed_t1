@@ -61,15 +61,26 @@ TEST(test_creation_of_recordsOfFlights, inoutOperator) {
     Date d;
     vector<Flight> v;
 
+    ASSERT_EQ(aP.getName(), "Joaquim Andre Araujo de Matos ");
     ifstream ifs("../Files/Flights/flights.txt");
 
 
     Flight flight;
     Flight f(140, d, 3.5, "Porto", "Lisbon");
     Flight f2(160, d, 6.5, "Porto", "Roma");
+    Flight f3(260, d, 1.5, "Porto", "Rio de Janeiro");
 
-    while(ifs >> flight) {
+    std:istringstream iss;
+    string s;
+    //while(getline(ifs,s)) {
+    //    std::istringstream iss(s);
+      //  v.push_back(flight);
+        //ifs.ignore();
+    //}
+
+    while(ifs >> flight) { // TODO: THIS ISN'T READING ALL THE FLIGHTS
         v.push_back(flight);
+        ifs.ignore();
     }
 
     Ticket at(v[0]);
@@ -78,24 +89,28 @@ TEST(test_creation_of_recordsOfFlights, inoutOperator) {
     aP.addTicket(at);
     aP.addTicket(at2);
 
+    ifs.close();
+
     std::ofstream ofs("../Files/Passengers/passengers.txt", ios::app);
     std::ofstream ofsF("../Files/Flights/flights.txt", ios::app);
 
 
-    ASSERT_EQ(v[0].getOrigin(), "Porto");
+    ASSERT_EQ(v[0].getOrigin(), "Porto"); // NOTE : THIS WILL FAIL TO MORE THAN ONE WORD: THE SOLUTION IS IN PASSENGER.H
     ASSERT_EQ(v[0].getDestiny(), "Lisbon");
+    ASSERT_EQ(v[2].getDestiny() , "Rio de Janeiro");
     //ofs << aP << aP2;
     //ofsF << f << f2;
 
+
 }
 
-TEST(Test_In_Passenger, inOperatorsPassenger) {
+TEST(Test_In_Passenger, inOperatorsPassenger) { // NOTE: THIS TEST WAS FAILING
 
-    stringstream s("21345 Andre");
+    ifstream s("../Files/Passengers/passengers.txt");
     Passenger p;
     s>>p;
-    ASSERT_EQ(p.getID(),21345);
-    ASSERT_EQ(p.getName(),"Andre");
+    ASSERT_EQ(p.getID(),123456789);
+    ASSERT_EQ(p.getName(),"Joaquim Andre Araujo de Matos");
 
 }
 

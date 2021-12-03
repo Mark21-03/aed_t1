@@ -19,7 +19,7 @@ using namespace std;
 #endif
 
 
-Manager manager; // TODO: IT's a global ...
+Manager manager("../Files/Flights/flights.txt"); // TODO: IT's a global ...
 
 //___________________________TEMPORARY_TESTING_______________________________
 
@@ -40,7 +40,7 @@ void funcCreateTicket(){
 }
 
 
-void funcReadPassanger(){
+void funcReadPassenger(){
     manager.showSortedPassengers();
 }
 void funcReadPlane(){
@@ -49,6 +49,7 @@ void funcReadPlane(){
 void funcReadFlight(){
     manager.showSortedFlights(); // TODO: in here we will have to ask in what order to sort
                                     // TODO: tb temos de ver a questão das listagens várias
+
 }
 void funcReadService(){
     cout<<"\n!funcReadService!\n";getchar();
@@ -92,7 +93,7 @@ void funcDeleteTicket(){
 }
 
 vector<void (*)()>  createFuncs = {funcCreatePassanger,funcCreatePlane,funcCreateFlight,funcCreateService,funcCreateTicket};
-vector<void (*)()>  readFuncs = {funcReadPassanger,funcReadPlane,funcReadFlight,funcReadService,funcReadTicket};
+vector<void (*)()>  readFuncs = {funcReadPassenger, funcReadPlane, funcReadFlight, funcReadService, funcReadTicket};
 vector<void (*)()>  updateFuncs = {funcUpdatePassanger,funcUpdatePlane,funcUpdateFlight,funcUpdateService,funcUpdateTicket};
 vector<void (*)()>  deleteFuncs = {funcDeletePassanger,funcDeletePlane,funcDeleteFlight,funcDeleteService,funcDeleteTicket};
 

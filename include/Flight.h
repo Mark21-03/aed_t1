@@ -14,7 +14,7 @@ private:
     Date departureDate; // TODO: THE DATE CLASS DOES NOT HAVE HOURS AND MINUTES, consider creating a time class to this and then a attribute should tell the time
     // Time departureTime
     float duration; //hours
-    char origin[STRING_MAX_VALUE]{},destiny[STRING_MAX_VALUE]{}; // MAYBE IT WOULD BE GOOD TO STORE THIS IN A ARRAY OF CHARS
+    char origin[STRING_MAX_VALUE]{},destiny[STRING_MAX_VALUE]{};
     // maybe add a mile counter
 
 public:
@@ -58,7 +58,7 @@ inline bool operator < (const Flight&l, const Flight& r) {
 inline std::ostream& operator<< (std::ostream& os, Flight& r) {
     os << r.getNumber()  << " " << r.getDepartureDate().getDate() << " ";
 
-    os << r.getDuration() << " " ;
+    os << r.getDuration();
 
     for (int i = 0; i < STRING_MAX_VALUE; ++i) {
         os << (r.getOriginC()[i]);
@@ -67,6 +67,7 @@ inline std::ostream& operator<< (std::ostream& os, Flight& r) {
     for (int i = 0; i < STRING_MAX_VALUE; ++i) {
         os << (r.getDestiny()[i]);
     }
+
 
     os << std::endl;
 
@@ -94,6 +95,10 @@ inline std::istream& operator>> (std::istream& is, Flight& r) {
     for (int i = 0; i < STRING_MAX_VALUE; ++i) {
         is >> (r.getDestinyC()[i]);
     }
+
+    //is.getline(r.getOriginC(), sizeof(char) * STRING_MAX_VALUE);
+
+    //is.getline(r.getDestinyC(), sizeof(char) * STRING_MAX_VALUE);
 
     return is;
 

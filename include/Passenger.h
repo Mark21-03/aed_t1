@@ -64,7 +64,7 @@ public:
 
 inline std::ostream & operator<<(std::ostream& os, Passenger& l) {
 
-    os << l.getID() << " ";
+    os << l.getID();
 
     for (int i = 0; i < LONGEST_ACCEPTED_NAME; ++i) {
         os << (l.getNameC()[i]);
@@ -87,11 +87,12 @@ inline std::ostream & operator<<(std::ostream& os, Passenger& l) {
 
 inline std::istream & operator>>(std::istream& is, Passenger& l) {
     unsigned int temp_ID;
-    char temp_Name[LONGEST_ACCEPTED_NAME];
-    is >> temp_ID >> temp_Name;
-    l.setName(temp_Name);
+    is >> temp_ID;
     l.setID(temp_ID);
 
+    is.getline(l.getNameC(), sizeof(char ) * STRING_MAX_VALUE);
+
+    return is;
 }
 
 inline bool operator<(const Passenger& l1,const Passenger& l2){

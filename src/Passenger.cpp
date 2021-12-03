@@ -1,7 +1,3 @@
-//
-// Created by ricar on 29/11/2021.
-//
-
 #include "../include/Passenger.h"
 
 #include <utility>
