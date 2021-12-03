@@ -11,10 +11,10 @@ if(CMAKE_BUILD_TYPE MATCHES Debug)
     include_directories(lib/googletest-master/googlemock/include)
 
     add_executable(aed_t1
-        mainTest.cpp src/Baggage.cpp src/Plane.cpp src/Date.cpp src/Flight.cpp
+        mainTest.cpp src/Plane.cpp src/Date.cpp src/Flight.cpp
         src/Passenger.cpp  src/Service.cpp Tests/tests.cpp
         include/Date.h include/Plane.h include/Flight.h include/Passenger.h
-        include/BST.h include/Baggage.h include/Service.h
+        include/BST.h include/Service.h
         Exceptions/InvalidIDException.h
         Exceptions/NameToLongException.h src/Ticket.cpp include/Ticket.h
         include/MenuAlpha.h include/Manager.h src/Manager.cpp include/ServiceManagement.h src/ServiceManagement.cpp)
@@ -31,10 +31,10 @@ if (CMAKE_BUILD_TYPE MATCHES Release)
     endif()
 
     add_executable(aed_t1
-            main.cpp src/Baggage.cpp src/Plane.cpp src/Date.cpp src/Flight.cpp
+            main.cpp src/Plane.cpp src/Date.cpp src/Flight.cpp
             src/Passenger.cpp  src/Service.cpp
             include/Date.h include/Plane.h include/Flight.h include/Passenger.h
-            include/BST.h include/Baggage.h include/Service.h
+            include/BST.h include/Service.h
             Exceptions/InvalidIDException.h
             Exceptions/NameToLongException.h src/Ticket.cpp include/Ticket.h
             include/MenuAlpha.h src/Manager.cpp include/Manager.h

@@ -28,7 +28,7 @@ public:
 private:
     Flight flightInfo;
     int passengerID;
-    //float price; // maybe it can be cool to make a price class or struct with price and taxes
+    //float price;
     //char seat[SEAT_MAP_DIMENSION]{};
     //char boardingZone;
     //char tClass;

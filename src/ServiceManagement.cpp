@@ -8,7 +8,6 @@ queue<Service> ServiceManagement::getToDoServices() const {return this->toDoServ
 
 
 void ServiceManagement::printAllDoneServices() const{
-
     for(Service s:doneServices){
         cout<<s<<endl;
     }
@@ -17,13 +16,10 @@ void ServiceManagement::printAllDoneServices() const{
 
 void ServiceManagement::addDoneServices(Service service) {
     doneServices.push_back(service);
-    //possivelmente não estara a inserir por ordem ?
-    //fazer antes um insert na pos correta?
 }
 
 void ServiceManagement::addToDoService(Service service) {
     toDoServices.push(service);
-    //problema com as datas ?
 }
 
 // metodo remove o 1º elem da fila  toDoServices e passa-o para a lista doneServices

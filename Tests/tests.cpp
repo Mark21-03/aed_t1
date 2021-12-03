@@ -137,3 +137,16 @@ TEST(Test_ServiceManagement, OperatorsManagement) {
 
 
 }
+
+TEST(Test_Baggage, BaggageStruct) {
+
+
+    Baggage b1(7.34,3);
+    Baggage b2(2.34,1,true);
+
+    ASSERT_EQ(b1.quantity,3);
+    ASSERT_EQ(b1.handheld,false);
+    ASSERT_EQ(b2.weight,(float)2.34);
+    ASSERT_EQ(b2.handheld,true);
+
+}
