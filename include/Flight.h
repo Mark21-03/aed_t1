@@ -60,12 +60,26 @@ inline std::ostream& operator<< (std::ostream& os, Flight& r) {
 
     os << r.getDuration();
 
+    bool b = false;
     for (int i = 0; i < STRING_MAX_VALUE; ++i) {
-        os << (r.getOriginC()[i]);
+        if(!b)
+            os << (r.getOriginC()[i]);
+        else
+            os << '\0';
+        if ( r.getOriginC()[i] == '\0') {
+            b = true;
+        }
     }
 
+    b = false;
     for (int i = 0; i < STRING_MAX_VALUE; ++i) {
-        os << (r.getDestiny()[i]);
+        if(!b)
+            os << (r.getDestinyC()[i]);
+        else
+            os << '\0';
+        if ( r.getDestinyC()[i] == '\0') {
+            b = true;
+        }
     }
 
 
@@ -89,16 +103,12 @@ inline std::istream& operator>> (std::istream& is, Flight& r) {
     r.setDuration(d);
 
     for (int i = 0; i < STRING_MAX_VALUE; ++i) {
-        is >> (r.getOriginC()[i]);
+        r.getOriginC()[i] = is.get();
     }
 
     for (int i = 0; i < STRING_MAX_VALUE; ++i) {
-        is >> (r.getDestinyC()[i]);
+        r.getDestinyC()[i] = is.get();
     }
-
-    //is.getline(r.getOriginC(), sizeof(char) * STRING_MAX_VALUE);
-
-    //is.getline(r.getDestinyC(), sizeof(char) * STRING_MAX_VALUE);
 
     return is;
 

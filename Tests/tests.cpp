@@ -70,13 +70,6 @@ TEST(test_creation_of_recordsOfFlights, inoutOperator) {
     Flight f2(160, d, 6.5, "Porto", "Roma");
     Flight f3(260, d, 1.5, "Porto", "Rio de Janeiro");
 
-    std:istringstream iss;
-    string s;
-    //while(getline(ifs,s)) {
-    //    std::istringstream iss(s);
-      //  v.push_back(flight);
-        //ifs.ignore();
-    //}
 
     while(ifs >> flight) { // TODO: THIS ISN'T READING ALL THE FLIGHTS
         v.push_back(flight);
@@ -95,11 +88,11 @@ TEST(test_creation_of_recordsOfFlights, inoutOperator) {
     std::ofstream ofsF("../Files/Flights/flights.txt", ios::app);
 
 
-    ASSERT_EQ(v[0].getOrigin(), "Porto"); // NOTE : THIS WILL FAIL TO MORE THAN ONE WORD: THE SOLUTION IS IN PASSENGER.H
-    ASSERT_EQ(v[0].getDestiny(), "Lisbon");
-    ASSERT_EQ(v[2].getDestiny() , "Rio de Janeiro");
+   ASSERT_EQ(v[0].getOrigin(), "Porto"); // NOTE : THIS WILL FAIL TO MORE THAN ONE WORD: THE SOLUTION IS IN PASSENGER.H
+   ASSERT_EQ(v[0].getDestiny(), "Lisbon");
+   ASSERT_EQ(v[2].getDestiny() , "Rio de Janeiro");
     //ofs << aP << aP2;
-    //ofsF << f << f2;
+    //ofsF << f << f2 << f3;
 
 
 }
