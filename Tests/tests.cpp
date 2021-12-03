@@ -3,6 +3,7 @@
 #include <fstream>
 #include "../include/Passenger.h"
 #include "../include/ServiceManagement.h"
+#include "../include/Time.h"
 
 using testing::Eq;
 
@@ -150,3 +151,52 @@ TEST(Test_Baggage, BaggageStruct) {
     ASSERT_EQ(b2.handheld,true);
 
 }
+
+TEST(Test_Time, TimeGetSetException) {
+
+    Time t1(21,12,59);
+
+    ASSERT_EQ(t1.getHour(),21);
+    ASSERT_EQ(t1.getMinute(),12);
+    t1.setTime(1,2,0);
+    ASSERT_EQ(t1.getSecond(),0);
+
+    try{
+        Time t2(24,0,0);
+        ASSERT_EQ(true,false); //this should never run
+    }catch(InvalidTimeException){
+        NULL;
+    }
+    try{
+        Time t2(1,61,0);
+        ASSERT_EQ(true,false); //this should never run
+    }catch(InvalidTimeException){
+        NULL;
+    }
+    try{
+        Time t2(-1,0,60);
+        ASSERT_EQ(true,false); //this should never run
+    }catch(InvalidTimeException){
+        NULL;
+    }
+
+}
+
+
+TEST(Test_Time, TimeOverloading) {
+
+    Time t1(21,12,0);
+    Time t2(21,12,45);
+
+    ASSERT_EQ(t1<t2,true);
+    t1.setSecond(48);
+    ASSERT_EQ(t1<t2,false);
+    ASSERT_EQ(t1!=t2,true);
+    t1.setTime(21,12,45);
+    ASSERT_EQ(t1==t2,true);
+    ASSERT_EQ(t1<=t2,true);
+
+    stringstream in("3:24:19");
+    in>>t2;cout<<t2<<endl; //should output 03:24:19
+}
+
