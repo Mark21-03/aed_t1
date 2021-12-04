@@ -5,6 +5,7 @@
 #include "Plane.h"
 #include "Passenger.h"
 #include <vector>
+#include <ostream>
 #include <fstream>
 
 class Manager {
@@ -14,13 +15,12 @@ class Manager {
 
     std::vector<Flight> flights; // this probably does not have to be here (in planes we have this information)
 public:
-
     Manager(const std::string& flights_path);
 
     bool addFlightToPlanePlan(Flight& flight); // success or not
 
-    void showSortedPassengers();
-    void showSortedFlights();
+    void showSortedPassengers(ostream& ostream1);
+    void showSortedFlights(ostream& ostream1);
 
 
 };

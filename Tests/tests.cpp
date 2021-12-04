@@ -4,6 +4,8 @@
 #include "../include/Passenger.h"
 #include "../include/ServiceManagement.h"
 #include "../include/Time.h"
+#include "../include/Manager.h"
+#include "../include/MenuAlpha.h"
 
 using testing::Eq;
 
@@ -56,13 +58,13 @@ TEST(test_passenger, passengerOperator) {
 }
 
 TEST(test_flights, inoutOperator) {
-    Passenger aP(123456789, "Joaquim Andre Araujo de Matos ");
+    Passenger aP(123456789, "Joaquim Andre Araujo de Matos");
     Passenger aP2(12002, "Orlando Manuel da Silva Pinto");
 
     Date d;
     vector<Flight> v;
 
-    ASSERT_EQ(aP.getName(), "Joaquim Andre Araujo de Matos ");
+    ASSERT_EQ(aP.getName(), "Joaquim Andre Araujo de Matos");
     ifstream ifs("../Files/Flights/flights.txt");
 
 
@@ -71,10 +73,11 @@ TEST(test_flights, inoutOperator) {
     Flight f2(160, d, 6.5, "Porto", "Roma");
     Flight f3(260, d, 1.5, "Porto", "Rio de Janeiro");
 
+    cout << f << endl;
+    cout << f3 << endl;
 
-    while(ifs >> flight) { // TODO: THIS ISN'T READING ALL THE FLIGHTS
+    while(ifs >> flight) {
         v.push_back(flight);
-        ifs.ignore();
     }
 
     Ticket at(v[0]);
@@ -89,7 +92,7 @@ TEST(test_flights, inoutOperator) {
     std::ofstream ofsF("../Files/Flights/flights.txt", ios::app);
 
 
-   ASSERT_EQ(v[0].getOrigin(), "Porto"); // NOTE : THIS WILL FAIL TO MORE THAN ONE WORD: THE SOLUTION IS IN PASSENGER.H
+   ASSERT_EQ(v[0].getOrigin(), "Porto");
    ASSERT_EQ(v[0].getDestiny(), "Lisbon");
    ASSERT_EQ(v[2].getDestiny() , "Rio de Janeiro");
     //ofs << aP << aP2;
@@ -161,6 +164,10 @@ TEST(Test_Time, TimeGetSetException) {
     t1.setTime(1,2,0);
     ASSERT_EQ(t1.getSecond(),0);
 
+    // Current Time
+    Time r;
+    cout << r;
+
     try{
         Time t2(24,0,0);
         ASSERT_EQ(true,false); //this should never run
@@ -179,6 +186,7 @@ TEST(Test_Time, TimeGetSetException) {
     }catch(InvalidTimeException){
         NULL;
     }
+
 
 }
 
@@ -200,3 +208,19 @@ TEST(Test_Time, TimeOverloading) {
     in>>t2;cout<<t2<<endl; //should output 03:24:19
 }
 
+TEST(Test_Manager, ManagerBasicMethods) {
+    Manager manager("../Files/Flights/flights.txt");
+
+    cout << "Manager:" << endl;
+    manager.showSortedFlights(std::cout); // as we are using dependency injection we could have passed other ostream and verified the string
+}
+
+TEST(Test_Menu, MenuManagerBehaviour) {
+    Manager manager("../Files/Flights/flights.txt");
+    Menu menu(manager);
+
+    //menu.funcReadFlight();
+
+    menu.mainMenu();
+
+}

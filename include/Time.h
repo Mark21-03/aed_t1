@@ -10,7 +10,14 @@ class Time{
         unsigned hour,minute,second;
 
     public :
-        inline Time(){setTime(0,0,0);}
+        inline Time(){
+            std::time_t t = std::time(nullptr);   // get time now
+            struct std::tm now = *localtime(&t);
+
+            hour = now.tm_hour;
+            minute = now.tm_min;
+            second = now.tm_sec;
+        }
         Time(unsigned hour, unsigned minute, unsigned second);
 
         //Setters
