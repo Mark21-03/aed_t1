@@ -8,19 +8,22 @@ void Manager::showSortedPassengers() {
 
 }
 
-Manager::Manager(std::string flights_path) {
+Manager::Manager(const std::string& flights_path) {
 
     std::ifstream ifs(flights_path);
 
     Flight flight;
     while (ifs >> flight) { // TODO: SOMETHING MADE THIS BROKEN -- IT'S NOT GETTING THE FLIGHTS
         flights.push_back(flight);
+        ifs.ignore();
     }
 
     ifs.close();
+
 }
 
 void Manager::showSortedFlights() {
+
     for (auto f: flights) {
         std::cout << f;
     }

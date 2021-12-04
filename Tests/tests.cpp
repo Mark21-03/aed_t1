@@ -7,7 +7,7 @@
 using testing::Eq;
 
 
-TEST(test_Passenger, genericTestOnClassPassenger) {
+TEST(test_passenger, genericTestOnClassPassenger) {
 
     Passenger aP(123456789, "Joaquim");
 
@@ -22,7 +22,7 @@ TEST(test_Passenger, genericTestOnClassPassenger) {
 
 }
 
-TEST(test_ticket_passenger, passengerBuyingTickets) {
+TEST(test_passenger, passengerBuyingTickets) {
 
     Passenger aP(123456789, "Joaquim");
 
@@ -38,7 +38,7 @@ TEST(test_ticket_passenger, passengerBuyingTickets) {
 
 }
 
-TEST(test_Passenger_Record, passengerOperator) {
+TEST(test_passenger, passengerOperator) {
 
     Passenger aP(123456789, "Joaquim Andre Araujo de Matos ");
 
@@ -54,7 +54,7 @@ TEST(test_Passenger_Record, passengerOperator) {
     cout << aP ;
 }
 
-TEST(test_creation_of_recordsOfFlights, inoutOperator) {
+TEST(test_flights, inoutOperator) {
     Passenger aP(123456789, "Joaquim Andre Araujo de Matos ");
     Passenger aP2(12002, "Orlando Manuel da Silva Pinto");
 
@@ -97,7 +97,7 @@ TEST(test_creation_of_recordsOfFlights, inoutOperator) {
 
 }
 
-TEST(Test_In_Passenger, inOperatorsPassenger) { // NOTE: THIS TEST WAS FAILING
+TEST(test_passenger, inOperatorsPassenger) { // NOTE: THIS TEST WAS FAILING
 
     ifstream s("../Files/Passengers/passengers.txt");
     Passenger p;
@@ -107,7 +107,7 @@ TEST(Test_In_Passenger, inOperatorsPassenger) { // NOTE: THIS TEST WAS FAILING
 
 }
 
-TEST(Test_Compare_Passenger, CompareOperatorsPassenger) {
+TEST(test_passenger, CompareOperatorsPassenger) {
 
     Passenger p1(12357,"Marco");
     Passenger p2(12357,"André");
@@ -122,7 +122,7 @@ TEST(Test_Compare_Passenger, CompareOperatorsPassenger) {
 
 }
 
-TEST(Test_ServiceManagement, OperatorsManagement) {
+TEST(test_ServiceManagement, OperatorsManagement) {
 
     Date d1("2012/03/21");
     Date d2("2018/11/29");
