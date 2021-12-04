@@ -16,7 +16,7 @@
 
 class Plane{
 private:
-    std::string numberPlate;
+    std::string numberPlate; //possivelmente trocar por char[4] ?
     int capacity;
     std::vector<Flight> flightPlan; // se calhar uma queue com sequencia de voos consoante o horario de partida
     // TODO: VER ENCUNCIADO RELATIVAMENTE AO TIPO DE DADOS ACIMA

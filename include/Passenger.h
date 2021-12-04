@@ -11,7 +11,24 @@
 #include <numeric>
 
 #define LONGEST_ACCEPTED_NAME 150
-// INFO: the longest name in the world as 950 chars
+
+//temporary placement
+struct Baggage{
+    float weight;
+    unsigned int quantity;
+    bool handheld = false;
+
+    Baggage(float weight, unsigned int quantity){
+        this->weight = weight;
+        this->quantity = quantity;
+    }
+    Baggage(float weight, unsigned int quantity, bool handheld){
+        this->weight = weight;
+        this->quantity = quantity;
+        this->handheld = handheld;
+    }
+    ~Baggage() = default;
+};
 
 
 class Passenger {
@@ -33,7 +50,7 @@ public:
     // booking
 
     void addTicket(Ticket& ticket);
-
+    //bookFlight ? before that we need to check if seats are still available
     // boarding
 
     // void checkIn(); -> this should not be here... maybe we should consider putting it in the service class
@@ -103,7 +120,7 @@ inline bool operator==(const Passenger& l1,const Passenger& l2){
     return l1.getID()==l2.getID();
 }
 inline bool operator!=(const Passenger& l1,const Passenger& l2){
-    return !(l1.getID()==l2.getID());
+    return l1.getID() != l2.getID();
 }
 
 #endif //PASSENGER_H
