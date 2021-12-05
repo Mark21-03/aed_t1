@@ -26,11 +26,6 @@ endif()
 if (CMAKE_BUILD_TYPE MATCHES Release)
 
     #creates exe file (easier to run mainMenu() in the terminal)
-    if(CREATE_EXE MATCHES TRUE)
-        set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY exe/)
-        set(CMAKE_LIBRARY_OUTPUT_DIRECTORY exe/)
-        set(CMAKE_RUNTIME_OUTPUT_DIRECTORY exe/)
-    endif()
 
     add_executable(aed_t1
             main.cpp src/Plane.cpp src/Date.cpp src/Flight.cpp

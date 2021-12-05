@@ -2,8 +2,6 @@
 #include "../include/Flight.h"
 #include "../Exceptions/NameToLongException.h"
 
-#include <utility>
-
 Flight::Flight(int number,const Date& departureDate,float duration,std::string origin,std::string destiny){
 
     this->number = number;
@@ -84,4 +82,5 @@ char* Flight::getOriginC()  {
 char *Flight::getDestinyC()  {
     return destiny;
 }
+
 

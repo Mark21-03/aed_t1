@@ -15,7 +15,7 @@ class Manager {
 
     std::vector<Flight> flights; // this probably does not have to be here (in planes we have this information)
 public:
-    Manager(const std::string& flights_path);
+    Manager(const std::string& flights_path, const std::string& passengers_path);
 
     bool addFlightToPlanePlan(Flight& flight); // success or not
 

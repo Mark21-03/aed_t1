@@ -58,6 +58,8 @@ class Menu {
 
     void funcReadPassenger() {
         manager.showSortedPassengers(cout);
+        getchar();
+
     }
 
     void funcReadPlane() {
@@ -68,6 +70,7 @@ class Menu {
     void funcReadFlight() {
         manager.showSortedFlights(cout); // TODO: in here we will have to ask in what order to sort
         // TODO: tb temos de ver a questão das listagens várias
+        getchar();
 
     }
 

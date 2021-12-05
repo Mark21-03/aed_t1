@@ -70,7 +70,7 @@ inline std::ostream& operator<< (std::ostream& os, Flight& r) {
             b = true;
         }
     }
-
+    // BAYBE PUT SOME SPACES HERE - need to be careful due to the in operator
     b = false;
     for (int i = 0; i < STRING_MAX_VALUE; ++i) {
         if(!b)
@@ -82,7 +82,6 @@ inline std::ostream& operator<< (std::ostream& os, Flight& r) {
         }
     }
 
-
     os << std::endl;
 
     return os;
@@ -91,16 +90,15 @@ inline std::ostream& operator<< (std::ostream& os, Flight& r) {
 inline std::istream& operator>> (std::istream& is, Flight& r) {
 
     int n;
-    float d;
-    std::string o, dest;
+    float du;
 
     is >> n;
     r.setNumber(n);
 
     is >> r.getDepartureDate();
 
-    is >> d;
-    r.setDuration(d);
+    is >> du;
+    r.setDuration(du);
 
     for (int i = 0; i < STRING_MAX_VALUE; ++i) {
         r.getOriginC()[i] = is.get();
@@ -109,6 +107,7 @@ inline std::istream& operator>> (std::istream& is, Flight& r) {
     for (int i = 0; i < STRING_MAX_VALUE; ++i) {
         r.getDestinyC()[i] = is.get();
     }
+
 
     return is;
 

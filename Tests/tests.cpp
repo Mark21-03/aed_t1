@@ -209,18 +209,18 @@ TEST(Test_Time, TimeOverloading) {
 }
 
 TEST(Test_Manager, ManagerBasicMethods) {
-    Manager manager("../Files/Flights/flights.txt");
+    Manager manager("../Files/Flights/flights.txt", "../Files/Passengers/passengers.txt");
 
     cout << "Manager:" << endl;
     manager.showSortedFlights(std::cout); // as we are using dependency injection we could have passed other ostream and verified the string
 }
 
 TEST(Test_Menu, MenuManagerBehaviour) {
-    Manager manager("../Files/Flights/flights.txt");
+    Manager manager("../Files/Flights/flights.txt", "../Files/Passengers/passengers.txt");
     Menu menu(manager);
 
-    //menu.funcReadFlight();
 
-    menu.mainMenu();
+    // menu.mainMenu();
 
 }
+
