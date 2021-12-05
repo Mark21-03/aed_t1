@@ -8,28 +8,37 @@ void Manager::showSortedPassengers(ostream &ostream1) {
 
 }
 
-Manager::Manager(const std::string &flights_path, const std::string &passengers_path) {
+Manager::Manager(const std::string &flights_path, const std::string &passengers_path, const std::string& planes_path) {
 
-    std::ifstream ifs(flights_path);
+    std::ifstream ifs_flights(flights_path);
 
     Flight flight;
-    while (ifs >> flight) { // TODO: SOMETHING MADE THIS BROKEN -- IT'S NOT GETTING THE FLIGHTS
+    while (ifs_flights >> flight) { // TODO: SOMETHING MADE THIS BROKEN -- IT'S NOT GETTING THE FLIGHTS
         flights.push_back(flight);
 
     }
 
 
-    ifs.close();
+    ifs_flights.close();
 
 
-    std::ifstream ifsP(passengers_path);
+    std::ifstream ifs_passengers(passengers_path);
 
     Passenger passenger;
-    while (ifsP >> passenger) {
+    while (ifs_passengers >> passenger) {
         passengers.push_back(passenger);
     }
 
-    ifsP.close();
+    ifs_passengers.close();
+
+    std::ifstream ifs_planes(planes_path);
+
+    Plane plane;
+    while (ifs_planes >> plane) {
+        planes.push_back(plane);
+    }
+
+    ifs_planes.close();
 
 }
 
@@ -37,5 +46,12 @@ void Manager::showSortedFlights(ostream &ostream1) {
 
     for (auto f: flights) {
         ostream1 << f;
+    }
+}
+
+void Manager::showSortedPlanes(ostream &ostream1) {
+
+    for (auto p : planes) { // TODO :: ALL THIS FUNCTIONS CAN HAVE A DIFF OUTPUT - IN HERE (do not overload <<)
+        ostream1 << p;
     }
 }

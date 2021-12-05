@@ -63,7 +63,7 @@ class Menu {
     }
 
     void funcReadPlane() {
-        cout << "\n!funcReadPlane!\n";
+        manager.showSortedPlanes(cout);
         getchar();
     }
 

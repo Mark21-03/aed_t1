@@ -8,7 +8,7 @@ Plane::Plane(std::string numberPlate, int capacity){
 }
 
 
-Plane::Plane(std::string numberPlate, int capacity,std::vector<Flight> flightPlan){
+Plane::Plane(std::string numberPlate, int capacity,std::list<int> flightPlan){
 
     this->numberPlate = std::move(numberPlate);
     this->capacity = capacity;
@@ -19,10 +19,10 @@ std::string Plane::getNumberPlate() const{return this->numberPlate;}
 
 int Plane::getCapacity() const {return this->capacity;}
 
-std::vector<Flight> Plane::getFlightPlan() const {return this->flightPlan;}
+std::list<int> Plane::getFlightPlan() const {return this->flightPlan;}
 
 //Setters
-void Plane::setFlightPlan(const std::vector<Flight> &flightPlan) { this->flightPlan = flightPlan;}
+void Plane::setFlightPlan(const std::list<int> &flightPlan) { this->flightPlan = flightPlan;}
 
 void Plane::setCapacity(int capacity) {this->capacity = capacity;}
 

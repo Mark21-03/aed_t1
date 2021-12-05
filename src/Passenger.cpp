@@ -35,40 +35,5 @@ Passenger& Passenger::setID(unsigned int ID) {
 
     return *this;
 }
-/*
-float Passenger::moneySpent() const {
-    float sum = 0.0f;
-    for (auto t: pastFlights) {
-        sum += t.getPrice();
-    }
-    return sum;
-}*/
 
-void Passenger::addTicket(Ticket &ticket) { // this should be different when we make the flight has a time associated
 
-    for (auto t = nextFlights.begin(); t != nextFlights.end(); t++) {
-        if (t->getFlightInfo().getDepartureDate() > ticket.getFlightInfo().getDepartureDate()) {
-            nextFlights.insert(t,ticket);
-            return;
-        }
-    }
-    nextFlights.insert(nextFlights.end(),ticket);
-}
-
-std::list<Ticket> &Passenger::getPastFlights() {
-    return this->pastFlights;
-}
-
-std::list<Ticket> &Passenger::getNextFlights() {
-    return this->nextFlights;
-}
-
-Passenger &Passenger::setPastFlights(const std::list<Ticket>& lFlights) {
-    this->pastFlights = lFlights;
-    return *this;
-}
-
-Passenger &Passenger::setNextFlights(const std::list<Ticket>& lFlights) {
-    this->nextFlights = lFlights;
-    return *this;
-}

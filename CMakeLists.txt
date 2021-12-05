@@ -25,8 +25,6 @@ if(CMAKE_BUILD_TYPE MATCHES Debug)
 endif()
 if (CMAKE_BUILD_TYPE MATCHES Release)
 
-    #creates exe file (easier to run mainMenu() in the terminal)
-
     add_executable(aed_t1
             main.cpp src/Plane.cpp src/Date.cpp src/Flight.cpp
             src/Passenger.cpp  src/Service.cpp

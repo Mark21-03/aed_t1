@@ -6,7 +6,7 @@
 
 #include "Date.h"
 
-#define STRING_MAX_VALUE 30
+#define STRING_MAX_VALUE 50
 
 class Flight{
 private:
@@ -82,7 +82,7 @@ inline std::ostream& operator<< (std::ostream& os, Flight& r) {
         }
     }
 
-    os << std::endl;
+    os << "\n";
 
     return os;
 }

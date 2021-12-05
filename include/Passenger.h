@@ -36,9 +36,6 @@ private:
     unsigned int ID;
     char name[LONGEST_ACCEPTED_NAME]{};
 
-    std::list<Ticket> pastFlights; // it is useful to keep track of flights ---> WE COULD EVEN DO A MILEAGE CAMPAIGN TODO
-    std::list<Ticket> nextFlights; // ticket should have the information about the flights
-
 public:
     Passenger() = default;
 
@@ -49,7 +46,6 @@ public:
 
     // booking
 
-    void addTicket(Ticket& ticket);
     //bookFlight ? before that we need to check if seats are still available
     // boarding
 
@@ -67,15 +63,13 @@ public:
         return name;
     }
     unsigned int getID() const;
-    std::list<Ticket>& getPastFlights();
-    std::list<Ticket>& getNextFlights();
+
 
     // setters
 
     Passenger& setName(const std::string& name);
     Passenger& setID(unsigned int ID);
-    Passenger& setPastFlights(const std::list<Ticket>& lFlights);
-    Passenger& setNextFlights(const std::list<Ticket>& lFlights);
+
 
 };
 
@@ -87,17 +81,8 @@ inline std::ostream & operator<<(std::ostream& os, Passenger& l) {
         os << (l.getNameC()[i]);
     }
 
-    os << " " << l.getPastFlights().size() << " ";
-    for (auto& t: l.getPastFlights()) {
-        os << t.getFlightInfo().getNumber() << " "; // maybe the rest of the ticket information can go away( leaving only ticket with parameter flight and owner)
-    }
 
-    os << l.getNextFlights().size() << " ";
-
-    for (auto& t: l.getNextFlights()) {
-        os << t.getFlightInfo().getNumber() << " "; // maybe the rest of the ticket information can go away( leaving only ticket with parameter flight and owner)
-    }
-    os << std::endl;
+    os << "\n";
     return os;
 }
 
@@ -107,7 +92,11 @@ inline std::istream & operator>>(std::istream& is, Passenger& l) {
     is >> temp_ID;
     l.setID(temp_ID);
 
-    is.getline(l.getNameC(), sizeof(char ) * STRING_MAX_VALUE);
+    //is.getline(l.getNameC(), sizeof(char ) * STRING_MAX_VALUE);
+
+    for (int i = 0; i < LONGEST_ACCEPTED_NAME; ++i) {
+        l.getNameC()[i] = is.get();
+    }
 
     return is;
 }

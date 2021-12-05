@@ -82,5 +82,3 @@ char* Flight::getOriginC()  {
 char *Flight::getDestinyC()  {
     return destiny;
 }
-
-
