@@ -246,6 +246,58 @@ TEST(Test_Plane, InOutOperators) {
     ifs.close();
 }
 
+TEST(Test_Plane, genericTestOnClassPlane){
+    std::list<int> fp={20,40,50};
+    Plane p1("B11",140,fp);
+
+    ASSERT_EQ(p1.getCapacity(),140);
+    ASSERT_EQ(p1.getNumberPlate(), "B11");
+    ASSERT_EQ(p1.getFlightPlan(), fp);
+
+    p1.setCapacity(210);
+    p1.setNumberPlate("A10");
+    p1.setFlightPlan({10,30,40});
+
+    list<int> lTest={10,30,40};
+
+    ASSERT_EQ(p1.getFlightPlan(), lTest);
+    ASSERT_EQ(p1.getNumberPlate(), "A10");
+    ASSERT_EQ(p1.getCapacity(), 210);
+}
+
+TEST (Test_Plane, CompareOperatorsPlane){
+    Plane p1("B00", 150, {10,30});
+    Plane p2("A80", 260, {10,30});
+    Plane p3("B00", 300, {40,70,80});
+
+    ASSERT_EQ(p1==p3, true);
+    ASSERT_EQ(p1!=p3, false);
+    ASSERT_EQ(p1<p3, false);
+    ASSERT_EQ(p2==p3, false);
+    ASSERT_EQ(p2<p3, true);
+    ASSERT_EQ(p1!=p2, true);
+    ASSERT_EQ(p1<p2, false);
+}
+
+TEST(Test_Plane, inOperatorsPlane) { // NOTE: THIS TEST WAS FAILING
+
+    ifstream i("../Files/Planes/planes.txt");
+    Plane p1;
+    i>>p1;
+    list<int> lTest={0,30,40};
+    ASSERT_EQ(p1.getNumberPlate(), "A00");
+    ASSERT_EQ(p1.getCapacity(),120);
+    ASSERT_EQ(p1.getFlightPlan(),lTest);
+}
+
+TEST(Test_Plane, outOperatorPlane){
+    list<int> fl={20,30,50};
+    Plane p1("B20", 160, fl);
+
+    cout<<p1;
+}
+
+
 
 
 /*
@@ -428,8 +480,8 @@ for(int i = 0; i < 1000; i++) {
     ofs << passenger;
     }
     ofs.close();
-}
-*/
+}*/
+
 /*
 TEST(Creator_test, CreationFlights) {
 std::ofstream ofsF("../Files/Flights/flights.txt", ios::app);
@@ -463,4 +515,27 @@ for(int i = 0; i< 365; i++) {
     Flight flight(i,date, r ,airports[o], airports[d]);
     ofsF << flight;
 }
+
+}*/
+/*
+TEST(Creator_test, creatingPlanes) {
+    std::ofstream ofP("../Files/Planes/planes.txt", ios::app);
+
+    for (int i=0; i<80; i++) {
+        char ch = rand() % 26 + 'A';
+        int number1 = rand() % 10;
+        int number2 = rand() % 10;
+        string plate = ch + to_string(number1) + to_string(number2);
+
+        int capacity = rand() % 600 + 50;//minimum of 50 passengers and maximum of 600 in every existing plane
+
+        int sizeFp = rand() % 12;//maximum of 12 flights per plane
+        list<int> flightPlan;
+        for (int i=0; i < sizeFp; i++) {
+            int fnumber = rand() % 365;//we have 365 flights
+            flightPlan.push_back(fnumber); //TODO avoid having the same flight number in a flight plan of a plane
+        }
+        Plane p1(plate, capacity,flightPlan);
+        ofP << p1;
+    }
 }*/
