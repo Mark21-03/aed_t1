@@ -11,8 +11,8 @@
 class Flight{
 private:
     int number;
-    Date departureDate; // TODO: THE DATE CLASS DOES NOT HAVE HOURS AND MINUTES, consider creating a time class to this and then a attribute should tell the time
-    // Time departureTime
+    Date departureDate;
+    // Time departureTime //TODO Time class created. Just needs to be set up
     float duration; //hours
     char origin[STRING_MAX_VALUE]{},destiny[STRING_MAX_VALUE]{};
     // maybe add a mile counter
@@ -95,7 +95,7 @@ inline std::istream& operator>> (std::istream& is, Flight& r) {
     is >> n;
     r.setNumber(n);
 
-    is >> r.getDepartureDate();
+    is >> r.getDepartureDate(); //why r.get()? shouldnt be r.set()?
 
     is >> du;
     r.setDuration(du);

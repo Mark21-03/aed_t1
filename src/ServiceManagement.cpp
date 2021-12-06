@@ -22,7 +22,7 @@ void ServiceManagement::addToDoService(Service service) {
     toDoServices.push(service);
 }
 
-// metodo remove o 1º elem da fila  toDoServices e passa-o para a lista doneServices
+
 void ServiceManagement::DoneLatestService() {
     Service done = toDoServices.front();
     toDoServices.pop();

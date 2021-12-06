@@ -3,7 +3,8 @@
 void Manager::showSortedPassengers(ostream &ostream1) {
 
     for (auto p: passengers) {
-        ostream1 << p; // TODO: this will of course show the \0 chars, maybe this is not the desire here
+        // TODO: this will of course show the \0 chars, maybe this is not the desire here
+        ostream1 << p.getID()<<" "<<p.getName()<<endl;
     }
 
 }
@@ -45,7 +46,7 @@ Manager::Manager(const std::string &flights_path, const std::string &passengers_
 void Manager::showSortedFlights(ostream &ostream1) {
 
     for (auto f: flights) {
-        ostream1 << f;
+        ostream1 << f.getNumber()<<" "<<f.getDepartureDate()<<" "<<f.getOrigin()<<"-->"<<f.getDestiny()<<endl;
     }
 }
 
