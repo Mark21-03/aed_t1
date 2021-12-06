@@ -1,22 +1,27 @@
 #include "../include/Manager.h"
 
-void Manager::showSortedPassengers(ostream &ostream1) {
 
-    for (auto p: passengers) {
-        // TODO: this will of course show the \0 chars, maybe this is not the desire here
-        ostream1 << p.getID()<<" "<<p.getName()<<endl;
-    }
+
+
+void Manager::setPaths(){
+    ifstream dirs(filesDir);
+
+    getline(dirs,flights_path);
+    getline(dirs,planes_path);
+    getline(dirs,passengers_path);
 
 }
 
-Manager::Manager(const std::string &flights_path, const std::string &passengers_path, const std::string& planes_path) {
+
+Manager::Manager() {
+
+    setPaths();
 
     std::ifstream ifs_flights(flights_path);
 
     Flight flight;
-    while (ifs_flights >> flight) { // TODO: SOMETHING MADE THIS BROKEN -- IT'S NOT GETTING THE FLIGHTS
+    while (ifs_flights >> flight) {
         flights.push_back(flight);
-
     }
 
 
@@ -24,6 +29,8 @@ Manager::Manager(const std::string &flights_path, const std::string &passengers_
 
 
     std::ifstream ifs_passengers(passengers_path);
+
+
 
     Passenger passenger;
     while (ifs_passengers >> passenger) {
@@ -43,15 +50,27 @@ Manager::Manager(const std::string &flights_path, const std::string &passengers_
 
 }
 
+
+void Manager::showSortedPassengers(ostream &ostream1) {
+
+    ostream1<<"ID\t"<<"Name"<<endl;
+    for (auto p: passengers) {
+        ostream1 << p.getID()<<"\t"<<p.getName()<<endl;
+    }
+
+}
+
 void Manager::showSortedFlights(ostream &ostream1) {
 
+    ostream1<<setfill(' ')<<"Number\t\t"<<setw(15)<<"Departure Date "<<setw(45)<<"Origin "<<setw(40)<<"Destiny"<<endl;
     for (auto f: flights) {
-        ostream1 << f.getNumber()<<" "<<f.getDepartureDate()<<" "<<f.getOrigin()<<"-->"<<f.getDestiny()<<endl;
+        ostream1 <<setfill(' ')<<f.getNumber()<<'\t'<<setw(15)<<f.getDepartureDate()<<setw(50)<<f.getOrigin()<<" ⟶ "<<setw(45)<<f.getDestiny()<<endl;
     }
 }
 
 void Manager::showSortedPlanes(ostream &ostream1) {
 
+    ostream1<<"Plate\t"<<"Capacity\t"<<"A\t"<<"B\t"<<"C\t"<<endl;
     for (auto p : planes) { // TODO :: ALL THIS FUNCTIONS CAN HAVE A DIFF OUTPUT - IN HERE (do not overload <<)
         ostream1 << p;
     }

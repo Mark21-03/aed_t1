@@ -1,7 +1,7 @@
-#include "include/MenuAlpha.h"
+#include "include/Menu.h"
 
 int main() {
-    Manager manager("../Files/Flights/flights.txt", "../Files/Passengers/passengers.txt","../Files/Planes/planes.txt");
+    Manager manager;
     Menu menu(manager);
     menu.mainMenu();
     return 0;

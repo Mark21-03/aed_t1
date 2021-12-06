@@ -250,8 +250,7 @@ class Menu {
     }
 
 public:
-    Menu(Manager& manager1) : manager(manager1){ // TODO: A FILE COULD GIVE ALL THE PATHS
-    }
+    Menu(Manager& manager1) : manager(manager1){}
 
     void mainMenu() {
         char userInput;

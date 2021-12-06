@@ -6,7 +6,7 @@
 #include "../include/ServiceManagement.h"
 #include "../include/Time.h"
 #include "../include/Manager.h"
-#include "../include/MenuAlpha.h"
+#include "../include/Menu.h"
 
 using testing::Eq;
 
@@ -106,8 +106,8 @@ TEST(test_passenger, inOperatorsPassenger) { // NOTE: THIS TEST WAS FAILING
     ifstream s("../Files/Passengers/passengers.txt");
     Passenger p;
     s>>p;
-    ASSERT_EQ(p.getID(),123456789);
-    ASSERT_EQ(p.getName(),"Joaquim Andre Araujo de Matos");
+    ASSERT_EQ(p.getID(),0);
+    ASSERT_EQ(p.getName(),"Santiago Pinheiro");
 
 }
 
@@ -209,14 +209,13 @@ TEST(Test_Time, TimeOverloading) {
 }
 
 TEST(Test_Manager, ManagerBasicMethods) {
-    Manager manager("../Files/Flights/flights.txt", "../Files/Passengers/passengers.txt", "../Files/Planes/planes.txt");
-
+    Manager manager;
     cout << "Manager:" << endl;
     // manager.showSortedFlights(std::cout); // as we are using dependency injection we could have passed other ostream and verified the string
 }
 
 TEST(Test_Menu, MenuManagerBehaviour) {
-    Manager manager("../Files/Flights/flights.txt", "../Files/Passengers/passengers.txt", "../Files/Planes/planes.txt");
+    Manager manager;
     Menu menu(manager);
 
 
@@ -296,6 +295,7 @@ TEST(Test_Plane, outOperatorPlane){
 
     cout<<p1;
 }
+
 
 
 

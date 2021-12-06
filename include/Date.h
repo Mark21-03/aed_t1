@@ -95,7 +95,15 @@ private:
 };
 
 inline std::ostream& operator <<(std::ostream& os,const Date& right) {
-    os << right.getDate();
+    os << right.getYear()<<'/';
+    if(right.getMonth()<10)
+        os<<'0'<<right.getMonth()<<'/';
+    else
+        os<<right.getMonth()<<'/';;
+    if(right.getDay()<10)
+        os<<'0'<<right.getDay();
+    else
+        os<<right.getDay();
     return os;
 }
 inline std::istream& operator >>(std::istream& is, Date& right) {
