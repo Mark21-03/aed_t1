@@ -8,9 +8,11 @@
 
 #define STRING_MAX_VALUE 50
 
+typedef int flightNumber;
+
 class Flight{
 private:
-    int number;
+    flightNumber number;
     Date departureDate; // TODO: THE DATE CLASS DOES NOT HAVE HOURS AND MINUTES, consider creating a time class to this and then a attribute should tell the time
     // Time departureTime
     float duration; //hours
@@ -20,17 +22,17 @@ private:
 public:
 
     Flight() = default;
-    Flight(int number,const Date& departureDate,float duration,std::string origin,std::string destiny);
+    Flight(flightNumber number,const Date& departureDate,float duration,std::string origin,std::string destiny);
 
     //Setters
-    Flight& setNumber(int number);
+    Flight& setNumber(flightNumber number);
     Flight& setDepartureDate(Date departureDate);
     Flight& setDuration(float duration);
     Flight& setOrigin(std::string origin);
     Flight& setDestiny(std::string destiny);
 
     //Getters
-    int getNumber() const;
+    flightNumber getNumber() const;
     Date& getDepartureDate();
     float getDuration() const;
     std::string getOrigin() const;

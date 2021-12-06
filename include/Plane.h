@@ -15,22 +15,20 @@
 // In which the O -> occupied seat and F -> Free seat. the struct of the plane should be defined either before or it can
 // either be not defined and we arrange in that way the plane as we want (using getlines)
 
-struct flightNumber{int n;};
-
 class Plane{
 private:
     std::string numberPlate; //possivelmente trocar por char[4] ?
     int capacity;
-    std::list<int> flightPlan;
+    std::list<flightNumber> flightPlan;
 public:
 
     Plane() = default ;
     Plane(std::string numberPlate, int capacity);
-    Plane(std::string numberPlate, int capacity,std::list<int> flightPlan);
+    Plane(std::string numberPlate, int capacity,std::list<flightNumber> flightPlan);
 
     void setNumberPlate(std::string numberPlate);
     void setCapacity(int capacity);
-    void setFlightPlan(const std::list<int>& flightPlan);
+    void setFlightPlan(const std::list<flightNumber>& flightPlan);
 
     std::string getNumberPlate() const;
     int getCapacity() const;

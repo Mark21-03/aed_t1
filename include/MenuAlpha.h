@@ -19,7 +19,6 @@ using namespace std;
 #endif
 
 
-
 class Menu {
     Manager manager;
 

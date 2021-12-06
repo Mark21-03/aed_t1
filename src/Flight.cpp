@@ -2,7 +2,7 @@
 #include "../include/Flight.h"
 #include "../Exceptions/NameToLongException.h"
 
-Flight::Flight(int number,const Date& departureDate,float duration,std::string origin,std::string destiny){
+Flight::Flight(flightNumber number,const Date& departureDate,float duration,std::string origin,std::string destiny){
 
     this->number = number;
     this->departureDate = departureDate;
@@ -18,7 +18,7 @@ Flight::Flight(int number,const Date& departureDate,float duration,std::string o
 }
 
 //Getters
-int Flight::getNumber() const{return this->number;}
+flightNumber Flight::getNumber() const{return this->number;}
 
 Date& Flight::getDepartureDate() {return (this->departureDate);}
 
@@ -45,7 +45,7 @@ std::string Flight::getDestiny() const {
 }
 
 //Setters
-Flight& Flight::setNumber(int number) {this->number = number;return *this;}
+Flight& Flight::setNumber(flightNumber number) {this->number = number;return *this;}
 
 Flight& Flight::setDepartureDate(Date departureDate) {this->departureDate = departureDate;return *this;}
 
