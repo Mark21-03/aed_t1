@@ -10,7 +10,7 @@
 #include <queue>
 #include <numeric>
 
-#define LONGEST_ACCEPTED_NAME 150
+#define LONGEST_ACCEPTED_NAME 60
 
 //temporary placement
 struct Baggage{

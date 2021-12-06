@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <random>
 #include "../Exceptions/InvalidTimeException.h"
 
 class Time{
@@ -25,6 +26,7 @@ class Time{
         void setHour(unsigned hour);
         void setMinute(unsigned minute);
         void setSecond(unsigned second);
+        void setRandomTime();
 
         //Getters
         inline unsigned getHour() const{return this->hour;}
@@ -73,7 +75,6 @@ inline std::istream & operator>>(std::istream& is,Time &t){
     char sep1,sep2;
 
     is>>hour>>sep1>>minute>>sep2>>second;
-    if(sep1!=':' || sep2!=':') throw InvalidTimeException();
     t.setTime(hour,minute,second);
 
     return is;

@@ -5,6 +5,7 @@
 #include <utility>
 
 #include "Date.h"
+#include "Time.h"
 
 #define STRING_MAX_VALUE 50
 
@@ -15,27 +16,29 @@ private:
 
     flightNumber number;
     Date departureDate; // TODO: THE DATE CLASS DOES NOT HAVE HOURS AND MINUTES, consider creating a time class to this and then a attribute should tell the time
-    // Time departureTime
+    Time departureTime;
 
-    float duration; //hours
+    float duration;
     char origin[STRING_MAX_VALUE]{},destiny[STRING_MAX_VALUE]{};
     // maybe add a mile counter
 
 public:
 
     Flight() = default;
-    Flight(flightNumber number,const Date& departureDate,float duration,std::string origin,std::string destiny);
+    Flight(flightNumber number,const Date& departureDate,const Time& departureTime, float duration,std::string origin,std::string destiny);
 
     //Setters
     Flight& setNumber(flightNumber number);
-    Flight& setDepartureDate(Date departureDate);
+    Flight& setDepartureDate(const Date& departureDate);
+    Flight& setDepartureTime(const Time& departureTime);
     Flight& setDuration(float duration);
-    Flight& setOrigin(std::string origin);
-    Flight& setDestiny(std::string destiny);
+    Flight& setOrigin(const std::string& origin);
+    Flight& setDestiny(const std::string& destiny);
 
     //Getters
     flightNumber getNumber() const;
-    Date& getDepartureDate();
+    Date getDepartureDate() const;
+    Time getDepartureTime() const;
     float getDuration() const;
     std::string getOrigin() const;
     std::string getDestiny() const;
@@ -60,7 +63,7 @@ inline bool operator < (const Flight&l, const Flight& r) {
 }
 
 inline std::ostream& operator<< (std::ostream& os, Flight& r) {
-    os << r.getNumber()  << " " << r.getDepartureDate().getDate() << " ";
+    os << r.getNumber()  << " " << r.getDepartureDate() << " " << r.getDepartureTime() << " ";
 
     os << r.getDuration();
 
@@ -74,7 +77,7 @@ inline std::ostream& operator<< (std::ostream& os, Flight& r) {
             b = true;
         }
     }
-    // BAYBE PUT SOME SPACES HERE - need to be careful due to the in operator
+
     b = false;
     for (int i = 0; i < STRING_MAX_VALUE; ++i) {
         if(!b)
@@ -96,13 +99,16 @@ inline std::istream& operator>> (std::istream& is, Flight& r) {
     int n;
     float du;
 
+    Date date;
+    Time time;
+
     is >> n;
-    r.setNumber(n);
 
-    is >> r.getDepartureDate(); //why r.get()? shouldnt be r.set()?
+    is >> date;
 
+    is >> time;
     is >> du;
-    r.setDuration(du);
+    r.setNumber(n).setDuration(du).setDepartureDate(date).setDepartureTime(time);
 
     for (int i = 0; i < STRING_MAX_VALUE; ++i) {
         r.getOriginC()[i] = is.get();

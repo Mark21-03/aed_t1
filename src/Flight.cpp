@@ -2,10 +2,11 @@
 #include "../include/Flight.h"
 #include "../Exceptions/NameToLongException.h"
 
-Flight::Flight(flightNumber number,const Date& departureDate,float duration,std::string origin,std::string destiny){
+Flight::Flight(flightNumber number,const Date& departureDate,const Time& departureTime,float duration,std::string origin,std::string destiny){
 
     this->number = number;
     this->departureDate = departureDate;
+    this->departureTime = departureTime;
     this->duration = duration;
 
 
@@ -20,7 +21,7 @@ Flight::Flight(flightNumber number,const Date& departureDate,float duration,std:
 //Getters
 flightNumber Flight::getNumber() const{return this->number;}
 
-Date& Flight::getDepartureDate() {return (this->departureDate);}
+Date Flight::getDepartureDate() const {return this->departureDate;}
 
 float Flight::getDuration() const {return this->duration;}
 
@@ -47,11 +48,11 @@ std::string Flight::getDestiny() const {
 //Setters
 Flight& Flight::setNumber(flightNumber number) {this->number = number;return *this;}
 
-Flight& Flight::setDepartureDate(Date departureDate) {this->departureDate = departureDate;return *this;}
+Flight& Flight::setDepartureDate(const Date& departureDate) {this->departureDate = departureDate;return *this;}
 
 Flight& Flight::setDuration(float duration) {this->duration = duration; return *this;}
 
-Flight& Flight::setOrigin(std::string origin) {
+Flight& Flight::setOrigin(const std::string& origin) {
     int i = 0;
     for (auto c: origin) {
         if (i > STRING_MAX_VALUE)
@@ -63,7 +64,7 @@ Flight& Flight::setOrigin(std::string origin) {
     return *this;
 }
 
-Flight& Flight::setDestiny(std::string destiny) {
+Flight& Flight::setDestiny(const std::string& destiny) {
     int i = 0;
     for (auto c: destiny) {
         if (i > STRING_MAX_VALUE)
@@ -82,3 +83,14 @@ char* Flight::getOriginC()  {
 char *Flight::getDestinyC()  {
     return destiny;
 }
+
+Flight &Flight::setDepartureTime(const Time &departureTime) {
+    this->departureTime = departureTime;
+    return *this;
+}
+
+Time Flight::getDepartureTime() const{
+    return this->departureTime;
+}
+
+

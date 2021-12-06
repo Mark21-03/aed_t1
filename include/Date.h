@@ -94,16 +94,9 @@ private:
     unsigned int day;
 };
 
-inline std::ostream& operator <<(std::ostream& os,const Date& right) {
-    os << right.getYear()<<'/';
-    if(right.getMonth()<10)
-        os<<'0'<<right.getMonth()<<'/';
-    else
-        os<<right.getMonth()<<'/';;
-    if(right.getDay()<10)
-        os<<'0'<<right.getDay();
-    else
-        os<<right.getDay();
+inline std::ostream& operator <<(std::ostream& os,const Date& right) { //TODO:CHECK IF FUNCTION IS WORKING
+    os << right.getYear()<<'/' << setfill('0')<<setw(2) << right.getMonth() << '/' << setw(2) << right.getDay() ;
+
     return os;
 }
 inline std::istream& operator >>(std::istream& is, Date& right) {

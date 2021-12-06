@@ -2,6 +2,7 @@
 #include <gmock/gmock.h>
 #include <random>
 #include <fstream>
+#include <algorithm>
 #include "../include/Passenger.h"
 #include "../include/ServiceManagement.h"
 #include "../include/Time.h"
@@ -31,7 +32,9 @@ TEST(test_passenger, passengerBuyingTickets) {
     Passenger aP(123456789, "Joaquim");
 
     Date d;
-    Flight f(140, d, 3.5, "Porto", "Lisbon");
+    Time time1(0,0,0);
+
+    Flight f(140, d, time1, 3.5, "Porto", "Lisbon");
     Ticket at(f);
 
     //aP.addTicket(at);
@@ -46,8 +49,10 @@ TEST(test_passenger, passengerOperator) {
     Passenger aP(123456789, "Joaquim Andre Araujo de Matos ");
 
     Date d;
-    Flight f(140, d, 3.5, "Porto", "Lisbon");
-    Flight f2(160, d, 3.5, "Porto", "Lisbon");
+    Time time1(0,0,0);
+
+    Flight f(140,  d, time1, 3.5, "Porto", "Lisbon");
+    Flight f2(160, d, time1, 3.5, "Porto", "Lisbon");
 
     Ticket at(f);
     Ticket at2(f2);
@@ -69,15 +74,24 @@ TEST(test_flights, inoutOperator) {
 
 
     Flight flight;
-    Flight f(140, d, 3.5, "Porto", "Lisbon");
-    Flight f2(160, d, 6.5, "Porto", "Roma");
-    Flight f3(260, d, 1.5, "Porto", "Rio de Janeiro");
+    Time time1(12,0,0);
+    Flight f(140,  d, time1, 3.5, "Porto", "Lisbon");
+    Flight f2(160, d, time1, 6.5, "Porto", "Roma");
+    Flight f3(260, d, time1, 1.5, "Porto", "Rio de Janeiro");
 
     cout << f << endl;
     cout << f3 << endl;
 
+    int i = 0;
+    try {
     while(ifs >> flight) {
+        i++;
         v.push_back(flight);
+    }
+    }catch (InvalidTimeException& e) {
+        cout << i;
+
+        exit(1);
     }
 
     Ticket at(v[0]);
@@ -92,7 +106,7 @@ TEST(test_flights, inoutOperator) {
     std::ofstream ofsF("../Files/Flights/flights.txt", ios::app);
 
 
-   ASSERT_EQ(v[0].getOrigin(), "Copenhagen Airport");
+   ASSERT_EQ(v[0].getOrigin(), "Cairo International Airport");
    ASSERT_EQ(v[0].getDestiny(), "Beirut Rafic Hariri International Airport");
    ASSERT_EQ(v[2].getDestiny() , "Beirut Rafic Hariri International Airport");
     //ofs << aP << aP2;
@@ -107,7 +121,7 @@ TEST(test_passenger, inOperatorsPassenger) { // NOTE: THIS TEST WAS FAILING
     Passenger p;
     s>>p;
     ASSERT_EQ(p.getID(),0);
-    ASSERT_EQ(p.getName(),"Santiago Pinheiro");
+    ASSERT_EQ(p.getName(),"Frederica Neves");
 
 }
 
@@ -223,14 +237,14 @@ TEST(Test_Menu, MenuManagerBehaviour) {
 
 }
 TEST(Test_Plane, InOutOperators) {
-    std::list<int> lF{0,30,40};
-    Plane plane("A00", 120, lF);
+    std::list<int> lF{0,30,40}; // NOT ON TEST HERE
+    Plane plane("Q505", 456, lF);
 
-    std::ofstream ofs("../Files/Planes/planes.txt"); // WE COULD TEST WITH SSTRINGs
+    //std::ofstream ofs("../Files/Planes/planes.txt"); // WE COULD TEST WITH SSTRINGs
 
-    ofs << plane;
+    //ofs << plane;
 
-    ofs.close();
+    //ofs.close();
 
     std::ifstream ifs("../Files/Planes/planes.txt");
 
@@ -241,7 +255,6 @@ TEST(Test_Plane, InOutOperators) {
     ASSERT_EQ(plane.getNumberPlate(), plane2.getNumberPlate());
     ASSERT_EQ(plane.getCapacity(), plane2.getCapacity());
 
-    ASSERT_EQ(plane.getFlightPlan().size(), plane2.getFlightPlan().size());
     ifs.close();
 }
 
@@ -284,9 +297,9 @@ TEST(Test_Plane, inOperatorsPlane) { // NOTE: THIS TEST WAS FAILING
     Plane p1;
     i>>p1;
     list<int> lTest={0,30,40};
-    ASSERT_EQ(p1.getNumberPlate(), "A00");
-    ASSERT_EQ(p1.getCapacity(),120);
-    ASSERT_EQ(p1.getFlightPlan(),lTest);
+    ASSERT_EQ(p1.getNumberPlate(), "Q505");
+    ASSERT_EQ(p1.getCapacity(),456);
+    ASSERT_EQ(p1.getFlightPlan().size(), 62);
 }
 
 TEST(Test_Plane, outOperatorPlane){
@@ -295,7 +308,6 @@ TEST(Test_Plane, outOperatorPlane){
 
     cout<<p1;
 }
-
 
 
 
@@ -484,7 +496,8 @@ for(int i = 0; i < 1000; i++) {
 
 /*
 TEST(Creator_test, CreationFlights) {
-std::ofstream ofsF("../Files/Flights/flights.txt", ios::app);
+srand(time(nullptr));
+std::ofstream ofsF("../Files/Flights/flights.txt");
 
 // TODO : ADD THE IATA CODE ... and maybe an airport struct
 
@@ -500,9 +513,10 @@ vector<string> airports{
 };
 
 for(int i = 0; i< 365; i++) {
+
     Date date;
 
-    int add = rand() % 365 ;
+    int add = rand() % 365 ; // creating flights for a year
 
     while (add) {
         add--; date++;
@@ -512,30 +526,60 @@ for(int i = 0; i< 365; i++) {
     int d;
     while(d =rand() % airports.size() == o ); // TODO: THE DURATION COULD BE A TIME OBJECT
     float r =  1.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(4.0f-1.0f)));
-    Flight flight(i,date, r ,airports[o], airports[d]);
+    Time time2;
+    time2.setRandomTime();
+
+    Flight flight(i,date, time2 ,r ,airports[o], airports[d]);
     ofsF << flight;
 }
 
 }*/
+
 /*
 TEST(Creator_test, creatingPlanes) {
-    std::ofstream ofP("../Files/Planes/planes.txt", ios::app);
+    std::ofstream ofP("../Files/Planes/planes.txt");
 
-    for (int i=0; i<80; i++) {
-        char ch = rand() % 26 + 'A';
-        int number1 = rand() % 10;
-        int number2 = rand() % 10;
-        string plate = ch + to_string(number1) + to_string(number2);
+    vector<int> v;
+    vector<string> s;
+
+    srand(time(nullptr));
+
+for(int i = 0; i< 365; i++) {
+    v.push_back(i);
+}
+int nFlights = 365;
+    for (int i=0; i<8; i++) {
+        string plate;
+        char ch;
+        int number1;
+        int number2;
+        int number3;
+        do{
+            ch = rand() % 26 + 'A';
+            number1 = rand() % 10;
+            number2 = rand() % 10;
+            number3 = rand() % 10;
+            plate = ch + to_string(number1) + to_string(number2) + to_string(number3);
+        }while(find(s.begin(),s.end(), plate) != s.end());
+
+        s.push_back(plate);
 
         int capacity = rand() % 600 + 50;//minimum of 50 passengers and maximum of 600 in every existing plane
 
-        int sizeFp = rand() % 12;//maximum of 12 flights per plane
+        int sizeFp = rand() % 90;
         list<int> flightPlan;
         for (int i=0; i < sizeFp; i++) {
-            int fnumber = rand() % 365;//we have 365 flights
-            flightPlan.push_back(fnumber); //TODO avoid having the same flight number in a flight plan of a plane
+            int fnumber = rand() % (nFlights--);
+            if(!v.empty()) {
+                flightPlan.push_back(v[fnumber]); //TODO avoid having the same flight number in a flight plan of a plane and if avoid 2 flights ate the same time
+                v.erase(v.begin() + fnumber);
+            }
+            if(!nFlights)
+                break;
         }
         Plane p1(plate, capacity,flightPlan);
         ofP << p1;
     }
+    ofP.close();
+ASSERT_EQ(v.size(), 0);
 }*/
