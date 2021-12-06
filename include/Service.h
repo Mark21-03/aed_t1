@@ -32,11 +32,11 @@ public:
 inline std::ostream& operator<< (std::ostream& os, Service& s) {
     switch (s.getType()) {
         case 0:
-            os << "Maintenance by " <<s.getEmployer() << " at "<<s.getDate();break;
+            os << "Maintenance by " <<s.getEmployer() << " on "<<s.getDate();break;
         case 1:
-            os << "Cleaning by " <<s.getEmployer() << " at "<<s.getDate();break;
+            os << "Cleaning by " <<s.getEmployer() << " on "<<s.getDate();break;
         default:
-            os << "Other services by " <<s.getEmployer() << " at "<<s.getDate();break;
+            os << "Other services by " <<s.getEmployer() << " on "<<s.getDate();break;
 
     }
     return os;

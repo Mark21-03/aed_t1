@@ -1,7 +1,3 @@
-//
-// Created by ricar on 29/11/2021.
-//
-
 #ifndef TICKET_H
 #define TICKET_H
 

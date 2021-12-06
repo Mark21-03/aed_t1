@@ -27,5 +27,3 @@ void Plane::setFlightPlan(const std::list<flightNumber> &flightPlan) { this->fli
 void Plane::setCapacity(int capacity) {this->capacity = capacity;}
 
 void Plane::setNumberPlate(std::string numberPlate) {this->numberPlate = std::move(numberPlate);}
-
-

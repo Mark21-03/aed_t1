@@ -258,7 +258,7 @@ public:
         string inputError;
 
         while (true) {
-            system(CLEAR);
+           system(CLEAR);
 
             if (!inputError.empty())
                 cout << inputError;
