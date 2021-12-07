@@ -9,7 +9,7 @@
 #include <fstream>
 #include <iomanip>
 
-#define SEPARATION "-------------------------------------"
+#define SEPARATION "--------------------------------------------------------"
 
 
 

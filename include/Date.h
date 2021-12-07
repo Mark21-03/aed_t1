@@ -97,7 +97,7 @@ private:
     unsigned int day;
 };
 
-inline std::ostream& operator <<(std::ostream& os,const Date& right) { //TODO:CHECK IF FUNCTION IS WORKING
+inline std::ostream& operator <<(std::ostream& os,const Date& right) {
     os << right.getYear()<<'/' << setfill('0') <<setw(2) << right.getMonth() << '/' << setw(2) << right.getDay();
 
     return os;

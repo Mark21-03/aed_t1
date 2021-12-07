@@ -105,11 +105,9 @@ TEST(test_flights, inoutOperator) {
     std::ofstream ofsF("../Files/Flights/flights.txt", ios::app);
 
 
-   ASSERT_EQ(v[0].getOrigin(), "Cairo International Airport");
-   ASSERT_EQ(v[0].getDestiny(), "Beirut Rafic Hariri International Airport");
-   ASSERT_EQ(v[2].getDestiny() , "Beirut Rafic Hariri International Airport");
-    //ofs << aP << aP2;
-    //ofsF << f << f2 << f3;
+   ASSERT_EQ(v[0].getOrigin(), "Beirut Rafic Hariri International Airport");
+   ASSERT_EQ(v[0].getDestiny(), "Francisco de Sá Carneiro Airport");
+   ASSERT_EQ(v[2].getDestiny() , "Budapest Ferihegy International Airport");
 
 
 }
@@ -237,13 +235,7 @@ TEST(Test_Menu, MenuManagerBehaviour) {
 }
 TEST(Test_Plane, InOutOperators) {
     std::list<int> lF{0,30,40}; // NOT ON TEST HERE
-    Plane plane("CS-KRJ" , "B747", 524, lF);
-
-    //std::ofstream ofs("../Files/Planes/planes.txt"); // WE COULD TEST WITH SSTRINGs
-
-    //ofs << plane;
-
-    //ofs.close();
+    Plane plane("CS-AKJ" , "A321", 200, lF);
 
     std::ifstream ifs("../Files/Planes/planes.txt");
 
@@ -295,10 +287,9 @@ TEST(Test_Plane, inOperatorsPlane) { // NOTE: THIS TEST WAS FAILING
     ifstream i("../Files/Planes/planes.txt");
     Plane p1;
     i>>p1;
-    list<int> lTest={0,30,40};
-    ASSERT_EQ(p1.getNumberPlate(), "CS-KRJ");
-    ASSERT_EQ(p1.getCapacity(),524);
-    ASSERT_EQ(p1.getFlightPlan().size(), 71);
+    ASSERT_EQ(p1.getNumberPlate(), "CS-AKJ");
+    ASSERT_EQ(p1.getCapacity(),200);
+    ASSERT_EQ(p1.getFlightPlan().size(), 6);
 }
 
 TEST(Test_Plane, outOperatorPlane){
