@@ -541,7 +541,10 @@ for(int i = 0; i< 365; i++) {
 
     int o = rand() % airports.size();
     int d;
-    while(d =rand() % airports.size() == o ); // TODO: THE DURATION COULD BE A TIME OBJECT
+    do {
+        d =rand() % airports.size();
+    }
+    while(d == o ); // TODO: THE DURATION COULD BE A TIME OBJECT
     float r =  1.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(4.0f-1.0f)));
     Time time2;
     time2.setRandomTime();
@@ -551,7 +554,7 @@ for(int i = 0; i< 365; i++) {
 }
 
 }
-
+*/
 /*
 TEST(Creator_test, creatingPlanes) { // THIS TEST FAILS IF THE NUMBER OF FLIGHTS TO BE ATTRIBUTE TO A PLANE IS MORE THAN 0
     std::ofstream ofP("../Files/Planes/planes.txt");
