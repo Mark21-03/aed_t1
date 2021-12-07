@@ -75,26 +75,23 @@ unsigned int Date::getDay() const {
 }
 
 std::string Date::getDate()const {
-    std::ostringstream os;
-    os << this->year << "/" << this->month << "/" << this->day; // better to use ignore('/')
-    return os.str();
+    ostringstream ost;
+    ost<< *this;
+
+    return ost.str();
 }
 
 void Date::show() const {
     std::cout << Date::getDate();
 }
 
-bool Date::isValid() {
-    if (this->day <= 0)
-        return false;
-    if (this->month <= 0 || this->month > 12)
-        return false;
-    else if (this->day <= 0 || this->day > Date::daysMonth(this->month, this->year)) // repetition of code -> not good
+bool Date::isValid() const {
+    if (this->day <= 0 || this->day > Date::daysMonth(this->month, this->year) || this->month <= 0 || this->month > 12)
         return false;
     return true;
 }
 
-int Date::daysMonth(int month, int year) const {
+int Date::daysMonth(unsigned int month,unsigned int year) {
     if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
         return 31;
     else if (month == 2 && isLeapYear(year))
@@ -106,7 +103,7 @@ int Date::daysMonth(int month, int year) const {
         return 30;
 }
 
-bool Date::isLeapYear(int year) const {
+bool Date::isLeapYear(unsigned int year) {
     if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
         return true;
     return false;

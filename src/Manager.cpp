@@ -55,23 +55,29 @@ void Manager::showSortedPassengers(ostream &ostream1) {
 
     ostream1<<"ID\t"<<"Name"<<endl;
     for (auto p: passengers) {
-        ostream1 << p.getID()<<"\t"<<p.getName()<<endl;
+        ostream1 << p.getID()<<"\t"<<p.getName()<< '\n';
     }
 
 }
 
 void Manager::showSortedFlights(ostream &ostream1) {
 
-    ostream1<<setfill(' ')<<"Number\t\t"<<setw(15)<<"Departure Date "<<setw(45)<<"Origin "<<setw(40)<<"Destiny"<<endl;
-    for (auto f: flights) {
-        ostream1 <<setfill(' ')<<f.getNumber()<<'\t'<<setw(15)<<f.getDepartureDate()<<setw(50)<<f.getOrigin()<<" ⟶ "<<setw(45)<<f.getDestiny()<<endl;
+    using namespace std;
+    ostream1 << right;
+    ostream1<<setfill(' ')<<"Number\t\t"<<setw(15)<<"Departure Date "<< setw(15) << "Departure Time"<<setw(30)<<"Origin "<<setw(40)<<"Destiny"<<"\n";
+    ostream1 << SEPARATION << SEPARATION << SEPARATION << SEPARATION<< "\n" << left<< setfill(' ') ; // MAYBE PUT THIS STUFF in a Macro
+
+    for (auto f: flights) { // TODO : MAGIC NUMBERS ...
+        ostream1 <<setw(15) << f.getNumber() <<setw(15)<<f.getDepartureDate().getDate() <<setw(15) << f.getDepartureTime().getTime()
+        <<setw(50)<<f.getOrigin()<<setw(45)<<" ⟶ " + f.getDestiny()<< "\n";
     }
 }
 
 void Manager::showSortedPlanes(ostream &ostream1) {
 
-    ostream1<<"Plate\t"<<"Capacity\t"<<"A\t"<<"B\t"<<"C\t"<<endl;
+    ostream1<<"Plate\t"<< "Type\t"<<"Capacity" <<'\n';
+    ostream1 << SEPARATION << std::endl;
     for (auto p : planes) { // TODO :: ALL THIS FUNCTIONS CAN HAVE A DIFF OUTPUT - IN HERE (do not overload <<)
-        ostream1 << p;
+        ostream1 << p.getNumberPlate() << '\t' << p.getType() << '\t' << p.getCapacity() << '\n';
     }
 }

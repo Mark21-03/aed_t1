@@ -9,29 +9,38 @@ Time :: Time(unsigned hour, unsigned minute, unsigned second){
     setHour(hour);setMinute(minute);setSecond(second);
 }
 
-void Time :: setTime(unsigned hour, unsigned minute, unsigned second){
+Time& Time :: setTime(unsigned hour, unsigned minute, unsigned second){
     setHour(hour);setMinute(minute);setSecond(second);
+    return *this;
 }
 
-void Time::setHour(unsigned hour){
+Time& Time::setHour(unsigned hour){
 
-    this->hour = hour;
+    this->hour = hour;return *this;
 }
 
-void Time::setMinute(unsigned minute){
+Time& Time::setMinute(unsigned minute){
 
-    this->minute = minute;
+    this->minute = minute;return *this;
 }
-void Time::setSecond(unsigned second){
-    this->second = second;
+Time& Time::setSecond(unsigned second){
+    this->second = second;return *this;
 }
 
-void Time::setRandomTime() {
+Time& Time::setRandomTime() {
 
     hour = rand() % 24 ;
     minute = rand() % 60;
     second = rand() % 60;
 
+    return *this;
+}
+
+
+//getters
+
+const std::string Time::getTime() {
+    std::ostringstream ost; ost << *this; return ost.str();
 }
 
 

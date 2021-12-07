@@ -9,6 +9,10 @@
 #include <fstream>
 #include <iomanip>
 
+#define SEPARATION "-------------------------------------"
+
+
+
 class Manager {
 private:
     string filesDir = "../include/filesPaths.txt";

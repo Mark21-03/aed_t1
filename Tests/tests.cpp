@@ -11,7 +11,6 @@
 
 using testing::Eq;
 
-
 TEST(test_passenger, genericTestOnClassPassenger) {
 
     Passenger aP(123456789, "Joaquim");
@@ -238,7 +237,7 @@ TEST(Test_Menu, MenuManagerBehaviour) {
 }
 TEST(Test_Plane, InOutOperators) {
     std::list<int> lF{0,30,40}; // NOT ON TEST HERE
-    Plane plane("Q505", 456, lF);
+    Plane plane("CS-KRJ" , "B747", 524, lF);
 
     //std::ofstream ofs("../Files/Planes/planes.txt"); // WE COULD TEST WITH SSTRINGs
 
@@ -260,7 +259,7 @@ TEST(Test_Plane, InOutOperators) {
 
 TEST(Test_Plane, genericTestOnClassPlane){
     std::list<int> fp={20,40,50};
-    Plane p1("B11",140,fp);
+    Plane p1("B11", "A00",140,fp);
 
     ASSERT_EQ(p1.getCapacity(),140);
     ASSERT_EQ(p1.getNumberPlate(), "B11");
@@ -278,9 +277,9 @@ TEST(Test_Plane, genericTestOnClassPlane){
 }
 
 TEST (Test_Plane, CompareOperatorsPlane){
-    Plane p1("B00", 150, {10,30});
-    Plane p2("A80", 260, {10,30});
-    Plane p3("B00", 300, {40,70,80});
+    Plane p1("B00", "rr", 150, {10,30});
+    Plane p2("A80", "rr" ,260, {10,30});
+    Plane p3("B00","rr" ,300, {40,70,80});
 
     ASSERT_EQ(p1==p3, true);
     ASSERT_EQ(p1!=p3, false);
@@ -297,21 +296,39 @@ TEST(Test_Plane, inOperatorsPlane) { // NOTE: THIS TEST WAS FAILING
     Plane p1;
     i>>p1;
     list<int> lTest={0,30,40};
-    ASSERT_EQ(p1.getNumberPlate(), "Q505");
-    ASSERT_EQ(p1.getCapacity(),456);
-    ASSERT_EQ(p1.getFlightPlan().size(), 62);
+    ASSERT_EQ(p1.getNumberPlate(), "CS-KRJ");
+    ASSERT_EQ(p1.getCapacity(),524);
+    ASSERT_EQ(p1.getFlightPlan().size(), 71);
 }
 
 TEST(Test_Plane, outOperatorPlane){
     list<int> fl={20,30,50};
-    Plane p1("B20", 160, fl);
+    Plane p1("B20", "EEE", 160, fl);
 
     cout<<p1;
 }
 
+/*
+TEST(ddd,kffm) {
+ifstream i("../Files/Planes/planes.txt");
+vector<Plane> v;
 
+Plane plane;
 
+while(i >> plane) {
+    v.push_back(plane);
+}
 
+sort(v.begin(),v.end());
+i.close();
+std::ofstream o("../Files/Planes/planes.txt");
+
+for(auto f: v) {
+    o<<f;
+}
+
+}
+*/
 /*
 TEST(Creator_test, CreatingPassengers) {
 
@@ -533,38 +550,49 @@ for(int i = 0; i< 365; i++) {
     ofsF << flight;
 }
 
-}*/
+}
 
 /*
-TEST(Creator_test, creatingPlanes) {
+TEST(Creator_test, creatingPlanes) { // THIS TEST FAILS IF THE NUMBER OF FLIGHTS TO BE ATTRIBUTE TO A PLANE IS MORE THAN 0
     std::ofstream ofP("../Files/Planes/planes.txt");
 
-    vector<int> v;
-    vector<string> s;
-
-    srand(time(nullptr));
+    std::vector<int> v;
+    std::vector<string> s;
+    std::vector<pair<string, int>> mapTypeToCapacity = {
+            {"A310" , 220} ,
+            {"A310" , 170} ,
+            {"A321" ,200} ,
+            {"A330" ,440} ,
+            {"A340" ,370} ,
+            {"B737" ,188} ,
+            {"B747" ,524}
+    };
+    std::srand(time(nullptr));
 
 for(int i = 0; i< 365; i++) {
     v.push_back(i);
 }
 int nFlights = 365;
     for (int i=0; i<8; i++) {
-        string plate;
-        char ch;
-        int number1;
-        int number2;
-        int number3;
+        string plate ;
+        char ch1, ch2, ch3;
+        const std::string se = "CS-";
         do{
-            ch = rand() % 26 + 'A';
-            number1 = rand() % 10;
-            number2 = rand() % 10;
-            number3 = rand() % 10;
-            plate = ch + to_string(number1) + to_string(number2) + to_string(number3);
+            ch1 = rand() % 26 + 'A'; // https://en.wikipedia.org/wiki/List_of_aircraft_registration_prefixes
+            ch2 = rand() % 26 + 'A';
+            ch3 = rand() % 26 + 'A';
+            plate = se + ch1 + ch2 +ch3 ;
         }while(find(s.begin(),s.end(), plate) != s.end());
 
         s.push_back(plate);
 
-        int capacity = rand() % 600 + 50;//minimum of 50 passengers and maximum of 600 in every existing plane
+
+        int o = rand() % mapTypeToCapacity.size();//minimum of 50 passengers and maximum of 600 in every existing plane
+
+        auto pair = mapTypeToCapacity[o];
+
+        std::string pType = pair.first;
+        int capacity = pair.second;
 
         int sizeFp = rand() % 90;
         list<int> flightPlan;
@@ -577,7 +605,7 @@ int nFlights = 365;
             if(!nFlights)
                 break;
         }
-        Plane p1(plate, capacity,flightPlan);
+        Plane p1(plate, pType, capacity,flightPlan);
         ofP << p1;
     }
     ofP.close();

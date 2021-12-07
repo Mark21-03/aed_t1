@@ -2,28 +2,39 @@
 
 #include <utility>
 
-Plane::Plane(std::string numberPlate, int capacity){
-    this->numberPlate = std::move(numberPlate);
+Plane::Plane(const std::string& numberPlate ,const std::string& pType, int capacity){
+    this->numberPlate;
+    this->pType = pType;
     this->capacity = capacity;
 }
 
 
-Plane::Plane(std::string numberPlate, int capacity,std::list<flightNumber> flightPlan){
-
-    this->numberPlate = std::move(numberPlate);
+Plane::Plane(const std::string& numberPlate ,const std::string& pType, int capacity, const std::list<flightNumber>& flightPlan){
+    this->numberPlate = numberPlate;
+    this->pType = pType;
     this->capacity = capacity;
-    this->flightPlan = std::move(flightPlan);
+    this->flightPlan = flightPlan;
 }
 //Getters
-std::string Plane::getNumberPlate() const{return this->numberPlate;}
+std::string Plane::getType() const{return this->pType;}
 
 int Plane::getCapacity() const {return this->capacity;}
 
 std::list<flightNumber> Plane::getFlightPlan() const {return this->flightPlan;}
 
+std::string Plane::getNumberPlate() const{
+    return numberPlate;
+}
+
+
 //Setters
-void Plane::setFlightPlan(const std::list<flightNumber> &flightPlan) { this->flightPlan = flightPlan;}
+Plane& Plane::setFlightPlan(const std::list<flightNumber> &flightPlan) { this->flightPlan = flightPlan; return *this;}
 
-void Plane::setCapacity(int capacity) {this->capacity = capacity;}
+Plane& Plane::setCapacity(int capacity) {this->capacity = capacity;return *this;}
 
-void Plane::setNumberPlate(std::string numberPlate) {this->numberPlate = std::move(numberPlate);}
+Plane& Plane::setType(const std::string& pType) { this->pType = pType;return *this;}
+
+Plane& Plane::setNumberPlate(const string &numberPlate) {
+    this->numberPlate = numberPlate;return *this;
+}
+

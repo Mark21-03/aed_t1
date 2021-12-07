@@ -17,20 +17,23 @@
 
 class Plane{
 private:
-    std::string numberPlate; //possivelmente trocar por char[4] ?
+    std::string numberPlate;
+    std::string pType;
     int capacity;
     std::list<flightNumber> flightPlan;
 public:
 
     Plane() = default ;
-    Plane(std::string numberPlate, int capacity);
-    Plane(std::string numberPlate, int capacity,std::list<flightNumber> flightPlan);
+    Plane(const std::string& numberPlate ,const std::string& pType, int capacity);
+    Plane(const std::string& numberPlate ,const std::string& pType, int capacity,const std::list<flightNumber>& flightPlan);
 
-    void setNumberPlate(std::string numberPlate);
-    void setCapacity(int capacity);
-    void setFlightPlan(const std::list<flightNumber>& flightPlan);
+    Plane& setNumberPlate(const std::string& numberPlate);
+    Plane& setType(const std::string& pType);
+    Plane& setCapacity(int capacity);
+    Plane& setFlightPlan(const std::list<flightNumber>& flightPlan);
 
     std::string getNumberPlate() const;
+    std::string getType() const;
     int getCapacity() const;
     std::list<int> getFlightPlan() const; // const std::list<Flight>&
 
@@ -38,7 +41,7 @@ public:
 };
 
 inline std::ostream & operator<<(std::ostream& os, Plane& p) {
-    os << p.getNumberPlate() << " " <<p.getCapacity() << " ";
+    os << p.getNumberPlate() << " " << p.getType() << " " << p.getCapacity() << " ";
 
     os << p.flightPlan.size() << " ";
     for (auto f: p.flightPlan) {
@@ -51,12 +54,15 @@ inline std::ostream & operator<<(std::ostream& os, Plane& p) {
 
 inline std::istream & operator>>(std::istream& is, Plane& p) {
 
-    string nPlate ; // only a string always
-    is >> nPlate; p.setNumberPlate(nPlate);
-
+    std::string pType ; // only a string always
+    std::string nPlate;
     int c;
-    is >> c;p.setCapacity(c);
 
+    is >> nPlate; // TODO : an exception might be thrown if the plate is not valid
+    is >> pType;
+    is >> c;
+
+    p.setNumberPlate(nPlate).setType(pType).setCapacity(c);
     int n;
     is >> n;
     std::list<int> fp;
@@ -72,15 +78,15 @@ inline std::istream & operator>>(std::istream& is, Plane& p) {
 }
 
 inline bool operator<(const Plane &p1, const Plane &p2){
-    return p1.getNumberPlate()<p2.getNumberPlate();
+    return p1.getNumberPlate() < p2.getNumberPlate();
 }
 
-inline bool operator==(const Plane &p1, const Plane &p2){
-    return p1.getNumberPlate()==p2.getNumberPlate();
+inline bool operator==(const Plane &p1, const Plane &p2){ // IS THIS NEEDED
+    return p1.getNumberPlate() == p2.getNumberPlate();
 }
 
 inline bool operator!=(const Plane &p1, const Plane &p2){
-    return p1.getNumberPlate()!=p2.getNumberPlate();
+    return p1.getNumberPlate() != p2.getNumberPlate();
 }
 
 

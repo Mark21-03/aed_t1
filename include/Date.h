@@ -6,6 +6,7 @@
 #include <string>
 #include <istream>
 #include <ostream>
+#include <sstream>
 #include <stdexcept>
 #include <iostream>
 #include <iomanip>
@@ -13,6 +14,8 @@
 #include <sstream>
 #include <ctime>
 #include <chrono>
+
+#pragma warning(disable : 4996) //_CRT_SECURE_NO_WARNINGS --- localtime warning
 
 class Date {
 public:
@@ -80,22 +83,22 @@ public:
     unsigned int getMonth()const;
     unsigned int getDay()const;
     std::string getDate()const;  // returns the date in format "yyyy/mm/dd"
-    bool isValid();
+    bool isValid() const;
     void show()const;
     bool isEqualTo(const Date& date)const;
     bool isNotEqualTo(const Date& date)const;
     bool isAfter(const Date& date)const;
     bool isBefore(const Date& date) const;
 private:
-    int daysMonth(int month, int year)const;
-    bool isLeapYear(int year)const;
+    static int daysMonth(unsigned int month,unsigned int year);
+    static bool isLeapYear(unsigned int year);
     unsigned int year;
     unsigned int month;
     unsigned int day;
 };
 
 inline std::ostream& operator <<(std::ostream& os,const Date& right) { //TODO:CHECK IF FUNCTION IS WORKING
-    os << right.getYear()<<'/' << setfill('0')<<setw(2) << right.getMonth() << '/' << setw(2) << right.getDay() ;
+    os << right.getYear()<<'/' << setfill('0') <<setw(2) << right.getMonth() << '/' << setw(2) << right.getDay();
 
     return os;
 }

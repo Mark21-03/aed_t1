@@ -4,7 +4,11 @@
 #include <iostream>
 #include <iomanip>
 #include <random>
+#include <sstream>
 #include "../Exceptions/InvalidTimeException.h"
+
+#pragma warning(disable : 4996) //_CRT_SECURE_NO_WARNINGS --- localtime warning
+
 
 class Time{
     private :
@@ -22,16 +26,17 @@ class Time{
         Time(unsigned hour, unsigned minute, unsigned second);
 
         //Setters
-        void setTime(unsigned hour, unsigned minute, unsigned second);
-        void setHour(unsigned hour);
-        void setMinute(unsigned minute);
-        void setSecond(unsigned second);
-        void setRandomTime();
+        Time& setTime(unsigned hour, unsigned minute, unsigned second);
+        Time& setHour(unsigned hour);
+        Time& setMinute(unsigned minute);
+        Time& setSecond(unsigned second);
+        Time& setRandomTime();
 
         //Getters
         inline unsigned getHour() const{return this->hour;}
         inline unsigned getMinute() const{return this->minute;}
         inline unsigned getSecond() const{return this->second;}
+        const std::string getTime();
 };
 
 inline bool operator==(const Time &t1,const Time &t2){
