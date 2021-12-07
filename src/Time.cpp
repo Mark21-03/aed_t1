@@ -39,7 +39,7 @@ Time& Time::setRandomTime() {
 
 //getters
 
-const std::string Time::getTime() {
+const std::string Time::getTime() const {
     std::ostringstream ost; ost << *this; return ost.str();
 }
 

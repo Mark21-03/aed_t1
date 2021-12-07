@@ -54,7 +54,7 @@ Flight& Flight::setDuration(float duration) {this->duration = duration; return *
 
 Flight& Flight::setOrigin(const std::string& origin) {
     int i = 0;
-    for (auto c: origin) {
+    for (const auto& c: origin) {
         if (i > STRING_MAX_VALUE)
             throw NameToLongException();
         this->origin[i++] = c;
@@ -66,7 +66,7 @@ Flight& Flight::setOrigin(const std::string& origin) {
 
 Flight& Flight::setDestiny(const std::string& destiny) {
     int i = 0;
-    for (auto c: destiny) {
+    for (const auto& c: destiny) {
         if (i > STRING_MAX_VALUE)
             throw NameToLongException();
         this->destiny[i++] = c;

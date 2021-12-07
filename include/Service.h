@@ -13,7 +13,7 @@ enum ServiceType {
 
 class Service{
 private:
-    ServiceType type;
+    ServiceType type; // TODO: ADD A Plane Plane ... as the service is connected to a plane
     Date date;
     string employer;
 public:
@@ -29,7 +29,7 @@ public:
     string getEmployer() const;
 };
 
-inline std::ostream& operator<< (std::ostream& os, Service& s) {
+inline std::ostream& operator<< (std::ostream& os,const Service& s) { // TODO: this seems a bit off..
     switch (s.getType()) {
         case 0:
             os << "Maintenance by " <<s.getEmployer() << " on "<<s.getDate();break;

@@ -8,7 +8,7 @@ queue<Service> ServiceManagement::getToDoServices() const {return this->toDoServ
 
 
 void ServiceManagement::printAllDoneServices() const{
-    for(Service s:doneServices){
+    for(const Service& s:doneServices){
         cout<<s<<endl;
     }
 

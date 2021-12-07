@@ -20,7 +20,7 @@ unsigned int Passenger::getID() const {
 Passenger& Passenger::setName(const string &name) {
 
     int i = 0;
-    for (auto c: name) {
+    for (const auto& c: name) {
         if (i > LONGEST_ACCEPTED_NAME)
             throw NameToLongException();
         this->name[i++] = c;
