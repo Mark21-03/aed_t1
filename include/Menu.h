@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "Menu.h"
 #include "Manager.h"
 
 //WORK IN PROGRESS MENU EXAMPLE
@@ -86,28 +87,269 @@ class Menu {
 
 
     void funcUpdatePassenger() {
-        cout << "\n!funcUpdatePassenger!\n";
-        getchar();
+        //cout << "\n!funcUpdatePassenger!\n";
+        //getchar();
+        char userInput;
+        string inputError;
+        while (true) {
+            system(CLEAR);
+
+            if (!inputError.empty())
+                cout << inputError;
+            inputError = "";
+
+            cout << "=================" << endl;
+            cout << " UPDATE PASSENGER      " << endl;
+            cout << "=================" << endl;
+            cout << "  1)  Name" << endl;
+            cout << "  2)  ID" << endl;
+            cout << "  3)  Go Back" << endl;
+            cout << "================" << endl;
+            cout << " > ";
+
+            if ((cin >> userInput)) {
+                //raises error if more than 1 char is written by user
+                if (!emptyCin()) {
+                    giveMenuInputError(inputError);
+                    continue;
+                }
+
+                //START OF MENU SELECTION
+                switch (userInput) {
+                    case '1'://UPDATE NAME
+                        cout << "nameUpdate";//reminder - fazer cena q pergunt eo nome, verificar se esta no vetor, perguntar qual o novo, alterar e guardar
+                        break;
+                    case '2'://UPDATE ID
+                        cout << "idUpdate";//msm q em cima mas com id
+                        break;
+                    case '3'://GO BACK
+                        //cout<<"Back!";
+                        goto END_MENU;
+                        //break;
+                    default:
+                        giveMenuInputError(inputError);
+                        break;
+                }
+            }
+            END_MENU:
+            break;
+        }
     }
 
     void funcUpdatePlane() {
-        cout << "\n!funcUpdatePlane!\n";
-        getchar();
+        //cout << "\n!funcUpdatePlane!\n";
+        //getchar();
+        char userInput;
+        string inputError;
+        while (true) {
+            system(CLEAR);
+
+            if (!inputError.empty())
+                cout << inputError;
+            inputError = "";
+
+            cout << "=================" << endl;
+            cout << "   UPDATE PLANE          " << endl;
+            cout << "=================" << endl;
+            cout << "  1)  Plate Number" << endl;
+            cout << "  2)  Plane Type" << endl;
+            cout << "  3)  Capacity" << endl;
+            cout << "  4)  Flight Plan" << endl;
+            cout << "  5)  Go Back" << endl;
+            cout << "================" << endl;
+            cout << " > ";
+
+            if ((cin >> userInput)) {
+                //raises error if more than 1 char is written by user
+                if (!emptyCin()) {
+                    giveMenuInputError(inputError);
+                    continue;
+                }
+
+                //START OF MENU SELECTION
+                switch (userInput) {
+                    case '1'://UPDATE PLATE NUMBER
+                        cout << "PlateNUmber";//reminder - fazer cena q pergunt eo nome, verificar se esta no vetor, perguntar qual o novo, alterar e guardar
+                        break;
+                    case '2'://UPDATE PLANE TYPE
+                        cout << "PlaneType";//msm q em cima mas com id
+                        break;
+                    case '3'://UPDATE CAPACITY
+                        cout << "Capacity";//msm q em cima mas com id
+                        break;
+                    case '4'://UPDATE FLIGHT PLAN
+                        cout<<"Flight Plan";
+                        break;
+                    case '5'://GO BACK
+                        //cout<<"Back!";
+                        goto END_MENU;
+                        //break;
+                    default:
+                        giveMenuInputError(inputError);
+                        break;
+                }
+            }
+            END_MENU:
+            break;
+        }
     }
 
     void funcUpdateFlight() {
-        cout << "\n!funcUpdateFlight!\n";
-        getchar();
+        //cout << "\n!funcUpdatePlane!\n";
+        //getchar();
+        char userInput;
+        string inputError;
+        while (true) {
+            system(CLEAR);
+
+            if (!inputError.empty())
+                cout << inputError;
+            inputError = "";
+
+            cout << "=================" << endl;
+            cout << "  UPDATE FLIGHT         " << endl;
+            cout << "=================" << endl;
+            cout << "  1)  Flight Number" << endl;
+            cout << "  2)  Departure Date" << endl;
+            cout << "  3)  Departure Time" << endl;
+            cout << "  4)  Go Back" << endl;
+            cout << "================" << endl;
+            cout << " > ";
+
+            if ((cin >> userInput)) {
+                //raises error if more than 1 char is written by user
+                if (!emptyCin()) {
+                    giveMenuInputError(inputError);
+                    continue;
+                }
+
+                //START OF MENU SELECTION
+                switch (userInput) {
+                    case '1'://UPDATE FLIGHT NUMBER
+                        cout << "FlightNumber";//reminder - fazer cena q pergunt eo nome, verificar se esta no vetor, perguntar qual o novo, alterar e guardar
+                        break;
+                    case '2'://UPDATE DEPARTURE DATE
+                        cout << "Departure Date";//msm q em cima mas com id
+                        break;
+                    case '3'://UPDATE DEPARTURE TIME
+                        cout << "Departure Time";//msm q em cima mas com id
+                        break;
+                    case '4'://GO BACK
+                        //cout<<"Back!";
+                        goto END_MENU;
+                        //break;
+                    default:
+                        giveMenuInputError(inputError);
+                        break;
+                }
+            }
+            END_MENU:
+            break;
+        }
     }
 
     void funcUpdateService() {
-        cout << "\n!funcUpdateService!\n";
-        getchar();
+        //cout << "\n!funcUpdatePlane!\n";
+        //getchar();
+        char userInput;
+        string inputError;
+        while (true) {
+            system(CLEAR);
+
+            if (!inputError.empty())
+                cout << inputError;
+            inputError = "";
+
+            cout << "=================" << endl;
+            cout << " UPDATE SERVICE       " << endl;
+            cout << "=================" << endl;
+            cout << "  1)  Type" << endl;
+            cout << "  2)  Date" << endl;
+            cout << "  3)  Employer" << endl;
+            cout << "  4)  Go Back" << endl;
+            cout << "================" << endl;
+            cout << " > ";
+
+            if ((cin >> userInput)) {
+                //raises error if more than 1 char is written by user
+                if (!emptyCin()) {
+                    giveMenuInputError(inputError);
+                    continue;
+                }
+
+                //START OF MENU SELECTION
+                switch (userInput) {
+                    case '1'://UPDATE TYPE
+                        cout << "Type";//reminder - fazer cena q pergunt eo nome, verificar se esta no vetor, perguntar qual o novo, alterar e guardar
+                        break;
+                    case '2'://UPDATE DATE
+                        cout << "Date";//msm q em cima mas com id
+                        break;
+                    case '3'://UPDATE EMPLOYER
+                        cout << "Employer";//msm q em cima mas com id
+                        break;
+                    case '4'://GO BACK
+                        //cout<<"Back!";
+                        goto END_MENU;
+                        //break;
+                    default:
+                        giveMenuInputError(inputError);
+                        break;
+                }
+            }
+            END_MENU:
+            break;
+        }
     }
 
-    void funcUpdateTicket() {
-        cout << "\n!funcUpdateTicket!\n";
-        getchar();
+    void funcUpdateTicket() { //why would a passenger change a ticket and what to change?? i think it doesn't make much sense
+        //cout << "\n!funcUpdatePlane!\n";
+        //getchar();
+        char userInput;
+        string inputError;
+        while (true) {
+            system(CLEAR);
+
+            if (!inputError.empty())
+                cout << inputError;
+            inputError = "";
+
+            cout << "=================" << endl;
+            cout << "  UPDATE TICKET         " << endl;
+            cout << "=================" << endl;
+            cout << "  1)  Flight Info" << endl;
+            cout << "  2)  Passenger ID" << endl;
+            cout << "  3)  Go Back" << endl;
+            cout << "================" << endl;
+            cout << " > ";
+
+            if ((cin >> userInput)) {
+                //raises error if more than 1 char is written by user
+                if (!emptyCin()) {
+                    giveMenuInputError(inputError);
+                    continue;
+                }
+
+                //START OF MENU SELECTION
+                switch (userInput) {
+                    case '1'://UPDATE FLIGHT INFO
+                        cout << "FlightInfo";//reminder - fazer cena q pergunt eo nome, verificar se esta no vetor, perguntar qual o novo, alterar e guardar
+                        break;
+                    case '2'://UPDATE PASSENGER ID
+                        cout << "PassengerId";//msm q em cima mas com id
+                        break;
+                    case '3'://GO BACK
+                        //cout<<"Back!";
+                        goto END_MENU;
+                        //break;
+                    default:
+                        giveMenuInputError(inputError);
+                        break;
+                }
+            }
+            END_MENU:
+            break;
+        }
     }
 
 
