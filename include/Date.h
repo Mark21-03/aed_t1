@@ -19,9 +19,23 @@
 
 class Date {
 public:
+    /**
+     * Default constructor that creates a date for the current name
+     */
     Date();
+    /**
+     * Constructs a Date with year/month/day
+     * @param year
+     * @param month
+     * @param day
+     */
     Date(unsigned int year, unsigned int month, unsigned int day);
+    /**
+     * Constructs a date with a string of type year/month/day
+     * @param yearMonthDay
+     */
     Date(std::string yearMonthDay);
+
     bool operator ==(const Date& right) {
         return isEqualTo(right);
     }

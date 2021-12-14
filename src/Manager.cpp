@@ -67,7 +67,7 @@ void Manager::showSortedFlights(ostream &ostream1) {
     using namespace std;
     ostream1 << right;
     ostream1<<setfill(' ')<<"Number\t\t"<<setw(15)<<"Departure Date "<< setw(15) << "Departure Time"<<setw(30)<<"Origin "<<setw(40)<<"Destiny"<<"\n";
-    ostream1 << SEPARATION << SEPARATION  <<"------------------------" <<"\n" << left<< setfill(' ') ; // MAYBE PUT THIS STUFF in a Macro
+    ostream1 << SEPARATION << SEPARATION  <<SEPARATION<<"\n" << left<< setfill(' ') ; // MAYBE PUT THIS STUFF in a Macro
 
     for (const auto& f: flights) { // TODO : MAGIC NUMBERS ...
         ostream1 <<setw(15) << f.getNumber() <<setw(15)<<f.getDepartureDate().getDate() <<setw(15) << f.getDepartureTime().getTime()

@@ -9,8 +9,6 @@
 
 //WORK IN PROGRESS MENU EXAMPLE
 
-using namespace std;
-
 //Sets CLEAR variable for cleaning terminal GUI for linux and window
 #ifdef _WIN32
 #define CLEAR "cls"
@@ -175,7 +173,8 @@ class Menu {
             inputError = "";
 
             //Start of MENU
-            cout << "=================" << endl;
+
+            cout << "================="<< endl;
             cout << menuTitle << endl;
             cout << "=================" << endl;
             cout << "  1)  Passenger" << endl;
@@ -202,7 +201,7 @@ class Menu {
                         cout << "End of program.\n";
                         exit(1);
 
-                    case '1'://Passanger
+                    case '1'://Passenger
                         // this -> x = funcs[0];
                         this -> x = funcs[0];
                         ((*this).*(this->x))();
