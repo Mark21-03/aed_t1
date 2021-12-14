@@ -7,6 +7,7 @@
 #include <string>
 #include "Menu.h"
 #include "Manager.h"
+#include "Input.h"
 
 //WORK IN PROGRESS MENU EXAMPLE
 
@@ -55,7 +56,9 @@ class Menu {
 
 
     void funcReadPassenger() {
-        manager.showSortedPassengers(cout);
+        unsigned int minID, maxID;
+        out::askID(cout, cin, minID, maxID);
+        manager.showSortedPassengersByID(cout, minID, maxID); // TODO: VERIFY THE UINT
         getchar();
 
     }
@@ -66,7 +69,9 @@ class Menu {
     }
 
     void funcReadFlight() {
-        manager.showSortedFlights(cout); // TODO: in here we will have to ask in what order to sort
+        flightNumber min, max;
+        out::askID(cout, cin, min, max);
+        manager.showSortedFlightsByID(cout, min, max); // TODO: in here we will have to ask in what order to sort
         // TODO: tb temos de ver a questão das listagens várias
         getchar();
 
@@ -85,6 +90,7 @@ class Menu {
 
 
     void funcUpdatePassenger() {
+        /*
         //cout << "\n!funcUpdatePassenger!\n";
         //getchar();
         char userInput;
@@ -131,10 +137,11 @@ class Menu {
             }
             END_MENU:
             break;
-        }
+        }*/
     }
 
     void funcUpdatePlane() {
+        /*
         //cout << "\n!funcUpdatePlane!\n";
         //getchar();
         char userInput;
@@ -190,9 +197,10 @@ class Menu {
             END_MENU:
             break;
         }
+         */
     }
 
-    void funcUpdateFlight() {
+    void funcUpdateFlight() {/*
         //cout << "\n!funcUpdatePlane!\n";
         //getchar();
         char userInput;
@@ -243,10 +251,10 @@ class Menu {
             }
             END_MENU:
             break;
-        }
+        }*/
     }
 
-    void funcUpdateService() {
+    void funcUpdateService() {/*
         //cout << "\n!funcUpdatePlane!\n";
         //getchar();
         char userInput;
@@ -297,10 +305,11 @@ class Menu {
             }
             END_MENU:
             break;
-        }
+        }*/
     }
 
-    void funcUpdateTicket() { //why would a passenger change a ticket and what to change?? i think it doesn't make much sense
+    void funcUpdateTicket() { /*
+        //why would a passenger change a ticket and what to change?? i think it doesn't make much sense
         //cout << "\n!funcUpdatePlane!\n";
         //getchar();
         char userInput;
@@ -347,7 +356,7 @@ class Menu {
             }
             END_MENU:
             break;
-        }
+        }*/
     }
 
 
@@ -381,27 +390,6 @@ class Menu {
 //___________________________TEMPORARY_TESTING_______________________________
 
 
-
-    string trimStr(string str) {
-        str.erase(0, str.find_first_not_of(' '));
-        str.erase(str.find_last_not_of(' ') + 1);
-        return str;
-    }
-
-    bool emptyCin() {
-        string bufferContent;
-        getline(cin, bufferContent);
-        trimStr(bufferContent);
-        if (bufferContent.empty())
-            return true;
-        return false;
-    }
-
-    void giveMenuInputError(string &s) {
-        s = "\nInvalid input was given.\nPlease provide a number from the menu.\n\n";
-    }
-
-
     void subMenu(const string &menuTitle, vector<void (Menu::*)()> funcs) {
         char userInput;
         string inputError;
@@ -432,8 +420,8 @@ class Menu {
 
             if ((cin >> userInput)) {
                 //raises error if more than 1 char is written by user
-                if (!emptyCin()) {
-                    giveMenuInputError(inputError);
+                if (!in::emptyStream(std::cin)) {
+                    in::giveMenuInputError(inputError);
                     continue;
                 }
 
@@ -467,21 +455,13 @@ class Menu {
                     case '6'://Go Back
                         goto END_MENU;
                     default:
-                        giveMenuInputError(inputError);
+                        in::giveMenuInputError(inputError);
                         break;
                 }
                 //END OF MENU SELECTION
                 continue;
             } else {
-                //deals with errors when trying to get the char
-                if (cin.eof()) {
-                    cout << "\nEnd of program.\n";
-                    exit(1); //detects CTRL+Z
-                }
-
-                cin.clear();
-                cin.ignore(1000, '\n');
-                giveMenuInputError(inputError);
+                in::dealError(inputError);
                 continue;
             }
 
@@ -519,8 +499,8 @@ public:
 
             if ((cin >> userInput)) {
                 //raises error if more than 1 char is written by user
-                if (!emptyCin()) {
-                    giveMenuInputError(inputError);
+                if (!in::emptyStream(cin)) {
+                    in::giveMenuInputError(inputError);
                     continue;
                 }
 
@@ -542,7 +522,7 @@ public:
                         subMenu("   DELETE MENU",   deleteFuncs);
                         break;
                     default:
-                        giveMenuInputError(inputError);
+                        in::giveMenuInputError(inputError);
                         break;
                 }
                 //END OF MENU SELECTION
@@ -550,15 +530,7 @@ public:
                 continue;
 
             } else {
-                //deals with errors when trying to get the char
-                if (cin.eof()) {
-                    cout << "\nEnd of program.\n";
-                    exit(1); //detects CTRL+Z
-                }
-
-                cin.clear();
-                cin.ignore(1000, '\n');
-                giveMenuInputError(inputError);
+                in::dealError(inputError);
                 continue;
             }
         }

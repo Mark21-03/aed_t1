@@ -51,39 +51,39 @@ Manager::Manager() {
 }
 
 
-void Manager::showSortedPassengers(ostream &ostream1) {
+void Manager::showSortedPassengersByID(ostream &ostream1, unsigned int min, unsigned int max) {
 
-    ostream1<<"ID\t"<<"Name"<<endl;
+    out::headerPassengers(ostream1);
 
-    for (const auto& p: passengers) {
-    ostream1 << SEPARATION << std::endl;
-        ostream1 << p.getID()<<"\t"<<p.getName()<< '\n';
+    auto it = lower_bound(passengers.begin(),passengers.end(), Passenger(min, ""));
+    for (;it!=passengers.end();it++) {
+        if (it->getID() > max) break;
+        out::passenger(ostream1,it);
     }
 
 }
 
-void Manager::showSortedFlights(ostream &ostream1) {
+void Manager::showSortedFlightsByID(ostream &ostream1, flightNumber min , flightNumber max) {
 
     using namespace std;
-    ostream1 << right;
-    ostream1<<setfill(' ')<<"Number\t\t"<<setw(15)<<"Departure Date "<< setw(15) << "Departure Time"<<setw(30)<<"Origin "<<setw(40)<<"Destiny"<<"\n";
-    ostream1 << SEPARATION << SEPARATION  <<SEPARATION<<"\n" << left<< setfill(' ') ; // MAYBE PUT THIS STUFF in a Macro
 
-    for (const auto& f: flights) { // TODO : MAGIC NUMBERS ...
-        ostream1 <<setw(15) << f.getNumber() <<setw(15)<<f.getDepartureDate().getDate() <<setw(15) << f.getDepartureTime().getTime()
-        <<setw(50)<<f.getOrigin()<<setw(45)<<" ⟶ " + f.getDestiny()<< "\n";
+    out::headerFlights(ostream1);
+    auto it = lower_bound(flights.begin(), flights.end(), Flight(min, Date(), Time(0,0,0),2.4, "", ""));
+
+    for (;it!=flights.end();it++) {
+        if (it->getNumber() > max) break;
+        out::flights(ostream1,it);
     }
 }
-
-
 
 
 void Manager::showSortedPlanes(ostream &ostream1) {
 
-    ostream1<<"Plate\t"<< "Type\t"<<"Capacity\t" <<"Number of Flights\r"<<'\n';
-    ostream1 << SEPARATION << std::endl;
+    out::headerPlanes(ostream1);
 
     for (const auto& p : planes) { // TODO :: ALL THIS FUNCTIONS CAN HAVE A DIFF OUTPUT - IN HERE (do not overload <<)
-        ostream1 << p.getNumberPlate() << '\t' << p.getType() << '\t' << p.getCapacity() << "\t\t"<<p.getFlightPlan().size()<<'\n';
+       // put::planes
     }
 }
+
+

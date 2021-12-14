@@ -8,9 +8,7 @@
 #include <ostream>
 #include <fstream>
 #include <iomanip>
-
-#define SEPARATION "--------------------------------------------------------"
-
+#include "Output.h"
 
 
 class Manager {
@@ -34,8 +32,13 @@ public:
 
     bool addFlightToPlanePlan(Flight& flight); // success or not
 
-    void showSortedPassengers(ostream& ostream1);
-    void showSortedFlights(ostream& ostream1);
+    void showSortedPassengersByID(ostream& ostream1, unsigned int min = 0, unsigned int max = INT_MAX);
+    void showSortedFlightsByID(ostream& ostream1, flightNumber min = 0, flightNumber max = INT_MAX);
+    void showSortedFlightsByOrigin(ostream& ostream1, flightNumber min = 0, flightNumber max = INT_MAX); // TODO LATER
+    void showSortedFlightsByDestiny(ostream& ostream1, flightNumber min = 0, flightNumber max = INT_MAX);// TODO LATER
+
+
+
     void showSortedPlanes(ostream& ostream1);
 
 

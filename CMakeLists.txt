@@ -33,7 +33,7 @@ if (CMAKE_BUILD_TYPE MATCHES Release)
             Exceptions/InvalidIDException.h
             Exceptions/NameToLongException.h src/Ticket.cpp include/Ticket.h
             include/Menu.h src/Manager.cpp include/Manager.h
-            include/ServiceManagement.h src/ServiceManagement.cpp include/Time.h Exceptions/InvalidTimeException.h src/Time.cpp src/Menu.cpp)
+            include/ServiceManagement.h src/ServiceManagement.cpp include/Time.h Exceptions/InvalidTimeException.h src/Time.cpp src/Menu.cpp src/Output.cpp include/Output.h include/Input.h src/Input.cpp)
     message("Release mode")
 
     # Doxygen Build
