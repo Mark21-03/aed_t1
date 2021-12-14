@@ -142,14 +142,21 @@ TEST(test_ServiceManagement, OperatorsManagement) {
     Date d1("2012/03/21");
     Date d2("2018/11/29");
     Date d3("2021/03/01");
-    Service s1('c',d1,"Rui Rocha");
-    Service s2('o',d2,"Pedro Moreira");
-    Service s3('m',d3,"Alfredo Costa");
+    Service s1('c',d1,"Rui Rocha", "CS-AKJ");
+    Service s2('o',d2,"Pedro Moreira","CS-AKJ");
+    Service s3('m',d3,"Alfredo Costa", "CS-AKJ");
 
     cout<<s1<<endl;
     cout<<s2<<endl;
     cout<<s3<<endl;
 
+    istringstream istringstream1("99 2012/03/21Rui Rocha                                    CS-AKJ");
+
+    Service s;
+    istringstream1 >> s;
+
+    ASSERT_EQ(s.getType(), cleaning);
+    ASSERT_EQ(s.getDate().getDate(), "2012/03/21");
 
 }
 
@@ -297,6 +304,15 @@ TEST(Test_Plane, outOperatorPlane){
     Plane p1("B20", "EEE", 160, fl);
 
     cout<<p1;
+}
+
+TEST(Test_Service, inOperator) {
+    ServiceManagement serviceManagement("../Files/Services/services.txt");
+
+    for ( auto a : serviceManagement.getDoneServices() ) {
+        cout << a.getInfo() << endl;
+    }
+
 }
 
 /*
@@ -605,3 +621,246 @@ int nFlights = 365;
     ofP.close();
 ASSERT_EQ(v.size(), 0);
 }*/
+
+/*
+TEST(Creator_test, Services) {
+    vector<std::string> v{
+            "CS-AKJ",
+            "CS-HLH",
+            "CS-JYZ",
+            "CS-KRJ",
+            "CS-OZA",
+            "CS-PBO",
+            "CS-SPM",
+            "CS-TSZ"
+    };
+
+
+vector<string> names_male {
+        "João",
+        "Rodrigo",
+        "Francisco",
+        "Martim",
+        "Santiago",
+        "Tomás",
+        "Afonso",
+        "Duarte",
+        "Miguel",
+        "Guilherme",
+        "Tiago",
+        "Gonçalo",
+        "Diogo",
+        "Gabriel",
+        "Pedro",
+        "Rafael",
+        "Salvador",
+        "Dinis",
+        "Lucas",
+        "Simão",
+        "Gustavo",
+        "David",
+        "José",
+        "Vicente",
+        "Lourenço",
+        "Diego",
+        "Daniel",
+        "António",
+        "André",
+        "Vasco",
+        "Manuel",
+        "Henrique",
+        "Leonardo",
+        "Bernardo",
+        "Mateus",
+        "Luís",
+        "Eduardo",
+        "Alexandre",
+        "Leandro",
+        "Filipe",
+        "Enzo",
+        "Ricardo",
+        "Matias",
+        "Rúben",
+        "Samuel",
+        "Bruno",
+        "Isaac"
+};
+vector<string> name_female{
+        "Eliana",
+        "Cecília",
+        "Sarah",
+        "Liara",
+        "Fátima",
+        "Dânia",
+        "Mayara",
+        "Emily",
+        "Márcia",
+        "Carina",
+        "Sónia",
+        "Aléxia",
+        "Flávia",
+        "Lívia",
+        "Susana",
+        "Carmo",
+        "Eliane",
+        "Anamar",
+        "Alana",
+        "Clarisse",
+        "Solange",
+        "Leticia",
+        "Sílvia",
+        "Isa",
+        "Telma",
+        "Nayara",
+        "Lídia",
+        "Kiara",
+        "Oriana",
+        "Denise",
+        "Liane",
+        "Natacha",
+        "Viviane",
+        "Cíntia",
+        "Frederica",
+        "Rute",
+        "Luz",
+        "Magda",
+        "Antónia",
+        "Neuza",
+        "Tamára",
+        "Marina",
+        "Naíma",
+        "Dalila",
+        "Samira",
+        "Jade",
+        "Angélica",
+        "Angelina",
+        "Milena"
+};
+vector<string> sur_names {
+        "Soares",
+        "Vieira",
+        "Monteiro",
+        "Moreira",
+        "Cardoso",
+        "Duarte",
+        "Nunes",
+        "Rocha",
+        "Coelho",
+        "Neves",
+        "Reis",
+        "Pires",
+        "Cunha",
+        "Machado",
+        "Matos",
+        "Fonseca",
+        "Ramos",
+        "Tavares",
+        "Freitas",
+        "Simões",
+        "Cruz",
+        "Antunes",
+        "Figueiredo",
+        "Barbosa",
+        "Castro",
+        "Araújo",
+        "Azevedo",
+        "Lima",
+        "Lourenço",
+        "Faria",
+        "Morais",
+        "Andrade",
+        "Henriques",
+        "Mota",
+        "Pinheiro",
+        "Afonso",
+        "Barros",
+        "Miranda",
+        "Baptista"
+};
+    std::srand(time(nullptr));
+
+    std::vector<std::string > names;
+
+    for(int i = 0; i < 20; i++) {
+        string name;
+        bool b = (bool)(rand() % 2);
+
+        int l = rand() % 2 +1;
+
+
+        if(b) {
+            int z = rand() % 2 +1; // nomes próprios
+            for(int k= 0; k < z; k++) {
+                name += names_male[rand() % names_male.size()];
+                name += " ";
+            }
+        }else {
+            int z = rand() % 2 +1; // nomes próprios
+            for(int k= 0; k < z; k++) {
+                name += name_female[rand() % name_female.size()];
+                name += " ";
+            }
+        }
+
+        for(int k= 0; k < l; k++) {
+            name += sur_names[rand() % sur_names.size()];
+            if(k + 1 < l) {
+            name += " ";
+            }
+        }
+        names.push_back(name);
+    }
+    ofstream ofs("../Files/Services/services.txt");
+
+    ofs << 15 << std::endl;
+
+vector<Service> m2;
+    for(int i = 0; i < 15; i++) { // TODO S
+        int n = rand() %names.size();
+        vector<char> c {'c', 'm', 'o'};
+        int z = rand() % 3; // nomes próprios
+        Date d;
+
+        int er = rand() % 100;
+
+        while(er != 0) {d++;er--;}
+
+        int r = rand() % 8;
+        Service service(c[z], d, names[n],v[r]);
+
+m2.push_back(service);
+}
+
+sort(m2.begin(),m2.end());
+
+for (auto& s: m2) {
+ofs << s;
+}
+
+    ofs << 30 << std::endl;
+
+    vector<Service> m;
+
+    for(int i = 0; i < 30; i++) { // DONE S
+        int n = rand() %names.size();
+        vector<char> c {'c', 'm', 'o'};
+        int z = rand() % 3; // nomes próprios
+        Date d;
+
+        int e = rand() % 100;
+
+        while(e != 0) {d--;e--;}
+
+        int r = rand() % 8;
+        Service service(c[z], d, names[n],v[r]);
+        m.push_back(service);
+    }
+
+    sort(m.begin(),m.end());
+
+    for (auto& s: m) {
+        ofs << s;
+    }
+}
+*/
+

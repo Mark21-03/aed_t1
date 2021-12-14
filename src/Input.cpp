@@ -1,6 +1,3 @@
-//
-// Created by ricar on 14/12/2021.
-//
 #include "../include/Input.h"
 
 namespace in {

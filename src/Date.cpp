@@ -56,7 +56,7 @@ Date& Date::setDay(unsigned int day) {
 Date& Date::setDate(unsigned int year, unsigned int month, unsigned int day) {
     this->year = year;
     this->month = month;
-    this->month = month;
+    this->day = day;
 
     return *this;
 }

@@ -15,27 +15,29 @@
 // In which the O -> occupied seat and F -> Free seat. the struct of the plane should be defined either before or it can
 // either be not defined and we arrange in that way the plane as we want (using getlines)
 
+typedef std::string planePlate;
+
 class Plane{
 private:
-    std::string numberPlate;
+    planePlate numberPlate;
     std::string pType;
     int capacity;
     std::list<flightNumber> flightPlan;
 public:
 
     Plane() = default ;
-    Plane(const std::string& numberPlate ,const std::string& pType, int capacity);
-    Plane(const std::string& numberPlate ,const std::string& pType, int capacity,const std::list<flightNumber>& flightPlan);
+    Plane(const planePlate& numberPlate ,const std::string& pType, int capacity);
+    Plane(const planePlate& numberPlate ,const std::string& pType, int capacity,const std::list<flightNumber>& flightPlan);
 
-    Plane& setNumberPlate(const std::string& numberPlate);
+    Plane& setNumberPlate(const planePlate& numberPlate);
     Plane& setType(const std::string& pType);
     Plane& setCapacity(int capacity);
     Plane& setFlightPlan(const std::list<flightNumber>& flightPlan);
 
-    std::string getNumberPlate() const;
+    planePlate getNumberPlate() const;
     std::string getType() const;
     int getCapacity() const;
-    std::list<int> getFlightPlan() const; // const std::list<Flight>&
+    std::list<flightNumber> getFlightPlan() const; // const std::list<Flight>&
 
     friend inline std::ostream & operator<<(std::ostream& os, Plane& p);
 };

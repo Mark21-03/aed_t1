@@ -1,15 +1,14 @@
 #include "../include/Plane.h"
 
-#include <utility>
 
-Plane::Plane(const std::string& numberPlate ,const std::string& pType, int capacity){
-    this->numberPlate;
+Plane::Plane(const planePlate& numberPlate ,const std::string& pType, int capacity){
+    this->numberPlate = numberPlate;
     this->pType = pType;
     this->capacity = capacity;
 }
 
 
-Plane::Plane(const std::string& numberPlate ,const std::string& pType, int capacity, const std::list<flightNumber>& flightPlan){
+Plane::Plane(const planePlate& numberPlate ,const std::string& pType, int capacity, const std::list<flightNumber>& flightPlan){
     this->numberPlate = numberPlate;
     this->pType = pType;
     this->capacity = capacity;
@@ -22,7 +21,7 @@ int Plane::getCapacity() const {return this->capacity;}
 
 std::list<flightNumber> Plane::getFlightPlan() const {return this->flightPlan;}
 
-std::string Plane::getNumberPlate() const{
+planePlate Plane::getNumberPlate() const{
     return numberPlate;
 }
 

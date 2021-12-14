@@ -57,21 +57,23 @@ class Menu {
 
     void funcReadPassenger() {
         unsigned int minID, maxID;
-        out::askID(cout, cin, minID, maxID);
+        out::askInterval<unsigned int>(cout, cin, minID, maxID, "Passenger ID");
         manager.showSortedPassengersByID(cout, minID, maxID); // TODO: VERIFY THE UINT
         getchar();
 
     }
 
     void funcReadPlane() {
-        manager.showSortedPlanes(cout);
+        planePlate min, max;
+        out::askInterval<planePlate>(cout, cin, min, max, "Plate Number");
+        manager.showSortedPlanes(cout, min, max);
         getchar();
     }
 
     void funcReadFlight() {
         flightNumber min, max;
-        out::askID(cout, cin, min, max);
-        manager.showSortedFlightsByID(cout, min, max); // TODO: in here we will have to ask in what order to sort
+        out::askInterval<flightNumber>(cout, cin, min, max, "Flight number");
+        manager.showSortedFlightsByID(cout, min, max); // TODO: in here we will have to askInterval in what order to sort
         // TODO: tb temos de ver a questão das listagens várias
         getchar();
 
@@ -79,7 +81,12 @@ class Menu {
 
 
     void funcReadService() {
-        cout << "\n!funcReadService!\n";
+        Date min, max;
+
+        out::askInterval<Date>(cout, cin, min, max, "Date");
+
+        manager.showDoneServices(cout, min, max);
+
         getchar();
     }
 

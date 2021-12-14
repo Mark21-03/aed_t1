@@ -18,7 +18,7 @@ if(CMAKE_BUILD_TYPE MATCHES Debug)
         Exceptions/InvalidIDException.h
         Exceptions/NameToLongException.h src/Ticket.cpp include/Ticket.h
             include/Menu.h include/Manager.h src/Manager.cpp include/ServiceManagement.h src/ServiceManagement.cpp
-        include/Time.h Exceptions/InvalidTimeException.h src/Time.cpp src/Menu.cpp)
+        include/Time.h Exceptions/InvalidTimeException.h src/Time.cpp src/Menu.cpp include/Output.h src/Output.cpp)
 
     target_link_libraries(aed_t1 gtest gtest_main)
     message("Debug mode")
