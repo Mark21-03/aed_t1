@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "../include/Manager.h"
 
 
@@ -176,6 +177,48 @@ void Manager::createFlight( const Date &departureDate, const Time &departureTime
     Flight f(newID,departureDate,departureTime,duration,origin,destiny);
 
     flights.push_back(f);
+
+}
+
+
+
+
+
+bool Manager::deletePassenger(const unsigned int &idD) {
+
+    auto filter = [=](const Passenger &p){return p.getID()==idD;};
+
+    auto it = find_if(passengers.begin(),passengers.end(),filter);
+
+    if(it!=passengers.end()){
+        passengers.erase(it);return true;
+    }
+    return false;
+}
+
+bool Manager::deletePlane(const string &idD) {
+
+    auto filter = [=](const Plane &p){return p.getNumberPlate()==idD;};
+
+    auto it = find_if(planes.begin(),planes.end(),filter);
+
+    if(it!=planes.end()){
+        planes.erase(it);return true;
+    }
+    return false;
+
+}
+
+bool Manager::deleteFlight(const unsigned int &idD) {
+
+    auto filter = [=](const Flight &p){return p.getNumber()==idD;};
+
+    auto it = find_if(flights.begin(),flights.end(),filter);
+
+    if(it!=flights.end()){
+        flights.erase(it);return true;
+    }
+    return false;
 
 }
 

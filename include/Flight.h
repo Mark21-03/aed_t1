@@ -46,7 +46,6 @@ public:
     char* getDestinyC();
 
 
-
     // TODO: DO A CHECK IN FUNCTION WHICH WILL TAKE A PASSENGER - NOT HERE THOUGH
 };
 
