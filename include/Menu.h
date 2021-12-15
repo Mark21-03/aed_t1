@@ -30,8 +30,11 @@ class Menu {
 //___________________________TEMPORARY_TESTING_______________________________
 
     void funcCreatePassanger() {
-        cout << "\n!funcCreatePassanger!\n";
+        string pName;
+        cout<<"\nNEW PASSANGER = ";getline(cin,pName);
+        manager.createPassenger(pName);
         getchar();
+
     }
 
     void funcCreatePlane() {
@@ -59,7 +62,7 @@ class Menu {
         unsigned int minID, maxID;
         out::askInterval<unsigned int>(cout, cin, minID, maxID, "Passenger ID");
         manager.showSortedPassengersByID(cout, minID, maxID); // TODO: VERIFY THE UINT
-        getchar();
+        getchar();getchar();
 
     }
 
@@ -67,7 +70,7 @@ class Menu {
         planePlate min, max;
         out::askInterval<planePlate>(cout, cin, min, max, "Plate Number");
         manager.showSortedPlanes(cout, min, max);
-        getchar();
+        getchar();getchar();
     }
 
     void funcReadFlight() {
@@ -75,7 +78,7 @@ class Menu {
         out::askInterval<flightNumber>(cout, cin, min, max, "Flight number");
         manager.showSortedFlightsByID(cout, min, max); // TODO: in here we will have to askInterval in what order to sort
         // TODO: tb temos de ver a questão das listagens várias
-        getchar();
+        getchar();getchar();
 
     }
 
@@ -87,7 +90,7 @@ class Menu {
 
         manager.showDoneServices(cout, min, max);
 
-        getchar();
+        getchar();getchar();
     }
 
     void funcReadTicket() {
@@ -446,7 +449,10 @@ class Menu {
                 switch (userInput) {
                     case '0'://EXIT
                         cout << "End of program.\n";
+
+
                         exit(1);
+                        getchar();
 
                     case '1'://Passenger
                         // this -> x = funcs[0];
@@ -525,7 +531,10 @@ public:
                 switch (userInput) {
                     case '0'://EXIT
                         cout << "End of program.\n";
+                        manager.~Manager();
+                        getchar();
                         exit(1);
+
                     case '1'://CREATE
                         subMenu("   CREATE MENU",   createFuncs);
                         break;

@@ -8,6 +8,7 @@
 #include <ostream>
 #include <fstream>
 #include <iomanip>
+#include <climits>
 #include "Output.h"
 #include "ServiceManagement.h"
 
@@ -24,6 +25,9 @@ private:
     void readPassengers();
     void readServices();
 
+
+
+
     ServiceManagement serviceManager;
 
 
@@ -34,6 +38,7 @@ private:
 
 public:
     Manager();
+    ~Manager();
     explicit Manager(const std::string&dirs){
         this->filesDir = dirs;
     }
@@ -52,6 +57,10 @@ public:
     void showDoneServices(ostream& ostream1, const Date& min, const Date& max);
 
     void searchPassengers(int id);
+
+
+
+    void createPassenger(const string &Pname);
 
 
 };

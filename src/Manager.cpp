@@ -132,5 +132,38 @@ void Manager::searchPassengers(int id){
 }
 
 
+Manager::~Manager(){
+
+    std::cout<<"\nDESCONSTRUIR!\n";
+
+    std::ofstream ofsPlanes(planes_path);
+    std::ofstream ofsPassengers(passengers_path);
+    std::ofstream ofsFlights(flights_path);
+
+    for(Plane &p:planes)
+        ofsPlanes << p;
+
+    for(Passenger &p:passengers)
+        ofsPassengers << p;
+
+    for(Flight &f:flights)
+        ofsFlights << f;
+
+    cout<<endl<<passengers.size()<<endl;
+
+    serviceManager.~ServiceManagement();
+
+}
+
+void Manager::createPassenger(const string &Pname){
+
+    unsigned newID = passengers.back().getID()+1;
+
+    Passenger p(newID, Pname);
+
+    passengers.push_back(p);
+}
+
+
 
 

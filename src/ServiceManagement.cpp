@@ -52,6 +52,14 @@ void ServiceManagement::showDoneServicesFromRange(ostream &ostream1, const Date 
 
 }
 
+ServiceManagement::~ServiceManagement() {
+
+    //TODO Custom destructor to store files
+
+
+
+}
+
 
 
 

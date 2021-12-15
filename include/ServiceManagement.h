@@ -16,6 +16,7 @@ public:
     ServiceManagement(const std::string& path);
 
     ServiceManagement() = default;
+    ~ServiceManagement();
 
     void setDoneServices(list<Service> doneServices);
     void setToDoServices(queue<Service> toDoServices);
