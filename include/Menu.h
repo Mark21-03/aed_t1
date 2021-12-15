@@ -41,6 +41,10 @@ class Menu {
     const vector<void (Menu::*)()> deleteFuncs = {&Menu::funcDeletePassenger, &Menu::funcDeletePlane,&Menu::funcDeleteFlight, &Menu::funcDeleteService,&Menu::funcDeleteTicket};
 
 
+
+
+//__________________________________________________
+
     void funcCreatePassenger() {
         string pName;
         cout<<"\nNew Passenger Name (string): ";getline(cin,pName);
@@ -51,7 +55,6 @@ class Menu {
         }
         getchar();getchar();
     }
-
 
     void funcCreatePlane() {
         string numberPlate;
@@ -75,7 +78,6 @@ class Menu {
 
     void funcCreateFlight() {
 
-
          Date departureD;
          Time departureT;
          float duration;
@@ -95,69 +97,16 @@ class Menu {
     }
 
     void funcCreateService() {
+        //TODO
         cout << "\n!funcCreateService!\n";
         getchar();
     }
 
     void funcCreateTicket() {
+        //TODO
         cout << "\n!funcCreateTicket!\n";
         getchar();
     }
-
-
-    void funcReadPassenger() {
-        unsigned int minID, maxID;
-        out::askInterval<unsigned int>(cout, cin, minID, maxID, "Passenger ID");
-        manager.showSortedPassengersByID(cout, minID, maxID);
-        getchar();getchar();
-
-    }
-
-    void funcReadPlane() {
-        planePlate min, max;
-        out::askInterval<planePlate>(cout, cin, min, max, "Plate Number");
-        manager.showSortedPlanes(cout, min, max);
-        getchar();getchar();
-    }
-
-    void funcReadFlight() {
-        flightNumber min, max;
-        out::askInterval<flightNumber>(cout, cin, min, max, "Flight number");
-        manager.showSortedFlightsByID(cout, min, max);
-        getchar();getchar();
-
-    }
-
-
-    void funcReadService() {
-        Date min, max;
-
-        out::askInterval<Date>(cout, cin, min, max, "Date");
-
-        manager.showDoneServices(cout, min, max);
-
-        getchar();getchar();
-    }
-
-    void funcReadTicket() {
-        cout << "\n!funcReadTicket!\n";
-        getchar();
-    }
-
-
-    void funcUpdatePassenger(){}
-    void funcUpdatePlane(){}
-    void funcUpdateFlight(){}
-    void funcUpdateService(){}
-    void funcUpdateTicket(){}
-
-    int funcUpdateAll(){
-        int id;
-        cout<<"ID of object to change?";
-        cin>>id;
-        return id;
-    }
-
 
     void funcDeletePassenger() {
 
@@ -235,8 +184,62 @@ class Menu {
         getchar();getchar();
     }
 
+//__________________________________________________
 
 
+
+    void funcReadPassenger() {
+        unsigned int minID, maxID;
+        out::askInterval<unsigned int>(cout, cin, minID, maxID, "Passenger ID");
+        manager.showSortedPassengersByID(cout, minID, maxID);
+        getchar();getchar();
+
+    }
+
+    void funcReadPlane() {
+        planePlate min, max;
+        out::askInterval<planePlate>(cout, cin, min, max, "Plate Number");
+        manager.showSortedPlanes(cout, min, max);
+        getchar();getchar();
+    }
+
+    void funcReadFlight() {
+        flightNumber min, max;
+        out::askInterval<flightNumber>(cout, cin, min, max, "Flight number");
+        manager.showSortedFlightsByID(cout, min, max);
+        getchar();getchar();
+
+    }
+
+
+    void funcReadService() {
+        Date min, max;
+
+        out::askInterval<Date>(cout, cin, min, max, "Date");
+
+        manager.showDoneServices(cout, min, max);
+
+        getchar();getchar();
+    }
+
+    void funcReadTicket() {
+        cout << "\n!funcReadTicket!\n";
+        getchar();
+    }
+
+
+    void funcUpdatePassenger(){}
+    void funcUpdatePlane(){}
+    void funcUpdateFlight(){}
+    void funcUpdateService(){}
+    void funcUpdateTicket(){}
+
+    int funcUpdateAll(){
+        int id;
+        cout<<"ID of object to change?";
+        cin>>id;
+        return id;
+    }
 
 
     void subMenu(const string &menuTitle, vector<void (Menu::*)()> funcs) {
@@ -261,6 +264,109 @@ class Menu {
             cout << "  3)  Flight" << endl;
             cout << "  4)  Service" << endl;
             cout << "  5)  Ticket" << endl;
+            cout << "  6)  Go Back" << endl;
+            cout << "  0)  Exit" << endl;
+            cout << "================" << endl;
+            cout << " > ";
+            //End of MENU
+
+            if ((cin >> userInput)) {
+                //raises error if more than 1 char is written by user
+                if (!in::emptyStream(std::cin)) {
+                    in::giveMenuInputError(inputError);
+                    continue;
+                }
+
+                //START OF MENU SELECTION
+                switch (userInput) {
+                    case '0'://EXIT
+                        cout << "End of program.\n";
+                        manager.~Manager();
+                        getchar();
+                        exit(1);
+
+                    case '1'://Passenger
+                        if(menuTitle == "    READ MENU" && 1==2)
+                            readSubMenu("  PASSENGER READ",funcs);
+                        else{
+                            this -> x = funcs[0];
+                            ((*this).*(this->x))();
+                        }
+                        break;
+                    case '2'://Plane
+                        if(menuTitle == "    READ MENU"&& 1==2)
+                            readSubMenu("    PLANE READ",funcs);
+                        else{
+                            this -> x = funcs[1];
+                            ((*this).*(this->x))();
+                        }
+                        break;
+                    case '3'://Flight
+                        if(menuTitle == "    READ MENU"&& 1==2)
+                            readSubMenu("   FLIGHT READ",funcs);
+                        else{
+                            this -> x = funcs[2];
+                            ((*this).*(this->x))();
+                        }
+                        break;
+                    case '4'://Service
+                        if(menuTitle == "    READ MENU"&& 1==2)
+                            readSubMenu("   SERVICE READ",funcs);
+                        else{
+                            this -> x = funcs[3];
+                            ((*this).*(this->x))();
+                        }
+                        break;
+                    case '5'://Ticket
+                        if(menuTitle == "    READ MENU"&& 1==2)
+                            readSubMenu("   TICKET READ",funcs);
+                        else{
+                            this -> x = funcs[4];
+                            ((*this).*(this->x))();
+                        }
+
+                        break;
+                    case '6'://Go Back
+                        goto END_MENU;
+                    default:
+                        in::giveMenuInputError(inputError);
+                        break;
+                }
+                //END OF MENU SELECTION
+                continue;
+            } else {
+                in::dealError(inputError);
+                continue;
+            }
+
+            END_MENU:
+            break;
+        }
+    }
+
+
+    void readSubMenu(string menuTitle,vector<void (Menu::*)()> funcs){
+
+        char userInput;
+        string inputError;
+
+
+        while (true) {
+            system(CLEAR);
+
+            if (!inputError.empty())
+                cout << inputError;
+            inputError = "";
+
+            //Start of MENU
+
+            cout << "================="<< endl;
+            cout << menuTitle << endl;
+            cout << "=================" << endl;
+            cout << "  1)  All" << endl;
+            cout << "  2)  Single" << endl;
+            cout << "  3)  Interval" << endl;
+            cout << "  4)  Sorted" << endl;
             cout << "  6)  Go Back" << endl;
             cout << "  0)  Exit" << endl;
             cout << "================" << endl;
@@ -319,7 +425,10 @@ class Menu {
             END_MENU:
             break;
         }
+
     }
+
+
 
 public:
     Menu(Manager& manager1) : manager(manager1){}
