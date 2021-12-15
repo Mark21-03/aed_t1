@@ -9,14 +9,22 @@
 #include <fstream>
 #include <iomanip>
 #include "Output.h"
+#include "ServiceManagement.h"
 
 
 class Manager {
 private:
     string filesDir = "../include/filesPaths.txt";
 
-    string flights_path, planes_path,passengers_path;
+    string flights_path, planes_path,passengers_path, service_path;
     void setPaths();
+
+    void readFlights();
+    void readPlanes();
+    void readPassengers();
+    void readServices();
+
+    ServiceManagement serviceManager;
 
 
 
@@ -39,9 +47,11 @@ public:
 
 
 
-    void showSortedPlanes(ostream& ostream1);
-    void searchPassengers(int id);
+    void showSortedPlanes(ostream& ostream1, const planePlate& min,const planePlate& max);
 
+    void showDoneServices(ostream& ostream1, const Date& min, const Date& max);
+
+    void searchPassengers(int id);
 
 
 };
