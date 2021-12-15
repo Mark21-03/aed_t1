@@ -229,9 +229,29 @@ class Menu {
     }
 
 
-    void funcUpdatePassenger(){}
-    void funcUpdatePlane(){}
-    void funcUpdateFlight(){}
+    void funcUpdatePassenger() {
+        int n=funcUpdateAll();
+        manager.searchPassengers(n);
+    }
+
+    std::string funcupdatePlane(){
+        string id;
+        cout<<"Plate number of the plane to change?";
+        cin>>id;
+        return id;
+    }
+
+    void funcUpdatePlane() {
+        std::string n=funcupdatePlane();
+        manager.searchPlanes(n);
+
+    }
+
+    void funcUpdateFlight() {
+        int n=funcUpdateAll();
+        manager.searchFlights(n);
+    }
+
     void funcUpdateService(){}
     void funcUpdateTicket(){}
 

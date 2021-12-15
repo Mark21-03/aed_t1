@@ -57,6 +57,10 @@ public:
     void showDoneServices(ostream& ostream1, const Date& min, const Date& max);
 
     void searchPassengers(int id);
+    void searchFlights(int id);
+    void searchPlanes(string id);
+    void searchServices(ServiceType type, Date date, employerName employer, planePlate plane);
+
 
 
 
