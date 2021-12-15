@@ -1,13 +1,14 @@
 #include "../include/Manager.h"
 
 
+
+
 void Manager::setPaths(){
     ifstream dirs(filesDir);
 
     getline(dirs,flights_path);
     getline(dirs,planes_path);
     getline(dirs,passengers_path);
-    getline(dirs,service_path);
 
 }
 
@@ -16,10 +17,37 @@ Manager::Manager() {
 
     setPaths();
 
-    readFlights();
-    readPassengers();
-    readPlanes();
-    readServices();
+    std::ifstream ifs_flights(flights_path);
+
+    Flight flight;
+    while (ifs_flights >> flight) {
+        flights.push_back(flight);
+    }
+
+
+    ifs_flights.close();
+
+
+    std::ifstream ifs_passengers(passengers_path);
+
+
+
+    Passenger passenger;
+    while (ifs_passengers >> passenger) {
+        passengers.push_back(passenger);
+    }
+
+    ifs_passengers.close();
+
+    std::ifstream ifs_planes(planes_path);
+
+    Plane plane;
+    while (ifs_planes >> plane) {
+        planes.push_back(plane);
+    }
+
+    ifs_planes.close();
+
 }
 
 
@@ -37,8 +65,10 @@ void Manager::showSortedPassengersByID(ostream &ostream1, unsigned int min, unsi
 
 void Manager::showSortedFlightsByID(ostream &ostream1, flightNumber min , flightNumber max) {
 
+    using namespace std;
+
     out::headerFlights(ostream1);
-    auto it = lower_bound(flights.begin(), flights.end(), Flight(min, Date(), Time(),2.4f, "", ""));
+    auto it = lower_bound(flights.begin(), flights.end(), Flight(min, Date(), Time(0,0,0),2.4, "", ""));
 
     for (;it!=flights.end();it++) {
         if (it->getNumber() > max) break;
@@ -47,60 +77,44 @@ void Manager::showSortedFlightsByID(ostream &ostream1, flightNumber min , flight
 }
 
 
-void Manager::showSortedPlanes(ostream &ostream1,const planePlate& min,const planePlate& max) {
+void Manager::showSortedPlanes(ostream &ostream1) {
 
     out::headerPlanes(ostream1);
-    auto it = lower_bound(planes.begin(), planes.end(), Plane(min,"",0));
 
-    for (;it!=planes.end();it++) {
-        if (it->getNumberPlate() > max) break;
-        out::planes(ostream1,it);
+    for (const auto& p : planes) { // TODO :: ALL THIS FUNCTIONS CAN HAVE A DIFF OUTPUT - IN HERE (do not overload <<)
+       // put::planes
     }
 }
 
-void Manager::readFlights() {
-    std::ifstream ifs_flights(flights_path);
-
-    Flight flight;
-    while (ifs_flights >> flight) {
-        flights.push_back(flight);
+void Manager::searchPassengers(int id){
+    //enum attributePas {
+      //  name,
+    //};
+    string attribute;
+    string name;
+    bool changed = false;
+    for (auto it=passengers.begin();it!=passengers.end();it++){
+        if ((*it).getID()==id) {
+            std::cout << "Valid id. ";
+            while (attribute != "name") {
+              std::cout << "What attribute to change?";
+              cin >> attribute;
+              if (attribute == "name") {
+                std::cout << "What name do you want?";
+                cin >> name;
+                passengers.erase(it);
+                Passenger p1(id, name);
+                passengers.push_back(p1);
+                changed = true;
+                break;
+            } else {
+                  cout<<"Invalid attribute! ";
+            }
+          }
+        }
     }
-
-
-    ifs_flights.close();
+    if (!changed) std::cout << "Invalid id!"<<endl;
 }
-
-void Manager::readPlanes() {
-    std::ifstream ifs_planes(planes_path);
-
-    Plane plane;
-    while (ifs_planes >> plane) {
-        planes.push_back(plane);
-    }
-
-    ifs_planes.close();
-}
-
-void Manager::readPassengers() {
-    std::ifstream ifs_passengers(passengers_path);
-
-
-    Passenger passenger;
-    while (ifs_passengers >> passenger) {
-        passengers.push_back(passenger);
-    }
-
-    ifs_passengers.close();
-}
-
-void Manager::readServices() {
-    this->serviceManager = ServiceManagement(service_path);
-}
-
-void Manager::showDoneServices(ostream &ostream1, const Date &min, const Date &max) {
-    serviceManager.showDoneServicesFromRange(ostream1, min, max);
-}
-
 
 
 
