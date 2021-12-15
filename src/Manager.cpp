@@ -134,8 +134,7 @@ void Manager::searchPassengers(int id){
 
 Manager::~Manager(){
 
-    std::cout<<"\nDESCONSTRUIR!\n";
-
+    //Guardar as alterações nos ficheiros
     std::ofstream ofsPlanes(planes_path);
     std::ofstream ofsPassengers(passengers_path);
     std::ofstream ofsFlights(flights_path);
@@ -149,7 +148,6 @@ Manager::~Manager(){
     for(Flight &f:flights)
         ofsFlights << f;
 
-    cout<<endl<<passengers.size()<<endl;
 
     serviceManager.~ServiceManagement();
 
@@ -162,6 +160,23 @@ void Manager::createPassenger(const string &Pname){
     Passenger p(newID, Pname);
 
     passengers.push_back(p);
+}
+
+void Manager::createPlane(const planePlate &numberPlate, const string &pType, int capacity) {
+
+    Plane p(numberPlate, pType, capacity);
+
+    //TODO talvez seja sorted por matricula ?
+    planes.push_back(p);
+}
+
+void Manager::createFlight( const Date &departureDate, const Time &departureTime, const float &duration, std::string origin, std::string destiny) {
+
+    unsigned newID = flights.back().getNumber()+1;
+    Flight f(newID,departureDate,departureTime,duration,origin,destiny);
+
+    flights.push_back(f);
+
 }
 
 

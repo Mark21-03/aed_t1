@@ -61,6 +61,10 @@ public:
 
 
     void createPassenger(const string &Pname);
+    void createPlane(const planePlate& numberPlate ,const std::string& pType, int capacity);
+
+    void createFlight(const Date& departureDate,const Time& departureTime, const float &duration,std::string origin, std::string destiny);
+
 
 
 };

@@ -1,7 +1,7 @@
-../Files/Flights/flights.txt
-../Files/Planes/planes.txt
-../Files/Passengers/passengers.txt
-../Files/Services/services.txt
+../Files/flights.txt
+../Files/planes.txt
+../Files/passengers.txt
+../Files/services.txt
 
 
 

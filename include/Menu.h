@@ -27,23 +27,47 @@ class Menu {
     const vector<void (Menu::*)()> updateFuncs = {&Menu::funcUpdatePassenger, &Menu::funcUpdatePlane, &Menu::funcUpdateFlight, &Menu::funcUpdateService, &Menu::funcUpdateTicket};
     const vector<void (Menu::*)()> deleteFuncs = {&Menu::funcDeletePassanger, &Menu::funcDeletePlane,&Menu::funcDeleteFlight, &Menu::funcDeleteService,&Menu::funcDeleteTicket};
 
-//___________________________TEMPORARY_TESTING_______________________________
 
     void funcCreatePassanger() {
         string pName;
-        cout<<"\nNEW PASSANGER = ";getline(cin,pName);
+        cout<<"\nNew Passenger Name (string): ";getline(cin,pName);
         manager.createPassenger(pName);
+        cout<<"Passenger added!\n";
         getchar();
-
     }
 
     void funcCreatePlane() {
-        cout << "\n!funcCreatePlane!\n";
+        string numberPlate;
+        string  pType;
+        string capacity;
+
+        cout<<"\nNew Plane's Plate (string): ";getline(cin,numberPlate);
+        cout<<"New Plane's Type (string): ";getline(cin,pType);
+        cout<<"New Plane's Capacity (int): ";getline(cin,capacity);
+
+        manager.createPlane(numberPlate,pType,stoi(capacity));
+
         getchar();
     }
 
     void funcCreateFlight() {
-        cout << "\n!funcCreateFlight!\n";
+
+
+         Date departureD;
+         Time departureT;
+         float duration;
+         string origin, destiny;
+
+         cout<<"New Flight's departure date (YYYY/MM/DD): ";cin>>departureD;
+         cout<<"New Flight's time (HH:MM:SS): ";cin>>departureT;
+         cout<<"New Flight's duration (float): ";cin>>duration;
+         cout<<"New Flight's origin (string): ";getline(cin,origin);
+         cout<<"New Flight's destiny (string): "; getline(cin,destiny);
+
+        manager.createFlight(departureD,departureT,duration,origin,destiny);
+
+
+        cout<<"\nFlight added!\n";
         getchar();
     }
 
@@ -449,10 +473,9 @@ class Menu {
                 switch (userInput) {
                     case '0'://EXIT
                         cout << "End of program.\n";
-
-
-                        exit(1);
+                        manager.~Manager();
                         getchar();
+                        exit(1);
 
                     case '1'://Passenger
                         // this -> x = funcs[0];
