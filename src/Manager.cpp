@@ -66,7 +66,6 @@ void Manager::readFlights() {
         flights.push_back(flight);
     }
 
-
     ifs_flights.close();
 }
 
@@ -100,7 +99,3 @@ void Manager::readServices() {
 void Manager::showDoneServices(ostream &ostream1, const Date &min, const Date &max) {
     serviceManager.showDoneServicesFromRange(ostream1, min, max);
 }
-
-
-
-
