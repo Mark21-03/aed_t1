@@ -51,7 +51,7 @@ class Menu {
 
         if (MenuOperationConfirm()) {
                 manager.createPassenger(pName);
-                cout << "Plane added!\n";
+                cout << "Passenger added!\n";
         }
         getchar();getchar();
     }
@@ -73,7 +73,7 @@ class Menu {
             manager.createPlane(numberPlate, pType, stoi(capacity));
             cout << "Plane added!\n";
         }
-        getchar();
+        getchar();getchar();
     }
 
     void funcCreateFlight() {
@@ -89,11 +89,12 @@ class Menu {
          cout<<"New Flight's origin (string): "; cin.ignore();getline(cin,origin);
          cout<<"New Flight's destiny (string): "; getline(cin,destiny);
 
-        manager.createFlight(departureD,departureT,duration,origin,destiny);
+        if (MenuOperationConfirm()) {
+            manager.createFlight(departureD,departureT,duration,origin,destiny);
+            cout<<"\nFlight added!\n";
+        }
 
-
-        cout<<"\nFlight added!\n";
-        getchar();
+        getchar();getchar();
     }
 
     void funcCreateService() {
@@ -286,45 +287,24 @@ class Menu {
                         exit(1);
 
                     case '1'://Passenger
-                        if(menuTitle == "    READ MENU" && 1==2)
-                            readSubMenu("  PASSENGER READ",funcs);
-                        else{
                             this -> x = funcs[0];
                             ((*this).*(this->x))();
-                        }
                         break;
                     case '2'://Plane
-                        if(menuTitle == "    READ MENU"&& 1==2)
-                            readSubMenu("    PLANE READ",funcs);
-                        else{
                             this -> x = funcs[1];
                             ((*this).*(this->x))();
-                        }
                         break;
                     case '3'://Flight
-                        if(menuTitle == "    READ MENU"&& 1==2)
-                            readSubMenu("   FLIGHT READ",funcs);
-                        else{
                             this -> x = funcs[2];
                             ((*this).*(this->x))();
-                        }
                         break;
                     case '4'://Service
-                        if(menuTitle == "    READ MENU"&& 1==2)
-                            readSubMenu("   SERVICE READ",funcs);
-                        else{
                             this -> x = funcs[3];
                             ((*this).*(this->x))();
-                        }
                         break;
                     case '5'://Ticket
-                        if(menuTitle == "    READ MENU"&& 1==2)
-                            readSubMenu("   TICKET READ",funcs);
-                        else{
                             this -> x = funcs[4];
                             ((*this).*(this->x))();
-                        }
-
                         break;
                     case '6'://Go Back
                         goto END_MENU;
@@ -345,6 +325,8 @@ class Menu {
     }
 
 
+    //TODO all read funcs must call this menu first to choose which values to be displayed and if sorted etc.
+    //TODO Read Funcs must give this menu their on display functions because each class must be displayed differently
     void readSubMenu(string menuTitle,vector<void (Menu::*)()> funcs){
 
         char userInput;
