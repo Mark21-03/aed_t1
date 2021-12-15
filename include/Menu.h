@@ -82,11 +82,20 @@ class Menu {
 
     void funcReadService() {
         Date min, max;
+        std::string option;
+        out::askOnce<std::string>(cout,cin, option, "Option(d->Done, t->toDo)");
 
-        out::askInterval<Date>(cout, cin, min, max, "Date");
+        if (option == "d") {
+            out::askInterval<Date>(cout, cin, min, max, "Date");
 
-        manager.showDoneServices(cout, min, max);
+            manager.showDoneServices(cout, min, max);
+        } else if(option == "t") {
+            out::askInterval<Date>(cout, cin, min, max, "Date");
 
+            manager.showToDoServices(cout, min, max);
+        } else {
+            std::cout << "Not a valid Option";
+        }
         getchar();
     }
 
@@ -97,6 +106,9 @@ class Menu {
 
 
     void funcUpdatePassenger() {
+        int n=funcUpdateAll();
+        manager.searchPassengers(n);
+        //TODO:guardar as alteraçoes no ficheiro
         /*
         //cout << "\n!funcUpdatePassenger!\n";
         //getchar();
@@ -364,6 +376,13 @@ class Menu {
             END_MENU:
             break;
         }*/
+    }
+
+    int funcUpdateAll(){
+        int id;
+        cout<<"ID of object to change?";
+        cin>>id;
+        return id;
     }
 
 

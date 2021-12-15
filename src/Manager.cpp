@@ -99,3 +99,36 @@ void Manager::readServices() {
 void Manager::showDoneServices(ostream &ostream1, const Date &min, const Date &max) {
     serviceManager.showDoneServicesFromRange(ostream1, min, max);
 }
+
+void Manager::searchPassengers(int id){
+    string attribute;
+    string name;
+    bool changed = false;
+    for (auto it=passengers.begin();it!=passengers.end();it++){
+        if ((*it).getID()==id) {
+            std::cout << "Valid id. ";
+            while (attribute != "name") {
+                std::cout << "What attribute to change?";
+                cin >> attribute;
+                if (attribute == "name") {
+                    std::cout << "What name do you want?";
+                    cin >> name;
+                    passengers.erase(it);
+                    Passenger p1(id, name);
+                    passengers.push_back(p1);
+                    changed = true;
+                    break;
+                } else {
+                    cout<<"Invalid attribute! ";
+                }
+            }
+        }
+    }
+    if (!changed) std::cout << "Invalid id!"<<endl;
+}
+
+void Manager::showToDoServices(ostream &ostream1, const Date &min, const Date &max) {
+    serviceManager.showToDoServicesFromRange(ostream1, min, max);
+}
+
+

@@ -50,6 +50,9 @@ public:
     void showSortedPlanes(ostream& ostream1, const planePlate& min,const planePlate& max);
 
     void showDoneServices(ostream& ostream1, const Date& min, const Date& max);
+    void showToDoServices(ostream& ostream1, const Date& min, const Date& max);
+
+    void searchPassengers(int id);
 
 
 };

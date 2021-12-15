@@ -52,6 +52,24 @@ void ServiceManagement::showDoneServicesFromRange(ostream &ostream1, const Date 
 
 }
 
+void ServiceManagement::showToDoServicesFromRange(ostream &ostream1, const Date &min, const Date &max) const {
+    out::headerServices(ostream1);
+
+    if (toDoServices.empty()) return;
+
+    queue<Service> temp = toDoServices;
+    Service front = temp.front();
+    temp.pop();
+
+    while (front.getDate() <= max) {
+        if (front.getDate() >= min)
+            out::services(ostream1,&front);
+        if (temp.empty()) break;
+        front = temp.front();
+        temp.pop();
+    }
+}
+
 
 
 

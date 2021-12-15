@@ -25,6 +25,7 @@ public:
     void addToDoService(Service service);
     void DoneLatestService();
     void showDoneServicesFromRange(ostream &ostream1, const Date &min, const Date &max) const;
+    void showToDoServicesFromRange(ostream &ostream1, const Date &min, const Date &max) const;
 };
 
 #endif //AED_T1_SERVICEMANAGEMENT_H
