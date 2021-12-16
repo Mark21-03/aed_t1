@@ -77,8 +77,17 @@ inline std::ostream & operator<<(std::ostream& os, Passenger& l) {
 
     os << l.getID();
 
+    bool ended = false;
     for (int i = 0; i < LONGEST_ACCEPTED_NAME; ++i) {
-        os << (l.getNameC()[i]);
+        if (ended) {
+            os << '\0';
+            continue;
+        }
+        char c =l.getNameC()[i];
+        os << c;
+        if (c=='\0')
+            ended = true;
+
     }
 
 

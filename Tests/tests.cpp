@@ -69,7 +69,7 @@ TEST(test_flights, inoutOperator) {
     vector<Flight> v;
 
     ASSERT_EQ(aP.getName(), "Joaquim Andre Araujo de Matos");
-    ifstream ifs("../Files/Flights/flights.txt");
+    ifstream ifs("../Files/flights.txt");
 
 
     Flight flight;
@@ -114,7 +114,7 @@ TEST(test_flights, inoutOperator) {
 
 TEST(test_passenger, inOperatorsPassenger) { // NOTE: THIS TEST WAS FAILING
 
-    ifstream s("../Files/Passengers/passengers.txt");
+    ifstream s("../Files/passengers.txt");
     Passenger p;
     s>>p;
     ASSERT_EQ(p.getID(),0);
@@ -244,7 +244,7 @@ TEST(Test_Plane, InOutOperators) {
     std::list<int> lF{0,30,40}; // NOT ON TEST HERE
     Plane plane("CS-AKJ" , "A321", 200, lF);
 
-    std::ifstream ifs("../Files/Planes/planes.txt");
+    std::ifstream ifs("../Files/planes.txt");
 
     Plane plane2;
 
@@ -291,7 +291,7 @@ TEST (Test_Plane, CompareOperatorsPlane){
 
 TEST(Test_Plane, inOperatorsPlane) { // NOTE: THIS TEST WAS FAILING
 
-    ifstream i("../Files/Planes/planes.txt");
+    ifstream i("../Files/planes.txt");
     Plane p1;
     i>>p1;
     ASSERT_EQ(p1.getNumberPlate(), "CS-AKJ");
@@ -307,11 +307,15 @@ TEST(Test_Plane, outOperatorPlane){
 }
 
 TEST(Test_Service, inOperator) {
-    ServiceManagement serviceManagement("../Files/Services/services.txt");
+    ServiceManagement serviceManagement("../Files/services.txt");
 
     for ( auto a : serviceManagement.getDoneServices() ) {
         cout << a.getInfo() << endl;
     }
+
+}
+
+TEST(Test_Menu, menuLoopBUG) {
 
 }
 

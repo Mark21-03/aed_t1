@@ -8,6 +8,7 @@
 #include <ostream>
 #include <fstream>
 #include <iomanip>
+#include <climits>
 #include "Output.h"
 #include "ServiceManagement.h"
 
@@ -24,6 +25,7 @@ private:
     void readPassengers();
     void readServices();
 
+
     ServiceManagement serviceManager;
 
 
@@ -34,6 +36,7 @@ private:
 
 public:
     Manager();
+    ~Manager();
     explicit Manager(const std::string&dirs){
         this->filesDir = dirs;
     }
@@ -53,7 +56,20 @@ public:
     void showToDoServices(ostream& ostream1, const Date& min, const Date& max);
 
     void searchPassengers(int id);
+    void searchFlights(int id);
+    void searchPlanes(string id);
+    void searchServices(ServiceType type, Date date, employerName employer, planePlate plane);
 
+
+
+
+    void createPassenger(const string &Pname);
+    void createPlane(const planePlate& numberPlate ,const std::string& pType, int capacity);
+    void createFlight(const Date& departureDate,const Time& departureTime, const float &duration,std::string origin, std::string destiny);
+
+    bool deletePassenger(const unsigned &idD);
+    bool deletePlane(const string &idD);
+    bool deleteFlight(const unsigned &idD);
 
 };
 

@@ -22,7 +22,7 @@ void ServiceManagement::DoneLatestService() {
     addDoneServices(done);
 }
 
-ServiceManagement::ServiceManagement(const string &path) {
+ServiceManagement::ServiceManagement(const string &path) : path(path){
     std::ifstream ifs(path);
 
     Service service;
@@ -57,19 +57,35 @@ void ServiceManagement::showToDoServicesFromRange(ostream &ostream1, const Date 
 
     if (toDoServices.empty()) return;
 
-    queue<Service> temp = toDoServices;
+    queue <Service> temp = toDoServices;
     Service front = temp.front();
     temp.pop();
 
     while (front.getDate() <= max) {
         if (front.getDate() >= min)
-            out::services(ostream1,&front);
+            out::services(ostream1, &front);
         if (temp.empty()) break;
         front = temp.front();
         temp.pop();
     }
 }
 
+ServiceManagement::~ServiceManagement() {
+    std::ofstream ofs(path);
+
+    cout << toDoServices.size() <<'\n';
+    while (!toDoServices.empty()) {
+        ofs << toDoServices.front();
+        toDoServices.pop();
+    }
+    cout << doneServices.size() << '\n';
+    while (!doneServices.empty()) {
+        ofs << doneServices.front();
+        doneServices.pop_front();
+    }
+
+    ofs.close();
+}
 
 
 

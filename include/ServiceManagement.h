@@ -11,11 +11,14 @@ class ServiceManagement{
 private:
     list<Service> doneServices;
     queue<Service> toDoServices;
+
+    std::string path;
 public:
 
     ServiceManagement(const std::string& path);
 
     ServiceManagement() = default;
+    ~ServiceManagement(); // change
 
     void setDoneServices(list<Service> doneServices);
     void setToDoServices(queue<Service> toDoServices);

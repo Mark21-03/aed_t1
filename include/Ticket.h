@@ -21,6 +21,7 @@ public:
     //char getTClass() const;
     //std::string getSeat() const;
     //float getPrice() const;
+
 private:
     Flight flightInfo;
     int passengerID;

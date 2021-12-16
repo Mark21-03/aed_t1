@@ -22,44 +22,176 @@
 class Menu {
     Manager manager;
 
-    const vector<void (Menu::*)()> createFuncs = {&Menu::funcCreatePassanger, &Menu::funcCreatePlane,&Menu::funcCreateFlight, &Menu::funcCreateService,&Menu::funcCreateTicket};
+    bool MenuOperationConfirm(){
+        char confirm;
+
+        cout<<"\nConfirm? (Y/N): ";cin>>confirm;
+
+        if(confirm == 'Y' || confirm == 'y')
+            return true;
+        else
+            cout<<"Canceled. Press any key to continue... ";
+
+        return false;
+    }
+
+    const vector<void (Menu::*)()> createFuncs = {&Menu::funcCreatePassenger, &Menu::funcCreatePlane,&Menu::funcCreateFlight, &Menu::funcCreateService,&Menu::funcCreateTicket};
     const vector<void (Menu::*)()> readFuncs   = {&Menu::funcReadPassenger,   &Menu::funcReadPlane,  &Menu::funcReadFlight,   &Menu::funcReadService,  &Menu::funcReadTicket};
     const vector<void (Menu::*)()> updateFuncs = {&Menu::funcUpdatePassenger, &Menu::funcUpdatePlane, &Menu::funcUpdateFlight, &Menu::funcUpdateService, &Menu::funcUpdateTicket};
-    const vector<void (Menu::*)()> deleteFuncs = {&Menu::funcDeletePassanger, &Menu::funcDeletePlane,&Menu::funcDeleteFlight, &Menu::funcDeleteService,&Menu::funcDeleteTicket};
+    const vector<void (Menu::*)()> deleteFuncs = {&Menu::funcDeletePassenger, &Menu::funcDeletePlane,&Menu::funcDeleteFlight, &Menu::funcDeleteService,&Menu::funcDeleteTicket};
 
-//___________________________TEMPORARY_TESTING_______________________________
 
-    void funcCreatePassanger() {
-        cout << "\n!funcCreatePassanger!\n";
-        getchar();
+//__________________________________________________
+
+    void funcCreatePassenger() {
+        string pName;
+        cout<<"\nNew Passenger Name (string): ";getline(cin,pName);
+
+        if (MenuOperationConfirm()) {
+                manager.createPassenger(pName);
+                cout << "Passenger added!\n";
+        }
+        getchar();getchar();
     }
 
     void funcCreatePlane() {
-        cout << "\n!funcCreatePlane!\n";
-        getchar();
+        string numberPlate;
+        string pType;
+        string capacity;
+
+        cout << "\nNew Plane's Plate (string): ";
+        getline(cin, numberPlate);
+        cout << "New Plane's Type (string): ";
+        getline(cin, pType);
+        cout << "New Plane's Capacity (int): ";
+        getline(cin, capacity);
+
+
+        if (MenuOperationConfirm()) {
+            manager.createPlane(numberPlate, pType, stoi(capacity));
+            cout << "Plane added!\n";
+        }
+        getchar();getchar();
     }
 
     void funcCreateFlight() {
-        cout << "\n!funcCreateFlight!\n";
-        getchar();
+
+         Date departureD;
+         Time departureT;
+         float duration;
+         string origin, destiny;
+
+         cout<<"New Flight's departure date (YYYY/MM/DD): ";cin>>departureD;
+         cout<<"New Flight's time (HH:MM:SS): ";cin>>departureT;
+         cout<<"New Flight's duration (float): ";cin>>duration;
+         cout<<"New Flight's origin (string): "; cin.ignore();getline(cin,origin);
+         cout<<"New Flight's destiny (string): "; getline(cin,destiny);
+
+        if (MenuOperationConfirm()) { // TODO: REPEATED CODE
+            manager.createFlight(departureD,departureT,duration,origin,destiny);
+            cout<<"\nFlight added!\n";
+        }
+
+        getchar();getchar();
     }
 
     void funcCreateService() {
+        //TODO
         cout << "\n!funcCreateService!\n";
         getchar();
     }
 
     void funcCreateTicket() {
+        //TODO
         cout << "\n!funcCreateTicket!\n";
         getchar();
     }
+
+    void funcDeletePassenger() {
+
+        int id2Delete;
+        cout<<"\nID to be deleted: ";cin>>id2Delete;
+
+        cout<<endl;
+        manager.showSortedPassengersByID(cout, id2Delete, id2Delete);
+
+        if(MenuOperationConfirm()){
+            bool deleted = manager.deletePassenger(id2Delete);
+            if(deleted)
+                cout<<"Deleted!\n";
+            else
+                cout<<"Value not found!\n";
+        }
+        getchar();getchar();
+    }
+
+    void funcDeletePlane() {
+
+        string id2Delete;
+        cout<<"\nNumberPlate to be deleted: ";getline(cin,id2Delete);
+
+        cout<<endl;
+        manager.showSortedPlanes(cout, id2Delete, id2Delete);
+
+        if(MenuOperationConfirm()){
+            bool deleted = manager.deletePlane(id2Delete);
+            if(deleted)
+                cout<<"Deleted!\n";
+            else
+                cout<<"Value not found!\n";
+        }
+        getchar();getchar();
+    }
+
+    void funcDeleteFlight() {
+
+        int id2Delete;
+        cout<<"\nID to be deleted: ";cin>>id2Delete;
+
+        cout<<endl;
+        manager.showSortedFlightsByID(cout, id2Delete, id2Delete);
+
+        if(MenuOperationConfirm()){
+            bool deleted = manager.deleteFlight(id2Delete);
+            if(deleted)
+                cout<<"Deleted!\n";
+            else
+                cout<<"Value not found!\n";
+        }
+        getchar();getchar();
+    }
+
+    void funcDeleteService() {
+        //TODO
+        int id2Delete;
+        cout<<"\nID to be deleted: ";cin>>id2Delete;
+
+        if(MenuOperationConfirm()){
+
+        }
+        getchar();getchar();
+    }
+
+    void funcDeleteTicket() {
+        //TODO
+        int id2Delete;
+        cout<<"\nID to be deleted: ";cin>>id2Delete;
+
+        if(MenuOperationConfirm()){
+            cout<<"Deleted!\n";
+        }
+        getchar();getchar();
+    }
+
+//__________________________________________________
+
 
 
     void funcReadPassenger() {
         unsigned int minID, maxID;
         out::askInterval<unsigned int>(cout, cin, minID, maxID, "Passenger ID");
-        manager.showSortedPassengersByID(cout, minID, maxID); // TODO: VERIFY THE UINT
-        getchar();
+        manager.showSortedPassengersByID(cout, minID, maxID);
+        getchar();getchar();
 
     }
 
@@ -67,15 +199,14 @@ class Menu {
         planePlate min, max;
         out::askInterval<planePlate>(cout, cin, min, max, "Plate Number");
         manager.showSortedPlanes(cout, min, max);
-        getchar();
+        getchar();getchar();
     }
 
     void funcReadFlight() {
         flightNumber min, max;
         out::askInterval<flightNumber>(cout, cin, min, max, "Flight number");
-        manager.showSortedFlightsByID(cout, min, max); // TODO: in here we will have to askInterval in what order to sort
-        // TODO: tb temos de ver a questão das listagens várias
-        getchar();
+        manager.showSortedFlightsByID(cout, min, max);
+        getchar();getchar();
 
     }
 
@@ -91,12 +222,12 @@ class Menu {
             manager.showDoneServices(cout, min, max);
         } else if(option == "t") {
             out::askInterval<Date>(cout, cin, min, max, "Date");
-
             manager.showToDoServices(cout, min, max);
         } else {
             std::cout << "Not a valid Option";
         }
-        getchar();
+        getchar();getchar();
+
     }
 
     void funcReadTicket() {
@@ -108,275 +239,28 @@ class Menu {
     void funcUpdatePassenger() {
         int n=funcUpdateAll();
         manager.searchPassengers(n);
-        //TODO:guardar as alteraçoes no ficheiro
-        /*
-        //cout << "\n!funcUpdatePassenger!\n";
-        //getchar();
-        char userInput;
-        string inputError;
-        while (true) {
-            system(CLEAR);
+    }
 
-            if (!inputError.empty())
-                cout << inputError;
-            inputError = "";
-
-            cout << "=================" << endl;
-            cout << " UPDATE PASSENGER      " << endl;
-            cout << "=================" << endl;
-            cout << "  1)  Name" << endl;
-            cout << "  2)  ID" << endl;
-            cout << "  3)  Go Back" << endl;
-            cout << "================" << endl;
-            cout << " > ";
-
-            if ((cin >> userInput)) {
-                //raises error if more than 1 char is written by user
-                if (!emptyCin()) {
-                    giveMenuInputError(inputError);
-                    continue;
-                }
-
-                //START OF MENU SELECTION
-                switch (userInput) {
-                    case '1'://UPDATE NAME
-                        cout << "nameUpdate";//reminder - fazer cena q pergunt eo nome, verificar se esta no vetor, perguntar qual o novo, alterar e guardar
-                        break;
-                    case '2'://UPDATE ID
-                        cout << "idUpdate";//msm q em cima mas com id
-                        break;
-                    case '3'://GO BACK
-                        //cout<<"Back!";
-                        goto END_MENU;
-                        //break;
-                    default:
-                        giveMenuInputError(inputError);
-                        break;
-                }
-            }
-            END_MENU:
-            break;
-        }*/
+    std::string funcupdatePlane(){
+        string id;
+        cout<<"Plate number of the plane to change?";
+        cin>>id;
+        return id;
     }
 
     void funcUpdatePlane() {
-        /*
-        //cout << "\n!funcUpdatePlane!\n";
-        //getchar();
-        char userInput;
-        string inputError;
-        while (true) {
-            system(CLEAR);
+        std::string n=funcupdatePlane(); // ESTAS FUNCÕES TEM O MESMO NOME!!!!!!!
+        manager.searchPlanes(n);
 
-            if (!inputError.empty())
-                cout << inputError;
-            inputError = "";
-
-            cout << "=================" << endl;
-            cout << "   UPDATE PLANE          " << endl;
-            cout << "=================" << endl;
-            cout << "  1)  Plate Number" << endl;
-            cout << "  2)  Plane Type" << endl;
-            cout << "  3)  Capacity" << endl;
-            cout << "  4)  Flight Plan" << endl;
-            cout << "  5)  Go Back" << endl;
-            cout << "================" << endl;
-            cout << " > ";
-
-            if ((cin >> userInput)) {
-                //raises error if more than 1 char is written by user
-                if (!emptyCin()) {
-                    giveMenuInputError(inputError);
-                    continue;
-                }
-
-                //START OF MENU SELECTION
-                switch (userInput) {
-                    case '1'://UPDATE PLATE NUMBER
-                        cout << "PlateNUmber";//reminder - fazer cena q pergunt eo nome, verificar se esta no vetor, perguntar qual o novo, alterar e guardar
-                        break;
-                    case '2'://UPDATE PLANE TYPE
-                        cout << "PlaneType";//msm q em cima mas com id
-                        break;
-                    case '3'://UPDATE CAPACITY
-                        cout << "Capacity";//msm q em cima mas com id
-                        break;
-                    case '4'://UPDATE FLIGHT PLAN
-                        cout<<"Flight Plan";
-                        break;
-                    case '5'://GO BACK
-                        //cout<<"Back!";
-                        goto END_MENU;
-                        //break;
-                    default:
-                        giveMenuInputError(inputError);
-                        break;
-                }
-            }
-            END_MENU:
-            break;
-        }
-         */
     }
 
-    void funcUpdateFlight() {/*
-        //cout << "\n!funcUpdatePlane!\n";
-        //getchar();
-        char userInput;
-        string inputError;
-        while (true) {
-            system(CLEAR);
-
-            if (!inputError.empty())
-                cout << inputError;
-            inputError = "";
-
-            cout << "=================" << endl;
-            cout << "  UPDATE FLIGHT         " << endl;
-            cout << "=================" << endl;
-            cout << "  1)  Flight Number" << endl;
-            cout << "  2)  Departure Date" << endl;
-            cout << "  3)  Departure Time" << endl;
-            cout << "  4)  Go Back" << endl;
-            cout << "================" << endl;
-            cout << " > ";
-
-            if ((cin >> userInput)) {
-                //raises error if more than 1 char is written by user
-                if (!emptyCin()) {
-                    giveMenuInputError(inputError);
-                    continue;
-                }
-
-                //START OF MENU SELECTION
-                switch (userInput) {
-                    case '1'://UPDATE FLIGHT NUMBER
-                        cout << "FlightNumber";//reminder - fazer cena q pergunt eo nome, verificar se esta no vetor, perguntar qual o novo, alterar e guardar
-                        break;
-                    case '2'://UPDATE DEPARTURE DATE
-                        cout << "Departure Date";//msm q em cima mas com id
-                        break;
-                    case '3'://UPDATE DEPARTURE TIME
-                        cout << "Departure Time";//msm q em cima mas com id
-                        break;
-                    case '4'://GO BACK
-                        //cout<<"Back!";
-                        goto END_MENU;
-                        //break;
-                    default:
-                        giveMenuInputError(inputError);
-                        break;
-                }
-            }
-            END_MENU:
-            break;
-        }*/
+    void funcUpdateFlight() {
+        int n=funcUpdateAll();
+        manager.searchFlights(n);
     }
 
-    void funcUpdateService() {/*
-        //cout << "\n!funcUpdatePlane!\n";
-        //getchar();
-        char userInput;
-        string inputError;
-        while (true) {
-            system(CLEAR);
-
-            if (!inputError.empty())
-                cout << inputError;
-            inputError = "";
-
-            cout << "=================" << endl;
-            cout << " UPDATE SERVICE       " << endl;
-            cout << "=================" << endl;
-            cout << "  1)  Type" << endl;
-            cout << "  2)  Date" << endl;
-            cout << "  3)  Employer" << endl;
-            cout << "  4)  Go Back" << endl;
-            cout << "================" << endl;
-            cout << " > ";
-
-            if ((cin >> userInput)) {
-                //raises error if more than 1 char is written by user
-                if (!emptyCin()) {
-                    giveMenuInputError(inputError);
-                    continue;
-                }
-
-                //START OF MENU SELECTION
-                switch (userInput) {
-                    case '1'://UPDATE TYPE
-                        cout << "Type";//reminder - fazer cena q pergunt eo nome, verificar se esta no vetor, perguntar qual o novo, alterar e guardar
-                        break;
-                    case '2'://UPDATE DATE
-                        cout << "Date";//msm q em cima mas com id
-                        break;
-                    case '3'://UPDATE EMPLOYER
-                        cout << "Employer";//msm q em cima mas com id
-                        break;
-                    case '4'://GO BACK
-                        //cout<<"Back!";
-                        goto END_MENU;
-                        //break;
-                    default:
-                        giveMenuInputError(inputError);
-                        break;
-                }
-            }
-            END_MENU:
-            break;
-        }*/
-    }
-
-    void funcUpdateTicket() { /*
-        //why would a passenger change a ticket and what to change?? i think it doesn't make much sense
-        //cout << "\n!funcUpdatePlane!\n";
-        //getchar();
-        char userInput;
-        string inputError;
-        while (true) {
-            system(CLEAR);
-
-            if (!inputError.empty())
-                cout << inputError;
-            inputError = "";
-
-            cout << "=================" << endl;
-            cout << "  UPDATE TICKET         " << endl;
-            cout << "=================" << endl;
-            cout << "  1)  Flight Info" << endl;
-            cout << "  2)  Passenger ID" << endl;
-            cout << "  3)  Go Back" << endl;
-            cout << "================" << endl;
-            cout << " > ";
-
-            if ((cin >> userInput)) {
-                //raises error if more than 1 char is written by user
-                if (!emptyCin()) {
-                    giveMenuInputError(inputError);
-                    continue;
-                }
-
-                //START OF MENU SELECTION
-                switch (userInput) {
-                    case '1'://UPDATE FLIGHT INFO
-                        cout << "FlightInfo";//reminder - fazer cena q pergunt eo nome, verificar se esta no vetor, perguntar qual o novo, alterar e guardar
-                        break;
-                    case '2'://UPDATE PASSENGER ID
-                        cout << "PassengerId";//msm q em cima mas com id
-                        break;
-                    case '3'://GO BACK
-                        //cout<<"Back!";
-                        goto END_MENU;
-                        //break;
-                    default:
-                        giveMenuInputError(inputError);
-                        break;
-                }
-            }
-            END_MENU:
-            break;
-        }*/
-    }
+    void funcUpdateService(){}
+    void funcUpdateTicket(){}
 
     int funcUpdateAll(){
         int id;
@@ -386,40 +270,9 @@ class Menu {
     }
 
 
-    void funcDeletePassanger() {
-        cout << "\n!funcDeletePassanger!\n";
-        getchar();
-    }
-
-    void funcDeletePlane() {
-        cout << "\n!funcDeletePlane!\n";
-        getchar();
-    }
-
-    void funcDeleteFlight() {
-        cout << "\n!funcDeleteFlight!\n";
-        getchar();
-    }
-
-    void funcDeleteService() {
-        cout << "\n!funcDeleteService!\n";
-        getchar();
-    }
-
-    void funcDeleteTicket() {
-        cout << "\n!funcDeleteTicket!\n";
-        getchar();
-    }
-
-
-
-//___________________________TEMPORARY_TESTING_______________________________
-
-
     void subMenu(const string &menuTitle, vector<void (Menu::*)()> funcs) {
         char userInput;
         string inputError;
-
 
         while (true) {
             system(CLEAR);
@@ -455,6 +308,92 @@ class Menu {
                 switch (userInput) {
                     case '0'://EXIT
                         cout << "End of program.\n";
+                        manager.~Manager();
+                        getchar();
+                        exit(1);
+
+                    case '1'://Passenger
+                            this -> x = funcs[0];
+                            ((*this).*(this->x))();
+                        break;
+                    case '2'://Plane
+                            this -> x = funcs[1];
+                            ((*this).*(this->x))();
+                        break;
+                    case '3'://Flight
+                            this -> x = funcs[2];
+                            ((*this).*(this->x))();
+                        break;
+                    case '4'://Service
+                            this -> x = funcs[3];
+                            ((*this).*(this->x))();
+                        break;
+                    case '5'://Ticket
+                            this -> x = funcs[4];
+                            ((*this).*(this->x))();
+                        break;
+                    case '6'://Go Back
+                        goto END_MENU;
+                    default:
+                        in::giveMenuInputError(inputError);
+                        break;
+                }
+                //END OF MENU SELECTION
+                continue;
+            } else {
+                in::dealError(inputError);
+                continue;
+            }
+
+            END_MENU:
+            break;
+        }
+    }
+
+
+    //TODO all read funcs must call this menu first to choose which values to be displayed and if sorted etc.
+    //TODO Read Funcs must give this menu their on display functions because each class must be displayed differently
+    void readSubMenu(string menuTitle,vector<void (Menu::*)()> funcs){
+
+        char userInput;
+        string inputError;
+
+
+        while (true) {
+            system(CLEAR);
+
+            if (!inputError.empty())
+                cout << inputError;
+            inputError = "";
+
+            //Start of MENU
+
+            cout << "================="<< endl;
+            cout << menuTitle << endl;
+            cout << "=================" << endl;
+            cout << "  1)  All" << endl;
+            cout << "  2)  Single" << endl;
+            cout << "  3)  Interval" << endl;
+            cout << "  4)  Sorted" << endl;
+            cout << "  6)  Go Back" << endl;
+            cout << "  0)  Exit" << endl;
+            cout << "================" << endl;
+            cout << " > ";
+            //End of MENU
+
+            if ((cin >> userInput)) {
+                //raises error if more than 1 char is written by user
+                if (!in::emptyStream(std::cin)) {
+                    in::giveMenuInputError(inputError);
+                    continue;
+                }
+
+                //START OF MENU SELECTION
+                switch (userInput) {
+                    case '0'://EXIT
+                        cout << "End of program.\n";
+                        manager.~Manager();
+                        getchar();
                         exit(1);
 
                     case '1'://Passenger
@@ -494,7 +433,10 @@ class Menu {
             END_MENU:
             break;
         }
+
     }
+
+
 
 public:
     Menu(Manager& manager1) : manager(manager1){}
@@ -534,7 +476,10 @@ public:
                 switch (userInput) {
                     case '0'://EXIT
                         cout << "End of program.\n";
+                        manager.~Manager();
+                        getchar();
                         exit(1);
+
                     case '1'://CREATE
                         subMenu("   CREATE MENU",   createFuncs);
                         break;
