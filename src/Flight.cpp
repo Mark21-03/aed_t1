@@ -21,6 +21,7 @@ Flight::Flight(flightNumber number,const Date& departureDate,const Time& departu
 //Getters
 flightNumber Flight::getNumber() const{return this->number;}
 
+
 Date Flight::getDepartureDate() const {return this->departureDate;}
 
 float Flight::getDuration() const {return this->duration;}
