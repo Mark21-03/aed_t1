@@ -4,6 +4,7 @@
 #include "Flight.h"
 #include "../Exceptions/NameToLongException.h"
 #include "Ticket.h"
+#include "Baggage.h"
 
 #include <list>
 #include <string>
@@ -12,23 +13,7 @@
 
 #define LONGEST_ACCEPTED_NAME 60
 
-//temporary placement
-struct Baggage{
-    float weight;
-    unsigned int quantity;
-    bool handheld = false;
 
-    Baggage(float weight, unsigned int quantity){
-        this->weight = weight;
-        this->quantity = quantity;
-    }
-    Baggage(float weight, unsigned int quantity, bool handheld){
-        this->weight = weight;
-        this->quantity = quantity;
-        this->handheld = handheld;
-    }
-    ~Baggage() = default;
-};
 
 
 class Passenger {
