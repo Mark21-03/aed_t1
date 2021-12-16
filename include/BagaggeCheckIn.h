@@ -80,6 +80,7 @@ public:
 };
 
 
+//TODO esta é a main class deste ficheiro, mas como se vai implementar com o restante codigo?
 class BaggageCheckIn{
 private:
     queue<Baggage> conveyorBelt;
