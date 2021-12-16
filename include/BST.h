@@ -71,7 +71,7 @@ BST<Comparable>::BST(const Comparable& notFound): root(NULL), ITEM_NOT_FOUND(not
 { }
 
 template <class Comparable>
-BST<Comparable>::BST(): root(NULL), ITEM_NOT_FOUND(-1)
+BST<Comparable>::BST(): root(NULL), ITEM_NOT_FOUND(Comparable())
 { }
 
 template <class Comparable>
