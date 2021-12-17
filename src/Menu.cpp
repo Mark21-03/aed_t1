@@ -268,7 +268,7 @@ void Menu::funcReadFlight() {
 }
 
 void Menu::funcReadService() {
-    /*
+
     Date min, max;
     std::string option;
     out::askOnce<std::string>(cout,cin, option, "Option(d->Done, t->toDo)");
@@ -283,11 +283,7 @@ void Menu::funcReadService() {
         std::cout << "Not a valid Option";
     }
     getchar();getchar();
-     */
 
-    manager.showToDoServices(cout, Date(0,1,1), Date(5000,1,1));
-
-    getchar();
 
 }
 
