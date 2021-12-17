@@ -56,7 +56,7 @@ class Menu {
     int askChangeId();
 
     void showNearbyTransports();
-    void othersFunc2();
+    void addNewTransport();
     void othersFunc3();
     void othersFunc4();
     void othersFunc5();

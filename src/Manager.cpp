@@ -9,6 +9,7 @@ void Manager::setPaths(){
     getline(dirs, planesPath);
     getline(dirs, passengersPath);
     getline(dirs, servicePath);
+    getline(dirs, transportsPath);
 
 }
 
@@ -21,6 +22,7 @@ Manager::Manager() {
     readPassengers();
     readPlanes();
     readServices();
+    readTransports();
 }
 
 
@@ -121,6 +123,7 @@ Manager::~Manager() {
     std::ofstream ofsPlanes(planesPath);
     std::ofstream ofsPassengers(passengersPath);
     std::ofstream ofsFlights(flightsPath);
+    std::ofstream ofsTransports(transportsPath);
 
     for(Plane &p:planes)
         ofsPlanes << p;
@@ -131,9 +134,13 @@ Manager::~Manager() {
     for(Flight &f:flights)
         ofsFlights << f;
 
+    for(auto it= transportsTree.begin();it!=transportsTree.end();it++)
+        ofsTransports << (*it).getType()<<" "<<(*it).getDistance()<<endl;
+
     ofsPlanes.close();
     ofsFlights.close();
     ofsPassengers.close();
+    ofsTransports.close();
 
 }
 
@@ -325,6 +332,21 @@ bool Manager::searchPassengerId(ostream &ostream1, const regex& exp) {
         }
 
     return foundMatch;
+}
+
+
+void Manager::readTransports() {
+
+    std::ifstream ifs_transports(transportsPath);
+
+
+    Transport transport;
+    while (ifs_transports >> transport) {
+        transportsTree.insert(transport);
+    }
+
+    ifs_transports.close();
+
 }
 
 

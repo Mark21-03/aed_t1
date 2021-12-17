@@ -565,13 +565,35 @@ void Menu::mainMenu() {
 
 
 void Menu::showNearbyTransports() {
-    cout<<"\nshowNearbyTransports\n";
+
+    BST<Transport>  *tree = manager.getTransportTree();
+
+    auto nameSetter = [](char c){
+        if(c == 'S') return "Subway";
+        else if(c == 'T') return "Train";
+        else return "Bus";
+    };
+
+    cout<<endl;
+    for(auto it = tree->begin();it!=tree->end();it++){
+        Transport temp = *it;
+        cout<<nameSetter(temp.getType())<<" in "<<temp.getDistance()<<" km"<<endl;
+    }
+
+
     getchar();
 }
 
-void Menu::othersFunc2() {
-    cout<<"\nOTHER FUNC 2\n";
-    getchar();
+void Menu::addNewTransport() {
+    char c;float d;
+    cout<<"\nNew Transport Type (T, S, B): ";cin>>c;
+    cout<<"New Transport Distance (float): ";cin>>d;
+
+    Transport t(c,d);
+    manager.getTransportTree()->insert(t);
+
+    cout<<"Added new Transport!\n";
+    getchar(); getchar();
 }
 
 void Menu::othersFunc3() {
@@ -609,7 +631,7 @@ void Menu::othersSubMenu() {
         cout << "          OTHERS MENU" << endl;
         cout << "===============================" << endl;
         cout << "  1)  Show Nearby Transports" << endl;
-        cout << "  2)  X" << endl;
+        cout << "  2)  Add Nearby Transport" << endl;
         cout << "  3)  X" << endl;
         cout << "  4)  X" << endl;
         cout << "  6)  Go Back" << endl;
@@ -637,7 +659,7 @@ void Menu::othersSubMenu() {
                     showNearbyTransports();
                     break;
                 case '2':
-                    othersFunc2();
+                    addNewTransport();
                     break;
                 case '3':
                     othersFunc3();
