@@ -12,7 +12,27 @@ void ServiceManagement::addDoneServices(Service service) {
 }
 
 void ServiceManagement::addToDoService(Service service) {
-    toDoServices.push(service);
+
+    queue<Service> aux = toDoServices;
+    queue<Service> q;
+
+    bool inserted = false;
+
+    while(!aux.empty()){
+        Service temp = aux.front();
+
+        if(!inserted && (temp.getDate()>=service.getDate())){
+            q.push(service);
+            inserted = true;
+        }else{
+            q.push(temp);
+            aux.pop();
+        }
+
+    }
+
+    toDoServices = q;
+
 }
 
 
@@ -75,6 +95,7 @@ void ServiceManagement::showToDoServicesFromRange(ostream &ostream1, const Date 
 
 
 ServiceManagement::~ServiceManagement() {
+
     std::ofstream ofs(path);
 
     ofs << toDoServices.size() <<'\n';
@@ -89,6 +110,78 @@ ServiceManagement::~ServiceManagement() {
     }
 
     ofs.close();
+}
+
+
+bool ServiceManagement::deleteTodoService(const Service &service) {
+
+    bool found = false;
+    queue<Service> auxQ = toDoServices;
+    queue<Service> qDeleted;
+
+    while(!auxQ.empty()){
+        Service temp = auxQ.front();
+
+        if(temp != service)
+            qDeleted.push(temp);
+        else
+            found = true;
+
+        auxQ.pop();
+    }
+
+    toDoServices = qDeleted;
+
+    return found;
+}
+
+void ServiceManagement::changeTodoServicePriority(const Service &service, const Date &newDate) {
+
+    //Remove Service to be updated
+    deleteTodoService(service);
+
+    //Now add the correct order
+    queue<Service> aux = toDoServices;
+    queue<Service> q;
+
+    Service newService = service;
+    newService.setDate(newDate);
+
+    bool inserted = false;
+
+    while(!aux.empty()){
+        Service temp = aux.front();
+
+        if(!inserted && (temp.getDate()>=service.getDate())){
+
+            q.push(newService);
+            inserted = true;
+        }else{
+            q.push(temp);
+            aux.pop();
+        }
+
+    }
+
+    toDoServices = q;
+
+
+}
+
+bool ServiceManagement::findTodoService(const Service &service) {
+
+    queue<Service> q = toDoServices;
+
+    while(!q.empty()){
+        cout<<q.front().getType()<<endl;
+
+        if(q.front() == service)
+            return true;
+
+            q.pop();
+    }
+
+    return false;
 }
 
 

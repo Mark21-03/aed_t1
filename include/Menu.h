@@ -20,9 +20,9 @@
 
 class Menu {
     Manager manager;
-    ServiceManagement  serviceManager = manager.getServiceManager();
+    ServiceManagement  *serviceManager = manager.getServiceManager();
 
-    bool MenuOperationConfirm();
+    bool menuOperationConfirm();
 
     void (Menu::*x)();
     const vector<void (Menu::*)()> createFuncs = {&Menu::funcCreatePassenger, &Menu::funcCreatePlane,&Menu::funcCreateFlight, &Menu::funcCreateService,&Menu::funcCreateTicket};
@@ -53,7 +53,14 @@ class Menu {
     void funcUpdateFlight();
     void funcUpdateService();
     void funcUpdateTicket();
-    int askChangeID();
+    int askChangeId();
+
+    void othersFunc1();
+    void othersFunc2();
+    void othersFunc3();
+    void othersFunc4();
+    void othersFunc5();
+
 
 
     void subMenu(const string &menuTitle, vector<void (Menu::*)()> funcs);
@@ -61,6 +68,8 @@ class Menu {
     //TODO all read funcs must call this menu first to choose which values to be displayed and if sorted etc.
     //TODO Read Funcs must give this menu their on display functions because each class must be displayed differently
     void readSubMenu(string menuTitle,vector<void (Menu::*)()> funcs);
+
+    void othersSubMenu();
 
 
 public:

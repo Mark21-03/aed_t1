@@ -11,15 +11,13 @@ class ServiceManagement{
 private:
     list<Service> doneServices;
     queue<Service> toDoServices;
-
     std::string path;
-
 public:
 
     explicit ServiceManagement(const std::string& path);
 
     ServiceManagement() = default;
-    ~ServiceManagement(); // change
+    ~ServiceManagement();
 
     void setDoneServices(list<Service> doneServices);
     void setToDoServices(queue<Service> toDoServices);
@@ -27,7 +25,10 @@ public:
     queue<Service> getToDoServices() const;
     void addDoneServices(Service service);
     void addToDoService(Service service);
+    void changeTodoServicePriority(const Service& service, const Date& newDate);
+    bool deleteTodoService(const Service &service);
     void DoneLatestService();
+    bool findTodoService(const Service &service);
     void showDoneServicesFromRange(ostream &ostream1, const Date &min, const Date &max) const;
     void showToDoServicesFromRange(ostream &ostream1, const Date &min, const Date &max) const;
 };

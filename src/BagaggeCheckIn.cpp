@@ -4,7 +4,7 @@
 
 
 void BaggageStack::addBaggage(const Baggage& baggage){
-    if(s.size()==maxSize) throw FullBaggageStackException();
+    if(s.size()==maxSize) throw fullBaggageStackException();
     s.push(baggage);
 }
 
@@ -14,7 +14,7 @@ Baggage BaggageStack::takeBaggage(){
         s.pop();
         return b;
     }
-    throw EmptyBaggageStackException();
+    throw emptyBaggageStackException();
 }
 
 
@@ -22,7 +22,7 @@ Baggage BaggageStack::takeBaggage(){
 
 void Carriage::addBaggage(const Baggage& baggage){
 
-    if(isFull()) throw FullCarriageException();
+    if(isFull()) throw fullCarriageException();
 
     for(auto it = stacks.begin();it!=stacks.end();it++)
         if(!it->isFull()){
@@ -34,7 +34,7 @@ void Carriage::addBaggage(const Baggage& baggage){
 
 Baggage Carriage::takeBaggage(){
 
-    if(isEmpty()) throw EmptyCarriageException();
+    if(isEmpty()) throw emptyCarriageException();
 
     for(auto it = stacks.begin();it!=stacks.end();it++)
         if(!it->isEmpty()){
@@ -72,7 +72,7 @@ BaggageTruck::BaggageTruck(unsigned carriagesNum,unsigned stacksNum,unsigned bag
 
 
 void BaggageTruck::addBaggage(const Baggage& baggage){
-    if(isFull()) throw FullTruckException();
+    if(isFull()) throw fullTruckException();
 
     for(auto it = carriages.begin();it!=carriages.end();it++)
         if(!it->isFull()){
@@ -84,7 +84,7 @@ void BaggageTruck::addBaggage(const Baggage& baggage){
 
 Baggage BaggageTruck::takeBagagge(){
 
-    if(isEmpty()) throw EmptyTruckException();
+    if(isEmpty()) throw emptyTruckException();
 
     for(auto it = carriages.begin();it!=carriages.end();it++)
         if(!it->isEmpty()){
@@ -106,7 +106,7 @@ bool BaggageCheckIn::passNextBagaggeToTruck(){
 }
 
 Baggage BaggageCheckIn::queueRemove(){
-    if(getQueueSize()==0) throw EmptyQueueException();
+    if(getQueueSize()==0) throw emptyQueueException();
     Baggage b = conveyorBelt.front();
     conveyorBelt.pop();
     return b;
@@ -117,7 +117,7 @@ void BaggageCheckIn::truckAddBaggage(const Baggage& baggage){
         truck.addBaggage(baggage);
         return;
     }
-    throw FullTruckException();
+    throw fullTruckException();
 }
 
 
@@ -125,5 +125,5 @@ Baggage BaggageCheckIn::truckTakeBaggage(){
     if(!truck.isEmpty()){
         return truck.takeBagagge();
     }
-    throw EmptyTruckException();
+    throw emptyTruckException();
 }

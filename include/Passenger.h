@@ -86,8 +86,6 @@ inline std::istream & operator>>(std::istream& is, Passenger& l) {
     is >> temp_ID;
     l.setID(temp_ID);
 
-    //is.getline(l.getNameC(), sizeof(char ) * STRING_MAX_VALUE);
-
     for (int i = 0; i < LONGEST_ACCEPTED_NAME; ++i) {
         l.getNameC()[i] = is.get();
     }

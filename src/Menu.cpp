@@ -4,7 +4,7 @@
 
 
 
-bool Menu::MenuOperationConfirm(){
+bool Menu::menuOperationConfirm(){
     char confirm;
 
     cout<<"\nConfirm? (Y/N): ";cin>>confirm;
@@ -25,7 +25,7 @@ void Menu::funcCreatePassenger() {
     string pName;
     cout<<"\nNew Passenger Name (string): ";getline(cin,pName);
 
-    if (MenuOperationConfirm()) {
+    if (menuOperationConfirm()) {
         manager.createPassenger(pName);
         cout << "Passenger added!\n";
     }
@@ -45,7 +45,7 @@ void Menu::funcCreatePlane() {
     getline(cin, capacity);
 
 
-    if (MenuOperationConfirm()) {
+    if (menuOperationConfirm()) {
         manager.createPlane(numberPlate, pType, stoi(capacity));
         cout << "Plane added!\n";
     }
@@ -66,7 +66,7 @@ void Menu::funcCreateFlight() {
     cout<<"New Flight's origin (string): "; cin.ignore();getline(cin,origin);
     cout<<"New Flight's destiny (string): "; getline(cin,destiny);
 
-    if (MenuOperationConfirm()) {
+    if (menuOperationConfirm()) {
         manager.createFlight(departureD,departureT,duration,origin,destiny);
         cout<<"\nFlight added!\n";
     }
@@ -76,27 +76,29 @@ void Menu::funcCreateFlight() {
 
 
 void Menu::funcCreateService() {
-    //TODO
-    cout << "\n!funcCreateService!\n";
-    getchar();
+    char newType;
+    Date newDate;
+    string newEmployeeName,newPlate;
+
+    cout<<"\nNew Service's Type (M / C / O): ";cin>>newType;
+    cout<<"New Service's Date (YYYY/MM/DD): ";cin>>newDate;
+    cout<<"New Service's Employee Name (string): "; cin.ignore();getline(cin,newEmployeeName);
+    cout<<"New Service's Plane Plate (string): ";getline(cin,newPlate);
+
+
+    if (menuOperationConfirm()) {
+        serviceManager->addToDoService(Service(newType,newDate, newEmployeeName, newPlate));
+
+        cout << "\nService added!\n";
+    }
+    getchar();getchar();
 }
 
 void Menu::funcCreateTicket() {
-    /*
-    //TODO temporarly made this a transport tester
+    //TODO
     cout << "\n!funcCreateTicket!\n";
     getchar();
-     */
-    cout<<endl<<"This function is temporarly holding a Transport add/viewer to BST"<<endl;
-    Transport t;
-    cout<<"\nTRANSPORT = ";cin>>t; // char float
-    manager.transportsTree.insert(t);
 
-    cout<<endl;
-    manager.transportsTree.printTree();
-    cout<<endl;
-
-    getchar();getchar();
 }
 
 
@@ -105,9 +107,9 @@ void Menu::funcCreateTicket() {
 
 
 void Menu::funcUpdatePassenger() {
-    int n = askChangeID();
+    int n = askChangeId();
     cout<<endl;
-    manager.searchUdatePassengers(n);
+    manager.searchUpdatePassengers(n);
     getchar();getchar();
 }
 
@@ -123,7 +125,7 @@ void Menu::funcUpdatePlane() {
 }
 
 void Menu::funcUpdateFlight() {
-    int n = askChangeID();
+    int n = askChangeId();
     cout<<endl;
     manager.searchUpdateFlights(n);
     getchar();getchar();
@@ -132,7 +134,7 @@ void Menu::funcUpdateFlight() {
 void Menu::funcUpdateService(){}
 void Menu::funcUpdateTicket(){}
 
-int Menu::askChangeID(){
+int Menu::askChangeId(){
     unsigned id;
     cout<<"\nWhich id do you want to change: ";
     cin>>id;
@@ -148,9 +150,9 @@ void Menu::funcDeletePassenger() {
     cout<<"\nID to be deleted: ";cin>>id2Delete;
 
     cout<<endl;
-    manager.showSortedPassengersByID(cout, id2Delete, id2Delete);
+    manager.showSortedPassengersById(cout, id2Delete, id2Delete);
 
-    if(MenuOperationConfirm()){
+    if(menuOperationConfirm()){
         bool deleted = manager.deletePassenger(id2Delete);
         if(deleted)
             cout<<"Deleted!\n";
@@ -168,7 +170,7 @@ void Menu::funcDeletePlane() {
     cout<<endl;
     manager.showSortedPlanes(cout, id2Delete, id2Delete);
 
-    if(MenuOperationConfirm()){
+    if(menuOperationConfirm()){
         bool deleted = manager.deletePlane(id2Delete);
         if(deleted)
             cout<<"Deleted!\n";
@@ -184,9 +186,9 @@ void Menu::funcDeleteFlight() {
     cout<<"\nID to be deleted: ";cin>>id2Delete;
 
     cout<<endl;
-    manager.showSortedFlightsByID(cout, id2Delete, id2Delete);
+    manager.showSortedFlightsById(cout, id2Delete, id2Delete);
 
-    if(MenuOperationConfirm()){
+    if(menuOperationConfirm()){
         bool deleted = manager.deleteFlight(id2Delete);
         if(deleted)
             cout<<"Deleted!\n";
@@ -197,14 +199,36 @@ void Menu::funcDeleteFlight() {
 }
 
 void Menu::funcDeleteService() {
-    //TODO
-    int id2Delete;
-    cout<<"\nID to be deleted: ";cin>>id2Delete;
+    //TODO não funciona por causa do char type que esta em ascii
 
-    if(MenuOperationConfirm()){
-        cout<<"Deleted!\n"; // ?
-    }
-    getchar();getchar();
+    char newType;
+    Date newDate;
+    string newEmployeeName,newPlate;
+
+    cout<<"\nService's Type (M / C / O): ";cin>>newType;
+    cout<<"Service's Date (YYYY/MM/DD): ";cin>>newDate;
+    cout<<"Service's Employee Name (string): "; cin.ignore();getline(cin,newEmployeeName);
+    cout<<"Service's Plane Plate (string): ";getline(cin,newPlate);
+
+    cout<<endl;
+
+    Service findService(newType,newDate,newEmployeeName,newPlate);
+
+    bool found = serviceManager->findTodoService(findService);
+
+    if(found){
+        cout<<"\nFound a match!\n";
+        if(menuOperationConfirm()){
+            bool deleted = serviceManager->deleteTodoService(findService);
+            if(deleted)
+                cout<<"Deleted!\n";
+            else
+                cout<<"Value not found!\n";
+        }
+    }else
+        cout<<"Value not found!\n";
+
+    getchar();
 }
 
 
@@ -213,7 +237,7 @@ void Menu::funcDeleteTicket() {
     int id2Delete;
     cout<<"\nID to be deleted: ";cin>>id2Delete;
 
-    if(MenuOperationConfirm()){
+    if(menuOperationConfirm()){
         cout<<"Deleted!\n";
     }
     getchar();getchar();
@@ -227,9 +251,9 @@ void Menu::funcReadPassenger() {
     std::string option;
     out::askOnce<std::string>(cout,cin, option, "Option(n->Search by Name, i->Search by ID)");
     if (option == "i") {
-        unsigned int minID, maxID;
-        out::askInterval<unsigned int>(cout, cin, minID, maxID, "Passenger ID");
-        manager.showSortedPassengersByID(cout, minID, maxID);
+        unsigned int minId, maxId;
+        out::askInterval<unsigned int>(cout, cin, minId, maxId, "Passenger ID");
+        manager.showSortedPassengersById(cout, minId, maxId);
         getchar();
         getchar();
     } else if (option == "n") {
@@ -240,7 +264,7 @@ void Menu::funcReadPassenger() {
         regex search(".*" + searchName + ".*");
         cout<<endl;
 
-        bool foundMatch = manager.searchPassengerID(cout, search);
+        bool foundMatch = manager.searchPassengerId(cout, search);
         cout << SEPARATION << std::endl;
         if(!foundMatch) cout<<"X\tNo match was found!\n";
         getchar();
@@ -260,12 +284,13 @@ void Menu::funcReadPlane() {
 void Menu::funcReadFlight() {
     flightNumber min, max;
     out::askInterval<flightNumber>(cout, cin, min, max, "Flight number");
-    manager.showSortedFlightsByID(cout, min, max);
+    manager.showSortedFlightsById(cout, min, max);
     getchar();getchar();
 
 }
 
 void Menu::funcReadService() {
+
     Date min, max;
     std::string option;
     out::askOnce<std::string>(cout,cin, option, "Option(d->Done, t->toDo)");
@@ -280,6 +305,7 @@ void Menu::funcReadService() {
         std::cout << "Not a valid Option";
     }
     getchar();getchar();
+
 
 }
 
@@ -298,7 +324,7 @@ void Menu::subMenu(const string &menuTitle, vector<void (Menu::*)()> funcs) {
 
 
     while (true) {
-        system(CLEAR);
+        int ignoreVar = system(CLEAR);
 
         if (!inputError.empty())
             cout << inputError;
@@ -383,7 +409,7 @@ void Menu::readSubMenu(string menuTitle,vector<void (Menu::*)()> funcs){
 
 
     while (true) {
-        system(CLEAR);
+        int ignoreVar = system(CLEAR);
 
         if (!inputError.empty())
             cout << inputError;
@@ -467,7 +493,7 @@ void Menu::mainMenu() {
     string inputError;
 
     while (true) {
-        system(CLEAR);
+        int ignoreVar = system(CLEAR);
 
         if (!inputError.empty())
             cout << inputError;
@@ -481,6 +507,7 @@ void Menu::mainMenu() {
         cout << "  2)  Read" << endl;
         cout << "  3)  Update" << endl;
         cout << "  4)  Delete" << endl;
+        cout << "  5)  Others" << endl;
         cout << "  0)  Exit" << endl;
         cout << "================" << endl;
         cout << " > ";
@@ -513,6 +540,9 @@ void Menu::mainMenu() {
                 case '4'://DELETE
                     subMenu("   DELETE MENU",   deleteFuncs);
                     break;
+                case '5'://OTHERS
+                    othersSubMenu();
+                    break;
                 default:
                     in::giveMenuInputError(inputError);
                     break;
@@ -526,6 +556,110 @@ void Menu::mainMenu() {
             continue;
         }
     }
+}
+
+
+void Menu::othersFunc1() {
+    cout<<"\nOTHER FUNC 1\n";
+    getchar();
+}
+
+void Menu::othersFunc2() {
+    cout<<"\nOTHER FUNC 2\n";
+    getchar();
+}
+
+void Menu::othersFunc3() {
+    cout<<"\nOTHER FUNC 3\n";
+    getchar();
+}
+
+void Menu::othersFunc4() {
+    cout<<"\nOTHER FUNC 4\n";
+    getchar();
+}
+
+void Menu::othersFunc5() {
+    cout<<"\nOTHER FUNC 5\n";
+    getchar();
+}
+
+
+void Menu::othersSubMenu() {
+
+    char userInput;
+    string inputError;
+
+
+    while (true) {
+        int ignoreVar = system(CLEAR);
+
+        if (!inputError.empty())
+            cout << inputError;
+        inputError = "";
+
+        //Start of MENU
+
+        cout << "================="<< endl;
+        cout << "   OTHERS MENU" << endl;
+        cout << "=================" << endl;
+        cout << "  1)  X" << endl;
+        cout << "  2)  X" << endl;
+        cout << "  3)  X" << endl;
+        cout << "  4)  X" << endl;
+        cout << "  6)  Go Back" << endl;
+        cout << "  0)  Exit" << endl;
+        cout << "================" << endl;
+        cout << " > ";
+        //End of MENU
+
+        if ((cin >> userInput)) {
+            //raises error if more than 1 char is written by user
+            if (!in::emptyStream(std::cin)) {
+                in::giveMenuInputError(inputError);
+                continue;
+            }
+
+            //START OF MENU SELECTION
+            switch (userInput) {
+                case '0'://EXIT
+                    cout << "End of program.\n";
+                    manager.~Manager();
+                    getchar();
+                    exit(1);
+
+                case '1':
+                    othersFunc1();
+                    break;
+                case '2':
+                    othersFunc2();
+                    break;
+                case '3':
+                    othersFunc3();
+                    break;
+                case '4':
+                    othersFunc4();
+                    break;
+                case '5':
+                    othersFunc5();
+                    break;
+                case '6'://Go Back
+                    goto END_MENU;
+                default:
+                    in::giveMenuInputError(inputError);
+                    break;
+            }
+            //END OF MENU SELECTION
+            continue;
+        } else {
+            in::dealError(inputError);
+            continue;
+        }
+
+        END_MENU:
+        break;
+    }
+
 }
 
 

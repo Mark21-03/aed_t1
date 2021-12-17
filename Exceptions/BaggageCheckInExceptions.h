@@ -4,51 +4,51 @@
 
 #include <iostream>
 
-class EmptyQueueException{
+class emptyQueueException{
 public:
-    EmptyQueueException(){
+    emptyQueueException(){
         std::cout<<"Cant take anything from an empty Queue!\n";
     };
 };
 
-class FullTruckException{
+class fullTruckException{
 public:
-    FullTruckException(){
+    fullTruckException(){
         std::cout<<"Truck cant be filled anymore!\n";
     };
 };
 
-class EmptyTruckException{
+class emptyTruckException{
 public:
-    EmptyTruckException(){
+    emptyTruckException(){
         std::cout<<"Cant take anything from an empty truck!\n";
     };
 };
 
-class FullCarriageException{
+class fullCarriageException{
 public:
-    FullCarriageException(){
+    fullCarriageException(){
         std::cout<<"Carriage cant be filled anymore!\n";
     };
 };
 
-class EmptyCarriageException{
+class emptyCarriageException{
 public:
-    EmptyCarriageException(){
+    emptyCarriageException(){
         std::cout<<"Cant take anything from an empty carriage!\n";
     };
 };
 
-class FullBaggageStackException{
+class fullBaggageStackException{
 public:
-    FullBaggageStackException(){
+    fullBaggageStackException(){
         std::cout<<"BaggageStack cant be filled anymore!\n";
     };
 };
 
-class EmptyBaggageStackException{
+class emptyBaggageStackException{
 public:
-    EmptyBaggageStackException(){
+    emptyBaggageStackException(){
         std::cout<<"Cant take anything from an empty BaggageStack!\n";
     };
 };

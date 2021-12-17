@@ -1,7 +1,7 @@
 #ifndef Date_H
 #define Date_H
 
-#include "../Exceptions/InvalidDate.h"
+#include "../Exceptions/invalidDate.h"
 
 #include <string>
 #include <istream>
