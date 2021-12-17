@@ -82,9 +82,20 @@ void Menu::funcCreateService() {
 }
 
 void Menu::funcCreateTicket() {
-    //TODO
+    /*
+    //TODO temporarly made this a transport tester
     cout << "\n!funcCreateTicket!\n";
     getchar();
+     */
+    Transport t;
+    cout<<"\nTRANSPORT = ";cin>>t; // char float
+    manager.transportsTree.insert(t);
+
+    cout<<endl;
+    manager.transportsTree.printTree();
+    cout<<endl;
+
+    getchar();getchar();
 }
 
 
@@ -97,16 +108,13 @@ void Menu::funcUpdatePassenger() {
     manager.searchPassengers(n);
 }
 
-std::string Menu::funcupdatePlane(){
-    string id;
-    cout<<"Plate number of the plane to change?";
-    cin>>id;
-    return id;
-}
+
 
 void Menu::funcUpdatePlane() {
-    std::string n=funcupdatePlane();
-    manager.searchPlanes(n);
+    string id;
+    cout<<"Plate number of the plane to change: ";
+    cin>>id;
+    manager.searchPlanes(id);
 
 }
 

@@ -11,19 +11,22 @@
 #include <climits>
 #include "Output.h"
 #include "ServiceManagement.h"
+#include "BST.h"
+#include "Transports.h"
 
 
 class Manager {
 private:
     string filesDir = "../include/filesPaths.txt";
 
-    string flights_path, planes_path,passengers_path, service_path;
+    string flights_path, planes_path,passengers_path, service_path, transports_path;
     void setPaths();
 
     void readFlights();
     void readPlanes();
     void readPassengers();
     void readServices();
+    void readTransports();
 
 
 
@@ -33,10 +36,11 @@ private:
 
 
     std::vector<Plane> planes;
-    std::vector<Passenger> passengers; // higher frequency of insertion/deletions, but does it have that many ? or more search?
-    std::vector<Flight> flights; // this probably does not have to be here (in planes we have this information)
+    std::vector<Passenger> passengers;
+    std::vector<Flight> flights;
 
 public:
+    BST<Transport> transportsTree; //TODO temporarly made public for testing
     Manager();
     ~Manager();
     explicit Manager(const std::string&dirs){

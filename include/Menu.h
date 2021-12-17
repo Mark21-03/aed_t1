@@ -53,7 +53,6 @@ class Menu {
     void funcUpdateFlight();
     void funcUpdateService();
     void funcUpdateTicket();
-    std::string funcupdatePlane();
     int funcUpdateAll();
 
 

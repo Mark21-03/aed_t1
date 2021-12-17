@@ -9,7 +9,7 @@ void Manager::setPaths(){
     getline(dirs,planes_path);
     getline(dirs,passengers_path);
     getline(dirs,service_path);
-
+    getline(dirs,transports_path);
 }
 
 
@@ -17,6 +17,7 @@ Manager::Manager() {
 
     setPaths();
 
+    readTransports();
     readFlights();
     readPassengers();
     readPlanes();
@@ -102,6 +103,20 @@ void Manager::showDoneServices(ostream &ostream1, const Date &min, const Date &m
     serviceManager.showDoneServicesFromRange(ostream1, min, max);
 }
 
+void Manager::readTransports() {
+
+    std::ifstream ifs_transports(transports_path);
+
+
+    Transport transport;
+    while (ifs_transports >> transport) {
+        transportsTree.insert(transport);
+    }
+
+    ifs_transports.close();
+
+}
+
 
 
 Manager::~Manager(){
@@ -110,6 +125,7 @@ Manager::~Manager(){
     std::ofstream ofsPlanes(planes_path);
     std::ofstream ofsPassengers(passengers_path);
     std::ofstream ofsFlights(flights_path);
+    std::ofstream ofsTransports(transports_path);
 
     for(Plane &p:planes)
         ofsPlanes << p;
@@ -120,8 +136,10 @@ Manager::~Manager(){
     for(Flight &f:flights)
         ofsFlights << f;
 
+    for(auto it= transportsTree.begin();it!=transportsTree.end();it++)
+        ofsTransports << (*it).getType()<<" "<<(*it).getDistance()<<endl;
 
-    serviceManager.~ServiceManagement();
+    //serviceManager.~ServiceManagement(); //TODO este desconstrutor causa a exceçao e e preciso implementar?
 
 }
 
@@ -326,6 +344,8 @@ bool Manager::deleteFlight(const unsigned int &idD) {
     return false;
 
 }
+
+
 
 
 
