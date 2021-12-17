@@ -341,8 +341,6 @@ bool Manager::searchPassengerId(ostream &ostream1, const regex& exp) {
 }
 
 
-<<<<<<< HEAD
-=======
 void Manager::readTransports() {
 
     std::ifstream ifs_transports(transportsPath);
@@ -359,5 +357,3 @@ void Manager::readTransports() {
 
 
 
-
->>>>>>> ece959940bf8f8ac24731e28ea699125f412d3d3
