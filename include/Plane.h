@@ -25,6 +25,7 @@ private:
     std::list<flightNumber> flightPlan;
 public:
 
+
     Plane() = default ;
     Plane(const planePlate& numberPlate ,const std::string& pType, int capacity);
     Plane(const planePlate& numberPlate ,const std::string& pType, int capacity,const std::list<flightNumber>& flightPlan);
