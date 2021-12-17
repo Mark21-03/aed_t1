@@ -26,7 +26,7 @@ namespace out {
     inline void askInterval(ostream &ostream1, istream & istream1, writeable & min , writeable & max, const std::string& asked) {
         ostream1 << asked << " from x to y: " << std::endl;
         ostream1 << "x: ";  istream1 >> min;
-        ostream1 << "\ny: "; istream1 >> max; // TODO: CHECK ERRORS
+        ostream1 << "\ny: "; istream1 >> max;
     }
 
     template<typename writeable>

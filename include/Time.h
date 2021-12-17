@@ -36,7 +36,7 @@ class Time{
         inline unsigned getHour() const{return this->hour;}
         inline unsigned getMinute() const{return this->minute;}
         inline unsigned getSecond() const{return this->second;}
-        const std::string getTime() const;
+        std::string getTime() const;
 };
 
 inline bool operator==(const Time &t1,const Time &t2){
@@ -75,7 +75,7 @@ inline std::ostream & operator<<(std::ostream& os,const Time &t){
     return os;
 }
 
-inline std::istream & operator>>(std::istream& is,Time &t){ // TODO: this shouldn't throw an exception ... need to find a way to let the set throw an exception without interfering with this
+inline std::istream & operator>>(std::istream& is,Time &t){
     unsigned hour, minute, second;
     char sep1,sep2;
 

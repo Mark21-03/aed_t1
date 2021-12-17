@@ -10,7 +10,7 @@ Service::Service(char type, Date date,string employer,string  plate) : plane(std
 //getters
 ServiceType Service::getType() const {return this->type;}
 Date Service::getDate() const{ return this->date;}
-string Service::getEmployer() const { // TODO: THIS IS A REPEATED CODE; MAYBE IT SHOULD BE MADE A UTILITIES SPACE
+string Service::getEmployer() const {
     int i=0;
     string s;
     char c;

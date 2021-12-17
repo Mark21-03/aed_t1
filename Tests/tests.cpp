@@ -527,7 +527,7 @@ TEST(Creator_test, CreationFlights) {
 srand(time(nullptr));
 std::ofstream ofsF("../Files/Flights/flights.txt");
 
-// TODO : ADD THE IATA CODE ... and maybe an airport struct
+
 
 vector<string> airports{
         "Beirut Rafic Hariri International Airport" ,
@@ -555,7 +555,7 @@ for(int i = 0; i< 365; i++) {
     do {
         d =rand() % airports.size();
     }
-    while(d == o ); // TODO: THE DURATION COULD BE A TIME OBJECT
+    while(d == o );
     float r =  1.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(4.0f-1.0f)));
     Time time2;
     time2.setRandomTime();
@@ -613,7 +613,7 @@ int nFlights = 365;
         for (int i=0; i < sizeFp; i++) {
             int fnumber = rand() % (nFlights--);
             if(!v.empty()) {
-                flightPlan.push_back(v[fnumber]); //TODO avoid having the same flight number in a flight plan of a plane and if avoid 2 flights ate the same time
+                flightPlan.push_back(v[fnumber]);
                 v.erase(v.begin() + fnumber);
             }
             if(!nFlights)
@@ -819,7 +819,7 @@ vector<string> sur_names {
     ofs << 15 << std::endl;
 
 vector<Service> m2;
-    for(int i = 0; i < 15; i++) { // TODO S
+    for(int i = 0; i < 15; i++) {
         int n = rand() %names.size();
         vector<char> c {'c', 'm', 'o'};
         int z = rand() % 3; // nomes próprios

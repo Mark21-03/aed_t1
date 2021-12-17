@@ -154,6 +154,7 @@ void Manager::searchFlights(int id) {
     Date deparDate;
     Time deparTime;
     float duration;
+    int occupation;
     std::string origin;
     std::string destiny;
 
@@ -170,6 +171,9 @@ void Manager::searchFlights(int id) {
             cout << "(Old duration: " << (*it).getDuration() << ")       New:";
             cin >> duration;
             (*it).setDuration(duration);
+            cout<<"(Old occupation: "<<(*it).getOccupation()<<")       New:";
+            cin>>occupation;
+            (*it).setOccupation(occupation);
             cin.ignore();
             cout << "(Old origin: " << (*it).getOrigin() << ")       New:";
             getline(cin, origin);

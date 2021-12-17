@@ -1,13 +1,13 @@
 #include <iostream>
-#include "../include/BST.h"
+#include "BST.h"
+#include "Time.h"
 
 using namespace std;
 
-struct Time{}; //TODO BETTER TIMETABLE ?
 class Timetable{
-    private:
-    vector<Time>timetable;
-    public:
+private:
+    vector<Time>timetable; // No timetable is made because we don't have the data
+public:
     inline vector<Time> getTimeTable(){return timetable;} 
     inline void setTimeTable(vector<Time>timetable){this->timetable = timetable;}
 };
@@ -24,7 +24,7 @@ public:
     inline Transport(char type, float distance){this->type = type;this->distance=distance;}
 
     inline char getType() const{return this->type;}
-    bool setChar(const char &type);
+    bool setType(const char &type);
 
     inline float getDistance() const{return this->distance;}
     inline void setDistance(const float& distance){this->distance = distance;}
@@ -34,7 +34,7 @@ public:
 };
 
 
-inline bool Transport::setChar(const char &type){
+inline bool Transport::setType(const char &type) {
     if(type=='S' || type=='T' || type=='B' ||  type=='N'){
         this->type = type;return true;
     }
@@ -51,11 +51,13 @@ inline ostream& operator<<(ostream& os, Transport &t){
     return os;
 }
 
+inline istream& operator>>(istream& is, Transport &t){
+    char type;float distance;
+    is>>type>>distance;
+    t.setDistance(distance);
+    t.setType(type);
+    return is;
+}
 
-//TODO precisamos de uma class aeroporto???
-class Aeroporto{
-    public:
-        Aeroporto(){};
-        BST<Transport> transportsTree;
-};
+
 

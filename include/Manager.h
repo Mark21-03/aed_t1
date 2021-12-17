@@ -11,37 +11,40 @@
 #include <climits>
 #include "Output.h"
 #include "ServiceManagement.h"
+#include "BST.h"
+#include "Transports.h"
 
 
 class Manager {
 private:
+
     string filesDir = "../include/filesPaths.txt";
+    string flights_path, planes_path,passengers_path, service_path, transports_path;
 
-    string flights_path, planes_path,passengers_path, service_path;
+    ServiceManagement serviceManager;
+    std::vector<Plane> planes;
+    std::vector<Passenger> passengers;
+    std::vector<Flight> flights;
+
     void setPaths();
-
     void readFlights();
     void readPlanes();
     void readPassengers();
     void readServices();
+    void readTransports();
 
-
-    ServiceManagement serviceManager;
-
-
-
-    std::vector<Plane> planes;
-    std::vector<Passenger> passengers; // higher frequency of insertion/deletions, but does it have that many ? or more search?
-    std::vector<Flight> flights; // this probably does not have to be here (in planes we have this information)
 
 public:
+    BST<Transport> transportsTree; //TODO temporarly made public for testing
     Manager();
     ~Manager();
     explicit Manager(const std::string&dirs){
         this->filesDir = dirs;
     }
 
-    bool addFlightToPlanePlan(Flight& flight); // success or not
+    inline ServiceManagement& getServiceManager(){return serviceManager;}
+
+    bool addFlightToPlanePlan(Flight& flight); // success or not // TODO LATER
 
     void showSortedPassengersByID(ostream& ostream1, unsigned int min = 0, unsigned int max = INT_MAX);
     void showSortedFlightsByID(ostream& ostream1, flightNumber min = 0, flightNumber max = INT_MAX);

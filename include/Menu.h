@@ -1,4 +1,3 @@
-
 #ifndef T
 #define T
 
@@ -9,7 +8,6 @@
 #include "Manager.h"
 #include "Input.h"
 
-//WORK IN PROGRESS MENU EXAMPLE
 
 //Sets CLEAR variable for cleaning terminal GUI for linux and window
 #ifdef _WIN32
@@ -21,6 +19,7 @@
 
 class Menu {
     Manager manager;
+    ServiceManagement  serviceManager = manager.getServiceManager();
 
     bool MenuOperationConfirm();
 
@@ -53,7 +52,6 @@ class Menu {
     void funcUpdateFlight();
     void funcUpdateService();
     void funcUpdateTicket();
-    std::string funcupdatePlane();
     int funcUpdateAll();
 
 

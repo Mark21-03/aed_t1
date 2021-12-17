@@ -41,7 +41,7 @@ public:
 
 };
 
-inline std::ostream& operator<< (std::ostream& os, const Service& s) { // TODO: this seems a bit off..
+inline std::ostream& operator<< (std::ostream& os, const Service& s) {
 
     os << s.getType() << " " << s.getDate().getDate();
 

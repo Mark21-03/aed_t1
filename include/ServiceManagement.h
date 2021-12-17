@@ -13,9 +13,10 @@ private:
     queue<Service> toDoServices;
 
     std::string path;
+
 public:
 
-    ServiceManagement(const std::string& path);
+    explicit ServiceManagement(const std::string& path);
 
     ServiceManagement() = default;
     ~ServiceManagement(); // change

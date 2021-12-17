@@ -61,7 +61,7 @@ inline std::istream & operator>>(std::istream& is, Plane& p) {
     std::string nPlate;
     int c;
 
-    is >> nPlate; // TODO : an exception might be thrown if the plate is not valid
+    is >> nPlate;
     is >> pType;
     is >> c;
 

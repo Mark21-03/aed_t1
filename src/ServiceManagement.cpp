@@ -22,18 +22,20 @@ void ServiceManagement::DoneLatestService() {
     addDoneServices(done);
 }
 
+
 ServiceManagement::ServiceManagement(const string &path) : path(path){
+
     std::ifstream ifs(path);
 
     Service service;
     int n; ifs >> n;
-    for (int i = 0; i < n; ++i) { // the Todo
+    for (int i = 0; i < n; ++i) { // scheduled services
         ifs >> service;
         toDoServices.push(service);
     }
 
     ifs >> n;
-    for (int i = 0; i < n; ++i) { // the Done
+    for (int i = 0; i < n; ++i) { // the already done services
         ifs >> service;
         doneServices.push_back(service);
     }
@@ -52,23 +54,25 @@ void ServiceManagement::showDoneServicesFromRange(ostream &ostream1, const Date 
 
 }
 
+
 void ServiceManagement::showToDoServicesFromRange(ostream &ostream1, const Date &min, const Date &max) const {
     out::headerServices(ostream1);
 
     if (toDoServices.empty()) return;
 
-    queue <Service> temp = toDoServices;
+    queue<Service> temp = toDoServices;
     Service front = temp.front();
     temp.pop();
 
     while (front.getDate() <= max) {
         if (front.getDate() >= min)
-            out::services(ostream1, &front);
+            out::services(ostream1,&front);
         if (temp.empty()) break;
         front = temp.front();
         temp.pop();
     }
 }
+
 
 ServiceManagement::~ServiceManagement() {
     std::ofstream ofs(path);

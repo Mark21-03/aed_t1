@@ -2,10 +2,16 @@
 #define TICKET_H
 
 #include "Flight.h"
+#include "Baggage.h"
 
 #define NO_OWNER -1
 
 //#define SEAT_MAP_DIMENSION 2
+
+enum ClassType{
+    executive = 'x',
+    economic ='e'
+};
 
 class Ticket {
 public:
@@ -13,22 +19,41 @@ public:
     // getters
 
     Ticket(Flight& flight);
+    Ticket(flightNumber flightnumber, int passengerID, float price, Baggage bag1, char tClass);
+
     Flight getFlightInfo() const;
-    int getPassengerID() {
-        return passengerID;
-    }
+    int getPassengerID();
+    ClassType getTClass() const;
+    float getPrice() const;
+    //Baggage getBaggage() const;
+    flightNumber getFlightNUmber() const;
+    bool getBaggage() const;
+
+    Ticket& setPrice(float price);
+    //Ticket& setBaggage(Baggage bag1);
+    Ticket& setTclass(char tClass);
+    Ticket& setPassengerId(int passengerid);
+    Ticket& setFlightNumber(flightNumber flightNumber);
+    Ticket& setBaggage(bool baggage);
+
+    bool validBuy(Ticket ticket);
+
     //char getBoardingZone() const;
-    //char getTClass() const;
     //std::string getSeat() const;
-    //float getPrice() const;
+
 
 private:
+    flightNumber flightnumber;
     Flight flightInfo;
     int passengerID;
-    //float price;
-    //char seat[SEAT_MAP_DIMENSION]{};
+    float price;
+    bool baggage;
+    //Baggage bag1;
+    ClassType tClass;
+    //int remainingTickets;
+    //'X'= exclusiva e 'E'= económica
+    //string seat --- eventually, a seat number (ex:A3 or B1)
     //char boardingZone;
-    //char tClass;
 
 };
 
