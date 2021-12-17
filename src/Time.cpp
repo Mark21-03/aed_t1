@@ -14,8 +14,10 @@ Time& Time :: setTime(unsigned hour, unsigned minute, unsigned second){
     return *this;
 }
 
+#include <iostream>
 Time& Time::setHour(unsigned hour){
     this->hour = hour;
+
     return *this;
 
 }

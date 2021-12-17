@@ -60,7 +60,7 @@ void Menu::funcCreateFlight() {
     float duration;
     string origin, destiny;
 
-    cout<<"New Flight's departure date (YYYY/MM/DD): ";cin>>departureD;
+    cout<<"\nNew Flight's departure date (YYYY/MM/DD): ";cin>>departureD;
     cout<<"New Flight's time (HH:MM:SS): ";cin>>departureT;
     cout<<"New Flight's duration (float): ";cin>>duration;
     cout<<"New Flight's origin (string): "; cin.ignore();getline(cin,origin);
@@ -105,31 +105,36 @@ void Menu::funcCreateTicket() {
 
 
 void Menu::funcUpdatePassenger() {
-    int n=funcUpdateAll();
-    manager.searchPassengers(n);
+    int n = askChangeID();
+    cout<<endl;
+    manager.searchUdatePassengers(n);
+    getchar();getchar();
 }
-
 
 
 void Menu::funcUpdatePlane() {
     string id;
-    cout<<"Plate number of the plane to change: ";
+    cout<<"\nPlate number of the plane to change: ";
     cin>>id;
-    manager.searchPlanes(id);
+    cout<<endl;
+    manager.searchUpdatePlanes(id);
+    getchar();getchar();
 
 }
 
 void Menu::funcUpdateFlight() {
-    int n=funcUpdateAll();
-    manager.searchFlights(n);
+    int n = askChangeID();
+    cout<<endl;
+    manager.searchUpdateFlights(n);
+    getchar();getchar();
 }
 
 void Menu::funcUpdateService(){}
 void Menu::funcUpdateTicket(){}
 
-int Menu::funcUpdateAll(){
-    int id;
-    cout<<"ID of object to change?";
+int Menu::askChangeID(){
+    unsigned id;
+    cout<<"\nWhich id do you want to change: ";
     cin>>id;
     return id;
 }
@@ -220,22 +225,26 @@ void Menu::funcDeleteTicket() {
 
 void Menu::funcReadPassenger() {
     std::string option;
-    out::askOnce<std::string>(cout,cin, option, "Option(i->Search the id of a person, n->Name of person with id)");
-    if (option == "n") {
+    out::askOnce<std::string>(cout,cin, option, "Option(n->Search by Name, i->Search by ID)");
+    if (option == "i") {
         unsigned int minID, maxID;
         out::askInterval<unsigned int>(cout, cin, minID, maxID, "Passenger ID");
         manager.showSortedPassengersByID(cout, minID, maxID);
         getchar();
         getchar();
-    } else if (option == "i") {
+    } else if (option == "n") {
         std::string searchName;
         cout << "Give us a part of the Name: ";
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         getline(cin, searchName);
-        cout << searchName;
         regex search(".*" + searchName + ".*");
+        cout<<endl;
 
-        manager.searchPassengerID(cout, search);
+        bool foundMatch = manager.searchPassengerID(cout, search);
+        cout << SEPARATION << std::endl;
+        if(!foundMatch) cout<<"X\tNo match was found!\n";
+        getchar();
+
     }
 
 }
@@ -243,6 +252,7 @@ void Menu::funcReadPassenger() {
 void Menu::funcReadPlane() {
     planePlate min, max;
     out::askInterval<planePlate>(cout, cin, min, max, "Plate Number");
+    cout<<endl;
     manager.showSortedPlanes(cout, min, max);
     getchar();getchar();
 }
