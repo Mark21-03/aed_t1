@@ -1,13 +1,13 @@
-#ifndef DateException_H
-#define DateException_H
+#ifndef AED_T1_INVALIDDATE_H
+#define AED_T1_INVALIDDATE_H
 
 #include <iostream>
 
 using namespace std;
 
-class InvalidDate{
+class invalidDate{
 public:
-    InvalidDate(std::string reason) :reason(reason) {};
+    invalidDate(std::string reason) : reason(reason) {};
     const std::string& what()const {
         return reason;
     }

@@ -5,10 +5,10 @@
 void Manager::setPaths(){
     ifstream dirs(filesDir);
 
-    getline(dirs,flights_path);
-    getline(dirs,planes_path);
-    getline(dirs,passengers_path);
-    getline(dirs,service_path);
+    getline(dirs, flightsPath);
+    getline(dirs, planesPath);
+    getline(dirs, passengersPath);
+    getline(dirs, servicePath);
 
 }
 
@@ -24,7 +24,7 @@ Manager::Manager() {
 }
 
 
-void Manager::showSortedPassengersByID(ostream &ostream1, unsigned int min, unsigned int max) {
+void Manager::showSortedPassengersById(ostream &ostream1, unsigned int min, unsigned int max) {
 
     out::headerPassengers(ostream1);
 
@@ -36,7 +36,7 @@ void Manager::showSortedPassengersByID(ostream &ostream1, unsigned int min, unsi
 
 }
 
-void Manager::showSortedFlightsByID(ostream &ostream1, flightNumber min , flightNumber max) {
+void Manager::showSortedFlightsById(ostream &ostream1, flightNumber min , flightNumber max) {
 
     out::headerFlights(ostream1);
     auto it = lower_bound(flights.begin(), flights.end(), Flight(min, Date(), Time(),2.4f, "", ""));
@@ -60,7 +60,7 @@ void Manager::showSortedPlanes(ostream &ostream1,const planePlate& min,const pla
 }
 
 void Manager::readFlights() {
-    std::ifstream ifs_flights(flights_path);
+    std::ifstream ifs_flights(flightsPath);
 
     Flight flight;
     while (ifs_flights >> flight) {
@@ -71,7 +71,7 @@ void Manager::readFlights() {
 }
 
 void Manager::readPlanes() {
-    std::ifstream ifs_planes(planes_path);
+    std::ifstream ifs_planes(planesPath);
 
     Plane plane;
     while (ifs_planes >> plane) {
@@ -82,7 +82,7 @@ void Manager::readPlanes() {
 }
 
 void Manager::readPassengers() {
-    std::ifstream ifs_passengers(passengers_path);
+    std::ifstream ifs_passengers(passengersPath);
 
 
     Passenger passenger;
@@ -94,7 +94,7 @@ void Manager::readPassengers() {
 }
 
 void Manager::readServices() {
-    this->serviceManager = ServiceManagement(service_path);
+    this->serviceManager = ServiceManagement(servicePath);
 }
 
 void Manager::showDoneServices(ostream &ostream1, const Date &min, const Date &max) {
@@ -121,9 +121,9 @@ Manager::~Manager() {
     serviceManager.~ServiceManagement();
 
     //Guardar as alterações nos ficheiros
-    std::ofstream ofsPlanes(planes_path);
-    std::ofstream ofsPassengers(passengers_path);
-    std::ofstream ofsFlights(flights_path);
+    std::ofstream ofsPlanes(planesPath);
+    std::ofstream ofsPassengers(passengersPath);
+    std::ofstream ofsFlights(flightsPath);
 
     for(Plane &p:planes)
         ofsPlanes << p;
@@ -142,7 +142,7 @@ Manager::~Manager() {
 }
 
 
-void Manager::searchUdatePassengers(int SearchedID) {
+void Manager::searchUpdatePassengers(int SearchedID) {
 
     auto finder = [=](const Passenger &p){
         return p.getID() == SearchedID;
@@ -152,7 +152,7 @@ void Manager::searchUdatePassengers(int SearchedID) {
 
     if(it!=passengers.end()){
         string newName;
-        showSortedPassengersByID(cout,SearchedID, SearchedID);
+        showSortedPassengersById(cout, SearchedID, SearchedID);
         cout<<"\nProvided the new values below:\n";
         cout<<"\nName: ";cin.ignore();getline(cin,newName);
 
@@ -175,7 +175,7 @@ void Manager::searchUpdateFlights(int SearchedID) {
 
 
     if(it!=flights.end()){
-        showSortedFlightsByID(cout,SearchedID,SearchedID);
+        showSortedFlightsById(cout, SearchedID, SearchedID);
         cout<<"\nProvided the new values below:\n";
 
         Date deparDate;
@@ -318,7 +318,7 @@ void Manager::showToDoServices(ostream &ostream1, const Date &min, const Date &m
     serviceManager.showToDoServicesFromRange(ostream1, min, max);
 }
 
-bool Manager::searchPassengerID(ostream &ostream1, const regex& exp) {
+bool Manager::searchPassengerId(ostream &ostream1, const regex& exp) {
     out::headerPassengers(ostream1);
 
     bool foundMatch = false;

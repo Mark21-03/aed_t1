@@ -20,7 +20,7 @@ class Manager {
 private:
 
     string filesDir = "../include/filesPaths.txt";
-    string flights_path, planes_path,passengers_path, service_path, transports_path;
+    string flightsPath, planesPath,passengersPath, servicePath, transportsPath;
 
     ServiceManagement serviceManager;
     std::vector<Plane> planes;
@@ -45,13 +45,13 @@ public:
 
     inline ServiceManagement& getServiceManager(){return serviceManager;}
 
-    bool addFlightToPlanePlan(Flight& flight); // success or not // TODO LATER
 
-    void showSortedPassengersByID(ostream& ostream1, unsigned int min = 0, unsigned int max = INT_MAX);
-    void showSortedFlightsByID(ostream& ostream1, flightNumber min = 0, flightNumber max = INT_MAX);
+
+    void showSortedPassengersById(ostream& ostream1, unsigned int min = 0, unsigned int max = INT_MAX);
+    void showSortedFlightsById(ostream& ostream1, flightNumber min = 0, flightNumber max = INT_MAX);
     void showSortedFlightsByOrigin(ostream& ostream1, flightNumber min = 0, flightNumber max = INT_MAX); // TODO LATER
     void showSortedFlightsByDestiny(ostream& ostream1, flightNumber min = 0, flightNumber max = INT_MAX);// TODO LATER
-
+    bool addFlightToPlanePlan(Flight& flight); // success or not // TODO LATER
 
 
     void showSortedPlanes(ostream& ostream1, const planePlate& min,const planePlate& max);
@@ -59,8 +59,8 @@ public:
     void showDoneServices(ostream& ostream1, const Date& min, const Date& max);
     void showToDoServices(ostream& ostream1, const Date& min, const Date& max);
 
-    void searchUdatePassengers(int id);
-    bool searchPassengerID(ostream &ostream1,const regex& exp);
+    void searchUpdatePassengers(int id);
+    bool searchPassengerId(ostream &ostream1, const regex& exp);
 
     void searchUpdateFlights(int id);
     void searchUpdatePlanes(const string& id);

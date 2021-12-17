@@ -4,7 +4,7 @@
 
 
 
-bool Menu::MenuOperationConfirm(){
+bool Menu::menuOperationConfirm(){
     char confirm;
 
     cout<<"\nConfirm? (Y/N): ";cin>>confirm;
@@ -25,7 +25,7 @@ void Menu::funcCreatePassenger() {
     string pName;
     cout<<"\nNew Passenger Name (string): ";getline(cin,pName);
 
-    if (MenuOperationConfirm()) {
+    if (menuOperationConfirm()) {
         manager.createPassenger(pName);
         cout << "Passenger added!\n";
     }
@@ -45,7 +45,7 @@ void Menu::funcCreatePlane() {
     getline(cin, capacity);
 
 
-    if (MenuOperationConfirm()) {
+    if (menuOperationConfirm()) {
         manager.createPlane(numberPlate, pType, stoi(capacity));
         cout << "Plane added!\n";
     }
@@ -66,7 +66,7 @@ void Menu::funcCreateFlight() {
     cout<<"New Flight's origin (string): "; cin.ignore();getline(cin,origin);
     cout<<"New Flight's destiny (string): "; getline(cin,destiny);
 
-    if (MenuOperationConfirm()) {
+    if (menuOperationConfirm()) {
         manager.createFlight(departureD,departureT,duration,origin,destiny);
         cout<<"\nFlight added!\n";
     }
@@ -83,11 +83,11 @@ void Menu::funcCreateService() {
 
 void Menu::funcCreateTicket() {
     /*
-    //TODO temporarly made this a transport tester
+    //TODO temporarily made this a transport tester
     cout << "\n!funcCreateTicket!\n";
     getchar();
      */
-    cout<<endl<<"This function is temporarly holding a Transport add/viewer to BST"<<endl;
+    cout<<endl<<"This function is temporarily holding a Transport add/viewer to BST"<<endl;
     Transport t;
     cout<<"\nTRANSPORT = ";cin>>t; // char float
     manager.transportsTree.insert(t);
@@ -105,9 +105,9 @@ void Menu::funcCreateTicket() {
 
 
 void Menu::funcUpdatePassenger() {
-    int n = askChangeID();
+    int n = askChangeId();
     cout<<endl;
-    manager.searchUdatePassengers(n);
+    manager.searchUpdatePassengers(n);
     getchar();getchar();
 }
 
@@ -123,7 +123,7 @@ void Menu::funcUpdatePlane() {
 }
 
 void Menu::funcUpdateFlight() {
-    int n = askChangeID();
+    int n = askChangeId();
     cout<<endl;
     manager.searchUpdateFlights(n);
     getchar();getchar();
@@ -132,7 +132,7 @@ void Menu::funcUpdateFlight() {
 void Menu::funcUpdateService(){}
 void Menu::funcUpdateTicket(){}
 
-int Menu::askChangeID(){
+int Menu::askChangeId(){
     unsigned id;
     cout<<"\nWhich id do you want to change: ";
     cin>>id;
@@ -148,9 +148,9 @@ void Menu::funcDeletePassenger() {
     cout<<"\nID to be deleted: ";cin>>id2Delete;
 
     cout<<endl;
-    manager.showSortedPassengersByID(cout, id2Delete, id2Delete);
+    manager.showSortedPassengersById(cout, id2Delete, id2Delete);
 
-    if(MenuOperationConfirm()){
+    if(menuOperationConfirm()){
         bool deleted = manager.deletePassenger(id2Delete);
         if(deleted)
             cout<<"Deleted!\n";
@@ -168,7 +168,7 @@ void Menu::funcDeletePlane() {
     cout<<endl;
     manager.showSortedPlanes(cout, id2Delete, id2Delete);
 
-    if(MenuOperationConfirm()){
+    if(menuOperationConfirm()){
         bool deleted = manager.deletePlane(id2Delete);
         if(deleted)
             cout<<"Deleted!\n";
@@ -184,9 +184,9 @@ void Menu::funcDeleteFlight() {
     cout<<"\nID to be deleted: ";cin>>id2Delete;
 
     cout<<endl;
-    manager.showSortedFlightsByID(cout, id2Delete, id2Delete);
+    manager.showSortedFlightsById(cout, id2Delete, id2Delete);
 
-    if(MenuOperationConfirm()){
+    if(menuOperationConfirm()){
         bool deleted = manager.deleteFlight(id2Delete);
         if(deleted)
             cout<<"Deleted!\n";
@@ -201,7 +201,7 @@ void Menu::funcDeleteService() {
     int id2Delete;
     cout<<"\nID to be deleted: ";cin>>id2Delete;
 
-    if(MenuOperationConfirm()){
+    if(menuOperationConfirm()){
         cout<<"Deleted!\n"; // ?
     }
     getchar();getchar();
@@ -213,7 +213,7 @@ void Menu::funcDeleteTicket() {
     int id2Delete;
     cout<<"\nID to be deleted: ";cin>>id2Delete;
 
-    if(MenuOperationConfirm()){
+    if(menuOperationConfirm()){
         cout<<"Deleted!\n";
     }
     getchar();getchar();
@@ -227,9 +227,9 @@ void Menu::funcReadPassenger() {
     std::string option;
     out::askOnce<std::string>(cout,cin, option, "Option(n->Search by Name, i->Search by ID)");
     if (option == "i") {
-        unsigned int minID, maxID;
-        out::askInterval<unsigned int>(cout, cin, minID, maxID, "Passenger ID");
-        manager.showSortedPassengersByID(cout, minID, maxID);
+        unsigned int minId, maxId;
+        out::askInterval<unsigned int>(cout, cin, minId, maxId, "Passenger ID");
+        manager.showSortedPassengersById(cout, minId, maxId);
         getchar();
         getchar();
     } else if (option == "n") {
@@ -240,7 +240,7 @@ void Menu::funcReadPassenger() {
         regex search(".*" + searchName + ".*");
         cout<<endl;
 
-        bool foundMatch = manager.searchPassengerID(cout, search);
+        bool foundMatch = manager.searchPassengerId(cout, search);
         cout << SEPARATION << std::endl;
         if(!foundMatch) cout<<"X\tNo match was found!\n";
         getchar();
@@ -260,7 +260,7 @@ void Menu::funcReadPlane() {
 void Menu::funcReadFlight() {
     flightNumber min, max;
     out::askInterval<flightNumber>(cout, cin, min, max, "Flight number");
-    manager.showSortedFlightsByID(cout, min, max);
+    manager.showSortedFlightsById(cout, min, max);
     getchar();getchar();
 
 }

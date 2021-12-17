@@ -6,9 +6,9 @@ Date::Date(unsigned int year, unsigned int month, unsigned int day) {
         this->month = month;
         this->day = day;
         if (!isValid())
-            throw InvalidDate("Not Valid Date");
+            throw invalidDate("Not Valid Date");
     }
-    catch (InvalidDate& e) {
+    catch (invalidDate& e) {
         std::cerr <<"error in constructor -> " << e.what() << std::endl;
         // throw;
     }
@@ -24,9 +24,9 @@ Date::Date(std::string yearMonthDay) {
 
         ss >> this->year >> temp >> this->month >> temp >> this->day;
         if (!isValid())
-            throw InvalidDate("Not Valid Date");
+            throw invalidDate("Not Valid Date");
     }
-    catch (InvalidDate& e)
+    catch (invalidDate& e)
     {
         std::cerr << "error in constructor -> " << e.what() << std::endl;
         // throw;
