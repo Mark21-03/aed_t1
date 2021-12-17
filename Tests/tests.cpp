@@ -532,7 +532,7 @@ for(int i = 0; i < 1000; i++) {
 /*
 TEST(Creator_test, CreationFlights) {
 srand(time(nullptr));
-std::ofstream ofsF("../Files/Flights/flights.txt");
+std::ofstream ofsF("../Files/flights.txt");
 
 
 
