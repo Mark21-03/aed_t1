@@ -507,6 +507,7 @@ void Menu::mainMenu() {
         cout << "  2)  Read" << endl;
         cout << "  3)  Update" << endl;
         cout << "  4)  Delete" << endl;
+        cout << "  5)  Others" << endl;
         cout << "  0)  Exit" << endl;
         cout << "================" << endl;
         cout << " > ";
@@ -539,6 +540,9 @@ void Menu::mainMenu() {
                 case '4'://DELETE
                     subMenu("   DELETE MENU",   deleteFuncs);
                     break;
+                case '5'://OTHERS
+                    othersSubMenu();
+                    break;
                 default:
                     in::giveMenuInputError(inputError);
                     break;
@@ -552,6 +556,110 @@ void Menu::mainMenu() {
             continue;
         }
     }
+}
+
+
+void Menu::othersFunc1() {
+    cout<<"\nOTHER FUNC 1\n";
+    getchar();
+}
+
+void Menu::othersFunc2() {
+    cout<<"\nOTHER FUNC 2\n";
+    getchar();
+}
+
+void Menu::othersFunc3() {
+    cout<<"\nOTHER FUNC 3\n";
+    getchar();
+}
+
+void Menu::othersFunc4() {
+    cout<<"\nOTHER FUNC 4\n";
+    getchar();
+}
+
+void Menu::othersFunc5() {
+    cout<<"\nOTHER FUNC 5\n";
+    getchar();
+}
+
+
+void Menu::othersSubMenu() {
+
+    char userInput;
+    string inputError;
+
+
+    while (true) {
+        int ignoreVar = system(CLEAR);
+
+        if (!inputError.empty())
+            cout << inputError;
+        inputError = "";
+
+        //Start of MENU
+
+        cout << "================="<< endl;
+        cout << "   OTHERS MENU" << endl;
+        cout << "=================" << endl;
+        cout << "  1)  X" << endl;
+        cout << "  2)  X" << endl;
+        cout << "  3)  X" << endl;
+        cout << "  4)  X" << endl;
+        cout << "  6)  Go Back" << endl;
+        cout << "  0)  Exit" << endl;
+        cout << "================" << endl;
+        cout << " > ";
+        //End of MENU
+
+        if ((cin >> userInput)) {
+            //raises error if more than 1 char is written by user
+            if (!in::emptyStream(std::cin)) {
+                in::giveMenuInputError(inputError);
+                continue;
+            }
+
+            //START OF MENU SELECTION
+            switch (userInput) {
+                case '0'://EXIT
+                    cout << "End of program.\n";
+                    manager.~Manager();
+                    getchar();
+                    exit(1);
+
+                case '1':
+                    othersFunc1();
+                    break;
+                case '2':
+                    othersFunc2();
+                    break;
+                case '3':
+                    othersFunc3();
+                    break;
+                case '4':
+                    othersFunc4();
+                    break;
+                case '5':
+                    othersFunc5();
+                    break;
+                case '6'://Go Back
+                    goto END_MENU;
+                default:
+                    in::giveMenuInputError(inputError);
+                    break;
+            }
+            //END OF MENU SELECTION
+            continue;
+        } else {
+            in::dealError(inputError);
+            continue;
+        }
+
+        END_MENU:
+        break;
+    }
+
 }
 
 

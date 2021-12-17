@@ -55,12 +55,21 @@ class Menu {
     void funcUpdateTicket();
     int askChangeId();
 
+    void othersFunc1();
+    void othersFunc2();
+    void othersFunc3();
+    void othersFunc4();
+    void othersFunc5();
+
+
 
     void subMenu(const string &menuTitle, vector<void (Menu::*)()> funcs);
 
     //TODO all read funcs must call this menu first to choose which values to be displayed and if sorted etc.
     //TODO Read Funcs must give this menu their on display functions because each class must be displayed differently
     void readSubMenu(string menuTitle,vector<void (Menu::*)()> funcs);
+
+    void othersSubMenu();
 
 
 public:
