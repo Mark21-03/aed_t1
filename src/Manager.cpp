@@ -118,7 +118,6 @@ bool Manager::confirmationPrompt(){
 
 Manager::~Manager() {
 
-    //Guardar as alterações nos ficheiros
     std::ofstream ofsPlanes(planesPath);
     std::ofstream ofsPassengers(passengersPath);
     std::ofstream ofsFlights(flightsPath);
@@ -182,7 +181,7 @@ void Manager::searchUpdateFlights(int SearchedID) {
         std::string origin,destiny;
 
         cout<<"Departure Date (YYYY/MM/DD): ";cin>>deparDate;
-        cout<<"Deaprture Time (HH:MM:SS): ";cin>>deparTime;
+        cout<<"Departure Time (HH:MM:SS): ";cin>>deparTime;
         cout<<"Duration (float): ";cin>>duration;
         cout<<"Origin (string): "; cin.ignore();getline(cin,origin);
         cout<<"Destiny (string): "; getline(cin,destiny);

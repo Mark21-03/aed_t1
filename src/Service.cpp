@@ -50,11 +50,11 @@ std::string Service::getInfo() const {
     ostringstream os;
     switch (type) {
         case maintenance:
-            os << "Maintenance by " << getEmployer() << " on "<< date.getDate() << " and plane with plate" << plane;break;
+            os <<getType()<<setw(30)<< getEmployer() << "\t"<< date.getDate() << "\t" << plane;break;
         case cleaning:
-            os << "Cleaning by " <<getEmployer() << " on "<<date.getDate() << " and plane with plate" << plane;break;
+            os <<getType()<<setw(30)<< getEmployer() << "\t"<<date.getDate() << "\t" << plane;break;
         case other:
-            os << "Other services by " << getEmployer() << " on "<<date.getDate() << " and plane with plate" << plane;break;
+            os <<getType()<<setw(30)<< getEmployer() << "\t"<<date.getDate() << "\t" << plane;break;
 
     }
     return os.str();

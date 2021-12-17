@@ -12,7 +12,27 @@ void ServiceManagement::addDoneServices(Service service) {
 }
 
 void ServiceManagement::addToDoService(Service service) {
-    toDoServices.push(service);
+
+    queue<Service> aux = toDoServices;
+    queue<Service> q;
+
+    bool inserted = false;
+
+    while(!aux.empty()){
+        Service temp = aux.front();
+
+        if(!inserted && (temp.getDate()>=service.getDate())){
+            q.push(service);
+            inserted = true;
+        }else{
+            q.push(temp);
+            aux.pop();
+        }
+
+    }
+
+    toDoServices = q;
+
 }
 
 
@@ -76,7 +96,7 @@ void ServiceManagement::showToDoServicesFromRange(ostream &ostream1, const Date 
 
 ServiceManagement::~ServiceManagement() {
 
-    /*std::ofstream ofs(path);
+    std::ofstream ofs(path);
 
     ofs << toDoServices.size() <<'\n';
     while (!toDoServices.empty()) {
@@ -89,7 +109,7 @@ ServiceManagement::~ServiceManagement() {
         doneServices.pop_front();
     }
 
-    ofs.close();*/
+    ofs.close();
 }
 
 

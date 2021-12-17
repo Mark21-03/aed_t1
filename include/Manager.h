@@ -27,6 +27,8 @@ private:
     std::vector<Passenger> passengers;
     std::vector<Flight> flights;
 
+    BST<Transport> transportsTree;
+
     void setPaths();
     void readFlights();
     void readPlanes();
@@ -36,14 +38,14 @@ private:
 
 
 public:
-    BST<Transport> transportsTree; //TODO temporarly made public for testing
     Manager();
     ~Manager();
     explicit Manager(const std::string&dirs){
         this->filesDir = dirs;
     }
 
-    inline ServiceManagement& getServiceManager(){return serviceManager;}
+
+    inline ServiceManagement* getServiceManager(){return &serviceManager;}
 
 
 

@@ -20,7 +20,7 @@
 
 class Menu {
     Manager manager;
-    ServiceManagement  serviceManager = manager.getServiceManager();
+    ServiceManagement  *serviceManager = manager.getServiceManager();
 
     bool menuOperationConfirm();
 

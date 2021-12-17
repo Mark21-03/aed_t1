@@ -76,27 +76,29 @@ void Menu::funcCreateFlight() {
 
 
 void Menu::funcCreateService() {
-    //TODO
-    cout << "\n!funcCreateService!\n";
-    getchar();
+    char newType;
+    Date newDate;
+    string newEmployeeName,newPlate;
+
+    cout<<"\nNew Service's Type (M / C / O): ";cin>>newType;
+    cout<<"New Service's Date (YYYY/MM/DD): ";cin>>newDate;
+    cout<<"New Service's Employee Name (string): "; cin.ignore();getline(cin,newEmployeeName);
+    cout<<"New Service's Plane Plate (string): ";getline(cin,newPlate);
+
+
+    if (menuOperationConfirm()) {
+        serviceManager->addToDoService(Service(newType,newDate, newEmployeeName, newPlate));
+
+        cout << "\nService added!\n";
+    }
+    getchar();getchar();
 }
 
 void Menu::funcCreateTicket() {
-    /*
-    //TODO temporarily made this a transport tester
+    //TODO
     cout << "\n!funcCreateTicket!\n";
     getchar();
-     */
-    cout<<endl<<"This function is temporarily holding a Transport add/viewer to BST"<<endl;
-    Transport t;
-    cout<<"\nTRANSPORT = ";cin>>t; // char float
-    manager.transportsTree.insert(t);
 
-    cout<<endl;
-    manager.transportsTree.printTree();
-    cout<<endl;
-
-    getchar();getchar();
 }
 
 
@@ -266,6 +268,7 @@ void Menu::funcReadFlight() {
 }
 
 void Menu::funcReadService() {
+    /*
     Date min, max;
     std::string option;
     out::askOnce<std::string>(cout,cin, option, "Option(d->Done, t->toDo)");
@@ -280,6 +283,11 @@ void Menu::funcReadService() {
         std::cout << "Not a valid Option";
     }
     getchar();getchar();
+     */
+
+    manager.showToDoServices(cout, Date(0,1,1), Date(5000,1,1));
+
+    getchar();
 
 }
 
@@ -298,7 +306,7 @@ void Menu::subMenu(const string &menuTitle, vector<void (Menu::*)()> funcs) {
 
 
     while (true) {
-        system(CLEAR);
+        int ignoreVar = system(CLEAR);
 
         if (!inputError.empty())
             cout << inputError;
@@ -383,7 +391,7 @@ void Menu::readSubMenu(string menuTitle,vector<void (Menu::*)()> funcs){
 
 
     while (true) {
-        system(CLEAR);
+        int ignoreVar = system(CLEAR);
 
         if (!inputError.empty())
             cout << inputError;
@@ -467,7 +475,7 @@ void Menu::mainMenu() {
     string inputError;
 
     while (true) {
-        system(CLEAR);
+        int ignoreVar = system(CLEAR);
 
         if (!inputError.empty())
             cout << inputError;
