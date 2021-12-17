@@ -80,7 +80,6 @@ public:
 };
 
 
-//TODO esta é a main class deste ficheiro, mas como se vai implementar com o restante codigo?
 class BaggageCheckIn{
 private:
     queue<Baggage> conveyorBelt;
@@ -95,6 +94,7 @@ public:
     Baggage queueRemove();
     inline Baggage queueBack(){return conveyorBelt.back();}
     inline Baggage queueFront(){return conveyorBelt.front();}
+    inline bool queueEmpty(){return conveyorBelt.empty();}
 
     inline void setQueue(queue<Baggage> bq){this->conveyorBelt = bq;}
     inline queue<Baggage> getQueue(){return this->conveyorBelt;}
@@ -103,6 +103,7 @@ public:
     bool passNextBagaggeToTruck();
 
     void truckAddBaggage(const Baggage& baggage);
+    inline bool isTruckFull(){return truck.isFull();}
     Baggage truckTakeBaggage();
     inline BaggageTruck getTruck(){return truck;}
 

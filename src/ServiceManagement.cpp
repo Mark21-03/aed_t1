@@ -23,17 +23,19 @@ void ServiceManagement::DoneLatestService() {
 }
 
 ServiceManagement::ServiceManagement(const string &path) {
+    FilePath = path;
+
     std::ifstream ifs(path);
 
     Service service;
     int n; ifs >> n;
-    for (int i = 0; i < n; ++i) { // the Todo
+    for (int i = 0; i < n; ++i) { // scheduled services
         ifs >> service;
         toDoServices.push(service);
     }
 
     ifs >> n;
-    for (int i = 0; i < n; ++i) { // the Done
+    for (int i = 0; i < n; ++i) { // the already done services
         ifs >> service;
         doneServices.push_back(service);
     }
@@ -54,9 +56,20 @@ void ServiceManagement::showDoneServicesFromRange(ostream &ostream1, const Date 
 
 ServiceManagement::~ServiceManagement() {
 
-    //TODO Custom destructor to store files
+    std::ofstream ofs(FilePath);
 
+    // scheduled services
+    ofs << toDoServices.size()<<endl;
+    while (!toDoServices.empty()) {
+        ofs << toDoServices.front();
+        toDoServices.pop();
+    }
 
+    // the already done services
+    ofs << doneServices.size()<<endl;
+    for (auto it = doneServices.begin();it!=doneServices.end();it++) {
+        ofs << *it;
+    }
 
 }
 

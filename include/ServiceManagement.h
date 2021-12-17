@@ -11,9 +11,10 @@ class ServiceManagement{
 private:
     list<Service> doneServices;
     queue<Service> toDoServices;
+    string FilePath;
 public:
 
-    ServiceManagement(const std::string& path);
+    explicit ServiceManagement(const std::string& path);
 
     ServiceManagement() = default;
     ~ServiceManagement();

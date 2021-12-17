@@ -17,27 +17,22 @@
 
 class Manager {
 private:
+
     string filesDir = "../include/filesPaths.txt";
-
     string flights_path, planes_path,passengers_path, service_path, transports_path;
-    void setPaths();
 
+    ServiceManagement serviceManager;
+    std::vector<Plane> planes;
+    std::vector<Passenger> passengers;
+    std::vector<Flight> flights;
+
+    void setPaths();
     void readFlights();
     void readPlanes();
     void readPassengers();
     void readServices();
     void readTransports();
 
-
-
-
-    ServiceManagement serviceManager;
-
-
-
-    std::vector<Plane> planes;
-    std::vector<Passenger> passengers;
-    std::vector<Flight> flights;
 
 public:
     BST<Transport> transportsTree; //TODO temporarly made public for testing
@@ -47,7 +42,9 @@ public:
         this->filesDir = dirs;
     }
 
-    bool addFlightToPlanePlan(Flight& flight); // success or not
+    inline ServiceManagement& getServiceManager(){return serviceManager;}
+
+    bool addFlightToPlanePlan(Flight& flight); // success or not // TODO LATER
 
     void showSortedPassengersByID(ostream& ostream1, unsigned int min = 0, unsigned int max = INT_MAX);
     void showSortedFlightsByID(ostream& ostream1, flightNumber min = 0, flightNumber max = INT_MAX);

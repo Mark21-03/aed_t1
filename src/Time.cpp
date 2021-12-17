@@ -15,16 +15,30 @@ Time& Time :: setTime(unsigned hour, unsigned minute, unsigned second){
 }
 
 Time& Time::setHour(unsigned hour){
+    if(hour > 23 || hour<0)
+        this->hour = hour;
+    else
+        this->hour = 0;
 
-    this->hour = hour;return *this;
+    return *this;
+
 }
 
 Time& Time::setMinute(unsigned minute){
+    if (minute>59 || minute<0)
+        this->minute = 0;
+    else
+        this->minute = minute;
 
-    this->minute = minute;return *this;
+    return *this;
 }
 Time& Time::setSecond(unsigned second){
-    this->second = second;return *this;
+    if(second>59 || second<0)
+        this->second = 0;
+    else
+        this->second = second;
+
+    return *this;
 }
 
 Time& Time::setRandomTime() {
@@ -36,10 +50,7 @@ Time& Time::setRandomTime() {
     return *this;
 }
 
-
-//getters
-
-const std::string Time::getTime() const {
+std::string Time::getTime() const {
     std::ostringstream ost; ost << *this; return ost.str();
 }
 

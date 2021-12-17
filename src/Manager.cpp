@@ -139,7 +139,6 @@ Manager::~Manager(){
     for(auto it= transportsTree.begin();it!=transportsTree.end();it++)
         ofsTransports << (*it).getType()<<" "<<(*it).getDistance()<<endl;
 
-    //serviceManager.~ServiceManagement(); //TODO este desconstrutor causa a exceçao e e preciso implementar?
 
 }
 

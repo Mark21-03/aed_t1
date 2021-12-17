@@ -2,10 +2,10 @@
 #define DateException_H
 
 #include <iostream>
+
 using namespace std;
 
-class InvalidDate // THIS SHOULD INERT FROM EXCEPTION CLASS : TODO
-{
+class InvalidDate{
 public:
     InvalidDate(std::string reason) :reason(reason) {};
     const std::string& what()const {
