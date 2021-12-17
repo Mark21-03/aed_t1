@@ -25,6 +25,8 @@ public:
     queue<Service> getToDoServices() const;
     void addDoneServices(Service service);
     void addToDoService(Service service);
+    void changeTodoServicePriority(const Service& service, const Date& newDate);
+    bool deleteTodoService(const Service &service);
     void DoneLatestService();
     void showDoneServicesFromRange(ostream &ostream1, const Date &min, const Date &max) const;
     void showToDoServicesFromRange(ostream &ostream1, const Date &min, const Date &max) const;

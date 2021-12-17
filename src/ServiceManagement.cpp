@@ -113,6 +113,62 @@ ServiceManagement::~ServiceManagement() {
 }
 
 
+bool ServiceManagement::deleteTodoService(const Service &service) {
+
+    bool found = false;
+    queue<Service> auxQ = toDoServices;
+    queue<Service> qDeleted;
+
+    while(!auxQ.empty()){
+        Service temp = auxQ.front();
+
+        if(temp != service)
+            qDeleted.push(temp);
+        else
+            found = true;
+
+        auxQ.pop();
+    }
+
+    toDoServices = qDeleted;
+
+    return found;
+}
+
+void ServiceManagement::changeTodoServicePriority(const Service &service, const Date &newDate) {
+
+    //Remove Service to be updated
+    deleteTodoService(service);
+
+    //Now add the correct order
+    queue<Service> aux = toDoServices;
+    queue<Service> q;
+
+    Service newService = service;
+    newService.setDate(newDate);
+
+    bool inserted = false;
+
+    while(!aux.empty()){
+        Service temp = aux.front();
+
+        if(!inserted && (temp.getDate()>=service.getDate())){
+
+            q.push(newService);
+            inserted = true;
+        }else{
+            q.push(temp);
+            aux.pop();
+        }
+
+    }
+
+    toDoServices = q;
+
+
+}
+
+
 
 
 
