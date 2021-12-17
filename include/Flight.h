@@ -17,7 +17,7 @@ private:
     flightNumber number;
     Date departureDate; // TODO: THE DATE CLASS DOES NOT HAVE HOURS AND MINUTES, consider creating a time class to this and then a attribute should tell the time
     Time departureTime;
-    // TODO: OCCUPATION OF THE FLIGHT
+    int occupation;
     float duration;
     char origin[STRING_MAX_VALUE]{},destiny[STRING_MAX_VALUE]{};
     // maybe add a mile counter
@@ -34,6 +34,7 @@ public:
     Flight& setDuration(float duration);
     Flight& setOrigin(const std::string& origin);
     Flight& setDestiny(const std::string& destiny);
+    Flight& setOccupation (int occupation);
 
     //Getters
     flightNumber getNumber() const;
@@ -44,6 +45,7 @@ public:
     std::string getDestiny() const;
     char* getOriginC() ;
     char* getDestinyC();
+    int getOccupation() const;
 
 
     // TODO: DO A CHECK IN FUNCTION WHICH WILL TAKE A PASSENGER - NOT HERE THOUGH
