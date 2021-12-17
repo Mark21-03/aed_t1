@@ -87,6 +87,7 @@ void Menu::funcCreateTicket() {
     cout << "\n!funcCreateTicket!\n";
     getchar();
      */
+    cout<<endl<<"This function is temporarly holding a Transport add/viewer to BST"<<endl;
     Transport t;
     cout<<"\nTRANSPORT = ";cin>>t; // char float
     manager.transportsTree.insert(t);

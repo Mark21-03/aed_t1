@@ -6,7 +6,7 @@ using namespace std;
 
 class Timetable{
 private:
-    vector<Time>timetable;
+    vector<Time>timetable; // No timetable is made because we don't have the data
 public:
     inline vector<Time> getTimeTable(){return timetable;} 
     inline void setTimeTable(vector<Time>timetable){this->timetable = timetable;}
@@ -54,7 +54,6 @@ inline ostream& operator<<(ostream& os, Transport &t){
 inline istream& operator>>(istream& is, Transport &t){
     char type;float distance;
     is>>type>>distance;
-    cout<<endl<<"DISTANCE = "<<distance<<endl;
     t.setDistance(distance);
     t.setType(type);
     return is;
