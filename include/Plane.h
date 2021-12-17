@@ -24,7 +24,7 @@ private:
     int capacity;
     std::list<flightNumber> flightPlan;
 public:
-
+    friend class ComparePlaneByType;
 
     Plane() = default ;
     Plane(const planePlate& numberPlate ,const std::string& pType, int capacity);
@@ -92,5 +92,11 @@ inline bool operator!=(const Plane &p1, const Plane &p2){
     return p1.getNumberPlate() != p2.getNumberPlate();
 }
 
+class ComparePlaneByType {
+public:
+    bool operator()(const Plane& l , const Plane & r) {
+        return l.pType == r.pType;
+    }
+};
 
 #endif //PLANE_H

@@ -56,7 +56,8 @@ public:
     bool addFlightToPlanePlan(Flight& flight); // success or not // TODO LATER
 
 
-    void showSortedPlanes(ostream& ostream1, const planePlate& min,const planePlate& max);
+    void showSortedPlanesById(ostream& ostream1, const planePlate& min, const planePlate& max);
+    void showSortedPlanesOfType(ostream& ostream1, const std::string & min);
 
     void showDoneServices(ostream& ostream1, const Date& min, const Date& max);
     void showToDoServices(ostream& ostream1, const Date& min, const Date& max);

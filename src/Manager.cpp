@@ -48,7 +48,7 @@ void Manager::showSortedFlightsById(ostream &ostream1, flightNumber min , flight
 }
 
 
-void Manager::showSortedPlanes(ostream &ostream1,const planePlate& min,const planePlate& max) {
+void Manager::showSortedPlanesById(ostream &ostream1, const planePlate& min, const planePlate& max) {
 
     out::headerPlanes(ostream1);
     auto it = lower_bound(planes.begin(), planes.end(), Plane(min,"",0));
@@ -56,6 +56,16 @@ void Manager::showSortedPlanes(ostream &ostream1,const planePlate& min,const pla
     for (;it!=planes.end();it++) {
         if (it->getNumberPlate() > max) break;
         out::planes(ostream1,it);
+    }
+}
+
+void Manager::showSortedPlanesOfType(ostream &ostream1, const std::string & min) {
+    out::headerPlanes(ostream1);
+    auto it = planes.begin();
+
+    for (;it!=planes.end();it++) {
+        if (it->getType() == min)
+          out::planes(ostream1,it);
     }
 }
 
@@ -212,7 +222,7 @@ void Manager::searchUpdatePlanes(const string& searchedPlate){
 
     if(it!=planes.end()){
         string newType, newCapacity;
-        showSortedPlanes(cout,searchedPlate, searchedPlate);
+        showSortedPlanesById(cout, searchedPlate, searchedPlate);
         cout<<"\nProvided the new values below:";
         cout<<"\nType: ";cin.ignore();getline(cin,newType);
         cout<<"\nCapacity: ";getline(cin,newCapacity);
@@ -265,11 +275,7 @@ void Manager::createFlight( const Date &departureDate, const Time &departureTime
     Flight f(newID,departureDate,departureTime,duration,origin,destiny);
 
     flights.push_back(f);
-
 }
-
-
-
 
 
 bool Manager::deletePassenger(const unsigned int &idD) {
@@ -326,7 +332,5 @@ bool Manager::searchPassengerId(ostream &ostream1, const regex& exp) {
 
     return foundMatch;
 }
-
-
 
 

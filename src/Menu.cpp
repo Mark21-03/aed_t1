@@ -168,7 +168,7 @@ void Menu::funcDeletePlane() {
     cout<<"\nNumberPlate to be deleted: ";getline(cin,id2Delete);
 
     cout<<endl;
-    manager.showSortedPlanes(cout, id2Delete, id2Delete);
+    manager.showSortedPlanesById(cout, id2Delete, id2Delete);
 
     if(menuOperationConfirm()){
         bool deleted = manager.deletePlane(id2Delete);
@@ -268,17 +268,28 @@ void Menu::funcReadPassenger() {
         cout << SEPARATION << std::endl;
         if(!foundMatch) cout<<"X\tNo match was found!\n";
         getchar();
-
     }
-
 }
 
 void Menu::funcReadPlane() {
-    planePlate min, max;
-    out::askInterval<planePlate>(cout, cin, min, max, "Plate Number");
-    cout<<endl;
-    manager.showSortedPlanes(cout, min, max);
-    getchar();getchar();
+    std::string option;
+    out::askOnce<std::string>(cout,cin, option, "Option(p->Plate Number, t->Plane type)");
+
+    if (option == "p") {
+        planePlate min, max;
+        out::askInterval<planePlate>(cout, cin, min, max, "Plate Number");
+        cout << endl;
+        manager.showSortedPlanesById(cout, min, max);
+        getchar();
+        getchar();
+    }else if (option == "t") {
+        std::string min;
+        out::askOnce<std::string>(cout, cin, min, "Plate Type");
+        cout << endl;
+        manager.showSortedPlanesOfType(cout, min);
+        getchar();
+        getchar();
+    }
 }
 
 void Menu::funcReadFlight() {
