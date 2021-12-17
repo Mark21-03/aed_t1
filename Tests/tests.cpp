@@ -105,9 +105,9 @@ TEST(test_flights, inoutOperator) {
     std::ofstream ofsF("../Files/Flights/flights.txt", ios::app);
 
 
-   ASSERT_EQ(v[0].getOrigin(), "Beirut Rafic Hariri International Airport");
-   ASSERT_EQ(v[0].getDestiny(), "Francisco de Sá Carneiro Airport");
-   ASSERT_EQ(v[2].getDestiny() , "Budapest Ferihegy International Airport");
+   ASSERT_EQ(v[0].getOrigin(), "Cairo International Airport");
+   ASSERT_EQ(v[0].getDestiny(), "Dubai International Airport");
+   ASSERT_EQ(v[2].getDestiny() , "Beirut Rafic Hariri International Airport");
 
 
 }
@@ -227,14 +227,14 @@ TEST(Test_Time, TimeOverloading) {
 }
 
 TEST(Test_Manager, ManagerBasicMethods) {
-    Manager manager;
-    cout << "Manager:" << endl;
+    //Manager manager;
+    //cout << "Manager:" << endl;
     // manager.showSortedFlights(std::cout); // as we are using dependency injection we could have passed other ostream and verified the string
 }
 
 TEST(Test_Menu, MenuManagerBehaviour) {
-    Manager manager;
-    Menu menu(manager);
+    //manager manager;
+    //Menu menu(manager);
 
 
     // menu.mainMenu();
