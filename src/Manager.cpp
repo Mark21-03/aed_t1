@@ -118,8 +118,6 @@ bool Manager::confirmationPrompt(){
 
 Manager::~Manager() {
 
-    serviceManager.~ServiceManagement();
-
     //Guardar as alterações nos ficheiros
     std::ofstream ofsPlanes(planesPath);
     std::ofstream ofsPassengers(passengersPath);
@@ -137,7 +135,6 @@ Manager::~Manager() {
     ofsPlanes.close();
     ofsFlights.close();
     ofsPassengers.close();
-
 
 }
 

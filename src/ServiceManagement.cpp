@@ -75,7 +75,8 @@ void ServiceManagement::showToDoServicesFromRange(ostream &ostream1, const Date 
 
 
 ServiceManagement::~ServiceManagement() {
-    std::ofstream ofs(path);
+
+    /*std::ofstream ofs(path);
 
     ofs << toDoServices.size() <<'\n';
     while (!toDoServices.empty()) {
@@ -88,7 +89,7 @@ ServiceManagement::~ServiceManagement() {
         doneServices.pop_front();
     }
 
-    ofs.close();
+    ofs.close();*/
 }
 
 
