@@ -131,8 +131,12 @@ void Menu::funcUpdateFlight() {
     getchar();getchar();
 }
 
-void Menu::funcUpdateService(){}
-void Menu::funcUpdateTicket(){}
+void Menu::funcUpdateService(){
+    //TODO
+}
+void Menu::funcUpdateTicket(){
+    //TODO
+}
 
 int Menu::askChangeId(){
     unsigned id;
@@ -205,7 +209,7 @@ void Menu::funcDeleteService() {
     Date newDate;
     string newEmployeeName,newPlate;
 
-    cout<<"\nService's Type (M / C / O): ";cin>>newType;
+    cout<<"\nService's Type (m / c / o): ";cin>>newType;
     cout<<"Service's Date (YYYY/MM/DD): ";cin>>newDate;
     cout<<"Service's Employee Name (string): "; cin.ignore();getline(cin,newEmployeeName);
     cout<<"Service's Plane Plate (string): ";getline(cin,newPlate);
@@ -223,8 +227,9 @@ void Menu::funcDeleteService() {
             if(deleted)
                 cout<<"Deleted!\n";
             else
-                cout<<"Value not found!\n";
-        }
+                cout<<"Value not Found!\n";
+
+        }getchar();
     }else
         cout<<"Value not found!\n";
 
@@ -559,8 +564,8 @@ void Menu::mainMenu() {
 }
 
 
-void Menu::othersFunc1() {
-    cout<<"\nOTHER FUNC 1\n";
+void Menu::showNearbyTransports() {
+    cout<<"\nshowNearbyTransports\n";
     getchar();
 }
 
@@ -600,16 +605,16 @@ void Menu::othersSubMenu() {
 
         //Start of MENU
 
-        cout << "================="<< endl;
-        cout << "   OTHERS MENU" << endl;
-        cout << "=================" << endl;
-        cout << "  1)  X" << endl;
+        cout << "==============================="<< endl;
+        cout << "          OTHERS MENU" << endl;
+        cout << "===============================" << endl;
+        cout << "  1)  Show Nearby Transports" << endl;
         cout << "  2)  X" << endl;
         cout << "  3)  X" << endl;
         cout << "  4)  X" << endl;
         cout << "  6)  Go Back" << endl;
         cout << "  0)  Exit" << endl;
-        cout << "================" << endl;
+        cout << "===============================" << endl;
         cout << " > ";
         //End of MENU
 
@@ -629,7 +634,7 @@ void Menu::othersSubMenu() {
                     exit(1);
 
                 case '1':
-                    othersFunc1();
+                    showNearbyTransports();
                     break;
                 case '2':
                     othersFunc2();
