@@ -57,7 +57,7 @@ class Menu {
 
     void showNearbyTransports();
     void addNewTransport();
-    void othersFunc3();
+    void removeNearbyTransport();
     void othersFunc4();
     void othersFunc5();
 

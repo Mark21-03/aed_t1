@@ -590,15 +590,37 @@ void Menu::addNewTransport() {
     cout<<"New Transport Distance (float): ";cin>>d;
 
     Transport t(c,d);
-    manager.getTransportTree()->insert(t);
 
-    cout<<"Added new Transport!\n";
+    if(menuOperationConfirm()){
+        manager.getTransportTree()->insert(t);
+        cout<<"Added new Transport!\n";
+    }
+
     getchar(); getchar();
 }
 
-void Menu::othersFunc3() {
-    cout<<"\nOTHER FUNC 3\n";
-    getchar();
+void Menu::removeNearbyTransport() {
+
+    char c;float d;
+    cout<<"\nNew Transport Type (T, S, B): ";cin>>c;
+    cout<<"New Transport Distance (float): ";cin>>d;
+
+    Transport t(c,d);
+    Transport notF;
+
+    Transport Tfound = manager.getTransportTree()->find(t);
+
+    bool found = !(Tfound == notF);
+
+    if(found){
+        if(menuOperationConfirm()){
+            manager.getTransportTree()->remove(t);
+            cout<<"Deleted!\n";
+        }
+    }else cout<<"Value not found!\n";
+
+    getchar(); getchar();
+
 }
 
 void Menu::othersFunc4() {
@@ -632,7 +654,7 @@ void Menu::othersSubMenu() {
         cout << "===============================" << endl;
         cout << "  1)  Show Nearby Transports" << endl;
         cout << "  2)  Add Nearby Transport" << endl;
-        cout << "  3)  X" << endl;
+        cout << "  3)  Remove Nearby Transport" << endl;
         cout << "  4)  X" << endl;
         cout << "  6)  Go Back" << endl;
         cout << "  0)  Exit" << endl;
@@ -662,7 +684,7 @@ void Menu::othersSubMenu() {
                     addNewTransport();
                     break;
                 case '3':
-                    othersFunc3();
+                    removeNearbyTransport();
                     break;
                 case '4':
                     othersFunc4();
