@@ -14,8 +14,9 @@ Time& Time :: setTime(unsigned hour, unsigned minute, unsigned second){
     return *this;
 }
 
+#include <iostream>
 Time& Time::setHour(unsigned hour){
-    if(hour > 23 || hour<0)
+    if(hour < 23 || hour>0)
         this->hour = hour;
     else
         this->hour = 0;

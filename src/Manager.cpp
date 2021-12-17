@@ -101,6 +101,19 @@ void Manager::showDoneServices(ostream &ostream1, const Date &min, const Date &m
     serviceManager.showDoneServicesFromRange(ostream1, min, max);
 }
 
+bool Manager::confirmationPrompt(){
+    char confirm;
+
+    cout<<"\nConfirm? (Y/N): ";cin>>confirm;
+
+    if(confirm == 'Y' || confirm == 'y')
+        return true;
+    else
+        cout<<"Canceled. Press any key to continue... \n";
+
+    return false;
+
+}
 
 
 Manager::~Manager() {
@@ -129,88 +142,100 @@ Manager::~Manager() {
 }
 
 
-void Manager::searchPassengers(int id) {
+void Manager::searchUdatePassengers(int SearchedID) {
 
-    string name1;
-    bool changed = false;
-    for (auto it = passengers.begin(); it != passengers.end(); it++) {
-        if ((*it).getID() == id) {
-            std::cout << "Valid id."<<endl;
-            cout << "(Old name: "<<(*it).getName()<<")       New name:";
-            cin.ignore();
-            getline(std::cin, name1);
-            (*it).setName(name1);
-            changed=true;
-            break;
+    auto finder = [=](const Passenger &p){
+        return p.getID() == SearchedID;
+    };
+
+    auto it = find_if(passengers.begin(),passengers.end(),finder);
+
+    if(it!=passengers.end()){
+        string newName;
+        showSortedPassengersByID(cout,SearchedID, SearchedID);
+        cout<<"\nProvided the new values below:\n";
+        cout<<"\nName: ";cin.ignore();getline(cin,newName);
+
+
+        cout<<endl;
+        if(confirmationPrompt()){
+            it->setName(newName);
+            cout<<"\nChanges have been saved!\n";
         }
     }
-    if (!changed) cout<<"Invalid id!"<<endl;
+    else
+        cout<<"The given ID doesn't match any passenger.";
 }
 
-void Manager::searchFlights(int id) {
-    //enum attributePas {
-    //  name,
-    //};
-    Date deparDate;
-    Time deparTime;
-    float duration;
-    int occupation;
-    std::string origin;
-    std::string destiny;
+void Manager::searchUpdateFlights(int SearchedID) {
 
-    bool changed = false;
-    for (auto it = flights.begin(); it != flights.end(); it++) {
-        if ((*it).getNumber() == id) {
-            std::cout << "Valid id." << endl;
-            cout << "(Old departure date: " << (*it).getDepartureDate() << ")       New:";
-            cin >> deparDate;
-            (*it).setDepartureDate(deparDate);
-            cout << "(Old departure time: " << (*it).getDepartureTime() << ")       New:";
-            cin >> deparTime;
-            (*it).setDepartureTime(deparTime);
-            cout << "(Old duration: " << (*it).getDuration() << ")       New:";
-            cin >> duration;
-            (*it).setDuration(duration);
-            cout<<"(Old occupation: "<<(*it).getOccupation()<<")       New:";
-            cin>>occupation;
-            (*it).setOccupation(occupation);
-            cin.ignore();
-            cout << "(Old origin: " << (*it).getOrigin() << ")       New:";
-            getline(cin, origin);
-            (*it).setOrigin(origin);
-            cout << "(Old destiny: " << (*it).getDestiny() << ")       New:";
-            getline(cin, destiny);
-            (*it).setDestiny(destiny);
-            changed=true;
+    auto finder = [=](const Flight &f){return SearchedID == f.getNumber();};
+
+    auto it = find_if(flights.begin(),flights.end(),finder);
+
+
+    if(it!=flights.end()){
+        showSortedFlightsByID(cout,SearchedID,SearchedID);
+        cout<<"\nProvided the new values below:\n";
+
+        Date deparDate;
+        Time deparTime;
+        float duration;
+        int occupation;
+        std::string origin,destiny;
+
+        cout<<"Departure Date (YYYY/MM/DD): ";cin>>deparDate;
+        cout<<"Deaprture Time (HH:MM:SS): ";cin>>deparTime;
+        cout<<"Duration (float): ";cin>>duration;
+        cout<<"Origin (string): "; cin.ignore();getline(cin,origin);
+        cout<<"Destiny (string): "; getline(cin,destiny);
+
+        if(confirmationPrompt()){
+            it->setDepartureDate(deparDate);
+            it->setDepartureTime(deparTime);
+            it->setDuration(duration);
+            it->setOrigin(origin);
+            it->setDestiny(destiny);
+
+            cout<<"\nChanges have been saved!\n";
+        }
+
+    }else
+        cout<<"The given ID doesn't match any flight.";
+
+
+}
+
+void Manager::searchUpdatePlanes(const string& searchedPlate){
+
+    auto finder = [=](const Plane &p){
+        return p.getNumberPlate() == searchedPlate;
+    };
+
+    auto it = find_if(planes.begin(),planes.end(),finder);
+
+    if(it!=planes.end()){
+        string newType, newCapacity;
+        showSortedPlanes(cout,searchedPlate, searchedPlate);
+        cout<<"\nProvided the new values below:";
+        cout<<"\nType: ";cin.ignore();getline(cin,newType);
+        cout<<"\nCapacity: ";getline(cin,newCapacity);
+
+        cout<<endl;
+        if(confirmationPrompt()){
+            it->setType(newType);
+            it->setCapacity(stoi(newCapacity));
+            cout<<"\nChanges have been saved!\n";
         }
     }
-    if (!changed) cout<<"Invalid id!"<<endl;
-}
+    else{
 
-void Manager::searchPlanes(string id){
-    string numberPlate;
-    string  planetype;
-    int capacity;
-    bool changed=false;
-    for (auto it=planes.begin();it!=planes.end();it++){
-        if ((*it).getNumberPlate()==id){
-            std::cout << "Valid Plate." << endl;
-            cout << "(Old Plate's number: " << (*it).getNumberPlate() << ")       New:";
-            cin >> numberPlate;
-            (*it).setNumberPlate(numberPlate);
-            cout << "(Old Plane's type: " << (*it).getType() << ")       New:";
-            cin >> planetype;
-            (*it).setType(planetype);
-            cout << "(Old capacity: " << (*it).getCapacity() << ")       New:";
-            cin >> capacity;
-            (*it).setCapacity(capacity);
-            changed=true;
-        }
+        cout<<"\nThe given plate doesn't match any plane.\n";
     }
-    if (!changed) cout<<"Invalid Plate!"<<endl;
+
 }
 
-void Manager::searchServices(ServiceType type, Date date, employerName employer, planePlate plane){
+void Manager::searchUpdateServices(ServiceType type, Date date, employerName employer, planePlate plane){
     ServiceType type1;
     Date date1;
     employerName employer1;
@@ -293,13 +318,19 @@ void Manager::showToDoServices(ostream &ostream1, const Date &min, const Date &m
     serviceManager.showToDoServicesFromRange(ostream1, min, max);
 }
 
-void Manager::searchPassengerID(ostream &ostream1, const regex& exp) {
+bool Manager::searchPassengerID(ostream &ostream1, const regex& exp) {
     out::headerPassengers(ostream1);
 
-    for (auto& p : passengers) {
-        if(regex_match(p.getName() ,exp))
-            out::passenger(ostream1,&p);
-    }
+    bool foundMatch = false;
+
+    for (auto& p : passengers)
+        if(regex_match(p.getName() ,exp)){
+            foundMatch = true;out::passenger(ostream1,&p);
+        }
+
+    return foundMatch;
 }
+
+
 
 

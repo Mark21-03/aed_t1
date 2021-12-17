@@ -59,14 +59,14 @@ public:
     void showDoneServices(ostream& ostream1, const Date& min, const Date& max);
     void showToDoServices(ostream& ostream1, const Date& min, const Date& max);
 
-    void searchPassengers(int id);
-    void searchPassengerID(ostream &ostream1,const regex& exp);
+    void searchUdatePassengers(int id);
+    bool searchPassengerID(ostream &ostream1,const regex& exp);
 
-    void searchFlights(int id);
-    void searchPlanes(string id);
-    void searchServices(ServiceType type, Date date, employerName employer, planePlate plane);
+    void searchUpdateFlights(int id);
+    void searchUpdatePlanes(const string& id);
+    void searchUpdateServices(ServiceType type, Date date, employerName employer, planePlate plane);
 
-
+    bool confirmationPrompt();
 
 
     void createPassenger(const string &Pname);

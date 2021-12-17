@@ -53,7 +53,7 @@ class Menu {
     void funcUpdateFlight();
     void funcUpdateService();
     void funcUpdateTicket();
-    int funcUpdateAll();
+    int askChangeID();
 
 
     void subMenu(const string &menuTitle, vector<void (Menu::*)()> funcs);
