@@ -24,6 +24,8 @@ flightNumber Flight::getNumber() const{return this->number;}
 
 Date Flight::getDepartureDate() const {return this->departureDate;}
 
+int Flight::getOccupation() const {return this->occupation;}
+
 float Flight::getDuration() const {return this->duration;}
 
 std::string Flight::getOrigin() const {
@@ -76,6 +78,8 @@ Flight& Flight::setDestiny(const std::string& destiny) {
 
     return *this;
 }
+
+Flight &Flight::setOccupation(int occupation) {this->occupation=occupation; return *this;}
 
 char* Flight::getOriginC()  {
     return origin;
