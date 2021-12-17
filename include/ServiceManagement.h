@@ -28,6 +28,7 @@ public:
     void changeTodoServicePriority(const Service& service, const Date& newDate);
     bool deleteTodoService(const Service &service);
     void DoneLatestService();
+    bool findTodoService(const Service &service);
     void showDoneServicesFromRange(ostream &ostream1, const Date &min, const Date &max) const;
     void showToDoServicesFromRange(ostream &ostream1, const Date &min, const Date &max) const;
 };

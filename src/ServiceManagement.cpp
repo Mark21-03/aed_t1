@@ -168,6 +168,22 @@ void ServiceManagement::changeTodoServicePriority(const Service &service, const 
 
 }
 
+bool ServiceManagement::findTodoService(const Service &service) {
+
+    queue<Service> q = toDoServices;
+
+    while(!q.empty()){
+        cout<<q.front().getType()<<endl;
+
+        if(q.front() == service)
+            return true;
+
+            q.pop();
+    }
+
+    return false;
+}
+
 
 
 

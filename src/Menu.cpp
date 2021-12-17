@@ -199,14 +199,36 @@ void Menu::funcDeleteFlight() {
 }
 
 void Menu::funcDeleteService() {
-    //TODO
-    int id2Delete;
-    cout<<"\nID to be deleted: ";cin>>id2Delete;
+    //TODO não funciona por causa do char type que esta em ascii
 
-    if(menuOperationConfirm()){
-        cout<<"Deleted!\n"; // ?
-    }
-    getchar();getchar();
+    char newType;
+    Date newDate;
+    string newEmployeeName,newPlate;
+
+    cout<<"\nService's Type (M / C / O): ";cin>>newType;
+    cout<<"Service's Date (YYYY/MM/DD): ";cin>>newDate;
+    cout<<"Service's Employee Name (string): "; cin.ignore();getline(cin,newEmployeeName);
+    cout<<"Service's Plane Plate (string): ";getline(cin,newPlate);
+
+    cout<<endl;
+
+    Service findService(newType,newDate,newEmployeeName,newPlate);
+
+    bool found = serviceManager->findTodoService(findService);
+
+    if(found){
+        cout<<"\nFound a match!\n";
+        if(menuOperationConfirm()){
+            bool deleted = serviceManager->deleteTodoService(findService);
+            if(deleted)
+                cout<<"Deleted!\n";
+            else
+                cout<<"Value not found!\n";
+        }
+    }else
+        cout<<"Value not found!\n";
+
+    getchar();
 }
 
 
