@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <regex>
 #include "Menu.h"
 #include "Manager.h"
 #include "Input.h"

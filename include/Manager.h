@@ -9,6 +9,7 @@
 #include <fstream>
 #include <iomanip>
 #include <climits>
+#include <regex>
 #include "Output.h"
 #include "ServiceManagement.h"
 #include "BST.h"
@@ -59,6 +60,8 @@ public:
     void showToDoServices(ostream& ostream1, const Date& min, const Date& max);
 
     void searchPassengers(int id);
+    void searchPassengerID(ostream &ostream1,const regex& exp);
+
     void searchFlights(int id);
     void searchPlanes(string id);
     void searchServices(ServiceType type, Date date, employerName employer, planePlate plane);

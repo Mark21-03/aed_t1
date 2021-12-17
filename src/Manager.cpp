@@ -293,4 +293,13 @@ void Manager::showToDoServices(ostream &ostream1, const Date &min, const Date &m
     serviceManager.showToDoServicesFromRange(ostream1, min, max);
 }
 
+void Manager::searchPassengerID(ostream &ostream1, const regex& exp) {
+    out::headerPassengers(ostream1);
+
+    for (auto& p : passengers) {
+        if(regex_match(p.getName() ,exp))
+            out::passenger(ostream1,&p);
+    }
+}
+
 

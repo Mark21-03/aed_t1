@@ -173,8 +173,6 @@ void Menu::funcDeletePlane() {
     getchar();getchar();
 }
 
-
-
 void Menu::funcDeleteFlight() {
 
     int id2Delete;
@@ -199,7 +197,7 @@ void Menu::funcDeleteService() {
     cout<<"\nID to be deleted: ";cin>>id2Delete;
 
     if(MenuOperationConfirm()){
-
+        cout<<"Deleted!\n"; // ?
     }
     getchar();getchar();
 }
@@ -221,10 +219,24 @@ void Menu::funcDeleteTicket() {
 
 
 void Menu::funcReadPassenger() {
-    unsigned int minID, maxID;
-    out::askInterval<unsigned int>(cout, cin, minID, maxID, "Passenger ID");
-    manager.showSortedPassengersByID(cout, minID, maxID);
-    getchar();getchar();
+    std::string option;
+    out::askOnce<std::string>(cout,cin, option, "Option(i->Search the id of a person, n->Name of person with id)");
+    if (option == "n") {
+        unsigned int minID, maxID;
+        out::askInterval<unsigned int>(cout, cin, minID, maxID, "Passenger ID");
+        manager.showSortedPassengersByID(cout, minID, maxID);
+        getchar();
+        getchar();
+    } else if (option == "i") {
+        std::string searchName;
+        cout << "Give us a part of the Name: ";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        getline(cin, searchName);
+        cout << searchName;
+        regex search(".*" + searchName + ".*");
+
+        manager.searchPassengerID(cout, search);
+    }
 
 }
 
