@@ -59,5 +59,12 @@ inline istream& operator>>(istream& is, Transport &t){
     return is;
 }
 
+inline bool operator==(Transport t1, Transport t2){
+    if(t1.getType() == t2.getType())
+        if(t1.getDistance() == t2.getDistance())
+           return true;
+    return false;
+}
+
 
 

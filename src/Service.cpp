@@ -50,11 +50,11 @@ std::string Service::getInfo() const {
     ostringstream os;
     switch (type) {
         case maintenance:
-            os <<setw(3)<<getType()<<setw(30)<< getEmployer() << "\t"<< date.getDate() << "\t" << plane;break;
+            os <<setw(1)<<(char)getType()<<setw(30)<< getEmployer() << "\t"<< date.getDate() << "\t" << plane;break;
         case cleaning:
-            os <<setw(3)<<getType()<<setw(30)<< getEmployer() << "\t"<<date.getDate() << "\t" << plane;break;
+            os <<setw(1)<<(char)getType()<<setw(30)<< getEmployer() << "\t"<<date.getDate() << "\t" << plane;break;
         case other:
-            os <<setw(3)<<getType()<<setw(30)<< getEmployer() << "\t"<<date.getDate() << "\t" << plane;break;
+            os <<setw(1)<<(char)getType()<<setw(30)<< getEmployer() << "\t"<<date.getDate() << "\t" << plane;break;
 
     }
     return os.str();

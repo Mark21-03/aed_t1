@@ -47,7 +47,7 @@ public:
 
     inline ServiceManagement* getServiceManager(){return &serviceManager;}
 
-
+    inline BST<Transport> *getTransportTree(){return &transportsTree;}
 
     void showSortedPassengersById(ostream& ostream1, unsigned int min = 0, unsigned int max = INT_MAX);
     void showSortedFlightsById(ostream& ostream1, flightNumber min = 0, flightNumber max = INT_MAX);

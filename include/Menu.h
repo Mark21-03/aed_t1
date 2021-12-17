@@ -55,9 +55,9 @@ class Menu {
     void funcUpdateTicket();
     int askChangeId();
 
-    void othersFunc1();
-    void othersFunc2();
-    void othersFunc3();
+    void showNearbyTransports();
+    void addNewTransport();
+    void removeNearbyTransport();
     void othersFunc4();
     void othersFunc5();
 

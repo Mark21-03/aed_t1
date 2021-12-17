@@ -173,7 +173,6 @@ bool ServiceManagement::findTodoService(const Service &service) {
     queue<Service> q = toDoServices;
 
     while(!q.empty()){
-        cout<<q.front().getType()<<endl;
 
         if(q.front() == service)
             return true;

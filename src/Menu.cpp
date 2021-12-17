@@ -131,8 +131,12 @@ void Menu::funcUpdateFlight() {
     getchar();getchar();
 }
 
-void Menu::funcUpdateService(){}
-void Menu::funcUpdateTicket(){}
+void Menu::funcUpdateService(){
+    //TODO
+}
+void Menu::funcUpdateTicket(){
+    //TODO
+}
 
 int Menu::askChangeId(){
     unsigned id;
@@ -205,7 +209,7 @@ void Menu::funcDeleteService() {
     Date newDate;
     string newEmployeeName,newPlate;
 
-    cout<<"\nService's Type (M / C / O): ";cin>>newType;
+    cout<<"\nService's Type (m / c / o): ";cin>>newType;
     cout<<"Service's Date (YYYY/MM/DD): ";cin>>newDate;
     cout<<"Service's Employee Name (string): "; cin.ignore();getline(cin,newEmployeeName);
     cout<<"Service's Plane Plate (string): ";getline(cin,newPlate);
@@ -223,8 +227,9 @@ void Menu::funcDeleteService() {
             if(deleted)
                 cout<<"Deleted!\n";
             else
-                cout<<"Value not found!\n";
-        }
+                cout<<"Value not Found!\n";
+
+        }getchar();
     }else
         cout<<"Value not found!\n";
 
@@ -570,19 +575,63 @@ void Menu::mainMenu() {
 }
 
 
-void Menu::othersFunc1() {
-    cout<<"\nOTHER FUNC 1\n";
+void Menu::showNearbyTransports() {
+
+    BST<Transport>  *tree = manager.getTransportTree();
+
+    auto nameSetter = [](char c){
+        if(c == 'S') return "Subway";
+        else if(c == 'T') return "Train";
+        else return "Bus";
+    };
+
+    cout<<endl;
+    for(auto it = tree->begin();it!=tree->end();it++){
+        Transport temp = *it;
+        cout<<nameSetter(temp.getType())<<" in "<<temp.getDistance()<<" km"<<endl;
+    }
+
+
     getchar();
 }
 
-void Menu::othersFunc2() {
-    cout<<"\nOTHER FUNC 2\n";
-    getchar();
+void Menu::addNewTransport() {
+    char c;float d;
+    cout<<"\nNew Transport Type (T, S, B): ";cin>>c;
+    cout<<"New Transport Distance (float): ";cin>>d;
+
+    Transport t(c,d);
+
+    if(menuOperationConfirm()){
+        manager.getTransportTree()->insert(t);
+        cout<<"Added new Transport!\n";
+    }
+
+    getchar(); getchar();
 }
 
-void Menu::othersFunc3() {
-    cout<<"\nOTHER FUNC 3\n";
-    getchar();
+void Menu::removeNearbyTransport() {
+
+    char c;float d;
+    cout<<"\nNew Transport Type (T, S, B): ";cin>>c;
+    cout<<"New Transport Distance (float): ";cin>>d;
+
+    Transport t(c,d);
+    Transport notF;
+
+    Transport Tfound = manager.getTransportTree()->find(t);
+
+    bool found = !(Tfound == notF);
+
+    if(found){
+        if(menuOperationConfirm()){
+            manager.getTransportTree()->remove(t);
+            cout<<"Deleted!\n";
+        }
+    }else cout<<"Value not found!\n";
+
+    getchar(); getchar();
+
 }
 
 void Menu::othersFunc4() {
@@ -611,16 +660,16 @@ void Menu::othersSubMenu() {
 
         //Start of MENU
 
-        cout << "================="<< endl;
-        cout << "   OTHERS MENU" << endl;
-        cout << "=================" << endl;
-        cout << "  1)  X" << endl;
-        cout << "  2)  X" << endl;
-        cout << "  3)  X" << endl;
+        cout << "==============================="<< endl;
+        cout << "          OTHERS MENU" << endl;
+        cout << "===============================" << endl;
+        cout << "  1)  Show Nearby Transports" << endl;
+        cout << "  2)  Add Nearby Transport" << endl;
+        cout << "  3)  Remove Nearby Transport" << endl;
         cout << "  4)  X" << endl;
         cout << "  6)  Go Back" << endl;
         cout << "  0)  Exit" << endl;
-        cout << "================" << endl;
+        cout << "===============================" << endl;
         cout << " > ";
         //End of MENU
 
@@ -640,13 +689,13 @@ void Menu::othersSubMenu() {
                     exit(1);
 
                 case '1':
-                    othersFunc1();
+                    showNearbyTransports();
                     break;
                 case '2':
-                    othersFunc2();
+                    addNewTransport();
                     break;
                 case '3':
-                    othersFunc3();
+                    removeNearbyTransport();
                     break;
                 case '4':
                     othersFunc4();
