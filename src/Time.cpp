@@ -10,16 +10,12 @@ Time :: Time(unsigned hour, unsigned minute, unsigned second){
 }
 
 Time& Time :: setTime(unsigned hour, unsigned minute, unsigned second){
-    setHour(hour);setMinute(minute);setSecond(second);
+    setHour(hour).setMinute(minute).setSecond(second);
     return *this;
 }
 
 Time& Time::setHour(unsigned hour){
-    if(hour > 23 || hour<0)
-        this->hour = hour;
-    else
-        this->hour = 0;
-
+    this->hour = hour;
     return *this;
 
 }

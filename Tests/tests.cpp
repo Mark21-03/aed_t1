@@ -319,6 +319,13 @@ TEST(Test_Menu, menuLoopBUG) {
 
 }
 
+TEST(Test_time, randomTime) {
+    Time t;
+    t.setRandomTime();
+
+    cout << t;
+}
+
 /*
 TEST(ddd,kffm) {
 ifstream i("../Files/Planes/planes.txt");

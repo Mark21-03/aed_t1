@@ -262,7 +262,6 @@ void Menu::funcReadService() {
 
     if (option == "d") {
         out::askInterval<Date>(cout, cin, min, max, "Date");
-
         manager.showDoneServices(cout, min, max);
     } else if(option == "t") {
         out::askInterval<Date>(cout, cin, min, max, "Date");
