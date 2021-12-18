@@ -22,8 +22,6 @@ Manager::Manager() {
     readPlanes();
     readServices();
     readTransports();
-
-    serviceManager = ServiceManagement(servicePath);
 }
 
 
@@ -156,8 +154,6 @@ Manager::~Manager() {
     ofsPassengers.close();
     ofsTransports.close();
 
-    serviceManager.saveToFile();
-
 }
 
 
@@ -254,19 +250,41 @@ void Manager::searchUpdatePlanes(const string& searchedPlate){
 
 }
 
-/*void Manager::searchUpdateServices(ServiceType type, Date date, employerName emp, planePlate plate){
-    //ServiceType type1;
-    //Date date1;
-    //employerName employer1;
-    //planePlate plane1;
+void Manager::searchUpdateServices(char type, Date date, string emp, planePlate plate){
+    char type1;
+    Date date1;
+    string employer1;
+    planePlate plane1;
 
-    auto finder = [=](const Service &s){
-        return s.getType()==type && s.getDate()==date && s.getPlane()==plate && s.getEmployer()==emp;
-    };
+    //queue<Service> q1=serviceManager.getToDoServices();
+    //vector<Service> apoio;
+    Service findService(type, date, emp, plate);
 
-    auto it=find_if(serviceManager.get,)
+    bool found = serviceManager.findTodoService(findService);
+
+    if (found){
+        serviceManager.deleteTodoService(findService);
+        cout << "\nProvide the new values below:";
+        cout << "\nEmployer: ";getline(cin, employer1);
+        cout << "Date: ";cin >> date1;
+        cout << "Type: ";cin >> type1;
+        cout << "Plane plate: ";cin >> plane1;
+
+        cout << endl;
+        if (confirmationPrompt()) {
+            Service newService(type1, date1, employer1, plane1);
+            serviceManager.addToDoService(newService);
+            cout << "\nChanges have been saved!\n";
+        }
+    }
+    else{
+
+        cout<<"The given information doesn't match any service.\n";
+
+    }
+
 }
-**/
+
 
 void Manager::createPassenger(const string &Pname){
 
@@ -297,10 +315,10 @@ void Manager::createFlight( const Date &departureDate, const Time &departureTime
 void Manager::createTicket(int flight, int passengerID, float price, bool baggage, ClassType tClass) {
     Ticket t(flight,passengerID,price,baggage,tClass);
 }
- // TODO: WHAT IS THIS ABOVE???
-Flight Manager::getFlightbyNumber(int number) {
+// TODO: WHAT IS THIS ABOVE???
+/*Flight Manager::getFlightbyNumber(int number) {
     return flights[number];
-}
+}*/
 
 
 

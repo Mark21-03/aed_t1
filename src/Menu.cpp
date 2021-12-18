@@ -151,30 +151,13 @@ void Menu::funcUpdateFlight() {
 void Menu::funcUpdateService(){
     Date date=askDateService();
     char type=askTypeService();
+    planePlate plate=askPlateService();
     string emp=askEmployeeService();
-    string plate=askPlateService();
+    manager.searchUpdateServices(type,date,emp,plate);
+    getchar();getchar();
 }
 void Menu::funcUpdateTicket(){
-    int flight;
-    int passengerID;
-    float price;
-    bool baggage;
-    char tClass;
-    int sold;
-
-    cout<<"\nNew Ticket's Flight number: ";cin>>flight;
-    cout<<"New Ticket's Passenger ID :";cin>>passengerID;
-    cout<<"New Ticket's Price :";cin>>price;
-    cout<<"New Ticket's Baggage (true or false): ";cin>>baggage;
-    cout<<"New Ticket's Class :";cin>>tClass;
-    //if (validBuy) //funcao bool na class ticket n sei como aplicar aqui
-    //  sold++;
-
-    if (menuOperationConfirm()) {
-        //adicionar a vetor se houber vetor tickets
-        cout<<"\nTicket added!\n";
-    }
-    getchar(); getchar();
+    //not necessary
 }
 
 int Menu::askChangeId(){
@@ -200,8 +183,8 @@ char Menu::askTypeService() {
     //else cout<<"Invalid type";
 }
 
-string Menu::askPlateService() {
-    string plate;
+planePlate Menu::askPlateService() {
+    planePlate plate;
     cout<<"\nWhat's the plate of the plane where the service happened: ";
     cin>>plate;
     return plate;
@@ -209,8 +192,9 @@ string Menu::askPlateService() {
 
 string Menu::askEmployeeService() {
     string emp;
-    cout<<"\nName of employee int he service: ";
-    cin>>emp;
+    cout<<"\nName of employee in the service: ";
+    cin.ignore();
+    getline(cin,emp);
     return emp;
 }
 
