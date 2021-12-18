@@ -31,6 +31,9 @@ void ServiceManagement::addToDoService(Service service) {
 
     }
 
+    if(!inserted)
+        q.push(service);
+
     toDoServices = q;
 
 }
