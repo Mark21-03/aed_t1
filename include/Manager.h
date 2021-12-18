@@ -12,6 +12,7 @@
 #include <map>
 #include <regex>
 #include "Output.h"
+#include "Service.h"
 #include "ServiceManagement.h"
 #include "BST.h"
 #include "Transports.h"
@@ -68,7 +69,7 @@ public:
 
     void searchUpdateFlights(int id);
     void searchUpdatePlanes(const string& id);
-    void searchUpdateServices(ServiceType type, Date date, employerName employer, planePlate plane);
+    void searchUpdateServices(char type, Date date, string employer, planePlate plane);
 
     bool confirmationPrompt();
 
