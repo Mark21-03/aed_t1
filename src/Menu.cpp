@@ -103,15 +103,16 @@ void Menu::BuyTicket() {
     int sold;
 
     cout<<"\nNew Ticket's Flight number: ";cin>>flight;
-    cout<<"New Ticket's Passenger ID :";cin>>passengerID;
-    cout<<"New Ticket's Price :";cin>>price;
-    cout<<"New Ticket's Baggage (true or false): ";cin>>baggage;
-    cout<<"New Ticket's Class :";cin>>tClass;
+    cout<<"New Ticket's Passenger ID : ";cin>>passengerID;
+    cout<<"New Ticket's Price : ";cin>>price;
+    cout<<"New Ticket's Class (x | e) : ";cin>>tClass;
+
+    //TODO temporario! melhorar funcao validando primeiro (tmb tem de perguntar quantos bilhetes quer?)
     //if (validBuy) //funcao bool na class ticket n sei como aplicar aqui
     //  sold++;
 
     if (menuOperationConfirm()) {
-        //adicionar a vetor se houber vetor tickets
+        manager.createTicket(flight, passengerID, price,static_cast<ClassType>(tClass));
         cout<<"\nTicket added!\n";
     }
     getchar(); getchar();
@@ -704,8 +705,19 @@ void Menu::removeNearbyTransport() {
 
 
 void Menu::doCheckIn() {
-    cout<<"\ndoCheckIn\n";
-    getchar();
+    int flightID;
+    cout<<"\nFlight ID to Check In: ";cin>>flightID;
+
+    Flight* ptr = manager.getFlightbyNumber(flightID);
+    bool foundFlight = ptr != nullptr;
+
+    if(foundFlight){
+        //do Check In
+        cout<<"\n...\n";
+    }else cout<<"\nFlight ID not found!\n";
+
+
+    getchar();getchar();
 }
 
 

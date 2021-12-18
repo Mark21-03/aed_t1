@@ -1,7 +1,3 @@
-//
-// Created by ricar on 14/12/2021.
-//
-
 #ifndef AED_T1_OUTPUT_H
 #define AED_T1_OUTPUT_H
 

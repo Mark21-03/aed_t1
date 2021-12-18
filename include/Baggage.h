@@ -83,8 +83,23 @@ public:
  * @return ostream used (changed)
  */
 inline std::ostream& operator<<(std::ostream& os, Baggage b){
-    os<<"Baggage = "<<b.getWeight()<<" x "<<b.getQuantity();
+    os<<b.getWeight()<<" "<<b.getQuantity();
     return os;
+}
+
+/**
+ * Outputs Baggage object to ostream
+ * @param os ostream to be used
+ * @param b Baggage object tio be outputted
+ * @return ostream used (changed)
+ */
+inline std::istream& operator>>(std::istream& is, Baggage &b){
+    float w;unsigned q;
+    is>>w>>q;
+
+    b.setWeight(w);b.setQuantity(q);
+
+    return is;
 }
 
 
