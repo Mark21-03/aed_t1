@@ -16,7 +16,7 @@ class Flight{
 private:
 
     flightNumber number;
-    Date departureDate; // TODO: THE DATE CLASS DOES NOT HAVE HOURS AND MINUTES, consider creating a time class to this and then a attribute should tell the time
+    Date departureDate;
     Time departureTime;
     int occupation;
     float duration;

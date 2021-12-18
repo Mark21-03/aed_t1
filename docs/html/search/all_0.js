@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['main_0',['main',['../main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;main.cpp'],['../main_test_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;mainTest.cpp']]],
-  ['main_2ecpp_1',['main.cpp',['../main_8cpp.html',1,'']]],
-  ['maintest_2ecpp_2',['mainTest.cpp',['../main_test_8cpp.html',1,'']]]
+  ['unittest_0',['UnitTest',['../classtesting_1_1internal_1_1_unit_test_impl.html#a893404438388dec058dc5c02e8f9a014',1,'testing::internal::UnitTestImpl']]]
 ];
