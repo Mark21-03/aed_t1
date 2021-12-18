@@ -15,7 +15,7 @@ if(CMAKE_BUILD_TYPE MATCHES Debug)
         src/Passenger.cpp  src/Service.cpp Tests/tests.cpp src/BagaggeCheckIn.cpp
         include/Date.h include/Plane.h include/Flight.h include/Passenger.h
         include/BST.h include/Service.h
-        Exceptions/InvalidIDException.h include/Transports.h
+            include/Transports.h
         Exceptions/NameToLongException.h src/Ticket.cpp include/Ticket.h
             include/Menu.h include/Manager.h src/Manager.cpp include/ServiceManagement.h src/ServiceManagement.cpp
         include/Time.h Exceptions/InvalidTimeException.h src/Time.cpp src/Menu.cpp include/Output.h src/Output.cpp include/Input.h
@@ -31,7 +31,6 @@ if (CMAKE_BUILD_TYPE MATCHES Release)
             src/Passenger.cpp  src/Service.cpp src/BagaggeCheckIn.cpp
             include/Date.h include/Plane.h include/Flight.h include/Passenger.h
             include/BST.h include/Service.h
-            Exceptions/InvalidIDException.h
             Exceptions/NameToLongException.h src/Ticket.cpp include/Ticket.h
             include/Menu.h src/Manager.cpp include/Manager.h include/Transports.h
             include/ServiceManagement.h src/ServiceManagement.cpp include/Time.h Exceptions/InvalidTimeException.h src/Time.cpp src/Menu.cpp src/Output.cpp include/Output.h include/Input.h src/Input.cpp include/BagaggeCheckIn.h Exceptions/BaggageCheckInExceptions.h include/Baggage.h)

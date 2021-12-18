@@ -667,6 +667,7 @@ void Menu::othersSubMenu() {
         cout << "  2)  Add Nearby Transport" << endl;
         cout << "  3)  Remove Nearby Transport" << endl;
         cout << "  4)  X" << endl;
+        cout << "  5)  X" << endl;
         cout << "  6)  Go Back" << endl;
         cout << "  0)  Exit" << endl;
         cout << "===============================" << endl;

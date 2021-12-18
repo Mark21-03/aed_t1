@@ -4,6 +4,9 @@
 
 #include <iostream>
 
+/**
+ * Exception for when trying to remove value from empty queue object
+ */
 class emptyQueueException{
 public:
     emptyQueueException(){
@@ -11,6 +14,9 @@ public:
     };
 };
 
+/**
+ * Exception for when trying to insert a value into a already filled Truck object
+ */
 class fullTruckException{
 public:
     fullTruckException(){
@@ -18,6 +24,9 @@ public:
     };
 };
 
+/**
+ * Exception for when trying to remove value from empty Truck object
+ */
 class emptyTruckException{
 public:
     emptyTruckException(){
@@ -25,6 +34,9 @@ public:
     };
 };
 
+/**
+ * Exception for when trying to insert a value into a already filled Carriage object
+ */
 class fullCarriageException{
 public:
     fullCarriageException(){
@@ -32,6 +44,9 @@ public:
     };
 };
 
+/**
+ * Exception for when trying to remove a value from empty Carriage object
+ */
 class emptyCarriageException{
 public:
     emptyCarriageException(){
@@ -39,6 +54,9 @@ public:
     };
 };
 
+/**
+ * Exception for when trying to insert a value into a already filled BaggageStack object
+ */
 class fullBaggageStackException{
 public:
     fullBaggageStackException(){
@@ -46,6 +64,9 @@ public:
     };
 };
 
+/**
+ * Exception for when trying to remove a value from empty BaggageStack object
+ */
 class emptyBaggageStackException{
 public:
     emptyBaggageStackException(){
