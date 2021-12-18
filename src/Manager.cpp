@@ -22,6 +22,8 @@ Manager::Manager() {
     readPlanes();
     readServices();
     readTransports();
+
+    serviceManager = ServiceManagement(servicePath);
 }
 
 
@@ -153,6 +155,8 @@ Manager::~Manager() {
     ofsFlights.close();
     ofsPassengers.close();
     ofsTransports.close();
+
+    serviceManager.saveToFile();
 
 }
 
@@ -286,7 +290,7 @@ void Manager::searchUpdateServices(char type, Date date, string emp, planePlate 
 }
 
 
-void Manager::createPassenger(const string &Pname){
+void Manager::createPassenger(const string &Pname){ // TODO: THE ID SHOULD NOT BE THE BACK + 1 BUT THE LAST CREATED + 1
 
     unsigned newID = passengers.back().getID()+1;
 
