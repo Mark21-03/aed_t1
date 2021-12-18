@@ -139,7 +139,7 @@ Manager::~Manager() {
     std::ofstream ofsPassengers(passengersPath);
     std::ofstream ofsFlights(flightsPath);
     std::ofstream ofsTransports(transportsPath);
-    std::ofstream ofsTickets(tickets_path);
+    //std::ofstream ofsTickets(tickets_path); //TODO TICKETS ARE BEING DELETED
 
     for(Plane &p:planes)
         ofsPlanes << p;
@@ -153,15 +153,15 @@ Manager::~Manager() {
     for(auto it= transportsTree.begin();it!=transportsTree.end();it++)
         ofsTransports << (*it).getType()<<" "<<(*it).getDistance()<<" "<<(*it).getTimeTable().size()<<" "<<(*it).getTimeTable()<<endl;
 
-    for (auto & t: tickets) {
+    /*for (auto & t: tickets) {
         ofsTickets << t;
-    }
+    }*/
 
     ofsPlanes.close();
     ofsFlights.close();
     ofsPassengers.close();
     ofsTransports.close();
-    ofsTickets.close();
+    //ofsTickets.close();
 
     serviceManager.saveToFile();
 
