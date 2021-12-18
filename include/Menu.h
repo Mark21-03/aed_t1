@@ -34,19 +34,17 @@ class Menu {
     void funcCreatePlane();
     void funcCreateFlight();
     void funcCreateService();
-    void funcCreateTicket();
+    void BuyTicket();
 
     void funcDeletePassenger();
     void funcDeletePlane();
     void funcDeleteFlight();
     void funcDeleteService();
-    void funcDeleteTicket();
 
     void funcReadPassenger();
     void funcReadPlane();
     void funcReadFlight();
     void funcReadService();
-    void funcReadTicket();
 
     void funcUpdatePassenger();
     void funcUpdatePlane();
@@ -63,8 +61,7 @@ class Menu {
     void showNearbyTransports();
     void addNewTransport();
     void removeNearbyTransport();
-    void othersFunc4();
-    void othersFunc5();
+    void doCheckIn();
 
 
 

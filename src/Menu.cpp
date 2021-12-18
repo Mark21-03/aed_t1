@@ -94,7 +94,7 @@ void Menu::funcCreateService() {
     getchar();getchar();
 }
 
-void Menu::funcCreateTicket() {
+void Menu::BuyTicket() {
     int flight;
     int passengerID;
     float price;
@@ -290,16 +290,7 @@ void Menu::funcDeleteService() {
 }
 
 
-void Menu::funcDeleteTicket() {
-    //TODO
-    int id2Delete;
-    cout<<"\nID to be deleted: ";cin>>id2Delete;
 
-    if(menuOperationConfirm()){
-        cout<<"Deleted!\n";
-    }
-    getchar();getchar();
-}
 
 //_________________________________________________________________________________
 
@@ -380,11 +371,6 @@ void Menu::funcReadService() {
 
 }
 
-void Menu::funcReadTicket() {
-    //TODO
-    cout << "\n!funcReadTicket!\n";
-    getchar();
-}
 
 //_________________________________________________________________________________
 
@@ -705,13 +691,10 @@ void Menu::removeNearbyTransport() {
 
 }
 
-void Menu::othersFunc4() {
-    cout<<"\nOTHER FUNC 4\n";
-    getchar();
-}
 
-void Menu::othersFunc5() {
-    cout<<"\nOTHER FUNC 5\n";
+
+void Menu::doCheckIn() {
+    cout<<"\ndoCheckIn\n";
     getchar();
 }
 
@@ -734,9 +717,6 @@ void Menu::othersSubMenu() {
         cout << "==============================="<< endl;
         cout << "          OTHERS MENU" << endl;
         cout << "===============================" << endl;
-        //cout << "  1)  Show Nearby Transports" << endl;
-        //cout << "  2)  Add Nearby Transport" << endl;
-        //cout << "  3)  Remove Nearby Transport" << endl;
         cout << "  1)  Check In" << endl;
         cout << "  2)  Buy ticket" << endl;
         cout << "  3)  Go Back" << endl;
@@ -759,21 +739,11 @@ void Menu::othersSubMenu() {
                     manager.~Manager();
                     getchar();
                     exit(1);
-
-               /* case '1':
-                    showNearbyTransports();
-                    break;
-                case '2':
-                    addNewTransport();
-                    break;
-                case '3':
-                    removeNearbyTransport();
-                    break;*/
                 case '1':
-                    othersFunc4();
+                    doCheckIn();
                     break;
                 case '2':
-                    othersFunc5();
+                    BuyTicket();
                     break;
                 case '3'://Go Back
                     goto END_MENU;
