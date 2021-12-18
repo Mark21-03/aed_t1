@@ -130,6 +130,7 @@ bool Manager::confirmationPrompt(){
 
 Manager::~Manager() {
 
+    // TODO: CREATE "SAVE" METHODS
     std::ofstream ofsPlanes(planesPath);
     std::ofstream ofsPassengers(passengersPath);
     std::ofstream ofsFlights(flightsPath);

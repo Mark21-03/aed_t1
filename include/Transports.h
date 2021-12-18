@@ -1,21 +1,17 @@
 #include <iostream>
+#include <set>
 #include "BST.h"
 #include "Time.h"
 
 using namespace std;
 
-class Timetable{
-private:
-    vector<Time>timetable; // No timetable is made because we don't have the data
-public:
-    inline vector<Time> getTimeTable(){return timetable;} 
-    inline void setTimeTable(vector<Time>timetable){this->timetable = timetable;}
-};
+
+typedef std::set<Time> TimeTable;
 
 class Transport{
 private:
-    char type; //S - subway, T - train , B - bus, N - not found
-    Timetable timetable;
+    char type; //S - subway, T - train , B - bus, N - not found TODO: ENUM
+    TimeTable timetable;
     float distance ; // in kms
 
 public:
@@ -29,8 +25,8 @@ public:
     inline float getDistance() const{return this->distance;}
     inline void setDistance(const float& distance){this->distance = distance;}
 
-    inline void setTimeTable(const Timetable& TimeTable){this->timetable=TimeTable;}
-    inline Timetable getTimeTable(){return this->timetable;}
+    inline void setTimeTable(const TimeTable& TimeTable){ this->timetable=TimeTable;}
+    inline const TimeTable& getTimeTable() const {return this->timetable;} // remember to check if it is working
 };
 
 
@@ -43,7 +39,11 @@ inline bool Transport::setType(const char &type) {
 
 
 inline bool operator<(const Transport& t1, const Transport& t2){
-    return t1.getDistance()<t2.getDistance();
+    if (t1.getType() != t2.getType())
+        return t1.getType() < t2.getType(); // this will break the bst in 4 different trees
+    if (t1.getDistance() != t2.getDistance())
+        return t1.getDistance()<t2.getDistance();
+    return t1.getTimeTable() < t2.getTimeTable();
 }
 
 inline ostream& operator<<(ostream& os, Transport &t){
@@ -59,12 +59,7 @@ inline istream& operator>>(istream& is, Transport &t){
     return is;
 }
 
-inline bool operator==(Transport t1, Transport t2){
-    if(t1.getType() == t2.getType())
-        if(t1.getDistance() == t2.getDistance())
-           return true;
-    return false;
+inline bool operator==(const Transport& t1,const Transport& t2){
+    return t1.getDistance() == t2.getDistance() && t1.getType() == t2.getType() && t1.getTimeTable() == t2.getTimeTable();
 }
-
-
 

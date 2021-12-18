@@ -53,7 +53,7 @@ class Menu {
     void funcUpdateFlight();
     void funcUpdateService();
     void funcUpdateTicket();
-    int askChangeId();
+    int  askChangeId();
 
     void showNearbyTransports();
     void addNewTransport();

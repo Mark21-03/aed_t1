@@ -9,6 +9,7 @@
 #include <fstream>
 #include <iomanip>
 #include <climits>
+#include <map>
 #include <regex>
 #include "Output.h"
 #include "ServiceManagement.h"
@@ -28,6 +29,7 @@ private:
     std::vector<Flight> flights;
 
     BST<Transport> transportsTree;
+    // map<std::string, BST<Transport>> airportTransports;
 
     void setPaths();
     void readFlights();
