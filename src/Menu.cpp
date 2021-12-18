@@ -635,21 +635,15 @@ void Menu::showNearbyTransports() {
 
     BST<Transport>  *tree = manager.getTransportTree();
 
-    auto nameSetter = [](char c){
-        if(c == 'S') return "Subway";
-        else if(c == 'T') return "Train";
-        else return "Bus";
-    };
-
     cout<<endl;
 
-    cout<<"Type\t\t"<<"Distance\t\t\t"<<"Schedule"<<endl;
-    cout<<SEPARATION<<SEPARATION<<SEPARATION<<endl;
-    for(auto it = tree->begin();it!=tree->end();it++){
-        Transport temp = *it;
-        cout<<nameSetter(temp.getType())<<"\t\t"<<temp.getDistance()<<" km\t\t"<<temp.getTimeTable()<<endl;
-    }
+    out::headerTransports(cout);
 
+    BSTItrIn<Transport> it(*manager.getTransportTree());
+    while (!it.isAtEnd()){
+        out::transports(cout,&it.retrieve());
+        it.advance();
+    }
 
     getchar();
 }

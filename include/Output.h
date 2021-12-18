@@ -84,6 +84,21 @@ namespace out {
         ostream1 << it->getInfo() << std::endl;
     }
 
+    void headerTransports(ostream& ostream1);
+    template<typename TransportPointer>
+    inline void transports(ostream& ostream1, TransportPointer it){
+        using namespace std;
+
+        auto nameSetter = [](char c){
+            if(c == 'S') return "Subway";
+            else if(c == 'T') return "Train";
+            else return "Bus";
+        };
+        ostream1<< left << setw(10) <<setfill(' ') << setw(10) <<nameSetter(it->getType())<< setw(10)
+        << to_string(it->getDistance()) + " km\t " <<it->getTimeTable()<<endl;
+    }
+
+
 }
 
 #endif //AED_T1_OUTPUT_H

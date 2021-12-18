@@ -25,4 +25,10 @@ namespace out {
         ostream1 << "Type\t" << "Date\t" << "Employer\t" << "Plane Plate\r" << '\n';
         ostream1 << SEPARATION << std::endl;
     }
+
+    void headerTransports(ostream& ostream1) {
+        ostream1<<"Type\t\t"<<"Distance\t\t\t"<<"Schedule"<<endl;
+        ostream1<<SEPARATION<<SEPARATION<<SEPARATION<<endl;
+    }
+
 }

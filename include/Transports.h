@@ -83,7 +83,7 @@ inline bool Transport::setType(const char &newType) {
 
 /**
  * Tests if the left-hand transport is smaller. First comparison by alphabetical type,
- * then by smaller distance and finally by smaller timetable
+ * then by smaller distance and finally by timetables using < set operator of STL
  * @param t1 left-hand transport to be compared
  * @param t2 right-hand transport to be compared
  * @return boolean result of the comparison
