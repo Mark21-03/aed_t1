@@ -79,8 +79,10 @@ public:
     void createPassenger(const string &Pname);
     void createPlane(const planePlate& numberPlate ,const std::string& pType, int capacity);
     void createFlight(const Date& departureDate,const Time& departureTime, const float &duration,std::string origin, std::string destiny);
-    void createTicket(int flight, int passengerID, float price, bool baggage, ClassType tClass);
+    void createTicket(int flight, int passengerID, float price, ClassType tClass);
     Flight* getFlightbyNumber(flightNumber number);
+
+    inline multiset<Ticket>* getTickets(){return &tickets;}
 
     bool deletePassenger(const unsigned &idD);
     bool deletePlane(const string &idD);

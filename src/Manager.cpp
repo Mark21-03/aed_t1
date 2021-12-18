@@ -139,7 +139,7 @@ Manager::~Manager() {
     std::ofstream ofsPassengers(passengersPath);
     std::ofstream ofsFlights(flightsPath);
     std::ofstream ofsTransports(transportsPath);
-    std::ofstream ofsTickets(tickets_path); //TODO TICKETS ARE BEING DELETED
+    std::ofstream ofsTickets(tickets_path);
 
     for(Plane &p:planes)
         ofsPlanes << p;
@@ -323,9 +323,13 @@ void Manager::createFlight( const Date &departureDate, const Time &departureTime
 
 }
 
-void Manager::createTicket(int flight, int passengerID, float price, bool baggage, ClassType tClass) {
-    //TODO
-    Ticket t(flight,passengerID,price,baggage,tClass);
+void Manager::createTicket(int flight, int passengerID, float price, ClassType tClass) {
+    //TODO testar e terminar
+
+    srand(time(NULL));
+    Baggage bag(rand()%10+5,rand()%3+1);
+
+    Ticket t(flight,passengerID,price,bag,tClass);
     tickets.insert(t);
 }
 // TODO: WHAT IS THIS ABOVE???

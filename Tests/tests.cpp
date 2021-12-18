@@ -957,3 +957,66 @@ TEST(Test_TimeTable, generateTimetable){
    //tree->printTree();
 
 }
+
+
+TEST(Test_TicketBaggage, Test_TicketBaggage){
+
+/*
+    string tickets_path = "../Files/tickets.txt";
+    fstream ifs(tickets_path);
+
+    flightNumber flightNumber1;
+    unsigned int pId;
+    float price;
+    int cType;
+    Baggage baggage;
+
+    Ticket t;
+
+    multiset<Ticket> ms;
+
+    srand(time(NULL));
+    std::ifstream ifs_ticket(tickets_path);
+
+
+    Ticket ticket;
+    while (ifs_ticket >> ticket) {
+        Baggage bag(rand()%10+5,rand()%3+1);
+        ticket.setBaggage(bag);
+        ms.insert(ticket);
+    }
+
+
+    for(auto t:ms){
+        cout<<t<<endl;
+    }
+
+    for (auto & t: ms) {
+        ifs << t;
+    }
+
+    ifs_ticket.close();
+
+/*
+    std::ofstream ofsTickets(tickets_path);
+
+    for (auto & t: ms) {
+        ifs << t;
+    }*/
+
+
+
+/*  0 0 101 469.18 0
+    0 0 101 132.92 0
+    0 0 101 344.24 0
+    0 0 101 469.24 0*/
+
+
+    Manager manager;
+
+    multiset<Ticket> * t = manager.getTickets();
+
+    ASSERT_EQ(t->begin()->getBaggage().getWeight(),5);
+    ASSERT_EQ(t->begin()->getBaggage().getQuantity(),1);
+
+}

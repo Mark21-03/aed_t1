@@ -105,7 +105,6 @@ void Menu::BuyTicket() {
     cout<<"\nNew Ticket's Flight number: ";cin>>flight;
     cout<<"New Ticket's Passenger ID : ";cin>>passengerID;
     cout<<"New Ticket's Price : ";cin>>price;
-    cout<<"New Ticket's Baggage (1 | 0): ";cin>>baggage;
     cout<<"New Ticket's Class (x | e) : ";cin>>tClass;
 
     //TODO temporario! melhorar funcao validando primeiro (tmb tem de perguntar quantos bilhetes quer?)
@@ -113,7 +112,7 @@ void Menu::BuyTicket() {
     //  sold++;
 
     if (menuOperationConfirm()) {
-        manager.createTicket(flight, passengerID, price, baggage,static_cast<ClassType>(tClass));
+        manager.createTicket(flight, passengerID, price,static_cast<ClassType>(tClass));
         cout<<"\nTicket added!\n";
     }
     getchar(); getchar();
