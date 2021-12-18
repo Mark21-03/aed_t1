@@ -9,7 +9,7 @@
     passengerID = NO_OWNER;
 }*/
 
-Ticket::Ticket(int flight, int passengerID, float price, bool baggage, ClassType tClass) {
+Ticket::Ticket(flightNumber flight, unsigned int passengerID, float price, bool baggage, ClassType tClass) {
     this->flightnumber=flight;
     this->passengerID=passengerID;
     this->price=price;
@@ -19,12 +19,12 @@ Ticket::Ticket(int flight, int passengerID, float price, bool baggage, ClassType
 
 
 float Ticket::getPrice() const {return this->price;}
-//Baggage Ticket::getBaggage() const {return this->bag1;}
-bool Ticket::getBaggage() const {return this->baggage;}
+//Baggage Ticket::hasBaggage() const {return this->bag1;}
+bool Ticket::hasBaggage() const {return this->baggage;}
 flightNumber Ticket::getFlightNumber() const {return this->flightnumber;}
 int Ticket::getPassengerID() const{return this->passengerID;}
 ClassType Ticket::getTClass() const {return this->tClass;}
-int Ticket::getSold() const {return this->sold;}
+
 //Flight Ticket::getFlight() const {return this->flight;}
 
 Ticket &Ticket::setPrice(float price) {this->price=price; return *this;}
@@ -40,7 +40,6 @@ Ticket &Ticket::setTclass(char tClass) {
 
     return *this;
 }
-Ticket &Ticket::setSold(int sold) {this->sold=0; return *this;}
-//Ticket &Ticket::setFlight(Flight flight) {this->flight=flight;}
+
 
 

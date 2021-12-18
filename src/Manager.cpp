@@ -377,8 +377,8 @@ void Manager::readTransports() {
 }
 
 bool Manager::validBuy(Ticket ticket) {
-    if (ticket.sold<flights[ticket.getFlightNumber()].getOccupation())
-        return true;
+//    if (ticket.sold<flights[ticket.getFlightNumber()].getOccupation())
+  //      return true;
     return false;
 }
 

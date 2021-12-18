@@ -9,7 +9,7 @@
 
 #define STRING_MAX_VALUE 50
 
-typedef int flightNumber;
+typedef unsigned int flightNumber;
 
 class Flight{
 private:

@@ -68,7 +68,7 @@ inline std::istream & operator>>(std::istream& is, Plane& p) {
     p.setNumberPlate(nPlate).setType(pType).setCapacity(c);
     int n;
     is >> n;
-    std::list<int> fp;
+    std::list<flightNumber> fp;
     for (int i = 0; i < n; i++) {
         int k;
         is >> k;

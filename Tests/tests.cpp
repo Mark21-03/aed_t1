@@ -34,7 +34,7 @@ TEST(test_passenger, passengerBuyingTickets) {
     Time time1(0,0,0);
 
     Flight f(140, d, time1, 3.5, "Porto", "Lisbon");
-    Ticket at(f);
+//    Ticket at(f);
 
     //aP.addTicket(at);
 
@@ -53,9 +53,9 @@ TEST(test_passenger, passengerOperator) {
     Flight f(140,  d, time1, 3.5, "Porto", "Lisbon");
     Flight f2(160, d, time1, 3.5, "Porto", "Lisbon");
 
-    Ticket at(f);
-    Ticket at2(f2);
-
+    //Ticket at(f);
+    //Ticket at2(f2);
+//
     // aP.addTicket(at);
     // aP.addTicket(at2);
     cout << aP ;
@@ -93,8 +93,8 @@ TEST(test_flights, inoutOperator) {
         exit(1);
     }
 
-    Ticket at(v[0]);
-    Ticket at2(v[1]);
+    // Ticket at(v[0]);
+    // Ticket at2(v[1]);
 
     // aP.addTicket(at);
     // aP.addTicket(at2);
@@ -242,7 +242,7 @@ TEST(Test_Menu, MenuManagerBehaviour) {
 
 }
 TEST(Test_Plane, InOutOperators) {
-    std::list<int> lF{0,30,40}; // NOT ON TEST HERE
+    std::list<flightNumber> lF{0,30,40}; // NOT ON TEST HERE
     Plane plane("CS-AKJ" , "A321", 200, lF);
 
     std::ifstream ifs("../Files/planes.txt");
@@ -258,7 +258,7 @@ TEST(Test_Plane, InOutOperators) {
 }
 
 TEST(Test_Plane, genericTestOnClassPlane){
-    std::list<int> fp={20,40,50};
+    std::list<flightNumber> fp={20,40,50};
     Plane p1("B11", "A00",140,fp);
 
     ASSERT_EQ(p1.getCapacity(),140);
@@ -269,7 +269,7 @@ TEST(Test_Plane, genericTestOnClassPlane){
     p1.setNumberPlate("A10");
     p1.setFlightPlan({10,30,40});
 
-    list<int> lTest={10,30,40};
+    list<flightNumber> lTest={10,30,40};
 
     ASSERT_EQ(p1.getFlightPlan(), lTest);
     ASSERT_EQ(p1.getNumberPlate(), "A10");
@@ -301,7 +301,7 @@ TEST(Test_Plane, inOperatorsPlane) { // NOTE: THIS TEST WAS FAILING
 }
 
 TEST(Test_Plane, outOperatorPlane){
-    list<int> fl={20,30,50};
+    list<flightNumber> fl={20,30,50};
     Plane p1("B20", "EEE", 160, fl);
 
     cout<<p1;
@@ -535,8 +535,6 @@ TEST(Creator_test, CreationFlights) {
 srand(time(nullptr));
 std::ofstream ofsF("../Files/flights.txt");
 
-
-
 vector<string> airports{
         "Beirut Rafic Hariri International Airport" ,
         "Budapest Ferihegy International Airport" ,
@@ -548,7 +546,7 @@ vector<string> airports{
         "Francisco de Sá Carneiro Airport"
 };
 
-for(int i = 0; i< 365; i++) {
+for(unsigned int i = 0; i< 365; i++) {
 
     Date date;
 
@@ -575,6 +573,7 @@ for(int i = 0; i< 365; i++) {
 
 }
 */
+
 /*
 TEST(Creator_test, creatingPlanes) { // THIS TEST FAILS IF THE NUMBER OF FLIGHTS TO BE ATTRIBUTE TO A PLANE IS MORE THAN 0
     std::ofstream ofP("../Files/Planes/planes.txt");
@@ -876,3 +875,53 @@ ofs << s;
 }
 */
 
+TEST(Creator_test, tickets) {
+
+    vector<Plane> planes;
+    vector<Passenger> passengers;
+    vector<Flight> flights;
+std::ifstream ofsPlanes("../Files/planes.txt");
+std::ifstream ofsFlights("../Files/flights.txt");
+std::ofstream ofsTickets("../Files/tickets.txt");
+
+
+
+Plane p;
+Passenger pa;
+Flight flight1;
+
+while(ofsPlanes >> p) planes.push_back(p);
+while(ofsFlights >> flight1) flights.push_back(flight1);
+
+ofsPlanes.close();
+ofsFlights.close();
+
+
+vector<char> ve {'x','e'};
+
+
+for(auto& f : flights) {
+
+    vector<Ticket> ticketsOfflight;
+for(int i = 0; i < f.getOccupation(); i++) {
+    unsigned int p = rand() & 1000;
+    float r3 = 50.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(500.0f-50.0f)));
+    int ba = (bool)(rand() % 2);
+    bool b = ba == 0;
+    char t = ve[rand()&2];
+    ClassType C = t == 'x' ? executive:economic;
+
+
+    ticketsOfflight.emplace_back(f.getNumber(),p,r3,b,C);
+
+}
+
+for(auto& t: ticketsOfflight) {
+    ofsTickets << t;
+}
+
+}
+
+
+
+}
