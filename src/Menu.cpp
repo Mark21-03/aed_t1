@@ -643,7 +643,7 @@ void Menu::showNearbyTransports() {
     cout<<endl;
     for(auto it = tree->begin();it!=tree->end();it++){
         Transport temp = *it;
-        cout<<nameSetter(temp.getType())<<" in "<<temp.getDistance()<<" km"<<endl;
+        cout<<nameSetter(temp.getType())<<" in "<<temp.getDistance()<<" km. Schedule: "<<temp.getTimeTable()<<endl;
     }
 
 
@@ -656,6 +656,21 @@ void Menu::addNewTransport() {
     cout<<"New Transport Distance (float): ";cin>>d;
 
     Transport t(c,d);
+
+
+    auto generateRandomTimeTable = [=](){
+        Time t;
+        set<Time> s;
+
+        int numTimes = rand()%10+5;
+
+        for(int i = 0; i<numTimes;i++){
+            t.setRandomTime();
+            s.insert(t);
+        }
+        return s;
+    };
+    t.setTimeTable(generateRandomTimeTable());
 
     if(menuOperationConfirm()){
         manager.getTransportTree()->insert(t);

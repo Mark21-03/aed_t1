@@ -322,6 +322,7 @@ TEST(Test_Menu, menuLoopBUG) {
 
 TEST(Test_time, randomTime) {
     Time t;
+    srand(time(NULL));
     t.setRandomTime();
 
     cout << t;
@@ -916,12 +917,43 @@ for(int i = 0; i < f.getOccupation(); i++) {
 
 }
 
-for(auto& t: ticketsOfflight) {
-    ofsTickets << t;
-}
+    for(auto& t: ticketsOfflight) {
+        ofsTickets << t;
+    }
+
+    }
 
 }
 
+TEST(Test_TimeTable, generateTimetable){
+    srand(time(NULL));
 
+    Manager manager;
+    BST<Transport>  *tree = manager.getTransportTree();
+
+
+    auto generateRandomTimeTable = [=](){
+        Time t;
+        set<Time> s;
+
+        int numTimes = rand()%10+5;
+
+        for(int i = 0; i<numTimes;i++){
+            t.setRandomTime();
+            s.insert(t);
+        }
+        return s;
+    };
+
+
+   for(auto it = tree->begin();it!=tree->end();it++){
+       set<Time> times = generateRandomTimeTable();
+
+
+       //cout<<(*it).getType()<<" "<<(*it).getDistance()<<" "<<times.size()<<" "<<times<<endl;
+
+    }
+
+   //tree->printTree();
 
 }

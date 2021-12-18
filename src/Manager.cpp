@@ -151,7 +151,7 @@ Manager::~Manager() {
         ofsFlights << f;
 
     for(auto it= transportsTree.begin();it!=transportsTree.end();it++)
-        ofsTransports << (*it).getType()<<" "<<(*it).getDistance()<<endl;
+        ofsTransports << (*it).getType()<<" "<<(*it).getDistance()<<" "<<(*it).getTimeTable().size()<<" "<<(*it).getTimeTable()<<endl;
 
     for (auto & t: tickets) {
         ofsTickets << t;
