@@ -307,12 +307,7 @@ void Menu::funcReadPassenger() {
         getchar();
         getchar();
     } else if (option == "n") {
-        std::string searchName;
-        cout << "Give us a part of the Name: ";
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        getline(cin, searchName);
-        regex search(".*" + searchName + ".*");
-        cout<<endl;
+        regex search = out::askParts(cout,cin, "Give us a part of the Name: ");
 
         bool foundMatch = manager.searchPassengerId(cout, search);
         cout << SEPARATION << std::endl;
@@ -345,10 +340,28 @@ void Menu::funcReadPlane() {
 }
 
 void Menu::funcReadFlight() {
-    flightNumber min, max;
-    out::askInterval<flightNumber>(cout, cin, min, max, "Flight number");
-    manager.showSortedFlightsById(cout, min, max);
-    getchar();getchar();
+    std::string option;
+    out::askOnce<std::string>(cout,cin, option, "Option(i->id, o->search origin, d->search destiny)");
+
+    if (option == "i") {
+        flightNumber min, max;
+        out::askInterval<flightNumber>(cout, cin, min, max, "Flight number");
+        manager.showSortedFlightsById(cout, min, max);
+        getchar();
+        getchar();
+    } else if (option == "o") {
+        regex search = out::askParts(cout,cin, "Give us a part of the airport origin name: ");
+
+        bool foundMatch = manager.searchFlightsOrigins(cout, search);
+        if(!foundMatch) cout<<"X\tNo match was found!\n";
+        getchar();
+    } else if (option == "d") {
+        regex search = out::askParts(cout,cin, "Give us a part of the airport destiny name: ");
+
+        bool foundMatch = manager.searchFlightsDestiny(cout, search);
+        if(!foundMatch) cout<<"X\tNo match was found!\n";
+        getchar();
+    }
 
 }
 
