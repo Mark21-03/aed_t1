@@ -96,6 +96,22 @@ inline bool operator<(const Transport& t1, const Transport& t2){
     return t1.getTimeTable() < t2.getTimeTable();
 }
 
+
+
+/**
+ * Allows for outputting TimeTable type to given ostream
+ * @param os ostream to be used
+ * @param t TimeTable type to be outputted
+ * @return ostream used (changed)
+ */
+inline ostream& operator<<(ostream& os,const TimeTable &t){
+
+    for(auto it = t.begin();it!=t.end();it++)
+        os<<*it<<" ";
+
+    return os;
+}
+
 /**
  * Allows for outputting Transport object to given ostream
  * @param os ostream to be used
@@ -103,9 +119,10 @@ inline bool operator<(const Transport& t1, const Transport& t2){
  * @return ostream used (changed)
  */
 inline ostream& operator<<(ostream& os, Transport &t){
-    os<<t.getType()<<" "<<t.getDistance();
+    os<<t.getType()<<" "<<t.getDistance()<<" "<< t.getTimeTable();
     return os;
 }
+
 
 /**
  * Allows for istream to create a Transport with Type and Distance
@@ -114,10 +131,18 @@ inline ostream& operator<<(ostream& os, Transport &t){
  * @return istream (changed)
  */
 inline istream& operator>>(istream& is, Transport &t){
-    char type;float distance;
-    is>>type>>distance;
+    char type;float distance;unsigned numTimes;
+    is>>type>>distance>>numTimes;
     t.setDistance(distance);
     t.setType(type);
+
+    TimeTable times;Time aux;
+    for(int i = 0;i<numTimes;i++){
+        is>>aux;
+        times.insert(aux);
+    }
+    t.setTimeTable(times);
+
     return is;
 }
 
