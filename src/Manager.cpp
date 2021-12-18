@@ -1,7 +1,6 @@
 #include <algorithm>
 #include "../include/Manager.h"
 
-
 void Manager::setPaths(){
     ifstream dirs(filesDir);
 
@@ -50,7 +49,7 @@ void Manager::showSortedFlightsById(ostream &ostream1, flightNumber min , flight
 }
 
 
-void Manager::showSortedPlanesById(ostream &ostream1, const planePlate& min, const planePlate& max) {
+void Manager::showSortedPlanes(ostream &ostream1,const planePlate& min,const planePlate& max) {
 
     out::headerPlanes(ostream1);
     auto it = lower_bound(planes.begin(), planes.end(), Plane(min,"",0));
@@ -58,16 +57,6 @@ void Manager::showSortedPlanesById(ostream &ostream1, const planePlate& min, con
     for (;it!=planes.end();it++) {
         if (it->getNumberPlate() > max) break;
         out::planes(ostream1,it);
-    }
-}
-
-void Manager::showSortedPlanesOfType(ostream &ostream1, const std::string & min) {
-    out::headerPlanes(ostream1);
-    auto it = planes.begin();
-
-    for (;it!=planes.end();it++) {
-        if (it->getType() == min)
-          out::planes(ostream1,it);
     }
 }
 
@@ -229,7 +218,7 @@ void Manager::searchUpdatePlanes(const string& searchedPlate){
 
     if(it!=planes.end()){
         string newType, newCapacity;
-        showSortedPlanesById(cout, searchedPlate, searchedPlate);
+        showSortedPlanes(cout,searchedPlate, searchedPlate);
         cout<<"\nProvided the new values below:";
         cout<<"\nType: ";cin.ignore();getline(cin,newType);
         cout<<"\nCapacity: ";getline(cin,newCapacity);
@@ -248,16 +237,19 @@ void Manager::searchUpdatePlanes(const string& searchedPlate){
 
 }
 
-void Manager::searchUpdateServices(ServiceType type, Date date, employerName employer, planePlate plane){
-    ServiceType type1;
-    Date date1;
-    employerName employer1;
-    planePlate plane1;
-    bool changed=false;
-    //for (auto it=serviceManager.;it!=planes.end();it++){
-    //    if ((*it).getNumberPlate()==id){
-}
+/*void Manager::searchUpdateServices(ServiceType type, Date date, employerName emp, planePlate plate){
+    //ServiceType type1;
+    //Date date1;
+    //employerName employer1;
+    //planePlate plane1;
 
+    auto finder = [=](const Service &s){
+        return s.getType()==type && s.getDate()==date && s.getPlane()==plate && s.getEmployer()==emp;
+    };
+
+    auto it=find_if(serviceManager.get,)
+}
+**/
 
 void Manager::createPassenger(const string &Pname){
 
@@ -278,11 +270,23 @@ void Manager::createPlane(const planePlate &numberPlate, const string &pType, in
 
 void Manager::createFlight( const Date &departureDate, const Time &departureTime, const float &duration, std::string origin, std::string destiny) {
 
-    unsigned newID = flights.back().getNumber()+1;
-    Flight f(newID,departureDate,departureTime,duration,origin,destiny);
+    unsigned newID = flights.back().getNumber() + 1;
+    Flight f(newID, departureDate, departureTime, duration, origin, destiny);
 
     flights.push_back(f);
+
 }
+
+void Manager::createTicket(int flight, int passengerID, float price, bool baggage, ClassType tClass) {
+    Ticket t(flight,passengerID,price,baggage,tClass);
+}
+
+Flight Manager::getFlightbyNumber(int number) {
+    return flights[number];
+}
+
+
+
 
 
 bool Manager::deletePassenger(const unsigned int &idD) {
@@ -353,6 +357,12 @@ void Manager::readTransports() {
 
     ifs_transports.close();
 
+}
+
+bool Manager::validBuy(Ticket ticket) {
+    if (ticket.sold<flights[ticket.getFlightNUmber()].getOccupation())
+        return true;
+    return false;
 }
 
 

@@ -19,15 +19,17 @@ public:
     // getters
 
     Ticket(Flight& flight);
-    Ticket(flightNumber flightnumber, int passengerID, float price, Baggage bag1, char tClass);
+    Ticket(int flight, int passengerID, float price, bool baggage, ClassType tClass);
 
-    Flight getFlightInfo() const;
+    //Flight getFlightInfo() const;
     int getPassengerID();
     ClassType getTClass() const;
     float getPrice() const;
     //Baggage getBaggage() const;
     flightNumber getFlightNUmber() const;
     bool getBaggage() const;
+    int getSold() const;
+    //Flight getFlight() const;
 
     Ticket& setPrice(float price);
     //Ticket& setBaggage(Baggage bag1);
@@ -35,16 +37,18 @@ public:
     Ticket& setPassengerId(int passengerid);
     Ticket& setFlightNumber(flightNumber flightNumber);
     Ticket& setBaggage(bool baggage);
+    Ticket& setSold(int sold);
+    //Ticket& setFlight(Flight flight);
 
-    bool validBuy(Ticket ticket);
 
     //char getBoardingZone() const;
     //std::string getSeat() const;
-
-
-private:
     flightNumber flightnumber;
-    Flight flightInfo;
+    int sold;
+private:
+    //flightNumber flightnumber;
+    //Flight flightInfo;
+    //Flight flight;
     int passengerID;
     float price;
     bool baggage;
@@ -58,7 +62,7 @@ private:
 };
 
 inline bool operator==(const Ticket& l, const Ticket& r) {
-    return l.getFlightInfo() == r.getFlightInfo() ;
+    return l.getFlightNUmber() == r.getFlightNUmber() ;
 }
 
 inline bool operator<(const Ticket& t1, const Ticket& t2){
@@ -67,7 +71,7 @@ inline bool operator<(const Ticket& t1, const Ticket& t2){
 
 inline std::ostream& operator <<(std::ostream & os, Ticket& l) {
 
-    os << l.getFlightInfo().getNumber() << " ";
+    os << l.getFlightNUmber() << " ";
 
     os << l.getPassengerID();
 
