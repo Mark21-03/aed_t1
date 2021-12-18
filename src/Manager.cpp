@@ -139,7 +139,7 @@ Manager::~Manager() {
     std::ofstream ofsPassengers(passengersPath);
     std::ofstream ofsFlights(flightsPath);
     std::ofstream ofsTransports(transportsPath);
-    //std::ofstream ofsTickets(tickets_path); //TODO TICKETS ARE BEING DELETED
+    std::ofstream ofsTickets(tickets_path); //TODO TICKETS ARE BEING DELETED
 
     for(Plane &p:planes)
         ofsPlanes << p;
@@ -153,15 +153,15 @@ Manager::~Manager() {
     for(auto it= transportsTree.begin();it!=transportsTree.end();it++)
         ofsTransports << (*it).getType()<<" "<<(*it).getDistance()<<" "<<(*it).getTimeTable().size()<<" "<<(*it).getTimeTable()<<endl;
 
-    /*for (auto & t: tickets) {
+    for (auto & t: tickets) {
         ofsTickets << t;
-    }*/
+    }
 
     ofsPlanes.close();
     ofsFlights.close();
     ofsPassengers.close();
     ofsTransports.close();
-    //ofsTickets.close();
+    ofsTickets.close();
 
     serviceManager.saveToFile();
 
@@ -324,7 +324,9 @@ void Manager::createFlight( const Date &departureDate, const Time &departureTime
 }
 
 void Manager::createTicket(int flight, int passengerID, float price, bool baggage, ClassType tClass) {
+    //TODO
     Ticket t(flight,passengerID,price,baggage,tClass);
+    tickets.insert(t);
 }
 // TODO: WHAT IS THIS ABOVE???
 /*Flight Manager::getFlightbyNumber(int number) {
@@ -422,7 +424,7 @@ void Manager::readTickets() {
     ifs_ticket.close();
 }
 
-Flight* Manager::getFlightbyNumber(flightNumber number) { // TODO: CHECK IF IT IS WORKING
+Flight* Manager::getFlightbyNumber(flightNumber number) {
     auto it = lower_bound(flights.begin(), flights.end(), Flight(number,Date(), Time(), 1.0f,"",""));
 
     if (it->getNumber() != number) {
