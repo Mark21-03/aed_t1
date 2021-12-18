@@ -80,7 +80,7 @@ public:
     void createPlane(const planePlate& numberPlate ,const std::string& pType, int capacity);
     void createFlight(const Date& departureDate,const Time& departureTime, const float &duration,std::string origin, std::string destiny);
     void createTicket(int flight, int passengerID, float price, bool baggage, ClassType tClass);
-    Flight getFlightbyNumber(int number);
+    Flight* getFlightbyNumber(flightNumber number);
 
     bool deletePassenger(const unsigned &idD);
     bool deletePlane(const string &idD);

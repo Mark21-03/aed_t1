@@ -423,5 +423,16 @@ void Manager::readTickets() {
     ifs_ticket.close();
 }
 
+Flight* Manager::getFlightbyNumber(flightNumber number) {
+    auto it = lower_bound(flights.begin(), flights.end(), Flight(number,Date(), Time(), 1.0f,"",""));
+
+    if (it->getNumber() != number) {
+        return NULL;
+    }
+    Flight& flight = *it;
+    return &flight;
+}
+
+
 
 
