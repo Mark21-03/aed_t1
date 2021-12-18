@@ -4,6 +4,8 @@
 
 #ifndef AED_T1_OUTPUT_H
 #define AED_T1_OUTPUT_H
+
+#include <regex>
 #include "vector"
 #include "../include/Flight.h"
 #include "../include/Passenger.h"
@@ -49,7 +51,16 @@ namespace out {
         ostream1 << "\ny: "; istream1 >> max;
     }
 
+    inline regex askParts(std::ostream &ostream1, istream & istream1, const std::string& askText) {
+        std::string searchName;
+        ostream1 << askText;
+        istream1.ignore(numeric_limits<streamsize>::max(), '\n');
+        getline(istream1, searchName);
+        regex search(".*" + searchName + ".*");
+        ostream1 << endl;
 
+        return search;
+    }
 
     //TODO Acabar documentação
     template<typename writeable>
@@ -76,6 +87,7 @@ namespace out {
     inline void services(ostream& ostream1, ServicePointer it){
         ostream1 << it->getInfo() << std::endl;
     }
+
 }
 
 #endif //AED_T1_OUTPUT_H

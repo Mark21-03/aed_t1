@@ -432,6 +432,32 @@ Flight* Manager::getFlightbyNumber(flightNumber number) { // TODO: CHECK IF IT I
     return &flight;
 }
 
+bool Manager::searchFlightsOrigins(ostream &ostream1, const regex &exp) {
+    out::headerFlights(ostream1);
+
+    bool foundMatch = false;
+
+    for (auto& f : flights)
+        if(regex_match(f.getOrigin() ,exp)){
+            foundMatch = true;out::flights(ostream1,&f);
+        }
+
+    return foundMatch;
+}
+
+bool Manager::searchFlightsDestiny(ostream &ostream1, const regex &exp) {
+    out::headerFlights(ostream1);
+
+    bool foundMatch = false;
+
+    for (auto& f : flights)
+        if(regex_match(f.getDestiny() ,exp)){
+            foundMatch = true;out::flights(ostream1,&f);
+        }
+
+    return foundMatch;
+}
+
 
 
 

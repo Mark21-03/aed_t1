@@ -68,6 +68,9 @@ public:
 
     void searchUpdatePassengers(int id);
     bool searchPassengerId(ostream &ostream1, const regex& exp);
+    bool searchFlightsOrigins(ostream &ostream1, const regex& exp);
+    bool searchFlightsDestiny(ostream &ostream1, const regex& exp);
+
 
     void searchUpdateFlights(int id);
     void searchUpdatePlanes(const string& id);
