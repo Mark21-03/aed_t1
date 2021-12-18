@@ -115,6 +115,20 @@ Time Flight::getDepartureTime() const{
     return this->departureTime;
 }
 
+Baggage Flight::takeBaggageFromFlight() {
+    Baggage temp = planeStoredBaggage.front();
+    planeStoredBaggage.pop();
+    return temp;
+}
+
+void Flight::addBaggage2Flight(const Baggage &baggage) {
+    planeStoredBaggage.push(baggage);
+}
+
+queue<Baggage> Flight::getPlaneStoredBaggage() const{
+    return planeStoredBaggage;
+}
+
 
 
 

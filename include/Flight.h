@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <utility>
+#include <queue>
+#include "Baggage.h"
 
 #include "Date.h"
 #include "Time.h"
@@ -22,7 +24,8 @@ private:
     float duration;
     char origin[STRING_MAX_VALUE]{},destiny[STRING_MAX_VALUE]{};
     // planePlate plane; // TODO
-    // maybe add a mile counter
+
+    queue<Baggage> planeStoredBaggage;
 
 public:
 
@@ -38,6 +41,8 @@ public:
     Flight& setOrigin(const std::string& origin);
     Flight& setDestiny(const std::string& destiny);
     Flight& setOccupation (int occupation);
+    void addBaggage2Flight(const Baggage& baggage);
+    Baggage takeBaggageFromFlight();
 
     //Getters
     flightNumber getNumber() const;
@@ -49,9 +54,11 @@ public:
     char* getOriginC() ;
     char* getDestinyC();
     int getOccupation() const;
+    queue<Baggage> getPlaneStoredBaggage() const;
 
 
-    // TODO: DO A CHECK IN FUNCTION WHICH WILL TAKE A PASSENGER - NOT HERE THOUGH
+
+
 };
 
 inline bool operator == (const Flight&l, const Flight& r) {

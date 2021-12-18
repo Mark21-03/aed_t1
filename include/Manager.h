@@ -16,6 +16,7 @@
 #include "ServiceManagement.h"
 #include "BST.h"
 #include "Transports.h"
+#include "BagaggeCheckIn.h"
 
 class Manager {
 private:
@@ -77,6 +78,11 @@ public:
     void searchUpdateServices(char type, Date date, string employer, planePlate plane);
 
     bool confirmationPrompt();
+
+    void makeCheckIn(int flightID);
+
+
+    void moveBaggageToPlane(int flightID);
 
 
     void createPassenger(const string &Pname);

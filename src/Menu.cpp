@@ -718,8 +718,9 @@ void Menu::doCheckIn() {
     bool foundFlight = ptr != nullptr;
 
     if(foundFlight){
-        //do Check In
-        cout<<"\n...\n";
+
+        manager.makeCheckIn(flightID);
+
     }else cout<<"\nFlight ID not found!\n";
 
 

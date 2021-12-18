@@ -464,6 +464,84 @@ bool Manager::searchFlightsDestiny(ostream &ostream1, const regex &exp) {
     return foundMatch;
 }
 
+void Manager::makeCheckIn(int flightID) {
+
+    auto finder = [=](const Ticket& t){
+        return t.getFlightNumber() == flightID;
+    };
+
+    auto it = find_if(tickets.begin(),tickets.end(),finder);
+
+    if(it!=tickets.end()){
+        //actually make Check In
+        cout<<"\n\nAll this tickets were a match: \n\n";
+        moveBaggageToPlane(flightID);
+        cout<<"\nAll baggage are now in the plane!\n";
+    }else
+        cout<<"\nNo tickets for this flight!\n";
+
+}
+
+void Manager::moveBaggageToPlane(int flightID) {
+
+    auto finder = [=](const Ticket& t){
+        return t.getFlightNumber() == flightID;
+    };
+
+    auto it = find_if(tickets.begin(),tickets.end(),finder);
+
+    BaggageCheckIn bci(4,5,10);
+
+
+    cout<<"Flight ID\t"<<"Passenger ID\t"<<"Price\t  "<<"Class\t\t\t"<<"Baggage\t\n";
+    cout<<SEPARATION<<"-----------------------------------"<<endl;
+
+    auto printBaggage = [](const Baggage& b){
+        return to_string(b.getQuantity())+" baggage with "+to_string((int)b.getWeight())+ " kg";
+    };
+
+    auto classSeatPrinter = [](int c){
+        char a = (char)c;
+        if(a == 'e') return "Economic";
+        return "Executive";
+    };
+
+    while(it->getFlightNumber()==flightID){
+        cout<<it->getFlightNumber()<<"\t\t"<<it->getPassengerID()<<"\t\t"<<it->getPrice();
+        cout<<"\t  "<<classSeatPrinter(it->getTClass())<<"\t\t"<<printBaggage(it->getBaggage())<<endl;
+
+        bci.queueAdd(it->getBaggage());
+
+        it++;
+    }
+    cout<<"\nMoving all corresponding baggage through the conveyor belt...\n";
+
+    while(bci.getQueueSize()>0){
+        if(bci.isTruckFull()){
+            cout<<"\nTruck can't take so many bags!\n";break;
+        }
+        bci.passNextBagaggeToTruck();
+    }
+
+    cout<<"\nPassing baggage from conveyor belt to the baggage truck...\n";
+
+    auto FlightFinder = [=](const Flight & f){
+        return f.getNumber() == flightID;
+    };
+
+    auto flightIter = find_if(flights.begin(),flights.end(),FlightFinder);
+
+    Baggage aux;
+
+    while(!bci.getTruck().isEmpty()){
+       aux = bci.truckTakeBaggage();
+        flightIter->addBaggage2Flight(aux);
+    }
+
+    cout<<"\nMoving baggage from truck to the plane...\n";
+
+}
+
 
 
 
