@@ -3,8 +3,11 @@
 
 #include <iostream>
 
-using namespace std;
 
+
+/**
+ * Exception class to be thrown when invalid date attributes try to be set
+ */
 class invalidDate{
 public:
     invalidDate(std::string reason) : reason(reason) {};

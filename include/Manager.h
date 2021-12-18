@@ -16,7 +16,6 @@
 #include "BST.h"
 #include "Transports.h"
 
-
 class Manager {
 private:
 
@@ -58,8 +57,8 @@ public:
     bool addFlightToPlanePlan(Flight& flight); // success or not // TODO LATER
 
 
-    void showSortedPlanesById(ostream& ostream1, const planePlate& min, const planePlate& max);
-    void showSortedPlanesOfType(ostream& ostream1, const std::string & min);
+    void showSortedPlanesById(ostream &ostream1, const planePlate& min, const planePlate& max);
+    void showSortedPlanesOfType(ostream &ostream1, const std::string & min);
 
     void showDoneServices(ostream& ostream1, const Date& min, const Date& max);
     void showToDoServices(ostream& ostream1, const Date& min, const Date& max);
@@ -77,11 +76,14 @@ public:
     void createPassenger(const string &Pname);
     void createPlane(const planePlate& numberPlate ,const std::string& pType, int capacity);
     void createFlight(const Date& departureDate,const Time& departureTime, const float &duration,std::string origin, std::string destiny);
+    void createTicket(int flight, int passengerID, float price, bool baggage, ClassType tClass);
+    Flight getFlightbyNumber(int number);
 
     bool deletePassenger(const unsigned &idD);
     bool deletePlane(const string &idD);
     bool deleteFlight(const unsigned &idD);
 
+    bool validBuy(Ticket ticket);
 };
 
 

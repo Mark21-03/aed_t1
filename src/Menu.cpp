@@ -95,9 +95,26 @@ void Menu::funcCreateService() {
 }
 
 void Menu::funcCreateTicket() {
-    //TODO
-    cout << "\n!funcCreateTicket!\n";
-    getchar();
+    int flight;
+    int passengerID;
+    float price;
+    bool baggage;
+    char tClass;
+    int sold;
+
+    cout<<"\nNew Ticket's Flight number: ";cin>>flight;
+    cout<<"New Ticket's Passenger ID :";cin>>passengerID;
+    cout<<"New Ticket's Price :";cin>>price;
+    cout<<"New Ticket's Baggage (true or false): ";cin>>baggage;
+    cout<<"New Ticket's Class :";cin>>tClass;
+    //if (validBuy) //funcao bool na class ticket n sei como aplicar aqui
+    //  sold++;
+
+    if (menuOperationConfirm()) {
+        //adicionar a vetor se houber vetor tickets
+        cout<<"\nTicket added!\n";
+    }
+    getchar(); getchar();
 
 }
 
@@ -132,10 +149,32 @@ void Menu::funcUpdateFlight() {
 }
 
 void Menu::funcUpdateService(){
-    //TODO
+    Date date=askDateService();
+    char type=askTypeService();
+    string emp=askEmployeeService();
+    string plate=askPlateService();
 }
 void Menu::funcUpdateTicket(){
-    //TODO
+    int flight;
+    int passengerID;
+    float price;
+    bool baggage;
+    char tClass;
+    int sold;
+
+    cout<<"\nNew Ticket's Flight number: ";cin>>flight;
+    cout<<"New Ticket's Passenger ID :";cin>>passengerID;
+    cout<<"New Ticket's Price :";cin>>price;
+    cout<<"New Ticket's Baggage (true or false): ";cin>>baggage;
+    cout<<"New Ticket's Class :";cin>>tClass;
+    //if (validBuy) //funcao bool na class ticket n sei como aplicar aqui
+    //  sold++;
+
+    if (menuOperationConfirm()) {
+        //adicionar a vetor se houber vetor tickets
+        cout<<"\nTicket added!\n";
+    }
+    getchar(); getchar();
 }
 
 int Menu::askChangeId(){
@@ -143,6 +182,36 @@ int Menu::askChangeId(){
     cout<<"\nWhich id do you want to change: ";
     cin>>id;
     return id;
+}
+
+Date Menu::askDateService() {
+    Date date;
+    cout<<"\nWhat date was the service: ";
+    cin>>date;
+    return date;
+}
+
+char Menu::askTypeService() {
+    char type;
+    cout<<"\nWhat type was the service: ";
+    cin>>type;
+    //if (type=='m' || type=='c' || type=='o')
+    return type;
+    //else cout<<"Invalid type";
+}
+
+string Menu::askPlateService() {
+    string plate;
+    cout<<"\nWhat's the plate of the plane where the service happened: ";
+    cin>>plate;
+    return plate;
+}
+
+string Menu::askEmployeeService() {
+    string emp;
+    cout<<"\nName of employee int he service: ";
+    cin>>emp;
+    return emp;
 }
 
 //_________________________________________________________________________________
@@ -273,7 +342,9 @@ void Menu::funcReadPassenger() {
         cout << SEPARATION << std::endl;
         if(!foundMatch) cout<<"X\tNo match was found!\n";
         getchar();
+
     }
+
 }
 
 void Menu::funcReadPlane() {
@@ -667,6 +738,7 @@ void Menu::othersSubMenu() {
         cout << "  2)  Add Nearby Transport" << endl;
         cout << "  3)  Remove Nearby Transport" << endl;
         cout << "  4)  X" << endl;
+        cout << "  5)  X" << endl;
         cout << "  6)  Go Back" << endl;
         cout << "  0)  Exit" << endl;
         cout << "===============================" << endl;
@@ -721,7 +793,6 @@ void Menu::othersSubMenu() {
     }
 
 }
-
 
 
 
