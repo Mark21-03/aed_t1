@@ -95,9 +95,26 @@ void Menu::funcCreateService() {
 }
 
 void Menu::funcCreateTicket() {
-    //TODO
-    cout << "\n!funcCreateTicket!\n";
-    getchar();
+    int flight;
+    int passengerID;
+    float price;
+    bool baggage;
+    char tClass;
+    int sold;
+
+    cout<<"\nNew Ticket's Flight number: ";cin>>flight;
+    cout<<"New Ticket's Passenger ID :";cin>>passengerID;
+    cout<<"New Ticket's Price :";cin>>price;
+    cout<<"New Ticket's Baggage (true or false): ";cin>>baggage;
+    cout<<"New Ticket's Class :";cin>>tClass;
+    //if (validBuy) //funcao bool na class ticket n sei como aplicar aqui
+    //  sold++;
+
+    if (menuOperationConfirm()) {
+        //adicionar a vetor se houber vetor tickets
+        cout<<"\nTicket added!\n";
+    }
+    getchar(); getchar();
 
 }
 
@@ -132,7 +149,10 @@ void Menu::funcUpdateFlight() {
 }
 
 void Menu::funcUpdateService(){
-    //TODO
+    Date date=askDateService();
+    char type=askTypeService();
+    string emp=askEmployeeService();
+    string plate=askPlateService();
 }
 void Menu::funcUpdateTicket(){
     //TODO
@@ -143,6 +163,36 @@ int Menu::askChangeId(){
     cout<<"\nWhich id do you want to change: ";
     cin>>id;
     return id;
+}
+
+Date Menu::askDateService() {
+    Date date;
+    cout<<"\nWhat date was the service: ";
+    cin>>date;
+    return date;
+}
+
+char Menu::askTypeService() {
+    char type;
+    cout<<"\nWhat type was the service: ";
+    cin>>type;
+    //if (type=='m' || type=='c' || type=='o')
+    return type;
+    //else cout<<"Invalid type";
+}
+
+string Menu::askPlateService() {
+    string plate;
+    cout<<"\nWhat's the plate of the plane where the service happened: ";
+    cin>>plate;
+    return plate;
+}
+
+string Menu::askEmployeeService() {
+    string emp;
+    cout<<"\nName of employee int he service: ";
+    cin>>emp;
+    return emp;
 }
 
 //_________________________________________________________________________________
@@ -172,7 +222,7 @@ void Menu::funcDeletePlane() {
     cout<<"\nNumberPlate to be deleted: ";getline(cin,id2Delete);
 
     cout<<endl;
-    manager.showSortedPlanesById(cout, id2Delete, id2Delete);
+    manager.showSortedPlanes(cout, id2Delete, id2Delete);
 
     if(menuOperationConfirm()){
         bool deleted = manager.deletePlane(id2Delete);
@@ -273,28 +323,17 @@ void Menu::funcReadPassenger() {
         cout << SEPARATION << std::endl;
         if(!foundMatch) cout<<"X\tNo match was found!\n";
         getchar();
+
     }
+
 }
 
 void Menu::funcReadPlane() {
-    std::string option;
-    out::askOnce<std::string>(cout,cin, option, "Option(p->Plate Number, t->Plane type)");
-
-    if (option == "p") {
-        planePlate min, max;
-        out::askInterval<planePlate>(cout, cin, min, max, "Plate Number");
-        cout << endl;
-        manager.showSortedPlanesById(cout, min, max);
-        getchar();
-        getchar();
-    }else if (option == "t") {
-        std::string min;
-        out::askOnce<std::string>(cout, cin, min, "Plate Type");
-        cout << endl;
-        manager.showSortedPlanesOfType(cout, min);
-        getchar();
-        getchar();
-    }
+    planePlate min, max;
+    out::askInterval<planePlate>(cout, cin, min, max, "Plate Number");
+    cout<<endl;
+    manager.showSortedPlanes(cout, min, max);
+    getchar();getchar();
 }
 
 void Menu::funcReadFlight() {
@@ -721,7 +760,6 @@ void Menu::othersSubMenu() {
     }
 
 }
-
 
 
 
