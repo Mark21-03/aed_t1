@@ -22,7 +22,7 @@ public:
     Ticket(flightNumber flightnumber, int passengerID, float price, Baggage bag1, char tClass);
 
     Flight getFlightInfo() const;
-    int getPassengerID();
+    int getPassengerID() const;
     ClassType getTClass() const;
     float getPrice() const;
     //Baggage getBaggage() const;
@@ -58,7 +58,7 @@ private:
 };
 
 inline bool operator==(const Ticket& l, const Ticket& r) {
-    return l.getFlightInfo() == r.getFlightInfo() ;
+    return l.getFlightInfo() == r.getFlightInfo() && l.getPassengerID() == r.getPassengerID();
 }
 
 inline bool operator<(const Ticket& t1, const Ticket& t2){

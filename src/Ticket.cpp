@@ -13,7 +13,7 @@ float Ticket::getPrice() const {return this->price;}
 //Baggage Ticket::getBaggage() const {return this->bag1;}
 bool Ticket::getBaggage() const {return this->baggage;}
 flightNumber Ticket::getFlightNUmber() const {return this->flightnumber;}
-int Ticket::getPassengerID() {return this->passengerID;}
+int Ticket::getPassengerID() const {return this->passengerID;}
 ClassType Ticket::getTClass() const {return this->tClass;}
 
 Ticket &Ticket::setPrice(float price) {this->price=price; return *this;}
