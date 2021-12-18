@@ -104,13 +104,8 @@ inline std::istream& operator>> (std::istream& is, Flight& r) {
     Date date;
     Time time;
 
-    is >> n;
+    is >> n >> date >> time >> oc >> du;
 
-    is >> date;
-
-    is >> time;
-    is >> oc;
-    is >> du;
     r.setNumber(n).setDuration(du).setOccupation(oc).setDepartureDate(date).setDepartureTime(time);
 
     for (int i = 0; i < STRING_MAX_VALUE; ++i) {

@@ -14,7 +14,18 @@
 namespace out {
     #define SEPARATION "--------------------------------------------------------"
 
+    /**
+     * Outputs flights table (header)
+     * @param ostream1 ostream where to output the table
+     */
     void headerFlights(ostream &ostream1);
+
+    /**
+     * Outputs flights table
+     * @tparam FlightsPointer pointer to a flight object
+     * @param ostream1  ostream where to output the table
+     * @param it flight pointer to be outputted
+     */
     template<typename FlightsPointer>
     inline void flights(ostream &ostream1, FlightsPointer it) {
         ostream1 << setw(15) << it->getNumber() << setw(15) << it->getDepartureDate().getDate() << setw(15)
@@ -22,6 +33,15 @@ namespace out {
                  << setw(50) << it->getOrigin() << setw(45) << " ⟶ " + it->getDestiny() << "\n";
     }
 
+    /**
+     *
+     * @tparam writeable object that has overload <<
+     * @param ostream1 ostream to ask the user
+     * @param istream1 istream to get the user's input
+     * @param min minimum of the desired interval
+     * @param max maximum of the desired interval
+     * @param asked the kind of value being asked
+     */
     template<typename writeable>
     inline void askInterval(ostream &ostream1, istream & istream1, writeable & min , writeable & max, const std::string& asked) {
         ostream1 << asked << " from x to y: " << std::endl;
@@ -29,6 +49,9 @@ namespace out {
         ostream1 << "\ny: "; istream1 >> max;
     }
 
+
+
+    //TODO Acabar documentação
     template<typename writeable>
     inline void askOnce(ostream &ostream1, istream & istream1, writeable & min, const std::string& asked) {
         ostream1 << "Provide a valid " << asked << std::endl;

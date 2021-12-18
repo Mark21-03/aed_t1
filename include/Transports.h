@@ -15,29 +15,79 @@ private:
     float distance ; // in kms
 
 public:
+
+    /**
+     * Constructs default Transport object as a null
+     */
     Transport(){this->type = 'N';this->distance = -1;};
+
+    /**
+     * Constructs a new Transport with given type but null distance
+     * @param type Defines Transport type ( B - Bus , S- Subway, T - Train)
+     */
     inline explicit Transport(char type){this->type = type;distance = 0;}
+
+    /**
+     * Constructs a new Transport with given type and respective distance
+     * @param type Defines Transport type ( B - Bus , S- Subway, T - Train)
+     * @param distance distance (in Kms) from the airport
+     */
     inline Transport(char type, float distance){this->type = type;this->distance=distance;}
 
+    /**
+     * Gives transport char type
+     * @return transport char type  ( B - Bus , S- Subway, T - Train)
+     */
     inline char getType() const{return this->type;}
-    bool setType(const char &type);
 
+    /**
+     * Sets transport char type if its one of the following  ( B - Bus , S- Subway, T - Train)
+     * @param type transport char type
+     * @return boolean if given char type is valid and if it actually set the type
+     */
+    bool setType(const char &newType);
+
+    /**
+     * Gives transport distance to the airport
+     * @return distance to the airport (float Kms)
+     */
     inline float getDistance() const{return this->distance;}
-    inline void setDistance(const float& distance){this->distance = distance;}
 
+    /**
+     * Sets transport distance to airport to given value
+     * @param distance float distance (in Km) from the airport
+     */
+    inline void setDistance(const float& newDistance){this->distance = newDistance;}
+
+    /**
+     * Sets the Timetable (set<Time>) to given value
+     * @param TimeTable given value to be set
+     */
     inline void setTimeTable(const TimeTable& TimeTable){ this->timetable=TimeTable;}
+
+    /**
+     * Gives current Transport timetable
+     * @return Timetable (set<Time>)
+     */
     inline const TimeTable& getTimeTable() const {return this->timetable;} // TODO remember to check if it is working
 };
 
-
-inline bool Transport::setType(const char &type) {
-    if(type=='S' || type=='T' || type=='B' ||  type=='N'){
-        this->type = type;return true;
+//Already documented in the class
+inline bool Transport::setType(const char &newType) {
+    if(newType=='S' || newType=='T' || newType=='B' ||  newType=='N'){
+        this->type = newType;return true;
     }
     return false;
 }
 
 
+/**
+ * Tests if the left-hand transport is smaller. First comparison by alphabetical type,
+ * then by smaller distance and finally by smaller timetable
+ * @param t1 left-hand transport to be compared
+ * @param t2 right-hand transport to be compared
+ * @return boolean result of the comparison
+ */
 inline bool operator<(const Transport& t1, const Transport& t2){
     if (t1.getType() != t2.getType())
         return t1.getType() < t2.getType(); // this will break the bst in 4 different trees
@@ -46,11 +96,23 @@ inline bool operator<(const Transport& t1, const Transport& t2){
     return t1.getTimeTable() < t2.getTimeTable();
 }
 
+/**
+ * Allows for outputting Transport object to given ostream
+ * @param os ostream to be used
+ * @param t Transport to be outputted
+ * @return ostream used (changed)
+ */
 inline ostream& operator<<(ostream& os, Transport &t){
     os<<t.getType()<<" "<<t.getDistance();
     return os;
 }
 
+/**
+ * Allows for istream to create a Transport with Type and Distance
+ * @param is istream that gives the data
+ * @param t Transport that receives the data
+ * @return istream (changed)
+ */
 inline istream& operator>>(istream& is, Transport &t){
     char type;float distance;
     is>>type>>distance;
@@ -59,6 +121,12 @@ inline istream& operator>>(istream& is, Transport &t){
     return is;
 }
 
+/**
+ * Tests if two transports are the same by comparing all their attributes
+ * @param t1 left-hand transport to be compared
+ * @param t2 right-hand transport to be compared
+ * @return boolean result of the comparison
+ */
 inline bool operator==(const Transport& t1,const Transport& t2){
     return t1.getDistance() == t2.getDistance() && t1.getType() == t2.getType() && t1.getTimeTable() == t2.getTimeTable();
 }
