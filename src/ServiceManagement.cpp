@@ -94,25 +94,6 @@ void ServiceManagement::showToDoServicesFromRange(ostream &ostream1, const Date 
 }
 
 
-ServiceManagement::~ServiceManagement() {
-
-    std::ofstream ofs(path);
-
-    ofs << toDoServices.size() <<'\n';
-    while (!toDoServices.empty()) {
-        ofs << toDoServices.front();
-        toDoServices.pop();
-    }
-    ofs << doneServices.size() << '\n';
-    while (!doneServices.empty()) {
-        ofs << doneServices.front();
-        doneServices.pop_front();
-    }
-
-    ofs.close();
-}
-
-
 bool ServiceManagement::deleteTodoService(const Service &service) {
 
     bool found = false;
@@ -181,6 +162,24 @@ bool ServiceManagement::findTodoService(const Service &service) {
     }
 
     return false;
+}
+
+void ServiceManagement::saveToFile() {
+
+    std::ofstream ofs(path);
+
+    ofs << toDoServices.size() <<'\n';
+    while (!toDoServices.empty()) {
+        ofs << toDoServices.front();
+        toDoServices.pop();
+    }
+    ofs << doneServices.size() << '\n';
+    while (!doneServices.empty()) {
+        ofs << doneServices.front();
+        doneServices.pop_front();
+    }
+
+    ofs.close();
 }
 
 

@@ -17,7 +17,6 @@ public:
     explicit ServiceManagement(const std::string& path);
 
     ServiceManagement() = default;
-    ~ServiceManagement();
 
     void setDoneServices(list<Service> doneServices);
     void setToDoServices(queue<Service> toDoServices);
@@ -31,6 +30,8 @@ public:
     bool findTodoService(const Service &service);
     void showDoneServicesFromRange(ostream &ostream1, const Date &min, const Date &max) const;
     void showToDoServicesFromRange(ostream &ostream1, const Date &min, const Date &max) const;
+
+    void saveToFile() ;
 };
 
 #endif //AED_T1_SERVICEMANAGEMENT_H

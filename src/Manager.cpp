@@ -22,6 +22,8 @@ Manager::Manager() {
     readPlanes();
     readServices();
     readTransports();
+
+    serviceManager = ServiceManagement(servicePath);
 }
 
 
@@ -153,6 +155,8 @@ Manager::~Manager() {
     ofsFlights.close();
     ofsPassengers.close();
     ofsTransports.close();
+
+    serviceManager.saveToFile();
 
 }
 
