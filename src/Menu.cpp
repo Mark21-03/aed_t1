@@ -628,9 +628,12 @@ void Menu::showNearbyTransports() {
     };
 
     cout<<endl;
+
+    cout<<"Type\t\t"<<"Distance\t\t\t"<<"Schedule"<<endl;
+    cout<<SEPARATION<<SEPARATION<<SEPARATION<<endl;
     for(auto it = tree->begin();it!=tree->end();it++){
         Transport temp = *it;
-        cout<<nameSetter(temp.getType())<<" in "<<temp.getDistance()<<" km. Schedule: "<<temp.getTimeTable()<<endl;
+        cout<<nameSetter(temp.getType())<<"\t\t"<<temp.getDistance()<<" km\t\t"<<temp.getTimeTable()<<endl;
     }
 
 
