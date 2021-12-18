@@ -106,8 +106,8 @@ TEST(test_flights, inoutOperator) {
 
 
    ASSERT_EQ(v[0].getOrigin(), "Cairo International Airport");
-   ASSERT_EQ(v[0].getDestiny(), "Dubai International Airport");
-   ASSERT_EQ(v[2].getDestiny() , "Beirut Rafic Hariri International Airport");
+   ASSERT_EQ(v[0].getDestiny(), "Budapest Ferihegy International Airport");
+   ASSERT_EQ(v[2].getDestiny() , "Budapest Ferihegy International Airport");
 
 
 
@@ -877,7 +877,7 @@ ofs << s;
 */
 
 TEST(Creator_test, tickets) {
-
+/*
     vector<Plane> planes;
     vector<Passenger> passengers;
     vector<Flight> flights;
@@ -922,7 +922,7 @@ for(int i = 0; i < f.getOccupation(); i++) {
     }
 
     }
-
+*/
 }
 
 TEST(Test_TimeTable, generateTimetable){
@@ -950,7 +950,7 @@ TEST(Test_TimeTable, generateTimetable){
        set<Time> times = generateRandomTimeTable();
 
 
-       //cout<<(*it).getType()<<" "<<(*it).getDistance()<<" "<<times.size()<<" "<<times<<endl;
+       cout<<(*it).getType()<<" "<<(*it).getDistance()<<" "<<times.size()<<" "<<times<<endl;
 
     }
 
