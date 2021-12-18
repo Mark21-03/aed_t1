@@ -684,8 +684,8 @@ void Menu::addNewTransport() {
 void Menu::removeNearbyTransport() {
 
     char c;float d;
-    cout<<"\nNew Transport Type (T, S, B): ";cin>>c;
-    cout<<"New Transport Distance (float): ";cin>>d;
+    cout<<"\nTransport Type (T, S, B): ";cin>>c;
+    cout<<"Transport Distance (float): ";cin>>d;
 
     Transport t(c,d);
     Transport notF;

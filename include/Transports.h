@@ -26,7 +26,7 @@ public:
     inline void setDistance(const float& distance){this->distance = distance;}
 
     inline void setTimeTable(const TimeTable& TimeTable){ this->timetable=TimeTable;}
-    inline const TimeTable& getTimeTable() const {return this->timetable;} // remember to check if it is working
+    inline const TimeTable& getTimeTable() const {return this->timetable;} // TODO remember to check if it is working
 };
 
 
