@@ -410,7 +410,7 @@ void Menu::subMenu(const string &menuTitle, vector<void (Menu::*)()> funcs) {
         cout << "  2)  Plane" << endl;
         cout << "  3)  Flight" << endl;
         cout << "  4)  Service" << endl;
-        cout << "  5)  Ticket" << endl;
+        cout << "  5)  Transports" << endl;
         cout << "  6)  Go Back" << endl;
         cout << "  0)  Exit" << endl;
         cout << "================" << endl;
@@ -448,10 +448,11 @@ void Menu::subMenu(const string &menuTitle, vector<void (Menu::*)()> funcs) {
                     this -> x = funcs[3];
                     ((*this).*(this->x))();
                     break;
-                case '5'://Ticket
+                case '5'://Transports
                     this -> x = funcs[4];
                     ((*this).*(this->x))();
                     break;
+
                 case '6'://Go Back
                     goto END_MENU;
                 default:
@@ -733,12 +734,12 @@ void Menu::othersSubMenu() {
         cout << "==============================="<< endl;
         cout << "          OTHERS MENU" << endl;
         cout << "===============================" << endl;
-        cout << "  1)  Show Nearby Transports" << endl;
-        cout << "  2)  Add Nearby Transport" << endl;
-        cout << "  3)  Remove Nearby Transport" << endl;
-        cout << "  4)  Check In" << endl;
-        cout << "  5)  Buy ticket" << endl;
-        cout << "  6)  Go Back" << endl;
+        //cout << "  1)  Show Nearby Transports" << endl;
+        //cout << "  2)  Add Nearby Transport" << endl;
+        //cout << "  3)  Remove Nearby Transport" << endl;
+        cout << "  1)  Check In" << endl;
+        cout << "  2)  Buy ticket" << endl;
+        cout << "  3)  Go Back" << endl;
         cout << "  0)  Exit" << endl;
         cout << "===============================" << endl;
         cout << " > ";
@@ -759,7 +760,7 @@ void Menu::othersSubMenu() {
                     getchar();
                     exit(1);
 
-                case '1':
+               /* case '1':
                     showNearbyTransports();
                     break;
                 case '2':
@@ -767,14 +768,14 @@ void Menu::othersSubMenu() {
                     break;
                 case '3':
                     removeNearbyTransport();
-                    break;
-                case '4':
+                    break;*/
+                case '1':
                     othersFunc4();
                     break;
-                case '5':
+                case '2':
                     othersFunc5();
                     break;
-                case '6'://Go Back
+                case '3'://Go Back
                     goto END_MENU;
                 default:
                     in::giveMenuInputError(inputError);
