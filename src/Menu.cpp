@@ -721,8 +721,8 @@ void Menu::othersSubMenu() {
         cout << "  1)  Show Nearby Transports" << endl;
         cout << "  2)  Add Nearby Transport" << endl;
         cout << "  3)  Remove Nearby Transport" << endl;
-        cout << "  4)  X" << endl;
-        cout << "  5)  X" << endl;
+        cout << "  4)  Check In" << endl;
+        cout << "  5)  Buy ticket" << endl;
         cout << "  6)  Go Back" << endl;
         cout << "  0)  Exit" << endl;
         cout << "===============================" << endl;

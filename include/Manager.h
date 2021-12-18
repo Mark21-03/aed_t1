@@ -21,12 +21,13 @@ class Manager {
 private:
 
     string filesDir = "../include/filesPaths.txt";
-    string flightsPath, planesPath,passengersPath, servicePath, transportsPath;
+    string flightsPath, planesPath,passengersPath, servicePath, transportsPath, tickets_path;
 
     ServiceManagement serviceManager;
     std::vector<Plane> planes;
     std::vector<Passenger> passengers;
     std::vector<Flight> flights;
+    set<Ticket> tickets;
 
     BST<Transport> transportsTree;
     // map<std::string, BST<Transport>> airportTransports;
@@ -37,6 +38,7 @@ private:
     void readPassengers();
     void readServices();
     void readTransports();
+    void readTickets();
 
 
 public:

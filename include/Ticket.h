@@ -4,10 +4,6 @@
 #include "Flight.h"
 #include "Baggage.h"
 
-#define NO_OWNER -1
-
-//#define SEAT_MAP_DIMENSION 2
-
 enum ClassType{
     executive = 'x',
     economic ='e'
@@ -15,7 +11,7 @@ enum ClassType{
 
 class Ticket {
 public:
-    // Ticket(Flight& flight);
+    Ticket() = default;
     Ticket(flightNumber flight, unsigned int passengerID, float price, bool baggage, ClassType tClass);
 
     int getPassengerID() const;
@@ -36,11 +32,8 @@ private:
     flightNumber flightnumber;
     unsigned int passengerID;
     float price;
-    bool baggage;
-    //Baggage bag1;
+    bool basementBaggage;
     ClassType tClass;
-    //'X'= exclusiva e 'E'= económica
-
 };
 
 inline bool operator==(const Ticket& l, const Ticket& r) {
@@ -48,7 +41,9 @@ inline bool operator==(const Ticket& l, const Ticket& r) {
 }
 
 inline bool operator<(const Ticket& t1, const Ticket& t2){
-    return 1; //TODO resolver problema do ID do ticket associado a um flight
+    if (t1.getFlightNumber() != t2.getFlightNumber())
+        return t1.getFlightNumber() < t2.getFlightNumber();
+    return t1.getPassengerID() < t2.getPassengerID();
 }
 
 inline std::ostream& operator <<(std::ostream & os, const Ticket& l) {
@@ -74,6 +69,7 @@ inline std::istream& operator >>(std::istream& is, Ticket& l) {
 
     is >> flightNumber1 >> pId >> cType >> price >> baggage;
 
+    l.setPrice(price).setBaggage(baggage).setFlightNumber(flightNumber1).setPassengerId(pId).setTclass(cType);
 
     return is;
 }

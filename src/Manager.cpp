@@ -9,7 +9,7 @@ void Manager::setPaths(){
     getline(dirs, passengersPath);
     getline(dirs, servicePath);
     getline(dirs, transportsPath);
-
+    getline(dirs, tickets_path);
 }
 
 
@@ -22,6 +22,7 @@ Manager::Manager() {
     readPlanes();
     readServices();
     readTransports();
+    readTickets();
 
     serviceManager = ServiceManagement(servicePath);
 }
@@ -138,6 +139,7 @@ Manager::~Manager() {
     std::ofstream ofsPassengers(passengersPath);
     std::ofstream ofsFlights(flightsPath);
     std::ofstream ofsTransports(transportsPath);
+    std::ofstream ofsTickets(tickets_path);
 
     for(Plane &p:planes)
         ofsPlanes << p;
@@ -151,10 +153,15 @@ Manager::~Manager() {
     for(auto it= transportsTree.begin();it!=transportsTree.end();it++)
         ofsTransports << (*it).getType()<<" "<<(*it).getDistance()<<endl;
 
+    for (auto & t: tickets) {
+        ofsTickets << t;
+    }
+
     ofsPlanes.close();
     ofsFlights.close();
     ofsPassengers.close();
     ofsTransports.close();
+    ofsTickets.close();
 
     serviceManager.saveToFile();
 
@@ -402,6 +409,18 @@ bool Manager::validBuy(Ticket ticket) {
 //    if (ticket.sold<flights[ticket.getFlightNumber()].getOccupation())
   //      return true;
     return false;
+}
+
+void Manager::readTickets() {
+    std::ifstream ifs_ticket(tickets_path);
+
+
+    Ticket ticket{};
+    while (ifs_ticket >> ticket) {
+        tickets.insert(ticket);
+    }
+
+    ifs_ticket.close();
 }
 
 

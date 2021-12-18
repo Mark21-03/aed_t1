@@ -39,7 +39,6 @@ Flight::Flight(flightNumber number, const Date &departureDate, const Time &depar
 //Getters
 flightNumber Flight::getNumber() const{return this->number;}
 
-
 Date Flight::getDepartureDate() const {return this->departureDate;}
 
 int Flight::getOccupation() const {return this->occupation;}

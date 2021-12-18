@@ -7,6 +7,7 @@
 #include "Date.h"
 #include "Time.h"
 
+
 #define STRING_MAX_VALUE 50
 
 typedef unsigned int flightNumber;
@@ -20,6 +21,7 @@ private:
     int occupation;
     float duration;
     char origin[STRING_MAX_VALUE]{},destiny[STRING_MAX_VALUE]{};
+    // planePlate plane; // TODO
     // maybe add a mile counter
 
 public:

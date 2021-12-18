@@ -14,8 +14,6 @@
 #define LONGEST_ACCEPTED_NAME 60
 
 
-
-
 class Passenger {
 private:
     unsigned int ID;
@@ -29,26 +27,11 @@ public:
         this->ID = ID;
     };
 
-    // booking
-
-    //bookFlight ? before that we need to check if seats are still available
-    // boarding
-
-    // void checkIn(); -> this should not be here... maybe we should consider putting it in the service class
-
-    // Passenger Information
-
-    float moneySpent() const; // this is useful information for a company - A passenger can cancel a flight
-    // float mileage() const;
-
-    // getters
-
     std::string getName() const;
     char* getNameC() {
         return name;
     }
     unsigned int getID() const;
-
 
     // setters
 

@@ -25,7 +25,7 @@ private:
 
 public:
     Service()=default;
-    Service(char type, Date date, string employer,string  plate);
+    Service(char type, Date date,const string& employer,string plate);
 
     Service& setType(char type);
     Service& setDate(Date date);

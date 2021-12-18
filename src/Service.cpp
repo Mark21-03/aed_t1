@@ -3,7 +3,7 @@
 #include <utility>
 #include "../Exceptions/NameToLongException.h"
 
-Service::Service(char type, Date date,string employer,string  plate) : plane(std::move(plate)), date(date) {
+Service::Service(char type, Date date,const string& employer,string plate) : plane(std::move(plate)), date(date) {
     setType(type).setEmployer(employer);
 }
 
