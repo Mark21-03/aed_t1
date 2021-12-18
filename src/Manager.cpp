@@ -414,7 +414,6 @@ bool Manager::validBuy(Ticket ticket) {
 void Manager::readTickets() {
     std::ifstream ifs_ticket(tickets_path);
 
-
     Ticket ticket{};
     while (ifs_ticket >> ticket) {
         tickets.insert(ticket);

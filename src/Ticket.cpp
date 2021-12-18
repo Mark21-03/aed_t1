@@ -22,7 +22,7 @@ float Ticket::getPrice() const {return this->price;}
 //Baggage Ticket::hasBaggage() const {return this->bag1;}
 bool Ticket::hasBaggage() const {return this->basementBaggage;}
 flightNumber Ticket::getFlightNumber() const {return this->flightnumber;}
-int Ticket::getPassengerID() const{return this->passengerID;}
+unsigned int Ticket::getPassengerID() const{return this->passengerID;}
 ClassType Ticket::getTClass() const {return this->tClass;}
 
 //Flight Ticket::getFlight() const {return this->flight;}

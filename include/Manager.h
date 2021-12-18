@@ -27,7 +27,7 @@ private:
     std::vector<Plane> planes;
     std::vector<Passenger> passengers;
     std::vector<Flight> flights;
-    set<Ticket> tickets;
+    multiset<Ticket> tickets;
 
     BST<Transport> transportsTree;
     // map<std::string, BST<Transport>> airportTransports;

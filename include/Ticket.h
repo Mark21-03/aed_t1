@@ -14,7 +14,7 @@ public:
     Ticket() = default;
     Ticket(flightNumber flight, unsigned int passengerID, float price, bool baggage, ClassType tClass);
 
-    int getPassengerID() const;
+    unsigned int getPassengerID() const;
     ClassType getTClass() const;
     float getPrice() const;
 
@@ -64,12 +64,12 @@ inline std::istream& operator >>(std::istream& is, Ticket& l) {
     flightNumber flightNumber1;
     unsigned int pId;
     float price;
-    char cType;
+    int cType;
     bool baggage;
 
     is >> flightNumber1 >> pId >> cType >> price >> baggage;
 
-    l.setPrice(price).setBaggage(baggage).setFlightNumber(flightNumber1).setPassengerId(pId).setTclass(cType);
+    l.setPrice(price).setBaggage(baggage).setFlightNumber(flightNumber1).setPassengerId(pId).setTclass((char)cType);
 
     return is;
 }
