@@ -564,11 +564,12 @@ for(int i = 0; i< 365; i++) {
         d =rand() % airports.size();
     }
     while(d == o );
+    int occupation = rand() % 170;
     float r =  1.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(4.0f-1.0f)));
     Time time2;
     time2.setRandomTime();
 
-    Flight flight(i,date, time2 ,r ,airports[o], airports[d]);
+    Flight flight(i,date, time2 ,occupation ,r ,airports[o], airports[d]);
     ofsF << flight;
 }
 

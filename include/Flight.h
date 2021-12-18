@@ -26,6 +26,7 @@ public:
 
     Flight() = default;
     Flight(flightNumber number,const Date& departureDate,const Time& departureTime, float duration,std::string origin,std::string destiny);
+    Flight(flightNumber number,const Date& departureDate,const Time& departureTime, int occupation, float duration,std::string origin,std::string destiny);
 
     //Setters
     Flight& setNumber(flightNumber number);
@@ -66,7 +67,7 @@ inline bool operator < (const Flight&l, const Flight& r) {
 inline std::ostream& operator<< (std::ostream& os, Flight& r) {
     os << r.getNumber()  << " " << r.getDepartureDate() << " " << r.getDepartureTime() << " ";
 
-    os << r.getDuration();
+    os << r.getOccupation() << " " << r.getDuration();
 
     bool b = false;
     for (int i = 0; i < STRING_MAX_VALUE; ++i) {
@@ -97,7 +98,7 @@ inline std::ostream& operator<< (std::ostream& os, Flight& r) {
 
 inline std::istream& operator>> (std::istream& is, Flight& r) {
 
-    int n;
+    int n, oc;
     float du;
 
     Date date;
@@ -108,8 +109,9 @@ inline std::istream& operator>> (std::istream& is, Flight& r) {
     is >> date;
 
     is >> time;
+    is >> oc;
     is >> du;
-    r.setNumber(n).setDuration(du).setDepartureDate(date).setDepartureTime(time);
+    r.setNumber(n).setDuration(du).setOccupation(oc).setDepartureDate(date).setDepartureTime(time);
 
     for (int i = 0; i < STRING_MAX_VALUE; ++i) {
         r.getOriginC()[i] = is.get();

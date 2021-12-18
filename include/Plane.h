@@ -95,7 +95,7 @@ inline bool operator!=(const Plane &p1, const Plane &p2){
 class ComparePlaneByType {
 public:
     bool operator()(const Plane& l , const Plane & r) {
-        return l.pType == r.pType;
+        return l.pType < r.pType;
     }
 };
 

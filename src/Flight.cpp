@@ -8,6 +8,7 @@ Flight::Flight(flightNumber number,const Date& departureDate,const Time& departu
     this->departureDate = departureDate;
     this->departureTime = departureTime;
     this->duration = duration;
+    this->occupation = 0;
 
 
     if (origin.size() > STRING_MAX_VALUE || destiny.size() > STRING_MAX_VALUE) {
@@ -16,6 +17,23 @@ Flight::Flight(flightNumber number,const Date& departureDate,const Time& departu
 
     setOrigin(origin).setDestiny(destiny);
 
+}
+
+Flight::Flight(flightNumber number, const Date &departureDate, const Time &departureTime, int occupation, float duration,
+               std::string origin, std::string destiny) {
+
+    this->number = number;
+    this->departureDate = departureDate;
+    this->departureTime = departureTime;
+    this->duration = duration;
+    this->occupation = occupation;
+
+
+    if (origin.size() > STRING_MAX_VALUE || destiny.size() > STRING_MAX_VALUE) {
+        throw NameToLongException();
+    }
+
+    setOrigin(origin).setDestiny(destiny);
 }
 
 //Getters
@@ -97,5 +115,7 @@ Flight &Flight::setDepartureTime(const Time &departureTime) {
 Time Flight::getDepartureTime() const{
     return this->departureTime;
 }
+
+
 
 
