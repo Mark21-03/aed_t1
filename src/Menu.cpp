@@ -117,7 +117,7 @@ void Menu::BuyTicket() {
         cout << "New Ticket's Passenger ID : "; cin >> passengerID;
         cout << "New Ticket's Class (x | e) : "; cin >> tClass;
 
-        price = 50.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(500.0f-50.0f)));
+        price = 50.0 + static_cast <float> (rand()) / static_cast <float> (RAND_MAX / (500.0 - 50.0));
 
         if (menuOperationConfirm()) {
             manager.createTicket(flight, passengerID, price, static_cast<ClassType>(tClass));

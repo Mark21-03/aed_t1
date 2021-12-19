@@ -367,7 +367,6 @@ void Manager::createPlane(const planePlate &numberPlate, const string &pType, in
 
     Plane p(numberPlate, pType, capacity);
 
-    //TODO talvez seja sorted por matricula ?
     planes.push_back(p);
 }
 

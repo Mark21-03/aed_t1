@@ -22,20 +22,20 @@ string Service::getEmployer() const {
 planePlate Service::getPlane() const {return plane;}
 
 //setters
-Service& Service::setType(char type) {
-    if (type == 'm')
+Service& Service::setType(char newType) {
+    if (newType == 'm')
         this->type = maintenance;
-    else if (type == 'c')
+    else if (newType == 'c')
         this->type = cleaning;
     else
         this->type = other;
 
     return *this;
 }
-Service& Service::setDate(Date date) {this->date=date; return *this;}
-Service& Service::setEmployer(const string& employer) {
+Service& Service::setDate(Date newDate) { this->date=newDate; return *this;}
+Service& Service::setEmployer(const string& newEmployer) {
     int i = 0;
-    for (const auto& c: employer) {
+    for (const auto& c: newEmployer) {
         if (i > LONGEST_ACCEPTED_EMPLOYER_NAME)
             throw NameToLongException();
         this->employer[i++] = c;
@@ -44,7 +44,7 @@ Service& Service::setEmployer(const string& employer) {
 
     return *this;}
 
-Service& Service::setPlate(const planePlate &plane) { this->plane = plane; return *this;}
+Service& Service::setPlate(const planePlate &newPlane) { this->plane = newPlane; return *this;}
 
 std::string Service::getInfo() const {
     ostringstream os;

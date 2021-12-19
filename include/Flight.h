@@ -37,13 +37,13 @@ public:
     Flight(flightNumber number,const Date& departureDate,const Time& departureTime, int occupation, float duration,std::string origin,std::string destiny);
 
     //Setters
-    Flight& setNumber(flightNumber number);
-    Flight& setDepartureDate(const Date& departureDate);
-    Flight& setDepartureTime(const Time& departureTime);
-    Flight& setDuration(float duration);
-    Flight& setOrigin(const std::string& origin);
-    Flight& setDestiny(const std::string& destiny);
-    Flight& setOccupation (int occupation);
+    Flight& setNumber(flightNumber newNumber);
+    Flight& setDepartureDate(const Date& newDepartureDate);
+    Flight& setDepartureTime(const Time& newDepartureTime);
+    Flight& setDuration(float newDuration);
+    Flight& setOrigin(const std::string& newOrigin);
+    Flight& setDestiny(const std::string& newDestiny);
+    Flight& setOccupation (int newOccupation);
     void addBaggage2Flight(const Baggage& baggage);
     Baggage takeBaggageFromFlight();
 
@@ -69,7 +69,7 @@ inline bool operator == (const Flight&l, const Flight& r) {
 }
 
 inline bool operator != (const Flight&l, const Flight& r) {
-    return !(l.getNumber() == r.getNumber());
+    return l.getNumber() != r.getNumber();
 }
 
 inline bool operator < (const Flight&l, const Flight& r) {

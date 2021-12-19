@@ -1,8 +1,8 @@
 #include "../include/ServiceManagement.h"
 
 
-void ServiceManagement::setDoneServices(list<Service> doneServices) { this->doneServices=doneServices;}
-void ServiceManagement::setToDoServices(queue<Service> toDoServices) {this->toDoServices=toDoServices;}
+void ServiceManagement::setDoneServices(list<Service> newDoneServices) { this->doneServices=newDoneServices;}
+void ServiceManagement::setToDoServices(queue<Service> newToDoServices) { this->toDoServices=newToDoServices;}
 
 list<Service> ServiceManagement::getDoneServices() const{return this->doneServices;}
 queue<Service> ServiceManagement::getToDoServices() const {return this->toDoServices;}
@@ -81,19 +81,22 @@ void ServiceManagement::showDoneServicesFromRange(ostream &ostream1, const Date 
 void ServiceManagement::showToDoServicesFromRange(ostream &ostream1, const Date &min, const Date &max) const {
     out::headerServices(ostream1);
 
-    if (toDoServices.empty()) return;
-
-    queue<Service> temp = toDoServices;
-    Service front = temp.front();
-    temp.pop();
-
-    while (front.getDate() <= max) {
-        if (front.getDate() >= min)
-            out::services(ostream1,&front);
-        if (temp.empty()) break;
-        front = temp.front();
+    //TODO Fix warning
+    if (!toDoServices.empty()){
+        queue<Service> temp = toDoServices;
+        Service front = temp.front();
         temp.pop();
+
+        while (front.getDate() <= max) {
+            if (front.getDate() >= min)
+                out::services(ostream1,&front);
+            if (temp.empty()) break;
+            front = temp.front();
+            temp.pop();
+        }
     }
+    return;
+
 }
 
 

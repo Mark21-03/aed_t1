@@ -1,6 +1,6 @@
 #include "../include/Passenger.h"
 
-#include <utility>
+
 
 
 std::string Passenger::getName() const{
@@ -17,10 +17,10 @@ unsigned int Passenger::getID() const {
     return ID;
 }
 
-Passenger& Passenger::setName(const string &name) {
+Passenger& Passenger::setName(const string &newName) {
 
     int i = 0;
-    for (const auto& c: name) {
+    for (const auto& c: newName) {
         if (i > LONGEST_ACCEPTED_NAME)
             throw NameToLongException();
         this->name[i++] = c;
@@ -30,8 +30,8 @@ Passenger& Passenger::setName(const string &name) {
     return *this;
 }
 
-Passenger& Passenger::setID(unsigned int ID) {
-    this -> ID = ID;
+Passenger& Passenger::setID(unsigned int newID) {
+    this -> ID = newID;
 
     return *this;
 }

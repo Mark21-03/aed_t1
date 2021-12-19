@@ -5,9 +5,7 @@
 #include <algorithm>
 #include "../include/Passenger.h"
 #include "../include/ServiceManagement.h"
-#include "../include/Time.h"
 #include "../include/Manager.h"
-#include "../include/Menu.h"
 
 using testing::Eq;
 
@@ -997,16 +995,16 @@ TEST(Test_TicketBaggage, Test_TicketBaggage){
 
     ifs_ticket.close();
 
-/*
+
     std::ofstream ofsTickets(tickets_path);
 
     for (auto & t: ms) {
         ifs << t;
-    }*/
+    }
 
 
 
-/*  0 0 101 469.18 0
+    0 0 101 469.18 0
     0 0 101 132.92 0
     0 0 101 344.24 0
     0 0 101 469.24 0*/
@@ -1057,6 +1055,8 @@ TEST(Test_PassengerBirth, Test_PassengerBirth){
 */
 
     Manager manager;
+
+    cout<<manager.getTransportTree()->begin().operator*().getTimeTable()<<endl;
 
     //cout<<manager.passengers[123].getName()<<endl;
     //cout<<manager.passengers[123].getID()<<endl;

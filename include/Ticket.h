@@ -21,9 +21,9 @@ public:
     flightNumber getFlightNumber() const;
     Baggage getBaggage() const;
 
-    Ticket& setPrice(float price);
+    Ticket& setPrice(float newPrice);
 
-    Ticket& setTclass(char tClass);
+    Ticket& setTclass(char newTClass);
     Ticket& setPassengerId(int passengerid);
     Ticket& setFlightNumber(flightNumber flightNumber);
     Ticket& setBaggage(Baggage baggage);

@@ -66,15 +66,15 @@ std::string Flight::getDestiny() const {
 }
 
 //Setters
-Flight& Flight::setNumber(flightNumber number) {this->number = number;return *this;}
+Flight& Flight::setNumber(flightNumber newNumber) { this->number = newNumber;return *this;}
 
-Flight& Flight::setDepartureDate(const Date& departureDate) {this->departureDate = departureDate;return *this;}
+Flight& Flight::setDepartureDate(const Date& newDepartureDate) { this->departureDate = newDepartureDate;return *this;}
 
-Flight& Flight::setDuration(float duration) {this->duration = duration; return *this;}
+Flight& Flight::setDuration(float newDuration) { this->duration = newDuration; return *this;}
 
-Flight& Flight::setOrigin(const std::string& origin) {
+Flight& Flight::setOrigin(const std::string& newOrigin) {
     int i = 0;
-    for (const auto& c: origin) {
+    for (const auto& c: newOrigin) {
         if (i > STRING_MAX_VALUE)
             throw NameToLongException();
         this->origin[i++] = c;
@@ -84,9 +84,9 @@ Flight& Flight::setOrigin(const std::string& origin) {
     return *this;
 }
 
-Flight& Flight::setDestiny(const std::string& destiny) {
+Flight& Flight::setDestiny(const std::string& newDestiny) {
     int i = 0;
-    for (const auto& c: destiny) {
+    for (const auto& c: newDestiny) {
         if (i > STRING_MAX_VALUE)
             throw NameToLongException();
         this->destiny[i++] = c;
@@ -96,7 +96,7 @@ Flight& Flight::setDestiny(const std::string& destiny) {
     return *this;
 }
 
-Flight &Flight::setOccupation(int occupation) {this->occupation=occupation; return *this;}
+Flight &Flight::setOccupation(int newOccupation) { this->occupation=newOccupation; return *this;}
 
 char* Flight::getOriginC()  {
     return origin;
@@ -106,8 +106,8 @@ char *Flight::getDestinyC()  {
     return destiny;
 }
 
-Flight &Flight::setDepartureTime(const Time &departureTime) {
-    this->departureTime = departureTime;
+Flight &Flight::setDepartureTime(const Time &newDepartureTime) {
+    this->departureTime = newDepartureTime;
     return *this;
 }
 

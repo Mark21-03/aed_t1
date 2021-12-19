@@ -18,8 +18,8 @@ public:
 
     ServiceManagement() = default;
 
-    void setDoneServices(list<Service> doneServices);
-    void setToDoServices(queue<Service> toDoServices);
+    void setDoneServices(list<Service> newDoneServices);
+    void setToDoServices(queue<Service> newToDoServices);
     list<Service> getDoneServices() const;
     queue<Service> getToDoServices() const;
     void addDoneServices(Service service);

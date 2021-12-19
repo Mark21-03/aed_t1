@@ -9,35 +9,35 @@ Time :: Time(unsigned hour, unsigned minute, unsigned second){
     setHour(hour);setMinute(minute);setSecond(second);
 }
 
-Time& Time :: setTime(unsigned hour, unsigned minute, unsigned second){
-    setHour(hour).setMinute(minute).setSecond(second);
+Time& Time :: setTime(unsigned newHour, unsigned newMinute, unsigned newSecond){
+    setHour(newHour).setMinute(newMinute).setSecond(newSecond);
     return *this;
 }
 
 #include <iostream>
-Time& Time::setHour(unsigned hour){
-    if (hour>23 || hour<0)
+Time& Time::setHour(unsigned newHour){
+    if (newHour > 23 || newHour < 0)
         this->hour = 0;
     else
-        this->hour = hour;
+        this->hour = newHour;
 
     return *this;
 
 }
 
-Time& Time::setMinute(unsigned minute){
-    if (minute>59 || minute<0)
+Time& Time::setMinute(unsigned newMinute){
+    if (newMinute > 59 || newMinute < 0)
         this->minute = 0;
     else
-        this->minute = minute;
+        this->minute = newMinute;
 
     return *this;
 }
-Time& Time::setSecond(unsigned second){
-    if(second>59 || second<0)
+Time& Time::setSecond(unsigned newSecond){
+    if(newSecond > 59 || newSecond < 0)
         this->second = 0;
     else
-        this->second = second;
+        this->second = newSecond;
 
     return *this;
 }

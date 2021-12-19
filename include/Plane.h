@@ -24,10 +24,10 @@ public:
     Plane(const planePlate& numberPlate ,const std::string& pType, int capacity);
     Plane(const planePlate& numberPlate ,const std::string& pType, int capacity,const std::list<flightNumber>& flightPlan);
 
-    Plane& setNumberPlate(const planePlate& numberPlate);
-    Plane& setType(const std::string& pType);
-    Plane& setCapacity(int capacity);
-    Plane& setFlightPlan(const std::list<flightNumber>& flightPlan);
+    Plane& setNumberPlate(const planePlate& newNumberPlate);
+    Plane& setType(const std::string& newPlaneType);
+    Plane& setCapacity(int newCapacity);
+    Plane& setFlightPlan(const std::list<flightNumber>& newFlightPlan);
 
     planePlate getNumberPlate() const;
     std::string getType() const;
