@@ -12,7 +12,7 @@ namespace out {
     }
 
     void headerPassengers(ostream& ostream1) {
-        ostream1<<"ID\t"<<"Name"<<endl;
+        ostream1<<"ID\t"<<"Name\t\t\t"<<"Birth Date"<<endl;
     }
 
 

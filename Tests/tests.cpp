@@ -1020,3 +1020,46 @@ TEST(Test_TicketBaggage, Test_TicketBaggage){
     ASSERT_EQ(t->begin()->getBaggage().getQuantity(),1);
 
 }
+
+TEST(Test_PassengerBirth, Test_PassengerBirth){
+
+    /*
+    srand(time(NULL));
+
+    string passengersPath = "../Files/passengers.txt";
+
+    fstream fs(passengersPath);
+
+    Passenger aux;
+
+    vector<Passenger> v;
+
+    while(fs>>aux){
+
+        int RandDay = rand()%27+1;
+        int RandMonth = rand()%12+1;
+        int RandYear = rand()%65+1940;
+        Date RandDate(RandYear,RandMonth,RandDay);
+
+        aux.setBirth(RandDate);
+
+        v.push_back(aux);
+    }
+
+    cout<<endl;
+    for(auto i:v) cout<<i;
+
+
+    ofstream ofs(passengersPath);
+
+    for(auto i:v)
+        ofs<<i;
+*/
+
+    Manager manager;
+
+    //cout<<manager.passengers[123].getName()<<endl;
+    //cout<<manager.passengers[123].getID()<<endl;
+    //cout<<manager.passengers[123].getBirthDate()<<endl;
+
+}

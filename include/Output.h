@@ -69,7 +69,7 @@ namespace out {
     template<typename PassengerPointer>
     inline void passenger(ostream& ostream1, PassengerPointer it) {
         ostream1 << SEPARATION << std::endl;
-        ostream1 << it->getID()<<"\t"<<it->getName()<< '\n';
+        ostream1 << it->getID()<<"\t"<<it->getName()<<"\t\t\t"<<it->getBirthDate()<< '\n';
     }
 
     void headerPlanes(ostream& ostream1);
