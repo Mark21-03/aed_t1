@@ -169,9 +169,6 @@ void Menu::funcUpdateService(){
     manager.searchUpdateServices(type,date,emp,plate);
     getchar();getchar();
 }
-void Menu::funcUpdateTicket(){
-    //not necessary
-}
 
 int Menu::askChangeId(){
     unsigned id;
