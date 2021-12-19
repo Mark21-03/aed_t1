@@ -23,7 +23,7 @@ private:
     int occupation;
     float duration;
     char origin[STRING_MAX_VALUE]{},destiny[STRING_MAX_VALUE]{};
-    // planePlate plane; // TODO
+    int maxCapacity;
 
     queue<Baggage> planeStoredBaggage;
 
@@ -56,59 +56,67 @@ public:
      * @param duration Duration of the flight in hours
      * @param origin Place from where the flight departs
      * @param destiny Place to where the flight arrives
+     * @param maxCapacity max Capacity of the plane responsible for this flight
      */
 
-    Flight(flightNumber number,const Date& departureDate,const Time& departureTime, int occupation, float duration,std::string origin,std::string destiny);
+    Flight(flightNumber number,const Date& departureDate,const Time& departureTime, int occupation, float duration,std::string origin,std::string destiny, int maxCapacity);
 
     //Setters
     /**
      * Sets the number of the Flight
      * @param newNumber value to be set
-     * @return pointer to the flight
+     * @return reference to the flight
      */
     Flight& setNumber(flightNumber newNumber);
 
     /**
      * Sets the Date of the departure
      * @param newDepartureDate value to be set
-     * @return pointer to the flight
+     * @return reference to the flight
      */
     Flight& setDepartureDate(const Date& newDepartureDate);
 
     /**
      * Sets the Time of the departure
      * @param newDepartureTime value to be set
-     * @return pointer to the flight
+     * @return reference to the flight
      */
     Flight& setDepartureTime(const Time& newDepartureTime);
 
     /**
      * Sets the duration in hours of the flight
      * @param newDuration float value to be set
-     * @return pointer to the flight
+     * @return reference to the flight
      */
     Flight& setDuration(float newDuration);
 
     /**
      * Sets the origin of the Flight
      * @param newOrigin value to be set
-     * @return pointer to the flight
+     * @return reference to the flight
      */
     Flight& setOrigin(const std::string& newOrigin);
 
     /**
      * Sets the destiny of the Flight
      * @param newDestiny value to be set
-     * @return pointer to the flight
+     * @return reference to the flight
      */
     Flight& setDestiny(const std::string& newDestiny);
 
     /**
      * Sets the occupation of the Flight
      * @param newOccupation value to be set
-     * @return pointer to the flight
+     * @return reference to the flight
      */
     Flight& setOccupation (int newOccupation);
+
+    /**
+     *
+     * @param maxCapacity
+     * @return reference to the flight
+     */
+    Flight& setMaxCapacity(int maxCapacity);
 
     /**
      * Add an object Baggage to be transported to the same destiny of the Flight
@@ -158,6 +166,12 @@ public:
      * @return Flight's destiny
      */
     std::string getDestiny() const;
+
+    /**
+     * Gives the max capacity of the plane that operates that flight
+     * @return max capacity of the flight
+     */
+    int getMaxCapacity() const;
 
     /**
      *
@@ -251,6 +265,7 @@ inline std::ostream& operator<< (std::ostream& os, Flight& r) {
         }
     }
 
+    os << r.getMaxCapacity();
     os << "\n";
 
     return os;
@@ -265,7 +280,7 @@ inline std::ostream& operator<< (std::ostream& os, Flight& r) {
  */
 inline std::istream& operator>> (std::istream& is, Flight& r) {
 
-    int n, oc;
+    int n, oc, max;
     float du;
 
     Date date;
@@ -283,6 +298,9 @@ inline std::istream& operator>> (std::istream& is, Flight& r) {
         r.getDestinyC()[i] = is.get();
     }
 
+    is >> max;
+
+    r.setMaxCapacity(max);
 
     return is;
 

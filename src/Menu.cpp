@@ -102,7 +102,7 @@ void Menu::funcCreateService() {
 }
 
 void Menu::BuyTicket() {
-    int flight;
+    flightNumber flight;
     int passengerID;
     float price;
     char tClass;
@@ -110,14 +110,20 @@ void Menu::BuyTicket() {
 
     cout<<"\nNumber of tickets: "; cin>>quant;
 
+    cout << "\nNew Ticket's Flight number: "; cin >> flight;
+
+    if (manager.getFlightByNumber(flight)->getOccupation() + quant > manager.getFlightByNumber(flight)->getMaxCapacity()) {
+        cout << "Sorry, the flight has max capacity of " << manager.getFlightByNumber(flight)->getMaxCapacity() << '\n';
+        return;
+    }
+
     int sold=0;
 
     while (quant>sold) {
-        cout << "\nNew Ticket's Flight number: "; cin >> flight;
         cout << "New Ticket's Passenger ID : "; cin >> passengerID;
         cout << "New Ticket's Class (x | e) : "; cin >> tClass;
 
-        price = 50.0 + static_cast <float> (rand()) / static_cast <float> (RAND_MAX / (500.0 - 50.0));
+        price = 50.0f + static_cast <float> (rand()) / static_cast <float> (RAND_MAX / (500.0f - 50.0f));
 
         if (menuOperationConfirm()) {
             manager.createTicket(flight, passengerID, price, static_cast<ClassType>(tClass));
@@ -652,7 +658,7 @@ void Menu::doCheckIn() {
     int flightID;
     cout<<"\nFlight ID to Check In: ";cin>>flightID;
 
-    Flight* ptr = manager.getFlightbyNumber(flightID);
+    Flight* ptr = manager.getFlightByNumber(flightID);
     bool foundFlight = ptr != nullptr;
 
     if(foundFlight){

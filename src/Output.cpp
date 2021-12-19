@@ -5,7 +5,7 @@ namespace out {
     void headerFlights(ostream &ostream1) {
         ostream1 << right;
         ostream1 << setfill(' ') << "Number\t\t" << setw(15) << "Departure Date " << setw(15) << "Departure Time"
-                 << setw(15)<< "Occupation"
+                 << setw(15)<< "Occupation" << setw(15)<< "Max. Capacity"
                  << setw(30) << "Origin " << setw(40) << "Destiny" << "\n";
         ostream1 << SEPARATION << SEPARATION << SEPARATION << "\n" << left
                  << setfill(' ');

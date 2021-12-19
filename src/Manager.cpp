@@ -246,7 +246,7 @@ void Manager::searchUpdatePassengers(int SearchedID) {
         return (*it).getOccupation();
 }
 */
-void Manager::IncrementFlightOccupation(int ID) {
+void Manager::IncrementFlightOccupation(flightNumber ID) {
     auto it = lower_bound(flights.begin(),flights.end(), Flight(ID,Date(),Time(),0.0f,"",""));
     int prevOccup= it->getOccupation();
     it->setOccupation(prevOccup+1);
@@ -381,7 +381,7 @@ void Manager::createFlight( const Date &departureDate, const Time &departureTime
 
 }
 
-void Manager::createTicket(int flight, int passengerID, float price, ClassType tClass) {
+void Manager::createTicket(flightNumber flight, int passengerID, float price, ClassType tClass) {
     //TODO testar e terminar
 
     //srand(time(NULL)); -> this would create the same baggage all over again
@@ -391,7 +391,7 @@ void Manager::createTicket(int flight, int passengerID, float price, ClassType t
     tickets.insert(t);
 }
 // TODO: WHAT IS THIS ABOVE???
-/*Flight Manager::getFlightbyNumber(int number) {
+/*Flight Manager::getFlightByNumber(int number) {
     return flights[number];
 }*/
 
@@ -487,7 +487,7 @@ void Manager::readTickets() {
     ifs_ticket.close();
 }
 
-Flight* Manager::getFlightbyNumber(flightNumber number) {
+Flight* Manager::getFlightByNumber(flightNumber number) {
     auto it = lower_bound(flights.begin(), flights.end(), Flight(number,Date(), Time(), 1.0f,"",""));
 
     if (it->getNumber() != number) {

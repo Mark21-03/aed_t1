@@ -88,7 +88,7 @@ public:
     void makeCheckIn(int flightID);
 
     //int findFlightOccupation(int SearchedID);
-    void IncrementFlightOccupation(int ID);
+    void IncrementFlightOccupation(flightNumber ID);
 
 
     void moveBaggageToPlane(int flightID);
@@ -97,8 +97,8 @@ public:
     void createPassenger(const string &Pname, Date birth);
     void createPlane(const planePlate& numberPlate ,const std::string& pType, int capacity);
     void createFlight(const Date& departureDate,const Time& departureTime, const float &duration,std::string origin, std::string destiny);
-    void createTicket(int flight, int passengerID, float price, ClassType tClass);
-    Flight* getFlightbyNumber(flightNumber number);
+    void createTicket(flightNumber flight, int passengerID, float price, ClassType tClass);
+    Flight* getFlightByNumber(flightNumber number);
 
     inline multiset<Ticket>* getTickets(){return &tickets;}
 

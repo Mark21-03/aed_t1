@@ -27,7 +27,7 @@ namespace out {
     template<typename FlightsPointer>
     inline void flights(ostream &ostream1, FlightsPointer it) {
         ostream1 << setw(15) << it->getNumber() << setw(15) << it->getDepartureDate().getDate() << setw(15)
-                 << it->getDepartureTime().getTime() << setw(20) << it->getOccupation()
+                 << it->getDepartureTime().getTime() << setw(20) << it->getOccupation() << setw(20) << it->getMaxCapacity()
                  << setw(50) << it->getOrigin() << setw(45) << " ⟶ " + it->getDestiny() << "\n";
     }
 

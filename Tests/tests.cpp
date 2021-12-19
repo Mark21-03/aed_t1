@@ -58,7 +58,7 @@ TEST(test_passenger, passengerOperator) {
     // aP.addTicket(at2);
     cout << aP ;
 }
-
+/*
 TEST(test_flights, inoutOperator) {
     Passenger aP(123456789, "Joaquim Andre Araujo de Matos");
     Passenger aP2(12002, "Orlando Manuel da Silva Pinto");
@@ -109,7 +109,7 @@ TEST(test_flights, inoutOperator) {
 
 
 
-}
+}*/
 
 TEST(test_passenger, inOperatorsPassenger) { // NOTE: THIS TEST WAS FAILING
 
@@ -550,12 +550,11 @@ for(int i = 0; i < 1000; i++) {
     }
     ofs.close();
 }*/
-
 /*
 TEST(Creator_test, CreationFlights) {
 srand(time(nullptr));
 std::ofstream ofsF("../Files/flights.txt");
-
+std::ifstream ifsP("../Files/planes.txt");
 vector<string> airports{
         "Beirut Rafic Hariri International Airport" ,
         "Budapest Ferihegy International Airport" ,
@@ -566,7 +565,42 @@ vector<string> airports{
         "Paris Orly Airport" ,
         "Francisco de Sá Carneiro Airport"
 };
+vector<Plane> planes;
+vector<Flight> flights;
+Plane plane1;
+while(ifsP >> plane1) planes.push_back(plane1);
 
+for(auto& p: planes) {
+    for(auto &n: p.getFlightPlan()) {
+        Date date;
+
+        int add = rand() % 365; // creating flights for a year
+
+        while (add) {
+        add--; date++;
+        }
+
+        int o = rand() % airports.size();
+        int d;
+        do {
+        d = rand() % airports.size();
+        }
+        while(d == o );
+        int occupation = rand() % 170;
+        float r = 1.0f + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (4.0f - 1.0f)));
+        Time time2;
+        time2.setRandomTime();
+
+        Flight flight1(n, date, time2, occupation, r, airports[o], airports[d], p.getCapacity());
+        flights.push_back(flight1);
+    }
+}
+sort(flights.begin(),flights.end());
+for(auto f: flights) {
+ofsF << f;
+
+}*/
+/*
 for(unsigned int i = 0; i< 365; i++) {
 
     Date date;
@@ -590,10 +624,10 @@ for(unsigned int i = 0; i< 365; i++) {
 
     Flight flight(i,date, time2 ,occupation ,r ,airports[o], airports[d]);
     ofsF << flight;
-}
+}*/
 
 }
-*/
+
 
 /*
 TEST(Creator_test, creatingPlanes) { // THIS TEST FAILS IF THE NUMBER OF FLIGHTS TO BE ATTRIBUTE TO A PLANE IS MORE THAN 0
@@ -1081,7 +1115,7 @@ TEST(Test_PassengerBirth, Test_PassengerBirth){
 
     // Manager manager;
 
-    cout<<manager.getTransportTree()->begin().operator*().getTimeTable()<<endl;
+    //cout<<manager.getTransportTree()->begin().operator*().getTimeTable()<<endl;
 
     //cout<<manager.passengers[123].getName()<<endl;
     //cout<<manager.passengers[123].getID()<<endl;

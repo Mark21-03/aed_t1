@@ -20,14 +20,14 @@ Flight::Flight(flightNumber number,const Date& departureDate,const Time& departu
 }
 
 Flight::Flight(flightNumber number, const Date &departureDate, const Time &departureTime, int occupation, float duration,
-               std::string origin, std::string destiny) {
+               std::string origin, std::string destiny, int maxCapacity) {
 
     this->number = number;
     this->departureDate = departureDate;
     this->departureTime = departureTime;
     this->duration = duration;
     this->occupation = occupation;
-
+    this->maxCapacity = maxCapacity;
 
     if (origin.size() > STRING_MAX_VALUE || destiny.size() > STRING_MAX_VALUE) {
         throw NameToLongException();
@@ -127,6 +127,15 @@ void Flight::addBaggage2Flight(const Baggage &baggage) {
 
 queue<Baggage> Flight::getPlaneStoredBaggage() const{
     return planeStoredBaggage;
+}
+
+int Flight::getMaxCapacity() const {
+    return maxCapacity;
+}
+
+Flight &Flight::setMaxCapacity(int maxCapacity) {
+    this->maxCapacity = maxCapacity;
+    return *this;
 }
 
 
