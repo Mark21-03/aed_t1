@@ -108,7 +108,7 @@ void Menu::BuyTicket() {
     char tClass;
     int quant;
 
-    cout<<"\nHow many tickets do you want?"; cin>>quant;
+    cout<<"\nNumber of tickets: "; cin>>quant;
 
     int sold=0;
 
@@ -123,13 +123,9 @@ void Menu::BuyTicket() {
             manager.createTicket(flight, passengerID, price, static_cast<ClassType>(tClass));
             manager.IncrementFlightOccupation(flight);
             sold++;
-            cout << "\nTicket added!\n";
-        } else {
-            std::string r;
-            cout << "Exit (Y/N) ?"; cin >> r;
-            if (r == "Y") break;
-            else continue;
-        }
+            cout << "\nTicket(s) "<<sold<<" / "<<quant<<" added!\n";
+        } else
+           break;
     }
     getchar(); getchar();
 
@@ -327,7 +323,7 @@ void Menu::funcReadPassenger() {
         regex search = out::askParts(cout,cin, "Give us a part of the Name: ");
 
         bool foundMatch = manager.searchPassengerId(cout, search);
-        cout << SEPARATION << std::endl;
+        cout << SEPARATION << "-------------------------" <<std::endl;
         if(!foundMatch) cout<<"X\tNo match was found!\n";
         getchar();
 

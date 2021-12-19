@@ -50,6 +50,7 @@ void Manager::showSortedPassengersBySortOption(ostream& ostream1, const std::str
         out::passenger(ostream1,pa);
     }
 
+
 }
 
 void Manager::showSortedPassengersById(ostream &ostream1, unsigned int min, unsigned int max) {
@@ -61,6 +62,7 @@ void Manager::showSortedPassengersById(ostream &ostream1, unsigned int min, unsi
         if (it->getID() > max) break;
         out::passenger(ostream1,it);
     }
+
 }
 
 void Manager::showSortedFlightsBySortOption(ostream &ostream1, const string &sortOption, flightNumber min, flightNumber max) {
