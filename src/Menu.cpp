@@ -113,7 +113,7 @@ void Menu::BuyTicket() {
     cout << "\nNew Ticket's Flight number: "; cin >> flight;
 
     if (manager.getFlightByNumber(flight)->getOccupation() + quant > manager.getFlightByNumber(flight)->getMaxCapacity()) {
-        cout << "Sorry, the flight has max capacity of " << manager.getFlightByNumber(flight)->getMaxCapacity() << '\n';
+        cout << "Sorry, the flight has max capacity of " << manager.getFlightByNumber(flight)->getMaxCapacity() << '\n'; getchar();getchar();
         return;
     }
 
