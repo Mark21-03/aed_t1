@@ -662,7 +662,7 @@ bool Manager::removeTransportInAirport(ostream &os, const string &airport, Trans
         if (bst.remove(transport))
             os << "Removed with success!\n";
         else
-            os << "Sorry... It seems that the transport does not exists\n";
+            os << "Transport not found!\n";
 
         return true;
     }
