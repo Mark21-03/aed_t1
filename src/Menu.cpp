@@ -130,7 +130,7 @@ void Menu::BuyTicket() {
 
         if (menuOperationConfirm()) {
             manager.createTicket(flight, passengerID, price, static_cast<ClassType>(tClass));
-            manager.IncrementFlightOccupation(flight);
+            manager.incrementFlightOccupation(flight);
             sold++;
             cout << "\nTicket(s) "<<sold<<" / "<<quant<<" added!\n";
         } else
@@ -323,13 +323,14 @@ void Menu::funcReadPassenger() {
         out::askOnce<std::string>(cout,cin, sortOption, "Sort by (n->name, d->birthdate, default = id)");
         out::askInterval<unsigned int>(cout, cin, minId, maxId, "Passenger ID");
         manager.showSortedPassengersBySortOption(cout, sortOption, minId, maxId);
+        cout << SEPARATION << SEPARATION <<std::endl;
         getchar();
         getchar();
     } else if (option == "n") {
         regex search = out::askParts(cout,cin, "Give us a part of the Name: ");
 
         bool foundMatch = manager.searchPassengerId(cout, search);
-        cout << SEPARATION << SEPARATION<< SEPARATION <<std::endl;
+        cout << SEPARATION << SEPARATION <<std::endl;
         if(!foundMatch) cout<<"X\tNo match was found!\n";
         getchar();
 

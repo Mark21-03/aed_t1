@@ -246,7 +246,7 @@ void Manager::searchUpdatePassengers(int SearchedID) {
         return (*it).getOccupation();
 }
 */
-void Manager::IncrementFlightOccupation(flightNumber ID) {
+void Manager::incrementFlightOccupation(flightNumber ID) {
     auto it = lower_bound(flights.begin(),flights.end(), Flight(ID,Date(),Time(),0.0f,"",""));
     int prevOccup= it->getOccupation();
     it->setOccupation(prevOccup+1);
