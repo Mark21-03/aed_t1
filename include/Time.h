@@ -134,7 +134,7 @@ inline bool operator!=(const Time &t1,const Time &t2){
  * @param t2 right side Time object to be compared
  * @return boolean with the result of the comparison
  */
-inline bool operator<(const Time &t1,const Time &t2){
+inline bool operator<(const Time &t1,const Time &t2){ // TODO: THIS SEEMS A BIT OFF
     if(t1.getHour()<t2.getHour())
         return true;
     else if(t1.getHour()==t2.getHour() && t1.getMinute()<t2.getMinute())

@@ -302,8 +302,10 @@ void Menu::funcReadPassenger() {
     out::askOnce<std::string>(cout,cin, option, "Option(n->Search by Name, i->Search by ID)");
     if (option == "i") {
         unsigned int minId, maxId;
+        std::string sortOption;
+        out::askOnce<std::string>(cout,cin, sortOption, "Sort by (n->name, d->birthdate, default = id)");
         out::askInterval<unsigned int>(cout, cin, minId, maxId, "Passenger ID");
-        manager.showSortedPassengersById(cout, minId, maxId);
+        manager.showSortedPassengersById(cout, sortOption ,minId, maxId);
         getchar();
         getchar();
     } else if (option == "n") {

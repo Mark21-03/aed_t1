@@ -38,7 +38,7 @@ public:
     Passenger& setName(const std::string& name);
     Passenger& setID(unsigned int ID);
 
-
+    friend class ComparePassengersByName;
 };
 
 inline std::ostream & operator<<(std::ostream& os, Passenger& l) {
@@ -86,5 +86,12 @@ inline bool operator==(const Passenger& l1,const Passenger& l2){
 inline bool operator!=(const Passenger& l1,const Passenger& l2){
     return l1.getID() != l2.getID();
 }
+
+class ComparePassengersByName {
+public:
+    bool operator()(Passenger* l , Passenger * r) {
+        return l->getName()< r->getName();
+    }
+};
 
 #endif //PASSENGER_H
