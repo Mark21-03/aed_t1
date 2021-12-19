@@ -44,7 +44,7 @@ private:
 
 public:
     Manager();
-    ~Manager();
+    ~Manager() = default;
     explicit Manager(const std::string&dirs){
         this->filesDir = dirs;
     }
@@ -96,7 +96,7 @@ public:
     void moveBaggageToPlane(int flightID);
 
 
-    void createPassenger(const string &Pname);
+    void createPassenger(const string &Pname, Date birth);
     void createPlane(const planePlate& numberPlate ,const std::string& pType, int capacity);
     void createFlight(const Date& departureDate,const Time& departureTime, const float &duration,std::string origin, std::string destiny);
     void createTicket(int flight, int passengerID, float price, ClassType tClass);
@@ -109,6 +109,8 @@ public:
     bool deleteFlight(const unsigned &idD);
 
     bool validBuy(Ticket ticket);
+
+    void saveToFile();
 
 };
 

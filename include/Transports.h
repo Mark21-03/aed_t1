@@ -10,7 +10,7 @@ typedef std::set<Time> TimeTable;
 
 class Transport{
 private:
-    char type; //S - subway, T - train , B - bus, N - not found TODO: ENUM
+    char type; //S - subway, T - train , B - bus, N - not found
     TimeTable timetable;
     float distance ; // in kms
 
@@ -69,7 +69,7 @@ public:
      * Gives current Transport timetable
      * @return Timetable (set<Time>)
      */
-    inline const TimeTable& getTimeTable() const {return this->timetable;} // TODO remember to check if it is working
+    inline const TimeTable& getTimeTable() const {return this->timetable;}
 };
 
 //Already documented in the class
@@ -106,8 +106,8 @@ inline bool operator<(const Transport& t1, const Transport& t2){
  */
 inline ostream& operator<<(ostream& os,const TimeTable &t){
 
-    for(auto it = t.begin();it!=t.end();it++)
-        os<<*it<<" ";
+    for(auto it : t)
+        os<<it<<" ";
 
     return os;
 }

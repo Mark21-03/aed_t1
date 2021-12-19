@@ -42,6 +42,8 @@ Baggage Carriage::takeBaggage(){
             currentCapacity--;
             return b;
         }
+
+    return Baggage();
 }
 
 
@@ -92,6 +94,7 @@ Baggage BaggageTruck::takeBagagge(){
             currentCapacity--;
             return b;
         }
+    return Baggage();
 }
 
 //__________________________________________________________________________________________

@@ -27,10 +27,10 @@ public:
     Service()=default;
     Service(char type, Date date,const string& employer,string plate);
 
-    Service& setType(char type);
-    Service& setDate(Date date);
-    Service& setEmployer(const std::string& employer);
-    Service& setPlate(const planePlate& plane);
+    Service& setType(char newType);
+    Service& setDate(Date newDate);
+    Service& setEmployer(const std::string& newEmployer);
+    Service& setPlate(const planePlate& newPlane);
 
     ServiceType getType() const;
     Date getDate() const;
@@ -93,4 +93,4 @@ inline bool operator!=(const Service &s1, const Service &s2){
     return !(s1 == s2);
 }
 
-#endif //SERVICO_H
+#endif //SERVICE_H

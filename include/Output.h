@@ -42,9 +42,10 @@ namespace out {
      */
     template<typename writeable>
     inline void askInterval(ostream &ostream1, istream & istream1, writeable & min , writeable & max, const std::string& asked) {
-        ostream1 << asked << " from x to y: " << std::endl;
+        ostream1 <<std::endl<< asked << " from x to y: " << std::endl;
         ostream1 << "x: ";  istream1 >> min;
-        ostream1 << "\ny: "; istream1 >> max;
+        ostream1 << "y: "; istream1 >> max;
+        ostream1<<std::endl;
     }
 
     inline regex askParts(std::ostream &ostream1, istream & istream1, const std::string& askText) {
@@ -61,8 +62,8 @@ namespace out {
     //TODO Acabar documentação
     template<typename writeable>
     inline void askOnce(ostream &ostream1, istream & istream1, writeable & min, const std::string& asked) {
-        ostream1 << "Provide a valid " << asked << std::endl;
-        ostream1 << asked << ": ";  istream1 >> min;
+        //ostream1 << "Provide a valid " << asked << std::endl;
+        ostream1 <<std::endl<< asked << ": ";  istream1 >> min;
     }
 
     void headerPassengers(ostream& ostream1);

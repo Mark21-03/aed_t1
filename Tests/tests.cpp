@@ -5,9 +5,7 @@
 #include <algorithm>
 #include "../include/Passenger.h"
 #include "../include/ServiceManagement.h"
-#include "../include/Time.h"
 #include "../include/Manager.h"
-#include "../include/Menu.h"
 
 using testing::Eq;
 
@@ -1082,6 +1080,8 @@ TEST(Test_PassengerBirth, Test_PassengerBirth){
 */
 
     // Manager manager;
+
+    cout<<manager.getTransportTree()->begin().operator*().getTimeTable()<<endl;
 
     //cout<<manager.passengers[123].getName()<<endl;
     //cout<<manager.passengers[123].getID()<<endl;

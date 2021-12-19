@@ -27,15 +27,15 @@ ClassType Ticket::getTClass() const {return this->tClass;}
 
 //Flight Ticket::getFlight() const {return this->flight;}
 
-Ticket &Ticket::setPrice(float price) {this->price=price; return *this;}
+Ticket &Ticket::setPrice(float newPrice) { this->price=newPrice; return *this;}
 Ticket &Ticket::setBaggage(Baggage baggage) {this->basementBaggage=baggage; return *this;}
 //Ticket &Ticket::setBaggage(Baggage bag1) {this->bag1=bag1; return *this;}
 Ticket &Ticket::setFlightNumber(flightNumber flightNumber) {this->flightnumber=flightNumber; return *this;}
 Ticket &Ticket::setPassengerId(int passengerid) {this->passengerID=passengerid; return *this;}
-Ticket &Ticket::setTclass(char tClass) {
-    if (tClass=='x')
+Ticket &Ticket::setTclass(char newTClass) {
+    if (newTClass == 'x')
         this->tClass=executive;
-    else if (tClass=='e')
+    else if (newTClass == 'e')
         this->tClass=economic;
 
     return *this;

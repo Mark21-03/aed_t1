@@ -59,21 +59,21 @@ public:
 
     /**
      * Sets the weight of the Baggage
-     * @param weight value to be set
+     * @param newWeight value to be set
      */
-    inline void setWeight(const float& weight){this->weight = weight;}
+    inline void setWeight(const float& newWeight){this->weight = newWeight;}
 
     /**
      * Sets the number of the Baggage
-     * @param quantity value to be set
+     * @param newQuantity value to be set
      */
-    inline void setQuantity(const unsigned & quantity){this->quantity = quantity;}
+    inline void setQuantity(const unsigned & newQuantity){this->quantity = newQuantity;}
 
     /**
      * Sets if Baggage is taken with the passenger
-     * @param handheld boolean value to be set
+     * @param newHandheld boolean value to be set
      */
-    inline void setHandheld(const bool& handheld){this->handheld = handheld;}
+    inline void setHandheld(const bool& newHandheld){ this->handheld = newHandheld;}
 };
 
 /**

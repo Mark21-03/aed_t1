@@ -24,7 +24,7 @@ class Menu {
 
     bool menuOperationConfirm();
 
-    void (Menu::*x)();
+    void (Menu::*x)(){};
     const vector<void (Menu::*)()> createFuncs = {&Menu::funcCreatePassenger, &Menu::funcCreatePlane,&Menu::funcCreateFlight, &Menu::funcCreateService,&Menu::addNewTransport};
     const vector<void (Menu::*)()> readFuncs   = {&Menu::funcReadPassenger,   &Menu::funcReadPlane,  &Menu::funcReadFlight,   &Menu::funcReadService, &Menu::showNearbyTransports };
     const vector<void (Menu::*)()> updateFuncs = {&Menu::funcUpdatePassenger, &Menu::funcUpdatePlane, &Menu::funcUpdateFlight, &Menu::funcUpdateService, &Menu::funcUpdateTicket};
@@ -64,18 +64,14 @@ class Menu {
     void doCheckIn();
 
 
-
     void subMenu(const string &menuTitle, vector<void (Menu::*)()> funcs);
-
-    //TODO all read funcs must call this menu first to choose which values to be displayed and if sorted etc.
-    //TODO Read Funcs must give this menu their on display functions because each class must be displayed differently
-    void readSubMenu(string menuTitle,vector<void (Menu::*)()> funcs);
-
     void othersSubMenu();
+
+    void saveDataFiles();
 
 
 public:
-    Menu(Manager& manager1) : manager(manager1){}
+    explicit Menu(Manager& manager1) : manager(manager1){}
     void mainMenu();
 };
 #endif

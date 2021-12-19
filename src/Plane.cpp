@@ -27,13 +27,13 @@ planePlate Plane::getNumberPlate() const{
 
 
 //Setters
-Plane& Plane::setFlightPlan(const std::list<flightNumber> &flightPlan) { this->flightPlan = flightPlan; return *this;}
+Plane& Plane::setFlightPlan(const std::list<flightNumber> &newFlightPlan) { this->flightPlan = newFlightPlan; return *this;}
 
-Plane& Plane::setCapacity(int capacity) {this->capacity = capacity;return *this;}
+Plane& Plane::setCapacity(int newCapacity) { this->capacity = newCapacity;return *this;}
 
-Plane& Plane::setType(const std::string& pType) { this->pType = pType;return *this;}
+Plane& Plane::setType(const std::string& newPlaneType) { this->pType = newPlaneType;return *this;}
 
-Plane& Plane::setNumberPlate(const string &numberPlate) {
-    this->numberPlate = numberPlate;return *this;
+Plane& Plane::setNumberPlate(const string &newNumberPlate) {
+    this->numberPlate = newNumberPlate;return *this;
 }
 

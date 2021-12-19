@@ -161,33 +161,33 @@ public:
 
     /**
      * Sets object's attribute to new given value
-     * @param year new value
+     * @param newYear new value
      * @return changed Date object
      */
-    Date& setYear(unsigned int year);
+    Date& setYear(unsigned int newYear);
 
     /**
      * Sets object's attribute to new given value
-     * @param month new value
+     * @param newMonth new value
      * @return changed Date object
      */
-    Date& setMonth(unsigned int month);
+    Date& setMonth(unsigned int newMonth);
 
     /**
      * Sets object's attribute to new given value
-     * @param day new value
+     * @param newDay new value
      * @return changed Date object
      */
-    Date& setDay(unsigned int day);
+    Date& setDay(unsigned int newDay);
 
     /**
      * Sets date attributes using the given arguments
-     * @param year new attribute value
-     * @param month new attribute value
-     * @param day new attribute value
+     * @param newYear new attribute value
+     * @param newMonth new attribute value
+     * @param newDay new attribute value
      * @return changed Date object
      */
-    Date& setDate(unsigned int year, unsigned int month, unsigned int day);
+    Date& setDate(unsigned int newYear, unsigned int newMonth, unsigned int newDay);
 
     /**
      * Returns copy of year attribute

@@ -39,12 +39,12 @@ public:
 
         /**
          * Sets all class time attributes at once
-         * @param hour attribute to be set
-         * @param minute attribute to be set
-         * @param second attribute to be set
+         * @param newHour attribute to be set
+         * @param newMinute attribute to be set
+         * @param newSecond attribute to be set
          * @return
          */
-        Time& setTime(unsigned hour, unsigned minute, unsigned second);
+        Time& setTime(unsigned newHour, unsigned newMinute, unsigned newSecond);
 
         /**
          * Gets attribute hour
@@ -65,28 +65,28 @@ public:
         inline unsigned getSecond() const{return this->second;}
 
         /**
-         * Changes attribute hour and returns the changed object
+         * Changes attribute newHour and returns the changed object
          *
-         * @param hour changing attribute
+         * @param newHour changing attribute
          * @return changed object
          */
-        Time& setHour(unsigned hour);
+        Time& setHour(unsigned newHour);
 
         /**
-         * Changes attribute minute and returns the changed object
+         * Changes attribute newMinute and returns the changed object
          *
-         * @param minute changing attribute
+         * @param newMinute changing attribute
          * @return changed object
          */
-        Time& setMinute(unsigned minute);
+        Time& setMinute(unsigned newMinute);
 
         /**
-        * Changes attribute second and returns the changed object
+        * Changes attribute newSecond and returns the changed object
         *
-        * @param second changing attribute
+        * @param newSecond changing attribute
         * @return changed object
         */
-        Time& setSecond(unsigned second);
+        Time& setSecond(unsigned newSecond);
 
 
         /**
@@ -134,15 +134,13 @@ inline bool operator!=(const Time &t1,const Time &t2){
  * @param t2 right side Time object to be compared
  * @return boolean with the result of the comparison
  */
-inline bool operator<(const Time &t1,const Time &t2){ // TODO: THIS SEEMS A BIT OFF
-    if(t1.getHour()<t2.getHour())
-        return true;
-    else if(t1.getHour()==t2.getHour() && t1.getMinute()<t2.getMinute())
-        return true;
-    else if(t1.getHour()==t2.getHour() && t1.getMinute()==t2.getMinute() && t1.getSecond()<t2.getSecond())
-        return true;
-    else
-        return false;
+inline bool operator<(const Time &t1,const Time &t2){
+    if(t1.getHour()!=t2.getHour())
+        return t1.getHour()<t2.getHour();
+    else if(t1.getMinute()!=t2.getMinute())
+        return t1.getMinute()<t2.getMinute();
+    return t1.getSecond()<t2.getSecond();
+
 }
 
 /**

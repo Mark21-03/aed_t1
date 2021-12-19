@@ -46,8 +46,8 @@ public:
     Date getBirthDate() const{return this->birthDate;};
     // setters
 
-    Passenger& setName(const std::string& name);
-    Passenger& setID(unsigned int ID);
+    Passenger& setName(const std::string& newName);
+    Passenger& setID(unsigned int newID);
     inline void setBirth(const Date &newDate){this->birthDate = newDate;}
 
 

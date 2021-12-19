@@ -37,26 +37,26 @@ Date::Date(std::string yearMonthDay) {
     }
 }
 
-Date& Date::setYear(unsigned int year) {
-    this->year = year;
+Date& Date::setYear(unsigned int newYear) {
+    this->year = newYear;
     return *this;
 }
 
-Date& Date::setMonth(unsigned int month) {
-    this->month = month;
+Date& Date::setMonth(unsigned int newMonth) {
+    this->month = newMonth;
     return *this;
 }
 
-Date& Date::setDay(unsigned int day) {
-    this->day = day;
+Date& Date::setDay(unsigned int newDay) {
+    this->day = newDay;
 
     return *this;
 }
 
-Date& Date::setDate(unsigned int year, unsigned int month, unsigned int day) {
-    this->year = year;
-    this->month = month;
-    this->day = day;
+Date& Date::setDate(unsigned int newYear, unsigned int newMonth, unsigned int newDay) {
+    this->year = newYear;
+    this->month = newMonth;
+    this->day = newDay;
 
     return *this;
 }

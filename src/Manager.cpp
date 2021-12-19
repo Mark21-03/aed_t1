@@ -50,6 +50,7 @@ void Manager::showSortedPassengersBySortOption(ostream& ostream1, const std::str
         out::passenger(ostream1,pa);
     }
 
+
 }
 
 void Manager::showSortedPassengersById(ostream &ostream1, unsigned int min, unsigned int max) {
@@ -61,6 +62,7 @@ void Manager::showSortedPassengersById(ostream &ostream1, unsigned int min, unsi
         if (it->getID() > max) break;
         out::passenger(ostream1,it);
     }
+
 }
 
 void Manager::showSortedFlightsBySortOption(ostream &ostream1, const string &sortOption, flightNumber min, flightNumber max) {
@@ -206,55 +208,6 @@ bool Manager::confirmationPrompt(){
 }
 
 
-Manager::~Manager() {
-
-    // TODO: CREATE "SAVE" METHODS
-    std::ofstream ofsPlanes(planesPath);
-    std::ofstream ofsPassengers(passengersPath);
-    std::ofstream ofsFlights(flightsPath);
-    std::ofstream ofsTransports(transportsPath);
-    std::ofstream ofsTickets(tickets_path);
-
-    for(Plane &p:planes)
-        ofsPlanes << p;
-
-    for(Passenger &p:passengers)
-        ofsPassengers << p;
-
-    for(Flight &f:flights)
-        ofsFlights << f;
-
-    for(auto& p: airportTransports) {
-        ofsTransports << p.first << '\n';
-
-        BSTItrIn<Transport> it(p.second);
-        int s = 0;
-        while (!it.isAtEnd()) {s++; it.advance();}
-        ofsTransports << s << '\n';
-        BSTItrPre<Transport> itr(p.second);
-        while (!itr.isAtEnd()) {
-            const Transport &t = itr.retrieve();
-            ofsTransports << t.getType() << " " << t.getDistance() << " " << t.getTimeTable().size()
-                          << " " << t.getTimeTable() << endl;
-            itr.advance();
-        }
-    }
-
-    for (auto & t: tickets) {
-        ofsTickets << t;
-    }
-
-    ofsPlanes.close();
-    ofsFlights.close();
-    ofsPassengers.close();
-    ofsTransports.close();
-    ofsTickets.close();
-
-    serviceManager.saveToFile();
-
-}
-
-
 void Manager::searchUpdatePassengers(int SearchedID) {
 
     auto finder = [=](const Passenger &p){
@@ -264,15 +217,18 @@ void Manager::searchUpdatePassengers(int SearchedID) {
     auto it = find_if(passengers.begin(),passengers.end(),finder);
 
     if(it!=passengers.end()){
+        Date birth;
         string newName;
         showSortedPassengersById(cout, SearchedID, SearchedID);
         cout<<"\nProvided the new values below:\n";
-        cout<<"\nName: ";cin.ignore();getline(cin,newName);
+        cout<<"\nName (string): ";cin.ignore();getline(cin,newName);
+        cout<<"\nBirth Date (YYYY/MM/DD): ";cin>>birth;
 
 
         cout<<endl;
         if(confirmationPrompt()){
             it->setName(newName);
+            it->setBirth(birth);
             cout<<"\nChanges have been saved!\n";
         }
     }
@@ -399,11 +355,11 @@ void Manager::searchUpdateServices(char type, Date date, string emp, planePlate 
 }
 
 
-void Manager::createPassenger(const string &Pname){ // TODO: THE ID SHOULD NOT BE THE BACK + 1 BUT THE LAST CREATED + 1
+void Manager::createPassenger(const string &Pname, Date birth){ // TODO: THE ID SHOULD NOT BE THE BACK + 1 BUT THE LAST CREATED + 1
 
     unsigned newID = passengers.back().getID()+1;
 
-    Passenger p(newID, Pname);
+    Passenger p(newID, Pname, birth);
 
     passengers.push_back(p);
 }
@@ -412,7 +368,6 @@ void Manager::createPlane(const planePlate &numberPlate, const string &pType, in
 
     Plane p(numberPlate, pType, capacity);
 
-    //TODO talvez seja sorted por matricula ?
     planes.push_back(p);
 }
 
@@ -702,7 +657,7 @@ bool Manager::addTransportToAirport(ostream &os, const string &airport, Transpor
 
 bool Manager::removeTransportInAirport(ostream &os, const string &airport, Transport &transport) {
     if (airportTransports.count(airport)) {
-        BST<Transport>& bst = airportTransports[airport];
+        BST<Transport> &bst = airportTransports[airport];
 
         if (bst.remove(transport))
             os << "Removed with success!\n";
@@ -714,3 +669,53 @@ bool Manager::removeTransportInAirport(ostream &os, const string &airport, Trans
 
     return false;
 }
+
+void Manager::saveToFile() {
+
+    std::ofstream ofsPlanes(planesPath);
+    std::ofstream ofsPassengers(passengersPath);
+    std::ofstream ofsFlights(flightsPath);
+    std::ofstream ofsTransports(transportsPath);
+    std::ofstream ofsTickets(tickets_path);
+
+    for (Plane &p:planes)
+        ofsPlanes << p;
+
+    for (Passenger &p:passengers)
+        ofsPassengers << p;
+
+    for (Flight &f:flights)
+        ofsFlights << f;
+
+    for (auto &p: airportTransports) {
+        ofsTransports << p.first << '\n';
+
+        BSTItrIn<Transport> it(p.second);
+        int s = 0;
+        while (!it.isAtEnd()) {
+            s++;
+            it.advance();
+        }
+        ofsTransports << s << '\n';
+        BSTItrPre<Transport> itr(p.second);
+        while (!itr.isAtEnd()) {
+            const Transport &t = itr.retrieve();
+            ofsTransports << t.getType() << " " << t.getDistance() << " " << t.getTimeTable().size()
+                          << " " << t.getTimeTable() << endl;
+            itr.advance();
+        }
+    }
+
+    for (auto &t: tickets) {
+        ofsTickets << t;
+    }
+
+    ofsPlanes.close();
+    ofsFlights.close();
+    ofsPassengers.close();
+    ofsTransports.close();
+    ofsTickets.close();
+
+    serviceManager.saveToFile();
+}
+
