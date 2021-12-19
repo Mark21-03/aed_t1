@@ -17,6 +17,7 @@
 class Passenger {
 private:
     unsigned int ID;
+    Date birthDate;
     char name[LONGEST_ACCEPTED_NAME]{};
 
 public:
@@ -25,6 +26,13 @@ public:
     Passenger(unsigned int ID, const std::string& name){
         setName(name);
         this->ID = ID;
+        this->birthDate = Date(1970,1,1);
+    };
+
+    Passenger(unsigned int ID, const std::string& name, const Date& BirthDate){
+        setName(name);
+        this->ID = ID;
+        this->birthDate = BirthDate;
     };
 
     std::string getName() const;
@@ -32,11 +40,13 @@ public:
         return name;
     }
     unsigned int getID() const;
-
+    Date getBirthDate() const{return this->birthDate;};
     // setters
 
     Passenger& setName(const std::string& name);
     Passenger& setID(unsigned int ID);
+    inline void setBirth(const Date &newDate){this->birthDate = newDate;}
+
 
     friend class ComparePassengersByName;
 };
@@ -58,8 +68,9 @@ inline std::ostream & operator<<(std::ostream& os, Passenger& l) {
 
     }
 
-
+    os << " "<<l.getBirthDate();
     os << "\n";
+
     return os;
 }
 
@@ -72,6 +83,13 @@ inline std::istream & operator>>(std::istream& is, Passenger& l) {
     for (int i = 0; i < LONGEST_ACCEPTED_NAME; ++i) {
         l.getNameC()[i] = is.get();
     }
+
+
+
+    Date birth;
+    is>>birth;
+    l.setBirth(birth);
+
 
     return is;
 }
