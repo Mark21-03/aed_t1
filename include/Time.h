@@ -169,7 +169,7 @@ inline bool operator<=(const Time &t1,const Time &t2){
  * @return ostream used (altered)
  */
 inline std::ostream & operator<<(std::ostream& os,const Time &t){
-    os<<std::setfill('0')<<std::setw(2)<<t.getHour()<<":"<<std::setw(2)<<t.getMinute()<<":"<<std::setw(2)<<t.getSecond();
+    os<<std::setfill('0')<< std::right <<std::setw(2)<<t.getHour()<<":"<<std::setw(2)<<t.getMinute()<<":"<<std::setw(2)<<t.getSecond();
     return os;
 }
 

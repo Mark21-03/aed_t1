@@ -670,6 +670,38 @@ bool Manager::removeTransportInAirport(ostream &os, const string &airport, Trans
     return false;
 }
 
+bool Manager::updateTransportInAirport(ostream &os, const string &airport, Transport &transport) {
+    if (airportTransports.count(airport)) {
+        BST<Transport> &bst = airportTransports[airport];
+        const Transport& nTrs = Transport();
+        if (!(bst.find(transport) == nTrs)) {
+            short i;
+            cout << "New timetable for transport. How many schedules does it have ? \n >";
+            cin >> i;
+            Time t;
+            TimeTable timeTable;
+            for (int j = 0; j < i; ++j) {
+                try {
+                    cout << "Time " << j +1 << " : \n >";
+                    cin >> t;
+                    timeTable.insert(t);
+                }catch (exception& exception) {
+                    cout << "Not a valid transport. \n"; return false;
+                }
+            }
+            transport.setTimeTable(timeTable);
+            bst.remove(transport);
+            bst.insert(transport);
+        }
+        else
+            os << "Sorry... It seems that the transport does not exists\n";
+
+        return true;
+    }
+    return false;
+}
+
+
 void Manager::saveToFile() {
 
     std::ofstream ofsPlanes(planesPath);
@@ -718,4 +750,5 @@ void Manager::saveToFile() {
 
     serviceManager.saveToFile();
 }
+
 

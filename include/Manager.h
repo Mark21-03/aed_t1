@@ -63,6 +63,7 @@ public:
     bool showAirportTransports(ostream & os,const string &airport);
     bool addTransportToAirport(ostream & os, const string &airport, Transport& transport);
     bool removeTransportInAirport(ostream & os, const string &airport, Transport& transport);
+    bool updateTransportInAirport(ostream & os, const string &airport, Transport& transport);
 
     bool addFlightToPlanePlan(Flight& flight); // success or not // TODO LATER
 

@@ -107,7 +107,7 @@ inline bool operator<(const Transport& t1, const Transport& t2){
 inline ostream& operator<<(ostream& os,const TimeTable &t){
 
     for(auto it : t)
-        os<<it<<" ";
+        os<<it.getTime()<<" ";
 
     return os;
 }

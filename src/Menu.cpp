@@ -628,7 +628,6 @@ void Menu::removeNearbyTransport() {
     cout<<"Transport Distance (float): ";cin>>d;
 
     Transport t(c,d);
-    Transport notF;
 
     if (menuOperationConfirm() && !manager.removeTransportInAirport(cout, airport, t))
         cout << "No airport has that Name.\n";
@@ -637,7 +636,21 @@ void Menu::removeNearbyTransport() {
 
 }
 
+void Menu::updateTransports() {
+    char c;float d;
+    std::string airport;
+    cout << "Airport to update Transport ? :" << endl << '>';
+    getline(cin, airport);
+    cout<<"\nTransport Type (T, S, B): ";cin>>c;
+    cout<<"Transport Distance (float): ";cin>>d;
 
+    Transport t(c,d);
+
+    if (menuOperationConfirm() && !manager.updateTransportInAirport(cout, airport, t))
+        cout << "No airport has that Name.\n";
+
+    getchar(); getchar();
+}
 
 void Menu::doCheckIn() {
     int flightID;
