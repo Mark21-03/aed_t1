@@ -1,6 +1,12 @@
 #include "../include/Menu.h"
 
 
+void Menu::saveDataFiles(){
+    cout << "\nEnd of program.\n";
+    manager.saveToFile();
+    std::cout<<"Data saved.";
+    getchar();
+}
 
 
 
@@ -448,9 +454,7 @@ void Menu::subMenu(const string &menuTitle, vector<void (Menu::*)()> funcs) {
             //START OF MENU SELECTION
             switch (userInput) {
                 case '0'://EXIT
-                    cout << "End of program.\n";
-                    manager.~Manager();
-                    getchar();
+                    saveDataFiles();
                     exit(1);
 
                 case '1'://Passenger
@@ -495,92 +499,6 @@ void Menu::subMenu(const string &menuTitle, vector<void (Menu::*)()> funcs) {
 
 //_________________________________________________________________________________
 
-void Menu::readSubMenu(string menuTitle,vector<void (Menu::*)()> funcs){
-
-    char userInput;
-    string inputError;
-
-
-    while (true) {
-        int ignoreVar = system(CLEAR);
-
-        if (!inputError.empty())
-            cout << inputError;
-        inputError = "";
-
-        //Start of MENU
-
-        cout << "================="<< endl;
-        cout << menuTitle << endl;
-        cout << "=================" << endl;
-        cout << "  1)  All" << endl;
-        cout << "  2)  Single" << endl;
-        cout << "  3)  Interval" << endl;
-        cout << "  4)  Sorted" << endl;
-        cout << "  6)  Go Back" << endl;
-        cout << "  0)  Exit" << endl;
-        cout << "================" << endl;
-        cout << " > ";
-        //End of MENU
-
-        if ((cin >> userInput)) {
-            //raises error if more than 1 char is written by user
-            if (!in::emptyStream(std::cin)) {
-                in::giveMenuInputError(inputError);
-                continue;
-            }
-
-            //START OF MENU SELECTION
-            switch (userInput) {
-                case '0'://EXIT
-                    cout << "End of program.\n";
-                    manager.~Manager();
-                    getchar();
-                    exit(1);
-
-                case '1'://Passenger
-                    // this -> x = funcs[0];
-                    this -> x = funcs[0];
-                    ((*this).*(this->x))();
-                    break;
-                case '2'://Plane
-                    this -> x = funcs[1];
-                    ((*this).*(this->x))();
-                    break;
-                case '3'://Flight
-                    this -> x = funcs[2];
-                    ((*this).*(this->x))();
-                    break;
-                case '4'://Service
-                    this -> x = funcs[3];
-                    ((*this).*(this->x))();
-                    break;
-                case '5'://Ticket
-                    this -> x = funcs[4];
-                    ((*this).*(this->x))();
-                    break;
-                case '6'://Go Back
-                    goto END_MENU;
-                default:
-                    in::giveMenuInputError(inputError);
-                    break;
-            }
-            //END OF MENU SELECTION
-            continue;
-        } else {
-            in::dealError(inputError);
-            continue;
-        }
-
-        END_MENU:
-        break;
-    }
-
-}
-
-
-//_________________________________________________________________________________
-
 void Menu::mainMenu() {
     char userInput;
     string inputError;
@@ -616,9 +534,7 @@ void Menu::mainMenu() {
             //START OF MENU SELECTION
             switch (userInput) {
                 case '0'://EXIT
-                    cout << "End of program.\n";
-                    manager.~Manager();
-                    getchar();
+                    saveDataFiles();
                     exit(1);
 
                 case '1'://CREATE
@@ -779,9 +695,7 @@ void Menu::othersSubMenu() {
             //START OF MENU SELECTION
             switch (userInput) {
                 case '0'://EXIT
-                    cout << "End of program.\n";
-                    manager.~Manager();
-                    getchar();
+                    saveDataFiles();
                     exit(1);
                 case '1':
                     doCheckIn();

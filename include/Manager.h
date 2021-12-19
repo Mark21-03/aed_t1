@@ -44,7 +44,7 @@ private:
 
 public:
     Manager();
-    ~Manager();
+    ~Manager() = default;
     explicit Manager(const std::string&dirs){
         this->filesDir = dirs;
     }
@@ -104,6 +104,8 @@ public:
     bool deleteFlight(const unsigned &idD);
 
     bool validBuy(Ticket ticket);
+
+    void saveToFile() ;
 
 };
 

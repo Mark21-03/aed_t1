@@ -206,41 +206,6 @@ bool Manager::confirmationPrompt(){
 }
 
 
-Manager::~Manager() {
-
-    // TODO: CREATE "SAVE" METHODS
-    std::ofstream ofsPlanes(planesPath);
-    std::ofstream ofsPassengers(passengersPath);
-    std::ofstream ofsFlights(flightsPath);
-    std::ofstream ofsTransports(transportsPath);
-    std::ofstream ofsTickets(tickets_path);
-
-    for(Plane &p:planes)
-        ofsPlanes << p;
-
-    for(Passenger &p:passengers)
-        ofsPassengers << p;
-
-    for(Flight &f:flights)
-        ofsFlights << f;
-
-    for(auto it= transportsTree.begin();it!=transportsTree.end();it++)
-        ofsTransports << (*it).getType()<<" "<<(*it).getDistance()<<" "<<(*it).getTimeTable().size()<<" "<<(*it).getTimeTable()<<endl;
-
-    for (auto & t: tickets) {
-        ofsTickets << t;
-    }
-
-    ofsPlanes.close();
-    ofsFlights.close();
-    ofsPassengers.close();
-    ofsTransports.close();
-    ofsTickets.close();
-
-    serviceManager.saveToFile();
-
-}
-
 
 void Manager::searchUpdatePassengers(int SearchedID) {
 
@@ -655,4 +620,37 @@ void Manager::moveBaggageToPlane(int flightID) {
 
     cout<<"\nMoving baggage from truck to the plane...\n";getchar();
 
+}
+
+void Manager::saveToFile() {
+
+    std::ofstream ofsPlanes(planesPath);
+    std::ofstream ofsPassengers(passengersPath);
+    std::ofstream ofsFlights(flightsPath);
+    std::ofstream ofsTransports(transportsPath);
+    std::ofstream ofsTickets(tickets_path);
+
+    for(Plane &p:planes)
+        ofsPlanes << p;
+
+    for(Passenger &p:passengers)
+        ofsPassengers << p;
+
+    for(Flight &f:flights)
+        ofsFlights << f;
+
+    for(auto it= transportsTree.begin();it!=transportsTree.end();it++)
+        ofsTransports << (*it).getType()<<" "<<(*it).getDistance()<<" "<<(*it).getTimeTable().size()<<" "<<(*it).getTimeTable()<<endl;
+
+    for (auto & t: tickets) {
+        ofsTickets << t;
+    }
+
+    ofsPlanes.close();
+    ofsFlights.close();
+    ofsPassengers.close();
+    ofsTransports.close();
+    ofsTickets.close();
+
+    serviceManager.saveToFile();
 }
