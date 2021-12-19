@@ -28,7 +28,7 @@ Manager::Manager() {
 }
 
 
-void Manager::showSortedPassengersById(ostream& ostream1, const std::string& sortOption, unsigned int min , unsigned int max) { // TODO CHANGE NAME OF METHOD
+void Manager::showSortedPassengersBySortOption(ostream& ostream1, const std::string& sortOption, unsigned int min , unsigned int max) { // TODO CHANGE NAME OF METHOD
 
     out::headerPassengers(ostream1);
 
@@ -63,12 +63,35 @@ void Manager::showSortedPassengersById(ostream &ostream1, unsigned int min, unsi
     }
 }
 
+void Manager::showSortedFlightsBySortOption(ostream &ostream1, const string &sortOption, flightNumber min, flightNumber max) {
+    out::headerFlights(ostream1);
+
+    auto it = lower_bound(flights.begin(),flights.end(), Flight(min, Date(), Time(),0.0f, "", ""));
+
+    vector<Flight*> vec;
+    for (;it!=flights.end();it++) {
+        if (it->getNumber() > max) break;
+        vec.push_back(&(*it));
+    }
+
+    if (sortOption == "o") {
+        sort(vec.begin(),vec.end(),CompareFlightsByOccupation());
+    }else if (sortOption == "d") {
+        sort(vec.begin(),vec.end(),CompareFlightsByDepartureDate());
+    } else if (sortOption == "t") {
+        sort(vec.begin(),vec.end(),CompareFlightsByDepartureTime());
+    }
+
+    for (auto& pa: vec) {
+        out::flights(ostream1,pa);
+    }
+}
 
 
 void Manager::showSortedFlightsById(ostream &ostream1, flightNumber min , flightNumber max) {
 
     out::headerFlights(ostream1);
-    auto it = lower_bound(flights.begin(), flights.end(), Flight(min, Date(), Time(),2.4f, "", ""));
+    auto it = lower_bound(flights.begin(), flights.end(), Flight(min, Date(), Time(),0.0f, "", ""));
 
     for (;it!=flights.end();it++) {
         if (it->getNumber() > max) break;
@@ -478,28 +501,54 @@ Flight* Manager::getFlightbyNumber(flightNumber number) {
     return &flight;
 }
 
-bool Manager::searchFlightsOrigins(ostream &ostream1, const regex &exp) {
+bool Manager::searchFlightsOrigins(ostream &ostream1,const regex &exp,const std::string & sortOption ) {
     out::headerFlights(ostream1);
 
     bool foundMatch = false;
 
+    vector<Flight* > vec;
     for (auto& f : flights)
         if(regex_match(f.getOrigin() ,exp)){
-            foundMatch = true;out::flights(ostream1,&f);
+            foundMatch = true;vec.push_back(&(f));
         }
+
+    if (sortOption == "o") {
+        sort(vec.begin(),vec.end(),CompareFlightsByOccupation());
+    }else if (sortOption == "d") {
+        sort(vec.begin(),vec.end(),CompareFlightsByDepartureDate());
+    } else if (sortOption == "t") {
+        sort(vec.begin(),vec.end(),CompareFlightsByDepartureTime());
+    }
+
+    for (auto & f: vec) {
+        out::flights(ostream1,f);
+    }
 
     return foundMatch;
 }
 
-bool Manager::searchFlightsDestiny(ostream &ostream1, const regex &exp) {
+bool Manager::searchFlightsDestiny(ostream &ostream1,const regex &exp,const std::string & sortOption) {
     out::headerFlights(ostream1);
 
     bool foundMatch = false;
 
+    vector<Flight* > vec;
     for (auto& f : flights)
         if(regex_match(f.getDestiny() ,exp)){
-            foundMatch = true;out::flights(ostream1,&f);
+            foundMatch = true;vec.push_back(&(f));
         }
+
+    if (sortOption == "o") { // TODO: REPEATED CODE
+        sort(vec.begin(),vec.end(),CompareFlightsByOccupation());
+    }else if (sortOption == "d") {
+        sort(vec.begin(),vec.end(),CompareFlightsByDepartureDate());
+    } else if (sortOption == "t") {
+        sort(vec.begin(),vec.end(),CompareFlightsByDepartureTime());
+    }
+
+    for (auto & f: vec) {
+        out::flights(ostream1,f);
+    }
 
     return foundMatch;
 }
@@ -581,8 +630,3 @@ void Manager::moveBaggageToPlane(int flightID) {
     cout<<"\nMoving baggage from truck to the plane...\n";
 
 }
-
-
-
-
-

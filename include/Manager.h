@@ -54,9 +54,11 @@ public:
 
     inline BST<Transport> *getTransportTree(){return &transportsTree;}
 
-    void showSortedPassengersById(ostream& ostream1, const std::string& sortOption, unsigned int min = 0, unsigned int max = INT_MAX);
+    void showSortedPassengersBySortOption(ostream& ostream1, const std::string& sortOption, unsigned int min = 0, unsigned int max = INT_MAX);
     void showSortedPassengersById(ostream& ostream1, unsigned int min = 0, unsigned int max = INT_MAX);
     void showSortedFlightsById(ostream& ostream1, flightNumber min = 0, flightNumber max = INT_MAX);
+    void showSortedFlightsBySortOption(ostream& ostream1, const std::string& sortOption, flightNumber min = 0, flightNumber max = INT_MAX);
+
     bool addFlightToPlanePlan(Flight& flight); // success or not // TODO LATER
 
 
@@ -68,8 +70,8 @@ public:
 
     void searchUpdatePassengers(int id);
     bool searchPassengerId(ostream &ostream1, const regex& exp);
-    bool searchFlightsOrigins(ostream &ostream1, const regex& exp);
-    bool searchFlightsDestiny(ostream &ostream1, const regex& exp);
+    bool searchFlightsOrigins(ostream &ostream1,const regex &exp,const std::string & sortOption = "");
+    bool searchFlightsDestiny(ostream &ostream1,const regex &exp,const std::string & sortOption = "");
 
 
     void searchUpdateFlights(int id);

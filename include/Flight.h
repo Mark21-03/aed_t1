@@ -28,9 +28,9 @@ private:
     queue<Baggage> planeStoredBaggage;
 
 public:
-    friend class CompareByDepartureDate;
-    friend class CompareByDepartureTime;
-    friend class CompareByOccupation;
+    friend class CompareFlightsByDepartureDate;
+    friend class CompareFlightsByDepartureTime;
+    friend class CompareFlightsByOccupation;
 
     Flight() = default;
     Flight(flightNumber number,const Date& departureDate,const Time& departureTime, float duration,std::string origin,std::string destiny);
@@ -133,24 +133,24 @@ inline std::istream& operator>> (std::istream& is, Flight& r) {
 
 }
 
-class CompareByDepartureDate {
+class CompareFlightsByDepartureDate {
 public:
-    bool operator()(const Flight& l , const Flight & r) {
-        return l.departureDate.isBefore(r.departureDate);
+    bool operator()(Flight* l , Flight* r) {
+        return l->departureDate.isBefore(r->departureDate);
     }
 };
 
-class CompareByDepartureTime {
+class CompareFlightsByDepartureTime {
 public:
-    bool operator()(const Flight& l , const Flight & r) {
-        return l.departureTime < r.departureTime;
+    bool operator()(Flight* l , Flight* r) {
+        return l->departureTime < r->departureTime;
     }
 };
 
-class CompareByOccupation {
+class CompareFlightsByOccupation {
 public:
-    bool operator()(const Flight& l , const Flight & r) {
-        return l.occupation < r.occupation;
+    bool operator()(Flight* l , Flight* r) {
+        return l->occupation < r->occupation;
     }
 };
 

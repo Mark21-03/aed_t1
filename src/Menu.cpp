@@ -310,7 +310,7 @@ void Menu::funcReadPassenger() {
         std::string sortOption;
         out::askOnce<std::string>(cout,cin, sortOption, "Sort by (n->name, d->birthdate, default = id)");
         out::askInterval<unsigned int>(cout, cin, minId, maxId, "Passenger ID");
-        manager.showSortedPassengersById(cout, sortOption ,minId, maxId);
+        manager.showSortedPassengersBySortOption(cout, sortOption, minId, maxId);
         getchar();
         getchar();
     } else if (option == "n") {
@@ -352,20 +352,28 @@ void Menu::funcReadFlight() {
 
     if (option == "i") {
         flightNumber min, max;
+        std::string sortOption;
+        out::askOnce<std::string>(cout,cin, sortOption, "Sort by (o->ocup., d->date, t->time, default = id)");
         out::askInterval<flightNumber>(cout, cin, min, max, "Flight number");
-        manager.showSortedFlightsById(cout, min, max);
+        manager.showSortedFlightsBySortOption(cout, sortOption, min, max);
         getchar();
         getchar();
     } else if (option == "o") {
+        std::string sortOption;
+        out::askOnce<std::string>(cout,cin, sortOption, "Sort by (o->ocup., d->date, t->time, default = id)");
+
         regex search = out::askParts(cout,cin, "Give us a part of the airport origin name: ");
 
-        bool foundMatch = manager.searchFlightsOrigins(cout, search);
+        bool foundMatch = manager.searchFlightsOrigins(cout, search, sortOption);
         if(!foundMatch) cout<<"X\tNo match was found!\n";
         getchar();
     } else if (option == "d") {
+        std::string sortOption;
+        out::askOnce<std::string>(cout,cin, sortOption, "Sort by (o->ocup., d->date, t->time, default = id)");
+
         regex search = out::askParts(cout,cin, "Give us a part of the airport destiny name: ");
 
-        bool foundMatch = manager.searchFlightsDestiny(cout, search);
+        bool foundMatch = manager.searchFlightsDestiny(cout, search, sortOption);
         if(!foundMatch) cout<<"X\tNo match was found!\n";
         getchar();
     }
