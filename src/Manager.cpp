@@ -216,15 +216,18 @@ void Manager::searchUpdatePassengers(int SearchedID) {
     auto it = find_if(passengers.begin(),passengers.end(),finder);
 
     if(it!=passengers.end()){
+        Date birth;
         string newName;
         showSortedPassengersById(cout, SearchedID, SearchedID);
         cout<<"\nProvided the new values below:\n";
-        cout<<"\nName: ";cin.ignore();getline(cin,newName);
+        cout<<"\nName (string): ";cin.ignore();getline(cin,newName);
+        cout<<"\nBirth Date (YYYY/MM/DD): ";cin>>birth;
 
 
         cout<<endl;
         if(confirmationPrompt()){
             it->setName(newName);
+            it->setBirth(birth);
             cout<<"\nChanges have been saved!\n";
         }
     }
@@ -351,11 +354,11 @@ void Manager::searchUpdateServices(char type, Date date, string emp, planePlate 
 }
 
 
-void Manager::createPassenger(const string &Pname){ // TODO: THE ID SHOULD NOT BE THE BACK + 1 BUT THE LAST CREATED + 1
+void Manager::createPassenger(const string &Pname, Date birth){ // TODO: THE ID SHOULD NOT BE THE BACK + 1 BUT THE LAST CREATED + 1
 
     unsigned newID = passengers.back().getID()+1;
 
-    Passenger p(newID, Pname);
+    Passenger p(newID, Pname, birth);
 
     passengers.push_back(p);
 }

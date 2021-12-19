@@ -91,7 +91,7 @@ public:
     void moveBaggageToPlane(int flightID);
 
 
-    void createPassenger(const string &Pname);
+    void createPassenger(const string &Pname, Date birth);
     void createPlane(const planePlate& numberPlate ,const std::string& pType, int capacity);
     void createFlight(const Date& departureDate,const Time& departureTime, const float &duration,std::string origin, std::string destiny);
     void createTicket(int flight, int passengerID, float price, ClassType tClass);

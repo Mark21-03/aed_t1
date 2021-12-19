@@ -28,11 +28,12 @@ bool Menu::menuOperationConfirm(){
 
 
 void Menu::funcCreatePassenger() {
-    string pName;
+    string pName; Date birth;
     cout<<"\nNew Passenger Name (string): ";getline(cin,pName);
+    cout<<"\nNew Passenger Birth (YYYY/MM/DD): ";cin>>birth;
 
     if (menuOperationConfirm()) {
-        manager.createPassenger(pName);
+        manager.createPassenger(pName, birth);
         cout << "Passenger added!\n";
     }
     getchar();getchar();
@@ -86,7 +87,7 @@ void Menu::funcCreateService() {
     Date newDate;
     string newEmployeeName,newPlate;
 
-    cout<<"\nNew Service's Type (M / C / O): ";cin>>newType;
+    cout<<"\nNew Service's Type (m | c | o): ";cin>>newType;
     cout<<"New Service's Date (YYYY/MM/DD): ";cin>>newDate;
     cout<<"New Service's Employee Name (string): "; cin.ignore();getline(cin,newEmployeeName);
     cout<<"New Service's Plane Plate (string): ";getline(cin,newPlate);
@@ -272,13 +273,12 @@ void Menu::funcDeleteFlight() {
 }
 
 void Menu::funcDeleteService() {
-    //TODO não funciona por causa do char type que esta em ascii
 
     char newType;
     Date newDate;
     string newEmployeeName,newPlate;
 
-    cout<<"\nService's Type (m / c / o): ";cin>>newType;
+    cout<<"\nService's Type (m | c | o): ";cin>>newType;
     cout<<"Service's Date (YYYY/MM/DD): ";cin>>newDate;
     cout<<"Service's Employee Name (string): "; cin.ignore();getline(cin,newEmployeeName);
     cout<<"Service's Plane Plate (string): ";getline(cin,newPlate);
