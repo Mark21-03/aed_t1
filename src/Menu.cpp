@@ -652,26 +652,31 @@ void Menu::mainMenu() {
 }
 
 
-void Menu::showNearbyTransports() {
+void Menu::showNearbyTransports() { // TODO: CHANGE THIS
 
-    BST<Transport>  *tree = manager.getTransportTree();
+    std::string airport;
+
+    cout << "What airport are you in ? :" << endl << '>';
+    getline(cin, airport);
 
     cout<<endl;
 
     out::headerTransports(cout);
 
-    BSTItrIn<Transport> it(*manager.getTransportTree());
-    while (!it.isAtEnd()){
-        out::transports(cout,&it.retrieve());
-        it.advance();
+    if (!manager.showAirportTransports(cout, airport)) {
+        cout << "Not available\n";
     }
-
     getchar();
 }
 
 void Menu::addNewTransport() {
     char c;float d;
-    cout<<"\nNew Transport Type (T, S, B): ";cin>>c;
+
+    std::string airport;
+    cout << "Airport to add Transport ? :" << endl << '>';
+    getline(cin, airport);
+
+    cout<<"\nNew Transport Type (T, S, B): ";cin>>c; // TODO: CHECK IF INPUT IS CORRECTED
     cout<<"New Transport Distance (float): ";cin>>d;
 
     Transport t(c,d);
@@ -691,9 +696,11 @@ void Menu::addNewTransport() {
     };
     t.setTimeTable(generateRandomTimeTable());
 
-    if(menuOperationConfirm()){
-        manager.getTransportTree()->insert(t);
-        cout<<"Added new Transport!\n";
+    if(menuOperationConfirm()) {
+        if(manager.addTransportToAirport(cout, airport, t))
+            cout<<"Added new Transport!\n";
+        else
+            cout << "Airport or transport is incorrect. You can only add a transport to a operable airport.\n";
     }
 
     getchar(); getchar();
@@ -702,22 +709,17 @@ void Menu::addNewTransport() {
 void Menu::removeNearbyTransport() {
 
     char c;float d;
+    std::string airport;
+    cout << "Airport to remove Transport ? :" << endl << '>';
+    getline(cin, airport);
     cout<<"\nTransport Type (T, S, B): ";cin>>c;
     cout<<"Transport Distance (float): ";cin>>d;
 
     Transport t(c,d);
     Transport notF;
 
-    Transport Tfound = manager.getTransportTree()->find(t);
-
-    bool found = !(Tfound == notF);
-
-    if(found){
-        if(menuOperationConfirm()){
-            manager.getTransportTree()->remove(t);
-            cout<<"Deleted!\n";
-        }
-    }else cout<<"Value not found!\n";
+    if (menuOperationConfirm() && !manager.removeTransportInAirport(cout, airport, t))
+        cout << "No airport has that Name.\n";
 
     getchar(); getchar();
 

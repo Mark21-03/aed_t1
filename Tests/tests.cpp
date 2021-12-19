@@ -160,7 +160,29 @@ TEST(test_ServiceManagement, OperatorsManagement) {
     ASSERT_EQ(s.getDate().getDate(), "2012/03/21");
 
 }
+TEST(Test_transportTree, TransportMap) {
+map<string,BST<Transport>> airportTransports;
+std::ifstream ifs_transports("../Files/transports.txt");
+std::string airport;
+while (getline(ifs_transports,airport)) {
+int n; ifs_transports >> n;
+Transport transport;
+BST<Transport> tTree;
+while (n > 0) {
+ifs_transports >> transport;
+tTree.insert(transport);
+n--;
+}
+airportTransports.insert(pair<std::string, BST<Transport>>(airport, tTree));
+}
 
+ifs_transports.close();
+
+
+
+
+
+}
 TEST(Test_Baggage, BaggageStruct) {
 
 
@@ -925,6 +947,7 @@ for(int i = 0; i < f.getOccupation(); i++) {
 */
 }
 
+/*
 TEST(Test_TimeTable, generateTimetable){
     srand(time(NULL));
 
@@ -956,12 +979,12 @@ TEST(Test_TimeTable, generateTimetable){
 
    //tree->printTree();
 
-}
-
-
-TEST(Test_TicketBaggage, Test_TicketBaggage){
+}*/
 
 /*
+TEST(Test_TicketBaggage, Test_TicketBaggage){
+
+
     string tickets_path = "../Files/tickets.txt";
     fstream ifs(tickets_path);
 
@@ -997,19 +1020,19 @@ TEST(Test_TicketBaggage, Test_TicketBaggage){
 
     ifs_ticket.close();
 
-/*
+
     std::ofstream ofsTickets(tickets_path);
 
     for (auto & t: ms) {
         ifs << t;
-    }*/
+    }
 
 
 
-/*  0 0 101 469.18 0
+    0 0 101 469.18 0
     0 0 101 132.92 0
     0 0 101 344.24 0
-    0 0 101 469.24 0*/
+    0 0 101 469.24 0
 
 
     Manager manager;
@@ -1020,6 +1043,8 @@ TEST(Test_TicketBaggage, Test_TicketBaggage){
     ASSERT_EQ(t->begin()->getBaggage().getQuantity(),1);
 
 }
+
+*/
 
 TEST(Test_PassengerBirth, Test_PassengerBirth){
 
@@ -1056,10 +1081,11 @@ TEST(Test_PassengerBirth, Test_PassengerBirth){
         ofs<<i;
 */
 
-    Manager manager;
+    // Manager manager;
 
     //cout<<manager.passengers[123].getName()<<endl;
     //cout<<manager.passengers[123].getID()<<endl;
     //cout<<manager.passengers[123].getBirthDate()<<endl;
 
 }
+

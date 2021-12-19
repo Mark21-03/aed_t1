@@ -91,9 +91,9 @@ inline bool Transport::setType(const char &newType) {
 inline bool operator<(const Transport& t1, const Transport& t2){
     if (t1.getType() != t2.getType())
         return t1.getType() < t2.getType(); // this will break the bst in 4 different trees
-    if (t1.getDistance() != t2.getDistance())
-        return t1.getDistance()<t2.getDistance();
-    return t1.getTimeTable() < t2.getTimeTable();
+    //if (fabs(t1.getDistance() - t2.getDistance()) > FLT_EPSILON)
+    return t1.getDistance()<t2.getDistance(); // TODO: THE OTHER WAY WOULD GIVE A PROBLEM WHEN DELETING
+    //return t1.getTimeTable() < t2.getTimeTable();
 }
 
 

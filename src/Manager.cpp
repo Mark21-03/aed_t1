@@ -224,8 +224,21 @@ Manager::~Manager() {
     for(Flight &f:flights)
         ofsFlights << f;
 
-    for(auto it= transportsTree.begin();it!=transportsTree.end();it++)
-        ofsTransports << (*it).getType()<<" "<<(*it).getDistance()<<" "<<(*it).getTimeTable().size()<<" "<<(*it).getTimeTable()<<endl;
+    for(auto& p: airportTransports) {
+        ofsTransports << p.first << '\n';
+
+        BSTItrIn<Transport> it(p.second);
+        int s = 0;
+        while (!it.isAtEnd()) {s++; it.advance();}
+        ofsTransports << s << '\n';
+        BSTItrPre<Transport> itr(p.second);
+        while (!itr.isAtEnd()) {
+            const Transport &t = itr.retrieve();
+            ofsTransports << t.getType() << " " << t.getDistance() << " " << t.getTimeTable().size()
+                          << " " << t.getTimeTable() << endl;
+            itr.advance();
+        }
+    }
 
     for (auto & t: tickets) {
         ofsTickets << t;
@@ -489,21 +502,22 @@ bool Manager::searchPassengerId(ostream &ostream1, const regex& exp) {
 void Manager::readTransports() {
 
     std::ifstream ifs_transports(transportsPath);
-
-
-    Transport transport;
-    while (ifs_transports >> transport) {
-        transportsTree.insert(transport);
+    std::string airport;
+    while (getline(ifs_transports,airport)) {
+        int n; ifs_transports >> n;
+        Transport transport;
+        BST<Transport> tTree;
+        while (n > 0) {
+            ifs_transports >> transport;
+            tTree.insert(transport);
+            n--;
+        }
+        airportTransports.insert(pair<std::string, BST<Transport>>(airport, tTree));
+        ifs_transports.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
     ifs_transports.close();
 
-}
-
-bool Manager::validBuy(Ticket ticket) {
-//    if (ticket.sold<flights[ticket.getFlightNumber()].getOccupation())
-  //      return true;
-    return false;
 }
 
 void Manager::readTickets() {
@@ -655,4 +669,48 @@ void Manager::moveBaggageToPlane(int flightID) {
 
     cout<<"\nMoving baggage from truck to the plane...\n";getchar();
 
+}
+
+bool Manager::showAirportTransports(ostream & os,const string &airport) {
+
+    if (airportTransports.count(airport)) {
+        auto bst = airportTransports[airport];
+
+        BSTItrIn<Transport> it(bst);
+        while (!it.isAtEnd()){
+            out::transports(os,&it.retrieve());
+            it.advance();
+        }
+        return true;
+    }
+
+    return false;
+}
+
+bool Manager::addTransportToAirport(ostream &os, const string &airport, Transport& transport) {
+
+    if (airportTransports.count(airport)) {
+        BST<Transport>& bst = airportTransports[airport];
+
+        bst.insert(transport);
+
+        return true;
+    }
+
+    return false;
+}
+
+bool Manager::removeTransportInAirport(ostream &os, const string &airport, Transport &transport) {
+    if (airportTransports.count(airport)) {
+        BST<Transport>& bst = airportTransports[airport];
+
+        if (bst.remove(transport))
+            os << "Removed with success!\n";
+        else
+            os << "Sorry... It seems that the transport does not exists\n";
+
+        return true;
+    }
+
+    return false;
 }

@@ -31,7 +31,7 @@ private:
     multiset<Ticket> tickets;
 
     BST<Transport> transportsTree;
-    // map<std::string, BST<Transport>> airportTransports;
+    map<std::string, BST<Transport>> airportTransports;
 
     void setPaths();
     void readFlights();
@@ -53,11 +53,16 @@ public:
     inline ServiceManagement* getServiceManager(){return &serviceManager;}
 
     inline BST<Transport> *getTransportTree(){return &transportsTree;}
+    inline map<string, BST<Transport>> *getTransportmap(){return &airportTransports;}
 
     void showSortedPassengersBySortOption(ostream& ostream1, const std::string& sortOption, unsigned int min = 0, unsigned int max = INT_MAX);
     void showSortedPassengersById(ostream& ostream1, unsigned int min = 0, unsigned int max = INT_MAX);
     void showSortedFlightsById(ostream& ostream1, flightNumber min = 0, flightNumber max = INT_MAX);
     void showSortedFlightsBySortOption(ostream& ostream1, const std::string& sortOption, flightNumber min = 0, flightNumber max = INT_MAX);
+
+    bool showAirportTransports(ostream & os,const string &airport);
+    bool addTransportToAirport(ostream & os, const string &airport, Transport& transport);
+    bool removeTransportInAirport(ostream & os, const string &airport, Transport& transport);
 
     bool addFlightToPlanePlan(Flight& flight); // success or not // TODO LATER
 
