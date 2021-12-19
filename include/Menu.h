@@ -50,7 +50,6 @@ class Menu {
     void funcUpdatePlane();
     void funcUpdateFlight();
     void funcUpdateService();
-    void funcUpdateTicket();
 
     int askChangeId();
     char askTypeService();

@@ -169,9 +169,6 @@ void Menu::funcUpdateService(){
     manager.searchUpdateServices(type,date,emp,plate);
     getchar();getchar();
 }
-void Menu::funcUpdateTicket(){
-    //not necessary
-}
 
 int Menu::askChangeId(){
     unsigned id;
@@ -323,7 +320,7 @@ void Menu::funcReadPassenger() {
         regex search = out::askParts(cout,cin, "Give us a part of the Name: ");
 
         bool foundMatch = manager.searchPassengerId(cout, search);
-        cout << SEPARATION << "-------------------------" <<std::endl;
+        cout << SEPARATION << SEPARATION<< SEPARATION <<std::endl;
         if(!foundMatch) cout<<"X\tNo match was found!\n";
         getchar();
 
