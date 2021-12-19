@@ -320,7 +320,7 @@ void Menu::funcReadPassenger() {
         regex search = out::askParts(cout,cin, "Give us a part of the Name: ");
 
         bool foundMatch = manager.searchPassengerId(cout, search);
-        cout << SEPARATION << "-------------------------" <<std::endl;
+        cout << SEPARATION << SEPARATION<< SEPARATION <<std::endl;
         if(!foundMatch) cout<<"X\tNo match was found!\n";
         getchar();
 

@@ -65,9 +65,6 @@ public:
     bool removeTransportInAirport(ostream & os, const string &airport, Transport& transport);
     bool updateTransportInAirport(ostream & os, const string &airport, Transport& transport);
 
-    bool addFlightToPlanePlan(Flight& flight); // success or not // TODO LATER
-
-
     void showSortedPlanesById(ostream &ostream1, const planePlate& min, const planePlate& max);
     void showSortedPlanesBySortedOption(ostream& ostream1, const std::string& sortOption, const planePlate& min, const planePlate& max);
 
