@@ -48,7 +48,7 @@ public:
     inline void setBirth(const Date &newDate){this->birthDate = newDate;}
 
 
-
+    friend class ComparePassengersByName;
 };
 
 inline std::ostream & operator<<(std::ostream& os, Passenger& l) {
@@ -104,5 +104,12 @@ inline bool operator==(const Passenger& l1,const Passenger& l2){
 inline bool operator!=(const Passenger& l1,const Passenger& l2){
     return l1.getID() != l2.getID();
 }
+
+class ComparePassengersByName {
+public:
+    bool operator()(Passenger* l , Passenger * r) {
+        return l->getName()< r->getName();
+    }
+};
 
 #endif //PASSENGER_H

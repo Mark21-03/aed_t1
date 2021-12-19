@@ -28,17 +28,42 @@ Manager::Manager() {
 }
 
 
-void Manager::showSortedPassengersById(ostream &ostream1, unsigned int min, unsigned int max) {
+void Manager::showSortedPassengersById(ostream& ostream1, const std::string& sortOption, unsigned int min , unsigned int max) { // TODO CHANGE NAME OF METHOD
 
     out::headerPassengers(ostream1);
 
     auto it = lower_bound(passengers.begin(),passengers.end(), Passenger(min, ""));
+
+    vector<Passenger*> vec;
+    for (;it!=passengers.end();it++) {
+        if (it->getID() > max) break;
+        vec.push_back(&(*it));
+    }
+
+    if (sortOption == "n") {
+        sort(vec.begin(),vec.end(),ComparePassengersByName());
+    }else if (sortOption == "d") {
+
+    }
+
+    for (auto& pa: vec) {
+        out::passenger(ostream1,pa);
+    }
+
+}
+
+void Manager::showSortedPassengersById(ostream &ostream1, unsigned int min, unsigned int max) {
+    out::headerPassengers(ostream1);
+
+    auto it = lower_bound(passengers.begin(),passengers.end(), Passenger(min, ""));
+
     for (;it!=passengers.end();it++) {
         if (it->getID() > max) break;
         out::passenger(ostream1,it);
     }
-
 }
+
+
 
 void Manager::showSortedFlightsById(ostream &ostream1, flightNumber min , flightNumber max) {
 
@@ -191,6 +216,21 @@ void Manager::searchUpdatePassengers(int SearchedID) {
     }
     else
         cout<<"The given ID doesn't match any passenger.";
+}
+
+/*int Manager::findFlightOccupation(int SearchedID) {
+
+    auto finder = [=](const Flight &f){return SearchedID == f.getNumber();};
+
+    auto it = find_if(flights.begin(),flights.end(),finder);
+
+    if (it!=flights.end())
+        return (*it).getOccupation();
+}
+*/
+void Manager::IncrementFlightOccupation(int ID) {
+    int prevOccup=flights[ID].getOccupation();
+    flights[ID].setOccupation(prevOccup+1);
 }
 
 void Manager::searchUpdateFlights(int SearchedID) {
@@ -541,6 +581,7 @@ void Manager::moveBaggageToPlane(int flightID) {
     cout<<"\nMoving baggage from truck to the plane...\n";
 
 }
+
 
 
 

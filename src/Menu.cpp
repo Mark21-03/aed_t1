@@ -98,22 +98,27 @@ void Menu::BuyTicket() {
     int flight;
     int passengerID;
     float price;
-    bool baggage;
+    //bool baggage;
     char tClass;
-    int sold;
+    int quant;
 
-    cout<<"\nNew Ticket's Flight number: ";cin>>flight;
-    cout<<"New Ticket's Passenger ID : ";cin>>passengerID;
-    cout<<"New Ticket's Price : ";cin>>price;
-    cout<<"New Ticket's Class (x | e) : ";cin>>tClass;
+    cout<<"\nHow many tickets do you want?"; cin>>quant;
 
-    //TODO temporario! melhorar funcao validando primeiro (tmb tem de perguntar quantos bilhetes quer?)
-    //if (validBuy) //funcao bool na class ticket n sei como aplicar aqui
-    //  sold++;
+    int sold=0;
 
-    if (menuOperationConfirm()) {
-        manager.createTicket(flight, passengerID, price,static_cast<ClassType>(tClass));
-        cout<<"\nTicket added!\n";
+    while (quant>sold) {
+        cout << "\nNew Ticket's Flight number: "; cin >> flight;
+        cout << "New Ticket's Passenger ID : "; cin >> passengerID;
+        cout << "New Ticket's Class (x | e) : "; cin >> tClass;
+
+        price = 50.0f + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(500.0f-50.0f)));
+
+        if (menuOperationConfirm()) {
+            manager.createTicket(flight, passengerID, price, static_cast<ClassType>(tClass));
+            manager.IncrementFlightOccupation(flight);
+            sold++;
+            cout << "\nTicket added!\n";
+        }
     }
     getchar(); getchar();
 
@@ -302,8 +307,10 @@ void Menu::funcReadPassenger() {
     out::askOnce<std::string>(cout,cin, option, "Option(n->Search by Name, i->Search by ID)");
     if (option == "i") {
         unsigned int minId, maxId;
+        std::string sortOption;
+        out::askOnce<std::string>(cout,cin, sortOption, "Sort by (n->name, d->birthdate, default = id)");
         out::askInterval<unsigned int>(cout, cin, minId, maxId, "Passenger ID");
-        manager.showSortedPassengersById(cout, minId, maxId);
+        manager.showSortedPassengersById(cout, sortOption ,minId, maxId);
         getchar();
         getchar();
     } else if (option == "n") {

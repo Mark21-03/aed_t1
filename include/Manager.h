@@ -54,6 +54,7 @@ public:
 
     inline BST<Transport> *getTransportTree(){return &transportsTree;}
 
+    void showSortedPassengersById(ostream& ostream1, const std::string& sortOption, unsigned int min = 0, unsigned int max = INT_MAX);
     void showSortedPassengersById(ostream& ostream1, unsigned int min = 0, unsigned int max = INT_MAX);
     void showSortedFlightsById(ostream& ostream1, flightNumber min = 0, flightNumber max = INT_MAX);
     bool addFlightToPlanePlan(Flight& flight); // success or not // TODO LATER
@@ -78,6 +79,9 @@ public:
     bool confirmationPrompt();
 
     void makeCheckIn(int flightID);
+
+    //int findFlightOccupation(int SearchedID);
+    void IncrementFlightOccupation(int ID);
 
 
     void moveBaggageToPlane(int flightID);

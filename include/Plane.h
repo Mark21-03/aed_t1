@@ -6,14 +6,6 @@
 #include <vector>
 #include "Flight.h"
 
-// a PLANE FILE COULD HAVE THIS INTERESTING DESIGN
-//     3 2
-//  OOOO FFF
-//  FOFO OOO
-//  FOOO FFO
-//
-// In which the O -> occupied seat and F -> Free seat. the struct of the plane should be defined either before or it can
-// either be not defined and we arrange in that way the plane as we want (using getlines)
 
 typedef std::string planePlate;
 
@@ -25,6 +17,7 @@ private:
     std::list<flightNumber> flightPlan;
 public:
     friend class ComparePlaneByType;
+    friend class ComparePlaneByCapacity;
 
     Plane() = default ;
     Plane(const planePlate& numberPlate ,const std::string& pType, int capacity);
@@ -98,5 +91,14 @@ public:
         return l.pType < r.pType;
     }
 };
+
+class ComparePlaneByCapacity {
+public:
+    bool operator()(const Plane& l , const Plane & r) {
+        return l.capacity < r.capacity;
+    }
+};
+
+
 
 #endif //PLANE_H
