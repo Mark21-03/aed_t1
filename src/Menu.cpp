@@ -568,8 +568,7 @@ void Menu::showNearbyTransports() { // TODO: CHANGE THIS
 
     std::string airport;
 
-    cout << "What airport are you in ? :" << endl << '>';
-    getline(cin, airport);
+    cout << "\nWhat airport are you in: ";getline(cin, airport);
 
     cout<<endl;
 
@@ -585,8 +584,7 @@ void Menu::addNewTransport() {
     char c;float d;
 
     std::string airport;
-    cout << "Airport to add Transport ? :" << endl << '>';
-    getline(cin, airport);
+    cout << "\nAirport to add Transport: "; getline(cin, airport);
 
     cout<<"\nNew Transport Type (T, S, B): ";cin>>c; // TODO: CHECK IF INPUT IS CORRECTED
     cout<<"New Transport Distance (float): ";cin>>d;
@@ -606,13 +604,14 @@ void Menu::addNewTransport() {
         }
         return s;
     };
+
     t.setTimeTable(generateRandomTimeTable());
 
     if(menuOperationConfirm()) {
         if(manager.addTransportToAirport(cout, airport, t))
             cout<<"Added new Transport!\n";
         else
-            cout << "Airport or transport is incorrect. You can only add a transport to a operable airport.\n";
+            cout << "Airport or transport is incorrect.\nYou can only add a transport to a operable airport.\n";
     }
 
     getchar(); getchar();
@@ -622,15 +621,15 @@ void Menu::removeNearbyTransport() {
 
     char c;float d;
     std::string airport;
-    cout << "Airport to remove Transport ? :" << endl << '>';
-    getline(cin, airport);
+    cout << "\nAirport to remove Transport: ";getline(cin, airport);
+
     cout<<"\nTransport Type (T, S, B): ";cin>>c;
     cout<<"Transport Distance (float): ";cin>>d;
 
     Transport t(c,d);
 
     if (menuOperationConfirm() && !manager.removeTransportInAirport(cout, airport, t))
-        cout << "No airport has that Name.\n";
+        cout << "No airport has that name.\n";
 
     getchar(); getchar();
 

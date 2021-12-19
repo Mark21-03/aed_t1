@@ -95,8 +95,8 @@ namespace out {
             else if(c == 'T') return "Train";
             else return "Bus";
         };
-        ostream1<< left << setw(10) <<setfill(' ') << setw(10) <<nameSetter(it->getType())<< setw(10)
-        << to_string(it->getDistance()) + " km\t  " <<it->getTimeTable()<<endl;
+        ostream1<<left << setw(10) <<setfill(' ') << setw(10) <<nameSetter(it->getType())<< setw(15)
+        <<to_string(it->getDistance()) + " km\t  " <<it->getTimeTable()<<endl;
     }
 
 
