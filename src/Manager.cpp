@@ -218,6 +218,21 @@ void Manager::searchUpdatePassengers(int SearchedID) {
         cout<<"The given ID doesn't match any passenger.";
 }
 
+/*int Manager::findFlightOccupation(int SearchedID) {
+
+    auto finder = [=](const Flight &f){return SearchedID == f.getNumber();};
+
+    auto it = find_if(flights.begin(),flights.end(),finder);
+
+    if (it!=flights.end())
+        return (*it).getOccupation();
+}
+*/
+void Manager::IncrementFlightOccupation(int ID) {
+    int prevOccup=flights[ID].getOccupation();
+    flights[ID].setOccupation(prevOccup+1);
+}
+
 void Manager::searchUpdateFlights(int SearchedID) {
 
     auto finder = [=](const Flight &f){return SearchedID == f.getNumber();};

@@ -80,6 +80,9 @@ public:
 
     void makeCheckIn(int flightID);
 
+    //int findFlightOccupation(int SearchedID);
+    void IncrementFlightOccupation(int ID);
+
 
     void moveBaggageToPlane(int flightID);
 
