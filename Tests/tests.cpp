@@ -624,9 +624,9 @@ for(unsigned int i = 0; i< 365; i++) {
 
     Flight flight(i,date, time2 ,occupation ,r ,airports[o], airports[d]);
     ofsF << flight;
-}*/
-
 }
+
+}*/
 
 
 /*
