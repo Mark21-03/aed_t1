@@ -98,7 +98,6 @@ void Menu::BuyTicket() {
     int flight;
     int passengerID;
     float price;
-    //bool baggage;
     char tClass;
     int quant;
 
@@ -118,6 +117,11 @@ void Menu::BuyTicket() {
             manager.IncrementFlightOccupation(flight);
             sold++;
             cout << "\nTicket added!\n";
+        } else {
+            std::string r;
+            cout << "Exit (Y/N) ?"; cin >> r;
+            if (r == "Y") break;
+            else continue;
         }
     }
     getchar(); getchar();
@@ -331,9 +335,11 @@ void Menu::funcReadPlane() {
 
     if (option == "p") {
         planePlate min, max;
+        std::string sortOption;
+        out::askOnce<std::string>(cout,cin, sortOption, "Sort by (t->type, c->cap.,n->nr.flights, default = plateNumber)");
         out::askInterval<planePlate>(cout, cin, min, max, "Plate Number");
         cout << endl;
-        manager.showSortedPlanesById(cout, min, max);
+        manager.showSortedPlanesBySortedOption(cout, sortOption, min, max);
         getchar();
         getchar();
     }else if (option == "t") {

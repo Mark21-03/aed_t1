@@ -68,8 +68,8 @@ namespace out {
     void headerPassengers(ostream& ostream1);
     template<typename PassengerPointer>
     inline void passenger(ostream& ostream1, PassengerPointer it) {
-        ostream1 << SEPARATION << std::endl;
-        ostream1 << it->getID()<<"\t"<<it->getName()<<"\t\t\t"<<it->getBirthDate()<< '\n';
+        ostream1 << SEPARATION << SEPARATION << std::endl;
+        ostream1  <<left << setfill(' ') << setw(15) << it->getID()<< setw(45)<<it->getName() << setw(15) <<it->getBirthDate().getDate()<< '\n';
     }
 
     void headerPlanes(ostream& ostream1);

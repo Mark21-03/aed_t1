@@ -12,7 +12,7 @@ namespace out {
     }
 
     void headerPassengers(ostream& ostream1) {
-        ostream1<<"ID\t"<<"Name\t\t\t"<<"Birth Date"<<endl;
+        ostream1<<right << setfill(' ') <<"ID" << setw(15)  <<"Name" << setw(45) <<"Birth Date"<<endl;
     }
 
 

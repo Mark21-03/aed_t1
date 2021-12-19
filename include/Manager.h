@@ -63,6 +63,8 @@ public:
 
 
     void showSortedPlanesById(ostream &ostream1, const planePlate& min, const planePlate& max);
+    void showSortedPlanesBySortedOption(ostream& ostream1, const std::string& sortOption, const planePlate& min, const planePlate& max);
+
     void showSortedPlanesOfType(ostream &ostream1, const std::string & min);
 
     void showDoneServices(ostream& ostream1, const Date& min, const Date& max);
@@ -102,6 +104,7 @@ public:
     bool deleteFlight(const unsigned &idD);
 
     bool validBuy(Ticket ticket);
+
 };
 
 

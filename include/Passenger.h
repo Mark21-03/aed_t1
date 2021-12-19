@@ -21,6 +21,9 @@ private:
     char name[LONGEST_ACCEPTED_NAME]{};
 
 public:
+    friend class ComparePassengersByName;
+    friend class ComparePassengersByBirthDate;
+
     Passenger() = default;
 
     Passenger(unsigned int ID, const std::string& name){
@@ -48,7 +51,7 @@ public:
     inline void setBirth(const Date &newDate){this->birthDate = newDate;}
 
 
-    friend class ComparePassengersByName;
+
 };
 
 inline std::ostream & operator<<(std::ostream& os, Passenger& l) {
@@ -111,5 +114,13 @@ public:
         return l->getName()< r->getName();
     }
 };
+
+class ComparePassengersByBirthDate{
+public:
+    bool operator()(Passenger* l , Passenger * r) {
+        return l->birthDate.isBefore(r->birthDate);
+    }
+};
+
 
 #endif //PASSENGER_H

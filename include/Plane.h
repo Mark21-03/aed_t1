@@ -18,6 +18,7 @@ private:
 public:
     friend class ComparePlaneByType;
     friend class ComparePlaneByCapacity;
+    friend class ComparePlaneByNumberOfFlights;
 
     Plane() = default ;
     Plane(const planePlate& numberPlate ,const std::string& pType, int capacity);
@@ -87,18 +88,24 @@ inline bool operator!=(const Plane &p1, const Plane &p2){
 
 class ComparePlaneByType {
 public:
-    bool operator()(const Plane& l , const Plane & r) {
-        return l.pType < r.pType;
+    bool operator()(Plane* l , Plane*  r) {
+        return l->pType < r->pType;
     }
 };
 
 class ComparePlaneByCapacity {
 public:
-    bool operator()(const Plane& l , const Plane & r) {
-        return l.capacity < r.capacity;
+    bool operator()(Plane*  l , Plane*  r) {
+        return l->capacity < r->capacity;
     }
 };
 
+class ComparePlaneByNumberOfFlights {
+public:
+bool operator()(Plane*  l , Plane*  r) {
+    return l->flightPlan.size() < r->flightPlan.size();
+}
+};
 
 
 #endif //PLANE_H

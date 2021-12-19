@@ -43,7 +43,7 @@ void Manager::showSortedPassengersBySortOption(ostream& ostream1, const std::str
     if (sortOption == "n") {
         sort(vec.begin(),vec.end(),ComparePassengersByName());
     }else if (sortOption == "d") {
-
+        sort(vec.begin(),vec.end(),ComparePassengersByBirthDate());
     }
 
     for (auto& pa: vec) {
@@ -110,6 +110,32 @@ void Manager::showSortedPlanesById(ostream &ostream1, const planePlate& min, con
         out::planes(ostream1,it);
     }
 }
+
+
+void Manager::showSortedPlanesBySortedOption(ostream& ostream1, const std::string& sortOption, const planePlate& min, const planePlate& max) {
+    out::headerPlanes(ostream1);
+
+    auto it = lower_bound(planes.begin(),planes.end(), Plane(min,"",0));
+
+    vector<Plane*> vec;
+    for (;it!=planes.end();it++) {
+        if (it->getNumberPlate() > max) break;
+        vec.push_back(&(*it));
+    }
+
+    if (sortOption == "t") {
+        sort(vec.begin(),vec.end(),ComparePlaneByType());
+    }else if (sortOption == "c") {
+        sort(vec.begin(),vec.end(),ComparePlaneByCapacity());
+    }else if (sortOption == "n") {
+        sort(vec.begin(),vec.end(),ComparePlaneByNumberOfFlights());
+    }
+
+    for (auto& pa: vec) {
+        out::planes(ostream1,pa);
+    }
+}
+
 
 void Manager::showSortedPlanesOfType(ostream &ostream1, const std::string & min) {
     out::headerPlanes(ostream1);
@@ -389,7 +415,7 @@ void Manager::createFlight( const Date &departureDate, const Time &departureTime
 void Manager::createTicket(int flight, int passengerID, float price, ClassType tClass) {
     //TODO testar e terminar
 
-    srand(time(NULL));
+    //srand(time(NULL)); -> this would create the same baggage all over again
     Baggage bag(rand()%10+5,rand()%3+1);
 
     Ticket t(flight,passengerID,price,bag,tClass);
@@ -603,7 +629,7 @@ void Manager::moveBaggageToPlane(int flightID) {
 
         it++;
     }
-    cout<<"\nMoving all corresponding baggage through the conveyor belt...\n";
+    cout<<"\nMoving all corresponding baggage through the conveyor belt...\n";getchar();getchar();
 
     while(bci.getQueueSize()>0){
         if(bci.isTruckFull()){
@@ -612,7 +638,7 @@ void Manager::moveBaggageToPlane(int flightID) {
         bci.passNextBagaggeToTruck();
     }
 
-    cout<<"\nPassing baggage from conveyor belt to the baggage truck...\n";
+    cout<<"\nPassing baggage from conveyor belt to the baggage truck...\n";getchar();
 
     auto FlightFinder = [=](const Flight & f){
         return f.getNumber() == flightID;
@@ -627,6 +653,6 @@ void Manager::moveBaggageToPlane(int flightID) {
         flightIter->addBaggage2Flight(aux);
     }
 
-    cout<<"\nMoving baggage from truck to the plane...\n";
+    cout<<"\nMoving baggage from truck to the plane...\n";getchar();
 
 }
