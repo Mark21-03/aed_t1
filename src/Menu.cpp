@@ -618,7 +618,7 @@ void Menu::mainMenu() {
 
 
         cout << "=================" << endl;
-        cout << "       Menu      " << endl;
+        cout << "    MAIN MENU     " << endl;
         cout << "=================" << endl;
         cout << "  1)  Create" << endl;
         cout << "  2)  Read" << endl;
