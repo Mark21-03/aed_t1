@@ -11,7 +11,8 @@ class LoginMenu {
     std::string menuImage;
 public:
     LoginMenu();
-    void displayLogin(ostream& os) const;
+
+    void displayLogin(ostream &os) const;
 };
 
 

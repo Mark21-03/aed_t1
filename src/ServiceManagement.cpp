@@ -1,11 +1,13 @@
 #include "../include/ServiceManagement.h"
 
 
-void ServiceManagement::setDoneServices(list<Service> newDoneServices) { this->doneServices=newDoneServices;}
-void ServiceManagement::setToDoServices(queue<Service> newToDoServices) { this->toDoServices=newToDoServices;}
+void ServiceManagement::setDoneServices(list<Service> newDoneServices) { this->doneServices = newDoneServices; }
 
-list<Service> ServiceManagement::getDoneServices() const{return this->doneServices;}
-queue<Service> ServiceManagement::getToDoServices() const {return this->toDoServices;}
+void ServiceManagement::setToDoServices(queue<Service> newToDoServices) { this->toDoServices = newToDoServices; }
+
+list<Service> ServiceManagement::getDoneServices() const { return this->doneServices; }
+
+queue<Service> ServiceManagement::getToDoServices() const { return this->toDoServices; }
 
 void ServiceManagement::addDoneServices(Service service) {
     doneServices.push_back(service);
@@ -18,20 +20,20 @@ void ServiceManagement::addToDoService(Service service) {
 
     bool inserted = false;
 
-    while(!aux.empty()){
+    while (!aux.empty()) {
         Service temp = aux.front();
 
-        if(!inserted && (temp.getDate()>=service.getDate())){
+        if (!inserted && (temp.getDate() >= service.getDate())) {
             q.push(service);
             inserted = true;
-        }else{
+        } else {
             q.push(temp);
             aux.pop();
         }
 
     }
 
-    if(!inserted)
+    if (!inserted)
         q.push(service);
 
     toDoServices = q;
@@ -46,19 +48,20 @@ void ServiceManagement::DoneLatestService() {
 }
 
 
-ServiceManagement::ServiceManagement(const string &path) : path(path){
+ServiceManagement::ServiceManagement(const string &path) : path(path) {
 
     std::ifstream ifs(path);
 
     Service service;
-    int n; ifs >> n;
-    for (int i = 0; i < n; ++i) { // scheduled services
+    int n;
+    ifs >> n;
+    for (int i = 0; i < n; ++i) {
         ifs >> service;
         toDoServices.push(service);
     }
 
     ifs >> n;
-    for (int i = 0; i < n; ++i) { // the already done services
+    for (int i = 0; i < n; ++i) {
         ifs >> service;
         doneServices.push_back(service);
     }
@@ -68,11 +71,11 @@ ServiceManagement::ServiceManagement(const string &path) : path(path){
 
 void ServiceManagement::showDoneServicesFromRange(ostream &ostream1, const Date &min, const Date &max) const {
     out::headerServices(ostream1);
-    auto it = lower_bound(doneServices.begin(), doneServices.end(), Service('c', min,"",""));
+    auto it = lower_bound(doneServices.begin(), doneServices.end(), Service('c', min, "", ""));
 
-    for (;it!=doneServices.end();it++) {
+    for (; it != doneServices.end(); it++) {
         if (it->getDate() > max) break;
-        out::services(ostream1,it);
+        out::services(ostream1, it);
     }
 
 }
@@ -81,15 +84,14 @@ void ServiceManagement::showDoneServicesFromRange(ostream &ostream1, const Date 
 void ServiceManagement::showToDoServicesFromRange(ostream &ostream1, const Date &min, const Date &max) const {
     out::headerServices(ostream1);
 
-    //TODO Fix warning
-    if (!toDoServices.empty()){
+    if (!toDoServices.empty()) {
         queue<Service> temp = toDoServices;
         Service front = temp.front();
         temp.pop();
 
         while (front.getDate() <= max) {
             if (front.getDate() >= min)
-                out::services(ostream1,&front);
+                out::services(ostream1, &front);
             if (temp.empty()) break;
             front = temp.front();
             temp.pop();
@@ -106,10 +108,10 @@ bool ServiceManagement::deleteTodoService(const Service &service) {
     queue<Service> auxQ = toDoServices;
     queue<Service> qDeleted;
 
-    while(!auxQ.empty()){
+    while (!auxQ.empty()) {
         Service temp = auxQ.front();
 
-        if(temp != service)
+        if (temp != service)
             qDeleted.push(temp);
         else
             found = true;
@@ -124,10 +126,8 @@ bool ServiceManagement::deleteTodoService(const Service &service) {
 
 void ServiceManagement::changeTodoServicePriority(const Service &service, const Date &newDate) {
 
-    //Remove Service to be updated
     deleteTodoService(service);
 
-    //Now add the correct order
     queue<Service> aux = toDoServices;
     queue<Service> q;
 
@@ -136,14 +136,14 @@ void ServiceManagement::changeTodoServicePriority(const Service &service, const 
 
     bool inserted = false;
 
-    while(!aux.empty()){
+    while (!aux.empty()) {
         Service temp = aux.front();
 
-        if(!inserted && (temp.getDate()>=service.getDate())){
+        if (!inserted && (temp.getDate() >= service.getDate())) {
 
             q.push(newService);
             inserted = true;
-        }else{
+        } else {
             q.push(temp);
             aux.pop();
         }
@@ -159,12 +159,12 @@ bool ServiceManagement::findTodoService(const Service &service) {
 
     queue<Service> q = toDoServices;
 
-    while(!q.empty()){
+    while (!q.empty()) {
 
-        if(q.front() == service)
+        if (q.front() == service)
             return true;
 
-            q.pop();
+        q.pop();
     }
 
     return false;
@@ -174,7 +174,7 @@ void ServiceManagement::saveToFile() {
 
     std::ofstream ofs(path);
 
-    ofs << toDoServices.size() <<'\n';
+    ofs << toDoServices.size() << '\n';
     while (!toDoServices.empty()) {
         ofs << toDoServices.front();
         toDoServices.pop();

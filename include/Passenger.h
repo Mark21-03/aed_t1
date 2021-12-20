@@ -22,6 +22,7 @@ private:
 
 public:
     friend class ComparePassengersByName;
+
     friend class ComparePassengersByBirthDate;
 
     /**
@@ -34,10 +35,10 @@ public:
      * @param ID Passenger's ID
      * @param name Name of the Passenger
      */
-    Passenger(unsigned int ID, const std::string& name){
+    Passenger(unsigned int ID, const std::string &name) {
         setName(name);
         this->ID = ID;
-        this->birthDate = Date(1970,1,1);
+        this->birthDate = Date(1970, 1, 1);
     };
 
     /**
@@ -46,7 +47,7 @@ public:
      * @param name Name of the Passenger
      * @param BirthDate Birth Date of the Passenger
      */
-    Passenger(unsigned int ID, const std::string& name, const Date& BirthDate){
+    Passenger(unsigned int ID, const std::string &name, const Date &BirthDate) {
         setName(name);
         this->ID = ID;
         this->birthDate = BirthDate;
@@ -57,7 +58,8 @@ public:
      * @return Passenger's name
      */
     std::string getName() const;
-    char* getNameC() {
+
+    char *getNameC() {
         return name;
     }
 
@@ -71,29 +73,28 @@ public:
      * Gives the Birth Date of the Passenger
      * @return Passenger's Birth Date
      */
-    Date getBirthDate() const{return this->birthDate;};
-    // setters
+    Date getBirthDate() const { return this->birthDate; };
+
 
     /**
      * Sets the name of the Passenger
      * @param newName value to be set
      * @return pointer to Passenger
      */
-    Passenger& setName(const std::string& newName);
+    Passenger &setName(const std::string &newName);
 
     /**
      * Sets the ID of the Passenger
      * @param newID value to be set
      * @return pointer to Passenger
      */
-    Passenger& setID(unsigned int newID);
+    Passenger &setID(unsigned int newID);
 
     /**
      * Sets the Birth Date of the Passenger
      * @param newDate value to be set
      */
-    inline void setBirth(const Date &newDate){this->birthDate = newDate;}
-
+    inline void setBirth(const Date &newDate) { this->birthDate = newDate; }
 
 
 };
@@ -105,7 +106,7 @@ public:
  * @param l Passenger Object to be outputted
  * @return ostream used (altered)
  */
-inline std::ostream & operator<<(std::ostream& os, Passenger& l) {
+inline std::ostream &operator<<(std::ostream &os, Passenger &l) {
 
     os << l.getID();
 
@@ -115,14 +116,14 @@ inline std::ostream & operator<<(std::ostream& os, Passenger& l) {
             os << '\0';
             continue;
         }
-        char c =l.getNameC()[i];
+        char c = l.getNameC()[i];
         os << c;
-        if (c=='\0')
+        if (c == '\0')
             ended = true;
 
     }
 
-    os << " "<<l.getBirthDate();
+    os << " " << l.getBirthDate();
     os << "\n";
 
     return os;
@@ -135,7 +136,7 @@ inline std::ostream & operator<<(std::ostream& os, Passenger& l) {
  * @param l Passenger object that receives the values
  * @return istream used (altered)
  */
-inline std::istream & operator>>(std::istream& is, Passenger& l) {
+inline std::istream &operator>>(std::istream &is, Passenger &l) {
     unsigned int temp_ID;
     is >> temp_ID;
     l.setID(temp_ID);
@@ -145,9 +146,8 @@ inline std::istream & operator>>(std::istream& is, Passenger& l) {
     }
 
 
-
     Date birth;
-    is>>birth;
+    is >> birth;
     l.setBirth(birth);
 
 
@@ -160,8 +160,8 @@ inline std::istream & operator>>(std::istream& is, Passenger& l) {
  * @param l2 Passenger to be compared
  * @return comparison result boolean
  */
-inline bool operator<(const Passenger& l1,const Passenger& l2){
-    return l1.getID()<l2.getID();
+inline bool operator<(const Passenger &l1, const Passenger &l2) {
+    return l1.getID() < l2.getID();
 }
 
 /**
@@ -170,8 +170,8 @@ inline bool operator<(const Passenger& l1,const Passenger& l2){
  * @param l2 Passenger to be compared
  * @return comparison result boolean
  */
-inline bool operator==(const Passenger& l1,const Passenger& l2){
-    return l1.getID()==l2.getID();
+inline bool operator==(const Passenger &l1, const Passenger &l2) {
+    return l1.getID() == l2.getID();
 }
 
 /**
@@ -180,7 +180,7 @@ inline bool operator==(const Passenger& l1,const Passenger& l2){
  * @param l2 Passenger to be compared
  * @return comparison result boolean
  */
-inline bool operator!=(const Passenger& l1,const Passenger& l2){
+inline bool operator!=(const Passenger &l1, const Passenger &l2) {
     return l1.getID() != l2.getID();
 }
 
@@ -193,12 +193,12 @@ public:
      * @param r Passenger to be compared
      * @return comparison result boolean
      */
-    bool operator()(Passenger* l , Passenger * r) {
-        return l->getName()< r->getName();
+    bool operator()(Passenger *l, Passenger *r) {
+        return l->getName() < r->getName();
     }
 };
 
-class ComparePassengersByBirthDate{
+class ComparePassengersByBirthDate {
 public:
     /**
      * Compares two Passengers using their Birth Date
@@ -206,7 +206,7 @@ public:
      * @param r Passenger to be compared
      * @return comparison result boolean
      */
-    bool operator()(Passenger* l , Passenger * r) {
+    bool operator()(Passenger *l, Passenger *r) {
         return l->birthDate.isBefore(r->birthDate);
     }
 };

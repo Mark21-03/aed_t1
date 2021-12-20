@@ -16,7 +16,7 @@ enum ServiceType {
 
 typedef char employerName[LONGEST_ACCEPTED_EMPLOYER_NAME];
 
-class Service{
+class Service {
 private:
     ServiceType type;
     Date date;
@@ -28,7 +28,7 @@ public:
     /**
      * Default constructor
      */
-    Service()=default;
+    Service() = default;
 
     /**
      * Constructs a service with a specified type, a date, the employee
@@ -38,35 +38,35 @@ public:
      * @param employer who did the service
      * @param plate which plane received the service
      */
-    Service(char type, Date date,const string& employer,string plate);
+    Service(char type, Date date, const string &employer, string plate);
 
     /**
      * Defines new type for a service
      * @param newType value to be set
      * @return changed service object
      */
-    Service& setType(char newType);
+    Service &setType(char newType);
 
     /**
      * Defines new date for a service
      * @param newDate value to be set
      * @return changed service object
      */
-    Service& setDate(Date newDate);
+    Service &setDate(Date newDate);
 
     /**
      * Defines new employee for a service
      * @param newEmployer value to be set
      * @return changed service object
      */
-    Service& setEmployer(const std::string& newEmployer);
+    Service &setEmployer(const std::string &newEmployer);
 
     /**
      * Defines new planePlate for a service
      * @param newPlane value to be set
      * @return changed service object
      */
-    Service& setPlate(const planePlate& newPlane);
+    Service &setPlate(const planePlate &newPlane);
 
     /**
      * Gives type of service
@@ -102,7 +102,7 @@ public:
      * Gives service's employee name as a char[]
      * @return service's employee name
      */
-    char* getEmployerNameC();
+    char *getEmployerNameC();
 
 };
 
@@ -112,13 +112,13 @@ public:
  * @param s service to be outputted
  * @return output stream (changed)
  */
-inline std::ostream& operator<< (std::ostream& os, const Service& s) {
+inline std::ostream &operator<<(std::ostream &os, const Service &s) {
 
     os << s.getType() << " " << s.getDate().getDate();
 
     string name = s.getEmployer();
     for (int i = 0; i < LONGEST_ACCEPTED_EMPLOYER_NAME; ++i) {
-        if ( i < name.size())
+        if (i < name.size())
             os << (name[i]);
         else
             os << '\0';
@@ -135,7 +135,7 @@ inline std::ostream& operator<< (std::ostream& os, const Service& s) {
  * @param s service to be set
  * @return input stream (changed)
  */
-inline std::istream& operator>> (std::istream& is, Service& s) {
+inline std::istream &operator>>(std::istream &is, Service &s) {
     std::string string1;
 
     int type;
@@ -143,9 +143,9 @@ inline std::istream& operator>> (std::istream& is, Service& s) {
     std::string employer;
     std::string plane;
 
-    is >> type >> date ;
+    is >> type >> date;
 
-    s.setType((char)type).setDate(date);
+    s.setType((char) type).setDate(date);
 
     for (int i = 0; i < LONGEST_ACCEPTED_EMPLOYER_NAME; ++i) {
         s.getEmployerNameC()[i] = is.get();
@@ -165,9 +165,9 @@ inline std::istream& operator>> (std::istream& is, Service& s) {
  * @param s2 right-hand service being compared
  * @return boolean result from comparison
  */
-inline bool operator==(const Service &s1, const Service &s2){
+inline bool operator==(const Service &s1, const Service &s2) {
     return (s1.getType() == s2.getType() && s1.getDate() == s2.getDate()
-            && s1.getEmployer()== s2.getEmployer() && s1.getPlane() == s2.getPlane());
+            && s1.getEmployer() == s2.getEmployer() && s1.getPlane() == s2.getPlane());
 }
 
 /**
@@ -176,8 +176,8 @@ inline bool operator==(const Service &s1, const Service &s2){
  * @param s2 right-hand service being compared
  * @return boolean result from comparison
  */
-inline bool operator<(const Service &s1, const Service &s2){
-    return (s1.getDate()<s2.getDate());
+inline bool operator<(const Service &s1, const Service &s2) {
+    return (s1.getDate() < s2.getDate());
 }
 
 /**
@@ -187,7 +187,7 @@ inline bool operator<(const Service &s1, const Service &s2){
  * @param s2 right-hand service being compared
  * @return boolean result from comparison
  */
-inline bool operator!=(const Service &s1, const Service &s2){
+inline bool operator!=(const Service &s1, const Service &s2) {
     return !(s1 == s2);
 }
 

@@ -1,11 +1,11 @@
 #include "../include/LoginMenu.h"
 
-void LoginMenu::displayLogin(ostream& os) const {
+void LoginMenu::displayLogin(ostream &os) const {
     out::Modifier red(out::FG_RED);
     out::Modifier green(out::FG_GREEN);
     out::Modifier defaultc(out::FG_DEFAULT);
 
-    for (auto & c: menuImage) {
+    for (auto &c: menuImage) {
         if (c == 'g') {
             os << green;
         } else if (c == 'r') {
@@ -22,7 +22,7 @@ void LoginMenu::displayLogin(ostream& os) const {
 }
 
 LoginMenu::LoginMenu() {
-    menuImage = std::string {
+    menuImage = std::string{
             "g        _____                    _____r                    _____          \n"
             "g       /\\    \\                  /\\    \\r                  /\\    \\         \n"
             "g      /::\\    \\                /::\\    \\r                /::\\    \\        \n"

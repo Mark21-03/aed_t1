@@ -10,33 +10,52 @@
 }*/
 
 Ticket::Ticket(flightNumber flight, unsigned int passengerID, float price, Baggage baggage, ClassType tClass) {
-    this->flightnumber=flight;
-    this->passengerID=passengerID;
-    this->price=price;
-    this->basementBaggage=baggage;
-    this->tClass=tClass;
+    this->flightnumber = flight;
+    this->passengerID = passengerID;
+    this->price = price;
+    this->basementBaggage = baggage;
+    this->tClass = tClass;
 }
 
 
-float Ticket::getPrice() const {return this->price;}
-//Baggage Ticket::hasBaggage() const {return this->bag1;}
-Baggage Ticket::getBaggage() const {return this->basementBaggage;}
-flightNumber Ticket::getFlightNumber() const {return this->flightnumber;}
-unsigned int Ticket::getPassengerID() const{return this->passengerID;}
-ClassType Ticket::getTClass() const {return this->tClass;}
+float Ticket::getPrice() const { return this->price; }
 
-//Flight Ticket::getFlight() const {return this->flight;}
 
-Ticket &Ticket::setPrice(float newPrice) { this->price=newPrice; return *this;}
-Ticket &Ticket::setBaggage(Baggage baggage) {this->basementBaggage=baggage; return *this;}
-//Ticket &Ticket::setBaggage(Baggage bag1) {this->bag1=bag1; return *this;}
-Ticket &Ticket::setFlightNumber(flightNumber flightNumber) {this->flightnumber=flightNumber; return *this;}
-Ticket &Ticket::setPassengerId(unsigned int passengerid) {this->passengerID=passengerid; return *this;}
+Baggage Ticket::getBaggage() const { return this->basementBaggage; }
+
+flightNumber Ticket::getFlightNumber() const { return this->flightnumber; }
+
+unsigned int Ticket::getPassengerID() const { return this->passengerID; }
+
+ClassType Ticket::getTClass() const { return this->tClass; }
+
+
+Ticket &Ticket::setPrice(float newPrice) {
+    this->price = newPrice;
+    return *this;
+}
+
+Ticket &Ticket::setBaggage(Baggage baggage) {
+    this->basementBaggage = baggage;
+    return *this;
+}
+
+
+Ticket &Ticket::setFlightNumber(flightNumber flightNumber) {
+    this->flightnumber = flightNumber;
+    return *this;
+}
+
+Ticket &Ticket::setPassengerId(unsigned int passengerid) {
+    this->passengerID = passengerid;
+    return *this;
+}
+
 Ticket &Ticket::setTclass(char newTClass) {
     if (newTClass == 'x')
-        this->tClass=executive;
+        this->tClass = executive;
     else if (newTClass == 'e')
-        this->tClass=economic;
+        this->tClass = economic;
 
     return *this;
 }

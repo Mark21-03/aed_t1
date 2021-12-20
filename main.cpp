@@ -11,7 +11,7 @@ int main() {
         Manager manager;
         Menu menu(manager);
         menu.mainMenu();
-    }catch (exception& e) {
+    } catch (exception &e) {
         exit(0);
     }
     return 0;

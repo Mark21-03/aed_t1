@@ -2,13 +2,13 @@
 
 namespace in {
 
-    std::string trimStr(std::istream& ios, std::string str) {
+    std::string trimStr(std::istream &ios, std::string str) {
         str.erase(0, str.find_first_not_of(' '));
         str.erase(str.find_last_not_of(' ') + 1);
         return str;
     }
 
-    bool emptyStream(std::istream& ios) {
+    bool emptyStream(std::istream &ios) {
         std::string bufferContent;
         getline(ios, bufferContent);
         trimStr(ios, bufferContent);

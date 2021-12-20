@@ -8,37 +8,46 @@ using namespace std;
 
 typedef std::set<Time> TimeTable;
 
-class Transport{
+class Transport {
 private:
-    char type; //S - subway, T - train , B - bus, N - not found
+    char type;
     TimeTable timetable;
-    float distance ; // in kms
+    float distance;
 
 public:
 
     /**
      * Constructs default Transport object as a null
      */
-    Transport(){this->type = 'N';this->distance = -1;};
+    Transport() {
+        this->type = 'N';
+        this->distance = -1;
+    };
 
     /**
      * Constructs a new Transport with given type but null distance
      * @param type Defines Transport type ( B - Bus , S- Subway, T - Train)
      */
-    inline explicit Transport(char type){this->type = type;distance = 0;}
+    inline explicit Transport(char type) {
+        this->type = type;
+        distance = 0;
+    }
 
     /**
      * Constructs a new Transport with given type and respective distance
      * @param type Defines Transport type ( B - Bus , S- Subway, T - Train)
      * @param distance distance (in Kms) from the airport
      */
-    inline Transport(char type, float distance){this->type = type;this->distance=distance;}
+    inline Transport(char type, float distance) {
+        this->type = type;
+        this->distance = distance;
+    }
 
     /**
      * Gives transport char type
      * @return transport char type  ( B - Bus , S- Subway, T - Train)
      */
-    inline char getType() const{return this->type;}
+    inline char getType() const { return this->type; }
 
     /**
      * Sets transport char type if its one of the following  ( B - Bus , S- Subway, T - Train)
@@ -51,31 +60,32 @@ public:
      * Gives transport distance to the airport
      * @return distance to the airport (float Kms)
      */
-    inline float getDistance() const{return this->distance;}
+    inline float getDistance() const { return this->distance; }
 
     /**
      * Sets transport distance to airport to given value
      * @param distance float distance (in Km) from the airport
      */
-    inline void setDistance(const float& newDistance){this->distance = newDistance;}
+    inline void setDistance(const float &newDistance) { this->distance = newDistance; }
 
     /**
      * Sets the Timetable (set<Time>) to given value
      * @param TimeTable given value to be set
      */
-    inline void setTimeTable(const TimeTable& TimeTable){ this->timetable=TimeTable;}
+    inline void setTimeTable(const TimeTable &TimeTable) { this->timetable = TimeTable; }
 
     /**
      * Gives current Transport timetable
      * @return Timetable (set<Time>)
      */
-    inline const TimeTable& getTimeTable() const {return this->timetable;}
+    inline const TimeTable &getTimeTable() const { return this->timetable; }
 };
 
-//Already documented in the class
+
 inline bool Transport::setType(const char &newType) {
-    if(newType=='S' || newType=='T' || newType=='B' ||  newType=='N'){
-        this->type = newType;return true;
+    if (newType == 'S' || newType == 'T' || newType == 'B' || newType == 'N') {
+        this->type = newType;
+        return true;
     }
     return false;
 }
@@ -88,14 +98,12 @@ inline bool Transport::setType(const char &newType) {
  * @param t2 right-hand transport to be compared
  * @return boolean result of the comparison
  */
-inline bool operator<(const Transport& t1, const Transport& t2){
+inline bool operator<(const Transport &t1, const Transport &t2) {
     if (t1.getType() != t2.getType())
-        return t1.getType() < t2.getType(); // this will break the bst in 4 different trees
-    //if (fabs(t1.getDistance() - t2.getDistance()) > FLT_EPSILON)
-    return t1.getDistance()<t2.getDistance(); // TODO: THE OTHER WAY WOULD GIVE A PROBLEM WHEN DELETING
-    //return t1.getTimeTable() < t2.getTimeTable();
-}
+        return t1.getType() < t2.getType();
+    return t1.getDistance() < t2.getDistance();
 
+}
 
 
 /**
@@ -104,10 +112,10 @@ inline bool operator<(const Transport& t1, const Transport& t2){
  * @param t TimeTable type to be outputted
  * @return ostream used (changed)
  */
-inline ostream& operator<<(ostream& os,const TimeTable &t){
+inline ostream &operator<<(ostream &os, const TimeTable &t) {
 
-    for(auto it : t)
-        os<<it.getTime()<<" ";
+    for (auto it: t)
+        os << it.getTime() << " ";
 
     return os;
 }
@@ -118,8 +126,8 @@ inline ostream& operator<<(ostream& os,const TimeTable &t){
  * @param t Transport to be outputted
  * @return ostream used (changed)
  */
-inline ostream& operator<<(ostream& os, Transport &t){
-    os<<t.getType()<<" "<<t.getDistance()<<" "<< t.getTimeTable();
+inline ostream &operator<<(ostream &os, Transport &t) {
+    os << t.getType() << " " << t.getDistance() << " " << t.getTimeTable();
     return os;
 }
 
@@ -130,15 +138,18 @@ inline ostream& operator<<(ostream& os, Transport &t){
  * @param t Transport that receives the data
  * @return istream (changed)
  */
-inline istream& operator>>(istream& is, Transport &t){
-    char type;float distance;unsigned numTimes;
-    is>>type>>distance>>numTimes;
+inline istream &operator>>(istream &is, Transport &t) {
+    char type;
+    float distance;
+    unsigned numTimes;
+    is >> type >> distance >> numTimes;
     t.setDistance(distance);
     t.setType(type);
 
-    TimeTable times;Time aux;
-    for(int i = 0;i<numTimes;i++){
-        is>>aux;
+    TimeTable times;
+    Time aux;
+    for (int i = 0; i < numTimes; i++) {
+        is >> aux;
         times.insert(aux);
     }
     t.setTimeTable(times);
@@ -152,7 +163,8 @@ inline istream& operator>>(istream& is, Transport &t){
  * @param t2 right-hand transport to be compared
  * @return boolean result of the comparison
  */
-inline bool operator==(const Transport& t1,const Transport& t2){
-    return t1.getDistance() == t2.getDistance() && t1.getType() == t2.getType() && t1.getTimeTable() == t2.getTimeTable();
+inline bool operator==(const Transport &t1, const Transport &t2) {
+    return t1.getDistance() == t2.getDistance() && t1.getType() == t2.getType() &&
+           t1.getTimeTable() == t2.getTimeTable();
 }
 

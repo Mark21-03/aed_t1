@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-class Baggage{
+class Baggage {
 private:
     float weight;
     unsigned quantity;
@@ -14,14 +14,17 @@ public:
     /**
      * Constructs empty Baggage
      */
-    Baggage(){weight = 0;quantity = 0;};
+    Baggage() {
+        weight = 0;
+        quantity = 0;
+    };
 
     /**
      * Constructs a Baggage object with weight and quantity
      * @param weight Sum of Baggage's weight
      * @param quantity Number of Baggage
      */
-    inline Baggage(float weight, unsigned int quantity){
+    inline Baggage(float weight, unsigned int quantity) {
         this->weight = weight;
         this->quantity = quantity;
     }
@@ -33,7 +36,7 @@ public:
      * @param quantity Number of Baggage
      * @param handheld hand Baggage boolean
      */
-    inline Baggage(float weight, unsigned int quantity, bool handheld){
+    inline Baggage(float weight, unsigned int quantity, bool handheld) {
         this->weight = weight;
         this->quantity = quantity;
         this->handheld = handheld;
@@ -43,37 +46,37 @@ public:
      * Gives boolean telling if Baggage is handheld
      * @return boolean true if passenger takes the Baggage with him
      */
-    inline bool getHandheld() const {return handheld;}
+    inline bool getHandheld() const { return handheld; }
 
     /**
      * Gives the weight of the Baggage
      * @return  Baggage's weight
      */
-    inline float getWeight() const {return weight;}
+    inline float getWeight() const { return weight; }
 
     /**
      * Gives the number of Baggage
      * @return number of Baggage
      */
-    inline unsigned getQuantity() const {return quantity;}
+    inline unsigned getQuantity() const { return quantity; }
 
     /**
      * Sets the weight of the Baggage
      * @param newWeight value to be set
      */
-    inline void setWeight(const float& newWeight){this->weight = newWeight;}
+    inline void setWeight(const float &newWeight) { this->weight = newWeight; }
 
     /**
      * Sets the number of the Baggage
      * @param newQuantity value to be set
      */
-    inline void setQuantity(const unsigned & newQuantity){this->quantity = newQuantity;}
+    inline void setQuantity(const unsigned &newQuantity) { this->quantity = newQuantity; }
 
     /**
      * Sets if Baggage is taken with the passenger
      * @param newHandheld boolean value to be set
      */
-    inline void setHandheld(const bool& newHandheld){ this->handheld = newHandheld;}
+    inline void setHandheld(const bool &newHandheld) { this->handheld = newHandheld; }
 };
 
 /**
@@ -82,8 +85,8 @@ public:
  * @param b Baggage object tio be outputted
  * @return ostream used (changed)
  */
-inline std::ostream& operator<<(std::ostream& os, Baggage b){
-    os<<b.getWeight()<<" "<<b.getQuantity();
+inline std::ostream &operator<<(std::ostream &os, Baggage b) {
+    os << b.getWeight() << " " << b.getQuantity();
     return os;
 }
 
@@ -93,11 +96,13 @@ inline std::ostream& operator<<(std::ostream& os, Baggage b){
  * @param b Baggage object tio be outputted
  * @return ostream used (changed)
  */
-inline std::istream& operator>>(std::istream& is, Baggage &b){
-    float w;unsigned q;
-    is>>w>>q;
+inline std::istream &operator>>(std::istream &is, Baggage &b) {
+    float w;
+    unsigned q;
+    is >> w >> q;
 
-    b.setWeight(w);b.setQuantity(q);
+    b.setWeight(w);
+    b.setQuantity(q);
 
     return is;
 }

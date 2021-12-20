@@ -211,25 +211,25 @@ TEST(Test_Time, TimeGetSetException) {
     t1.setTime(1, 2, 0);
     EXPECT_EQ(t1.getSecond(), 0);
 
-    // Current Time
+
     Time r;
     cout << "Current time is " << r;
 
     try {
         Time t2(24, 0, 0);
-        EXPECT_EQ(true, false); //this should never run
+        EXPECT_EQ(true, false);
     } catch (InvalidTimeException) {
         NULL;
     }
     try {
         Time t2(1, 61, 0);
-        EXPECT_EQ(true, false); //this should never run
+        EXPECT_EQ(true, false);
     } catch (InvalidTimeException) {
         NULL;
     }
     try {
         Time t2(-1, 0, 60);
-        EXPECT_EQ(true, false); //this should never run
+        EXPECT_EQ(true, false);
     } catch (InvalidTimeException) {
         NULL;
     }
@@ -338,14 +338,12 @@ TEST(Test_Ticket, inOperatorsTicket) {
     Ticket t;
     i >> t;
 
-    // 0 40 101 303.61 5.00 2
-
-    Baggage b(5, 2);
+    Baggage b(12, 1);
 
     EXPECT_EQ(t.getFlightNumber(), 0);
-    EXPECT_EQ(t.getPassengerID(), 40);
-    EXPECT_EQ(t.getTClass(), economic);
-    EXPECT_EQ(t.getPrice(), (float) 303.61);
+    EXPECT_EQ(t.getPassengerID(), 0);
+    EXPECT_EQ(t.getTClass(), executive);
+    EXPECT_EQ(t.getPrice(), (float) 137.33);
     EXPECT_EQ(t.getBaggage().getQuantity(), b.getQuantity());
     EXPECT_EQ(t.getBaggage().getWeight(), b.getWeight());
 
@@ -399,7 +397,7 @@ TEST(Test_Transport, inOperatorsTransport) {
     i >> t;
 
     EXPECT_EQ(t.getType(), 'B');
-    EXPECT_EQ(t.getDistance(), (float) 0.23);
+    EXPECT_EQ(t.getDistance(), (float) 0.71);
 
 }
 

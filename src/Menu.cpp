@@ -24,9 +24,6 @@ bool Menu::menuOperationConfirm() {
 }
 
 
-//_________________________________________________________________________________
-
-
 void Menu::funcCreatePassenger() {
     string pName;
     Date birth;
@@ -74,6 +71,7 @@ void Menu::funcCreateFlight() {
 
     cout << "\nNew Flight's departure date (YYYY/MM/DD): ";
     cin >> departureD;
+    if (!departureD.isValid()) return;
     cout << "New Flight's time (HH:MM:SS): ";
     cin >> departureT;
     cout << "New Flight's duration (float): ";
@@ -84,7 +82,8 @@ void Menu::funcCreateFlight() {
     cout << "New Flight's destiny (string): ";
     getline(cin, destiny);
 
-    if (menuOperationConfirm()) { // TODO: Check the validity of Time and Date provided
+
+    if (menuOperationConfirm()) {
         manager.createFlight(departureD, departureT, duration, origin, destiny);
         cout << "\nFlight added!\n";
     }
@@ -134,8 +133,8 @@ void Menu::BuyTicket() {
 
     auto p = manager.getFlightByNumber(flight);
     if (p->getOccupation() + quant > p->getMaxCapacity()) {
-        cout << "Sorry, the flight has max capacity of " << p->getMaxCapacity() << '\n';
-        cout << "There is only " << p->getMaxCapacity() - p->getOccupation() << " tickets left" << '\n';
+        cout << "Sorry, the flight has max capacity of " << p->getMaxCapacity() << " seats.\n";
+        cout << "\nThere are only " << p->getMaxCapacity() - p->getOccupation() << " tickets left to buy." << '\n';
         getchar();
         getchar();
         return;
@@ -163,10 +162,6 @@ void Menu::BuyTicket() {
     getchar();
 
 }
-
-
-
-//_________________________________________________________________________________
 
 
 void Menu::funcUpdatePassenger() {
@@ -225,9 +220,7 @@ char Menu::askTypeService() {
     char type;
     cout << "\nWhat type was the service: ";
     cin >> type;
-    //if (type=='m' || type=='c' || type=='o')
     return type;
-    //else cout<<"Invalid type";
 }
 
 planePlate Menu::askPlateService() {
@@ -244,8 +237,6 @@ string Menu::askEmployeeService() {
     getline(cin, emp);
     return emp;
 }
-
-//_________________________________________________________________________________
 
 
 void Menu::funcDeletePassenger() {
@@ -348,16 +339,9 @@ void Menu::funcDeleteService() {
 }
 
 
-
-
-//_________________________________________________________________________________
-
-
-
 void Menu::funcReadPassenger() {
 
     if (partialListingType()) {
-        // Partial listing
         std::string option;
         out::askOnce<std::string>(cout, cin, option, "Search Option(n - Name (regex) | i - ID (sort))");
 
@@ -381,7 +365,6 @@ void Menu::funcReadPassenger() {
         }
 
     } else {
-        // Total listing
         std::string sortOption;
         out::askOnce<std::string>(cout, cin, sortOption, "Sort by (n - Name | d - Birthdate | i - ID)");
         cout << endl;
@@ -396,7 +379,6 @@ void Menu::funcReadPassenger() {
 void Menu::funcReadPlane() {
 
     if (partialListingType()) {
-        //Partial Listing
         std::string option;
         out::askOnce<std::string>(cout, cin, option, "Search Option(p - Plane Plate (sort) | t - Plane Type)");
 
@@ -419,7 +401,6 @@ void Menu::funcReadPlane() {
             getchar();
         }
     } else {
-        // Total listing
         std::string sortOption;
         out::askOnce<std::string>(cout, cin, sortOption,
                                   "Sort by (t - Type | c - Cap. | n - Nr.Flights | d = Plane Plate)");
@@ -433,7 +414,6 @@ void Menu::funcReadPlane() {
 void Menu::funcReadFlight() {
 
     if (partialListingType()) {
-        //Partial listing
         std::string option;
         out::askOnce<std::string>(cout, cin, option,
                                   "Search Option(i - ID | o - Origin (regex) | d - Destiny (regex))");
@@ -467,7 +447,6 @@ void Menu::funcReadFlight() {
             getchar();
         }
     } else {
-        //Total listing
         std::string sortOption;
         out::askOnce<std::string>(cout, cin, sortOption, "Sort by (o - Ocup. | d - Date | t - Time | i - ID)");
         cout << endl;
@@ -486,7 +465,6 @@ void Menu::funcReadService() {
     out::askOnce<std::string>(cout, cin, option, "Option( d - Done | t - toDo )");
 
     if (partialListingType()) {
-        //Partial Listing
         if (option == "d") {
             out::askInterval<Date>(cout, cin, min, max, "Date");
             manager.showDoneServices(cout, min, max);
@@ -500,7 +478,6 @@ void Menu::funcReadService() {
         getchar();
 
     } else {
-        //Total Listing
         if (option == "d") {
             cout << endl;
             manager.showDoneServices(cout, Date("0000/01/01"), Date("9000/01/01"));
@@ -519,9 +496,6 @@ void Menu::funcReadService() {
 }
 
 
-//_________________________________________________________________________________
-
-
 void Menu::subMenu(const string &menuTitle, vector<void (Menu::*)()> funcs) {
     char userInput;
     string inputError;
@@ -533,8 +507,6 @@ void Menu::subMenu(const string &menuTitle, vector<void (Menu::*)()> funcs) {
         if (!inputError.empty())
             cout << inputError;
         inputError = "";
-
-        //Start of MENU
 
         cout << "=================" << endl;
         cout << menuTitle << endl;
@@ -548,49 +520,45 @@ void Menu::subMenu(const string &menuTitle, vector<void (Menu::*)()> funcs) {
         cout << "  0)  Exit" << endl;
         cout << "================" << endl;
         cout << " > ";
-        //End of MENU
 
         if ((cin >> userInput)) {
-            //raises error if more than 1 char is written by user
             if (!in::emptyStream(std::cin)) {
                 in::giveMenuInputError(inputError);
                 continue;
             }
 
-            //START OF MENU SELECTION
             switch (userInput) {
-                case '0'://EXIT
+                case '0':
                     saveDataFiles();
                     exit(1);
 
-                case '1'://Passenger
+                case '1':
                     this->x = funcs[0];
                     ((*this).*(this->x))();
                     break;
-                case '2'://Plane
+                case '2':
                     this->x = funcs[1];
                     ((*this).*(this->x))();
                     break;
-                case '3'://Flight
+                case '3':
                     this->x = funcs[2];
                     ((*this).*(this->x))();
                     break;
-                case '4'://Service
+                case '4':
                     this->x = funcs[3];
                     ((*this).*(this->x))();
                     break;
-                case '5'://Transports
+                case '5':
                     this->x = funcs[4];
                     ((*this).*(this->x))();
                     break;
 
-                case '6'://Go Back
+                case '6':
                     goto END_MENU;
                 default:
                     in::giveMenuInputError(inputError);
                     break;
             }
-            //END OF MENU SELECTION
             continue;
         } else {
             in::dealError(inputError);
@@ -602,8 +570,6 @@ void Menu::subMenu(const string &menuTitle, vector<void (Menu::*)()> funcs) {
     }
 }
 
-
-//_________________________________________________________________________________
 
 void Menu::mainMenu() {
     char userInput;
@@ -631,31 +597,29 @@ void Menu::mainMenu() {
 
 
         if ((cin >> userInput)) {
-            //raises error if more than 1 char is written by user
             if (!in::emptyStream(cin)) {
                 in::giveMenuInputError(inputError);
                 continue;
             }
 
-            //START OF MENU SELECTION
             switch (userInput) {
-                case '0'://EXIT
+                case '0':
                     saveDataFiles();
                     exit(1);
 
-                case '1'://CREATE
+                case '1':
                     subMenu("   CREATE MENU", createFuncs);
                     break;
-                case '2'://READ
+                case '2':
                     subMenu("    READ MENU", readFuncs);
                     break;
-                case '3'://UPDATE
+                case '3':
                     subMenu("   UPDATE MENU", updateFuncs);
                     break;
-                case '4'://DELETE
+                case '4':
                     subMenu("   DELETE MENU", deleteFuncs);
                     break;
-                case '5'://OTHERS
+                case '5':
                     othersSubMenu();
                     break;
                 default:
@@ -674,7 +638,7 @@ void Menu::mainMenu() {
 }
 
 
-void Menu::showNearbyTransports() { // TODO: CHANGE THIS
+void Menu::showNearbyTransports() {
 
     std::string airport;
 
@@ -699,7 +663,8 @@ void Menu::addNewTransport() {
     cout << "\nAirport to add Transport: ";
     getline(cin, airport);
 
-    cout << "\nNew Transport Type (T - Train | S - subway | B - bus): ";cin>>c;
+    cout << "\nNew Transport Type (T - Train | S - subway | B - bus): ";
+    cin >> c;
     if (c != 'T' && c != 'S' && c != 'B') return;
 
     cout << "New Transport Distance (float): ";
@@ -742,7 +707,8 @@ void Menu::removeNearbyTransport() {
     cout << "\nAirport to remove Transport: ";
     getline(cin, airport);
 
-    cout << "\nNew Transport Type (T - Train | S - subway | B - bus): ";cin>>c;
+    cout << "\nNew Transport Type (T - Train | S - subway | B - bus): ";
+    cin >> c;
     if (c != 'T' && c != 'S' && c != 'B') return;
 
     cout << "Transport Distance (float): ";
@@ -765,7 +731,8 @@ void Menu::updateTransports() {
     cout << "\nAirport to update Transport: ";
     getline(cin, airport);
 
-    cout << "\nNew Transport Type (T - Train | S - subway | B - bus): ";cin>>c;
+    cout << "\nNew Transport Type (T - Train | S - subway | B - bus): ";
+    cin >> c;
     if (c != 'T' && c != 'S' && c != 'B') return;
 
     cout << "Transport Distance (float): ";
@@ -813,8 +780,6 @@ void Menu::othersSubMenu() {
             cout << inputError;
         inputError = "";
 
-        //Start of MENU
-
         cout << "===============================" << endl;
         cout << "          OTHERS MENU" << endl;
         cout << "===============================" << endl;
@@ -824,18 +789,15 @@ void Menu::othersSubMenu() {
         cout << "  0)  Exit" << endl;
         cout << "===============================" << endl;
         cout << " > ";
-        //End of MENU
 
         if ((cin >> userInput)) {
-            //raises error if more than 1 char is written by user
             if (!in::emptyStream(std::cin)) {
                 in::giveMenuInputError(inputError);
                 continue;
             }
 
-            //START OF MENU SELECTION
             switch (userInput) {
-                case '0'://EXIT
+                case '0':
                     saveDataFiles();
                     exit(1);
                 case '1':
@@ -844,13 +806,12 @@ void Menu::othersSubMenu() {
                 case '2':
                     BuyTicket();
                     break;
-                case '3'://Go Back
+                case '3':
                     goto END_MENU;
                 default:
                     in::giveMenuInputError(inputError);
                     break;
             }
-            //END OF MENU SELECTION
             continue;
         } else {
             in::dealError(inputError);

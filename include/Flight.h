@@ -14,7 +14,7 @@
 
 typedef unsigned int flightNumber;
 
-class Flight{
+class Flight {
 private:
 
     flightNumber number;
@@ -22,19 +22,23 @@ private:
     Time departureTime;
     int occupation;
     float duration;
-    char origin[STRING_MAX_VALUE]{},destiny[STRING_MAX_VALUE]{};
+    char origin[STRING_MAX_VALUE]{}, destiny[STRING_MAX_VALUE]{};
     int maxCapacity;
 
     queue<Baggage> planeStoredBaggage;
 
 public:
     friend class CompareFlightsByDepartureDate;
+
     friend class CompareFlightsByDepartureTime;
+
     friend class CompareFlightsByOccupation;
-   /**
-    * Default constructor
-    */
+
+    /**
+     * Default constructor
+     */
     Flight() = default;
+
     /**
      * Constructs a Flight object with number, departure date,
      * departure time, duration, origin and destiny
@@ -45,7 +49,9 @@ public:
      * @param origin Place from where the flight departs
      * @param destiny Place to where the flight arrives
      */
-    Flight(flightNumber number,const Date& departureDate,const Time& departureTime, float duration,std::string origin,std::string destiny);
+    Flight(flightNumber number, const Date &departureDate, const Time &departureTime, float duration,
+           std::string origin, std::string destiny);
+
     /**
      * Constructs a Flight object with number, departure date,
      * departure time, occupation, duration, origin and destiny
@@ -59,70 +65,70 @@ public:
      * @param maxCapacity max Capacity of the plane responsible for this flight
      */
 
-    Flight(flightNumber number,const Date& departureDate,const Time& departureTime, int occupation, float duration,std::string origin,std::string destiny, int maxCapacity);
+    Flight(flightNumber number, const Date &departureDate, const Time &departureTime, int occupation, float duration,
+           std::string origin, std::string destiny, int maxCapacity);
 
-    //Setters
     /**
      * Sets the number of the Flight
      * @param newNumber value to be set
      * @return reference to the flight
      */
-    Flight& setNumber(flightNumber newNumber);
+    Flight &setNumber(flightNumber newNumber);
 
     /**
      * Sets the Date of the departure
      * @param newDepartureDate value to be set
      * @return reference to the flight
      */
-    Flight& setDepartureDate(const Date& newDepartureDate);
+    Flight &setDepartureDate(const Date &newDepartureDate);
 
     /**
      * Sets the Time of the departure
      * @param newDepartureTime value to be set
      * @return reference to the flight
      */
-    Flight& setDepartureTime(const Time& newDepartureTime);
+    Flight &setDepartureTime(const Time &newDepartureTime);
 
     /**
      * Sets the duration in hours of the flight
      * @param newDuration float value to be set
      * @return reference to the flight
      */
-    Flight& setDuration(float newDuration);
+    Flight &setDuration(float newDuration);
 
     /**
      * Sets the origin of the Flight
      * @param newOrigin value to be set
      * @return reference to the flight
      */
-    Flight& setOrigin(const std::string& newOrigin);
+    Flight &setOrigin(const std::string &newOrigin);
 
     /**
      * Sets the destiny of the Flight
      * @param newDestiny value to be set
      * @return reference to the flight
      */
-    Flight& setDestiny(const std::string& newDestiny);
+    Flight &setDestiny(const std::string &newDestiny);
 
     /**
      * Sets the occupation of the Flight
      * @param newOccupation value to be set
      * @return reference to the flight
      */
-    Flight& setOccupation (int newOccupation);
+    Flight &setOccupation(int newOccupation);
 
     /**
      *
-     * @param maxCapacity
+     * @param newMaxCapacity
      * @return reference to the flight
      */
-    Flight& setMaxCapacity(int maxCapacity);
+    Flight &setMaxCapacity(int newMaxCapacity);
 
     /**
      * Add an object Baggage to be transported to the same destiny of the Flight
      * @param baggage object Baggage
      */
-    void addBaggage2Flight(const Baggage& baggage);
+    void addBaggage2Flight(const Baggage &baggage);
 
     /**
      * Doesn't transport the Baggage with the Flight and it's removed
@@ -130,7 +136,6 @@ public:
      */
     Baggage takeBaggageFromFlight();
 
-    //Getters
     /**
      * Gives the number of the flight
      * @return Flight's number
@@ -177,13 +182,13 @@ public:
      *
      * @return
      */
-    char* getOriginC() ;
+    char *getOriginC();
 
     /**
      *
      * @return
      */
-    char* getDestinyC();
+    char *getDestinyC();
 
     /**
      * Gives the current occupation of the Flight
@@ -198,16 +203,15 @@ public:
     queue<Baggage> getPlaneStoredBaggage() const;
 
 
-
-
 };
+
 /**
  * Compares if two flights are the same
  * @param l Flight to be compared
  * @param r Flight to be compared
  * @return comparison result boolean
  */
-inline bool operator == (const Flight&l, const Flight& r) {
+inline bool operator==(const Flight &l, const Flight &r) {
     return l.getNumber() == r.getNumber();
 }
 
@@ -217,7 +221,7 @@ inline bool operator == (const Flight&l, const Flight& r) {
  * @param r Flight to be compared
  * @return comparison result boolean
  */
-inline bool operator != (const Flight&l, const Flight& r) {
+inline bool operator!=(const Flight &l, const Flight &r) {
     return l.getNumber() != r.getNumber();
 }
 
@@ -227,7 +231,7 @@ inline bool operator != (const Flight&l, const Flight& r) {
  * @param r Flight to be compared
  * @return comparison result boolean
  */
-inline bool operator < (const Flight&l, const Flight& r) {
+inline bool operator<(const Flight &l, const Flight &r) {
     return l.getNumber() < r.getNumber();
 }
 
@@ -238,29 +242,29 @@ inline bool operator < (const Flight&l, const Flight& r) {
  * @param r Flight Object to be outputted
  * @return ostream used (altered)
  */
-inline std::ostream& operator<< (std::ostream& os, Flight& r) {
-    os << r.getNumber()  << " " << r.getDepartureDate() << " " << r.getDepartureTime() << " ";
+inline std::ostream &operator<<(std::ostream &os, Flight &r) {
+    os << r.getNumber() << " " << r.getDepartureDate() << " " << r.getDepartureTime() << " ";
 
     os << r.getOccupation() << " " << r.getDuration();
 
     bool b = false;
     for (int i = 0; i < STRING_MAX_VALUE; ++i) {
-        if(!b)
+        if (!b)
             os << (r.getOriginC()[i]);
         else
             os << '\0';
-        if ( r.getOriginC()[i] == '\0') {
+        if (r.getOriginC()[i] == '\0') {
             b = true;
         }
     }
 
     b = false;
     for (int i = 0; i < STRING_MAX_VALUE; ++i) {
-        if(!b)
+        if (!b)
             os << (r.getDestinyC()[i]);
         else
             os << '\0';
-        if ( r.getDestinyC()[i] == '\0') {
+        if (r.getDestinyC()[i] == '\0') {
             b = true;
         }
     }
@@ -278,7 +282,7 @@ inline std::ostream& operator<< (std::ostream& os, Flight& r) {
  * @param r FLight object that receives the values
  * @return istream used (altered)
  */
-inline std::istream& operator>> (std::istream& is, Flight& r) {
+inline std::istream &operator>>(std::istream &is, Flight &r) {
 
     int n, oc, max;
     float du;
@@ -315,7 +319,7 @@ public:
      * @param r Flight to be compared
      * @return comparison result boolean
      */
-    bool operator()(Flight* l , Flight* r) {
+    bool operator()(Flight *l, Flight *r) {
         return l->departureDate.isBefore(r->departureDate);
     }
 };
@@ -329,7 +333,7 @@ public:
      * @param r Flight to be compared
      * @return comparison result boolean
      */
-    bool operator()(Flight* l , Flight* r) {
+    bool operator()(Flight *l, Flight *r) {
         return l->departureTime < r->departureTime;
     }
 };
@@ -342,7 +346,7 @@ public:
      * @param r Flight to be compared
      * @return comparison result boolean
      */
-    bool operator()(Flight* l , Flight* r) {
+    bool operator()(Flight *l, Flight *r) {
         return l->occupation < r->occupation;
     }
 };

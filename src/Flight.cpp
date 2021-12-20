@@ -2,7 +2,8 @@
 #include "../include/Flight.h"
 #include "../Exceptions/NameToLongException.h"
 
-Flight::Flight(flightNumber number,const Date& departureDate,const Time& departureTime,float duration,std::string origin,std::string destiny){
+Flight::Flight(flightNumber number, const Date &departureDate, const Time &departureTime, float duration,
+               std::string origin, std::string destiny) {
 
     this->number = number;
     this->departureDate = departureDate;
@@ -20,7 +21,8 @@ Flight::Flight(flightNumber number,const Date& departureDate,const Time& departu
 
 }
 
-Flight::Flight(flightNumber number, const Date &departureDate, const Time &departureTime, int occupation, float duration,
+Flight::Flight(flightNumber number, const Date &departureDate, const Time &departureTime, int occupation,
+               float duration,
                std::string origin, std::string destiny, int maxCapacity) {
 
     this->number = number;
@@ -37,45 +39,54 @@ Flight::Flight(flightNumber number, const Date &departureDate, const Time &depar
     setOrigin(origin).setDestiny(destiny);
 }
 
-//Getters
-flightNumber Flight::getNumber() const{return this->number;}
 
-Date Flight::getDepartureDate() const {return this->departureDate;}
+flightNumber Flight::getNumber() const { return this->number; }
 
-int Flight::getOccupation() const {return this->occupation;}
+Date Flight::getDepartureDate() const { return this->departureDate; }
 
-float Flight::getDuration() const {return this->duration;}
+int Flight::getOccupation() const { return this->occupation; }
+
+float Flight::getDuration() const { return this->duration; }
 
 std::string Flight::getOrigin() const {
-    int i=0;
+    int i = 0;
     string s;
     char c;
-    while ((c = origin[i++] )!= '\0') {
-        s+=c;
+    while ((c = origin[i++]) != '\0') {
+        s += c;
     }
     return s;
 }
 
 std::string Flight::getDestiny() const {
-    int i=0;
+    int i = 0;
     string s;
     char c;
-    while ((c = destiny[i++] )!= '\0') {
-        s+=c;
+    while ((c = destiny[i++]) != '\0') {
+        s += c;
     }
     return s;
 }
 
-//Setters
-Flight& Flight::setNumber(flightNumber newNumber) { this->number = newNumber;return *this;}
 
-Flight& Flight::setDepartureDate(const Date& newDepartureDate) { this->departureDate = newDepartureDate;return *this;}
+Flight &Flight::setNumber(flightNumber newNumber) {
+    this->number = newNumber;
+    return *this;
+}
 
-Flight& Flight::setDuration(float newDuration) { this->duration = newDuration; return *this;}
+Flight &Flight::setDepartureDate(const Date &newDepartureDate) {
+    this->departureDate = newDepartureDate;
+    return *this;
+}
 
-Flight& Flight::setOrigin(const std::string& newOrigin) {
+Flight &Flight::setDuration(float newDuration) {
+    this->duration = newDuration;
+    return *this;
+}
+
+Flight &Flight::setOrigin(const std::string &newOrigin) {
     int i = 0;
-    for (const auto& c: newOrigin) {
+    for (const auto &c: newOrigin) {
         if (i > STRING_MAX_VALUE)
             throw NameToLongException();
         this->origin[i++] = c;
@@ -85,9 +96,9 @@ Flight& Flight::setOrigin(const std::string& newOrigin) {
     return *this;
 }
 
-Flight& Flight::setDestiny(const std::string& newDestiny) {
+Flight &Flight::setDestiny(const std::string &newDestiny) {
     int i = 0;
-    for (const auto& c: newDestiny) {
+    for (const auto &c: newDestiny) {
         if (i > STRING_MAX_VALUE)
             throw NameToLongException();
         this->destiny[i++] = c;
@@ -97,13 +108,16 @@ Flight& Flight::setDestiny(const std::string& newDestiny) {
     return *this;
 }
 
-Flight &Flight::setOccupation(int newOccupation) { this->occupation=newOccupation; return *this;}
+Flight &Flight::setOccupation(int newOccupation) {
+    this->occupation = newOccupation;
+    return *this;
+}
 
-char* Flight::getOriginC()  {
+char *Flight::getOriginC() {
     return origin;
 }
 
-char *Flight::getDestinyC()  {
+char *Flight::getDestinyC() {
     return destiny;
 }
 
@@ -112,7 +126,7 @@ Flight &Flight::setDepartureTime(const Time &newDepartureTime) {
     return *this;
 }
 
-Time Flight::getDepartureTime() const{
+Time Flight::getDepartureTime() const {
     return this->departureTime;
 }
 
@@ -126,7 +140,7 @@ void Flight::addBaggage2Flight(const Baggage &baggage) {
     planeStoredBaggage.push(baggage);
 }
 
-queue<Baggage> Flight::getPlaneStoredBaggage() const{
+queue<Baggage> Flight::getPlaneStoredBaggage() const {
     return planeStoredBaggage;
 }
 
@@ -134,8 +148,8 @@ int Flight::getMaxCapacity() const {
     return maxCapacity;
 }
 
-Flight &Flight::setMaxCapacity(int maxCapacity) {
-    this->maxCapacity = maxCapacity;
+Flight &Flight::setMaxCapacity(int newMaxCapacity) {
+    this->maxCapacity = newMaxCapacity;
     return *this;
 }
 

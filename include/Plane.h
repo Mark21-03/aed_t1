@@ -9,7 +9,7 @@
 
 typedef std::string planePlate;
 
-class Plane{
+class Plane {
 private:
     planePlate numberPlate;
     std::string pType;
@@ -17,13 +17,15 @@ private:
     std::list<flightNumber> flightPlan;
 public:
     friend class ComparePlaneByType;
+
     friend class ComparePlaneByCapacity;
+
     friend class ComparePlaneByNumberOfFlights;
 
     /**
      * Default constructor of Plane
      */
-    Plane() = default ;
+    Plane() = default;
 
     /**
      * Constructs a Plane object with Plate number, Plane type and capacity
@@ -31,7 +33,7 @@ public:
      * @param pType Plane's type
      * @param capacity Plane's capacity
      */
-    Plane(const planePlate& numberPlate ,const std::string& pType, int capacity);
+    Plane(const planePlate &numberPlate, const std::string &pType, int capacity);
 
     /**
      * Constructs a Plane object with Plate number, Plane type, capacity and a flight plan
@@ -40,35 +42,36 @@ public:
      * @param capacity Plane's capacity
      * @param flightPlan Plane's flight plan (with the flihgt's number)
      */
-    Plane(const planePlate& numberPlate ,const std::string& pType, int capacity,const std::list<flightNumber>& flightPlan);
+    Plane(const planePlate &numberPlate, const std::string &pType, int capacity,
+          const std::list<flightNumber> &flightPlan);
 
     /**
      * Sets the plate number of the Plane
      * @param newNumberPlate value to be set
      * @return pointer to Plane
      */
-    Plane& setNumberPlate(const planePlate& newNumberPlate);
+    Plane &setNumberPlate(const planePlate &newNumberPlate);
 
     /**
      * Sets the type of the Plane
      * @param newPlaneType value to be set
      * @return pointer to plane
      */
-    Plane& setType(const std::string& newPlaneType);
+    Plane &setType(const std::string &newPlaneType);
 
     /**
      * Sets the capacity of the Plane
      * @param newCapacity value to be set
      * @return pointer to Plane
      */
-    Plane& setCapacity(int newCapacity);
+    Plane &setCapacity(int newCapacity);
 
     /**
      * Sets the flight plane of the Plane
      * @param newFlightPlan value to be set
      * @return pointe to Plane
      */
-    Plane& setFlightPlan(const std::list<flightNumber>& newFlightPlan);
+    Plane &setFlightPlan(const std::list<flightNumber> &newFlightPlan);
 
     /**
      * Gives the plate's number of the Plane
@@ -92,9 +95,9 @@ public:
      * Gives the flight plan of the Plane
      * @return Plane's flight plan
      */
-    std::list<flightNumber> getFlightPlan() const; // const std::list<Flight>&
+    std::list<flightNumber> getFlightPlan() const;
 
-    friend inline std::ostream & operator<<(std::ostream& os, Plane& p);
+    friend inline std::ostream &operator<<(std::ostream &os, Plane &p);
 };
 
 /**
@@ -104,7 +107,7 @@ public:
      * @param p Plane Object to be outputted
      * @return ostream used (altered)
      */
-inline std::ostream & operator<<(std::ostream& os, Plane& p) {
+inline std::ostream &operator<<(std::ostream &os, Plane &p) {
     os << p.getNumberPlate() << " " << p.getType() << " " << p.getCapacity() << " ";
 
     os << p.flightPlan.size() << " ";
@@ -123,9 +126,9 @@ inline std::ostream & operator<<(std::ostream& os, Plane& p) {
  * @param p Plane object that receives the values
  * @return istream used (altered)
  */
-inline std::istream & operator>>(std::istream& is, Plane& p) {
+inline std::istream &operator>>(std::istream &is, Plane &p) {
 
-    std::string pType ; // only a string always
+    std::string pType;
     std::string nPlate;
     int c;
 
@@ -154,7 +157,7 @@ inline std::istream & operator>>(std::istream& is, Plane& p) {
  * @param p2 Plane to be compared
  * @return comparison result boolean
  */
-inline bool operator<(const Plane &p1, const Plane &p2){
+inline bool operator<(const Plane &p1, const Plane &p2) {
     return p1.getNumberPlate() < p2.getNumberPlate();
 }
 
@@ -164,7 +167,7 @@ inline bool operator<(const Plane &p1, const Plane &p2){
  * @param p2 Plane to be compared
  * @return comparison result boolean
  */
-inline bool operator==(const Plane &p1, const Plane &p2){ // IS THIS NEEDED
+inline bool operator==(const Plane &p1, const Plane &p2) {
     return p1.getNumberPlate() == p2.getNumberPlate();
 }
 
@@ -174,7 +177,7 @@ inline bool operator==(const Plane &p1, const Plane &p2){ // IS THIS NEEDED
  * @param p2 Plane to be compared
  * @return comparison result boolean
  */
-inline bool operator!=(const Plane &p1, const Plane &p2){
+inline bool operator!=(const Plane &p1, const Plane &p2) {
     return p1.getNumberPlate() != p2.getNumberPlate();
 }
 
@@ -186,7 +189,7 @@ public:
      * @param r Plane to be compared
      * @return comparison result boolean
      */
-    bool operator()(Plane* l , Plane*  r) {
+    bool operator()(Plane *l, Plane *r) {
         return l->pType < r->pType;
     }
 };
@@ -199,7 +202,7 @@ public:
      * @param r Plane to be compared
      * @return comparison result boolean
      */
-    bool operator()(Plane*  l , Plane*  r) {
+    bool operator()(Plane *l, Plane *r) {
         return l->capacity < r->capacity;
     }
 };
@@ -213,9 +216,9 @@ public:
      * @param r Plane to be compared
      * @return comparison result boolean
      */
-bool operator()(Plane*  l , Plane*  r) {
-    return l->flightPlan.size() < r->flightPlan.size();
-}
+    bool operator()(Plane *l, Plane *r) {
+        return l->flightPlan.size() < r->flightPlan.size();
+    }
 };
 
 

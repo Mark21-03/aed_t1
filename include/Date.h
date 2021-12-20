@@ -17,7 +17,7 @@
 
 using namespace std;
 
-#pragma warning(disable : 4996) //_CRT_SECURE_NO_WARNINGS --- localtime warning
+#pragma warning(disable : 4996)
 
 class Date {
 public:
@@ -49,7 +49,7 @@ public:
      * @param right object compared
      * @return comparison result boolean
      */
-    inline bool operator ==(const Date& right) {
+    inline bool operator==(const Date &right) {
         return isEqualTo(right);
     }
 
@@ -59,7 +59,7 @@ public:
      * @param right object compared
      * @return comparison result boolean
      */
-    inline bool operator !=(const Date& right) {
+    inline bool operator!=(const Date &right) {
         return isNotEqualTo(right);
     }
 
@@ -69,7 +69,7 @@ public:
      * @param right object compared
      * @return comparison result boolean
      */
-    inline bool operator <=(const Date& right) {
+    inline bool operator<=(const Date &right) {
         return isEqualTo(right) || isBefore(right);
     }
 
@@ -79,7 +79,7 @@ public:
      * @param right object compared
      * @return comparison result boolean
      */
-    inline bool operator <(const Date& right) {
+    inline bool operator<(const Date &right) {
         return isBefore(right);
     }
 
@@ -89,7 +89,7 @@ public:
      * @param right object compared
      * @return comparison result boolean
      */
-    inline  bool operator >=(const Date& right) {
+    inline bool operator>=(const Date &right) {
         return isEqualTo(right) || isAfter(right);  // could use > and ==
     }
 
@@ -99,7 +99,7 @@ public:
      * @param right object compared
      * @return comparison result boolean
      */
-    inline bool operator > (const Date& right) {
+    inline bool operator>(const Date &right) {
         return isAfter(right);
     }
 
@@ -108,7 +108,7 @@ public:
      * Increments date by one day, changing month and year if necessary to be valid date
      * @return
      */
-    inline Date& operator ++ () {
+    inline Date &operator++() {
         day++;
         if (!isValid()) {
             month++;
@@ -125,9 +125,9 @@ public:
      * Increments date by one day, changing month and year if necessary to be valid date
      * @return
      */
-    inline  Date operator ++ (int) {
+    inline Date operator++(int) {
         Date temp = *this;
-        ++* this;
+        ++*this;
         return temp;
     }
 
@@ -135,11 +135,11 @@ public:
      * Gos back to previous day, changing month and year if necessary to be valid date
      * @return
      */
-    inline  Date& operator -- () {
+    inline Date &operator--() {
         day--;
         if (!isValid()) {
             month--;
-            day = daysMonth(month + 1 , year);
+            day = daysMonth(month + 1, year);
             if (!isValid()) {
                 month = 12;
                 year--;
@@ -152,9 +152,9 @@ public:
      * Gos back to previous day, changing month and year if necessary to be valid date
      * @return
      */
-    inline Date operator -- (int) {
+    inline Date operator--(int) {
         Date temp = *this;
-        --* this;
+        --*this;
         return temp;
     }
 
@@ -164,21 +164,21 @@ public:
      * @param newYear new value
      * @return changed Date object
      */
-    Date& setYear(unsigned int newYear);
+    Date &setYear(unsigned int newYear);
 
     /**
      * Sets object's attribute to new given value
      * @param newMonth new value
      * @return changed Date object
      */
-    Date& setMonth(unsigned int newMonth);
+    Date &setMonth(unsigned int newMonth);
 
     /**
      * Sets object's attribute to new given value
      * @param newDay new value
      * @return changed Date object
      */
-    Date& setDay(unsigned int newDay);
+    Date &setDay(unsigned int newDay);
 
     /**
      * Sets date attributes using the given arguments
@@ -187,31 +187,31 @@ public:
      * @param newDay new attribute value
      * @return changed Date object
      */
-    Date& setDate(unsigned int newYear, unsigned int newMonth, unsigned int newDay);
+    Date &setDate(unsigned int newYear, unsigned int newMonth, unsigned int newDay);
 
     /**
      * Returns copy of year attribute
      * @return
      */
-    unsigned int getYear()const;
+    unsigned int getYear() const;
 
     /**
      * Returns copy of month attribute
      * @return
      */
-    unsigned int getMonth()const;
+    unsigned int getMonth() const;
 
     /**
      * Returns copy of day attribute
      * @return
      */
-    unsigned int getDay()const;
+    unsigned int getDay() const;
 
     /**
      * Returns the date in format YYYY/MM/DD
      * @return
      */
-    std::string getDate()const;
+    std::string getDate() const;
 
     /**
      * Tests if date is actually correct/valid
@@ -222,7 +222,7 @@ public:
     /**
      * Prints date in string format YYYY/MM/DD
      */
-    void show()const;
+    void show() const;
 
     /**
      * Verifies if two dates are equal by comparing each one of
@@ -230,7 +230,7 @@ public:
      * @param date object to be compared
      * @return boolean result of the comparison
      */
-    bool isEqualTo(const Date& date)const;
+    bool isEqualTo(const Date &date) const;
 
     /**
      * Verifies if two dates are different by comparing each one of
@@ -238,21 +238,22 @@ public:
      * @param date object to be compared
      * @return boolean result of the comparison
      */
-    bool isNotEqualTo(const Date& date)const;
+    bool isNotEqualTo(const Date &date) const;
 
     /**
      * Verifies if date is chronologically after a given date
      * @param date object to be compared
      * @return boolean result of the comparison
      */
-    bool isAfter(const Date& date)const;
+    bool isAfter(const Date &date) const;
 
     /**
      * Verifies if date is chronologically before a given date
      * @param date object to be compared
      * @return boolean result of the comparison
      */
-    bool isBefore(const Date& date) const;
+    bool isBefore(const Date &date) const;
+
 private:
 
     /**
@@ -262,7 +263,7 @@ private:
      * @param year to verify if is leap year
      * @return integer with the number of days of that month in that year
      */
-    static int daysMonth(unsigned int month,unsigned int year);
+    static int daysMonth(unsigned int month, unsigned int year);
 
     /**
      * Tests if year is a leap year
@@ -285,8 +286,8 @@ private:
  * @param right Date object to be outputted
  * @return ostream used (altered)
  */
-inline std::ostream& operator <<(std::ostream& os,const Date& right) {
-    os << right.getYear()<<'/' << setfill('0') <<setw(2) << right.getMonth() << '/' << setw(2) << right.getDay();
+inline std::ostream &operator<<(std::ostream &os, const Date &right) {
+    os << right.getYear() << '/' << setfill('0') << setw(2) << right.getMonth() << '/' << setw(2) << right.getDay();
 
     return os;
 }
@@ -298,7 +299,7 @@ inline std::ostream& operator <<(std::ostream& os,const Date& right) {
  * @param right Date object that receives the values
  * @return istream used (altered)
  */
-inline std::istream& operator >>(std::istream& is, Date& right) {
+inline std::istream &operator>>(std::istream &is, Date &right) {
     int year, m, d;
     char s;
     is >> year >> s >> m >> s >> d;

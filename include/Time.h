@@ -7,98 +7,97 @@
 #include <sstream>
 #include "../Exceptions/InvalidTimeException.h"
 
-#pragma warning(disable : 4996) //_CRT_SECURE_NO_WARNINGS --- localtime warning
+#pragma warning(disable : 4996)
 
 
-class Time{
+class Time {
 private:
-        unsigned hour,minute,second;
+    unsigned hour, minute, second;
 
 public:
 
-        /**
-         * Default constructor creates current Time
-         */
-        inline Time(){
-            std::time_t t = std::time(nullptr);   // get time now
-            struct std::tm now = *localtime(&t);
+    /**
+     * Default constructor creates current Time
+     */
+    inline Time() {
+        std::time_t t = std::time(nullptr);
+        struct std::tm now = *localtime(&t);
 
-            hour = now.tm_hour;
-            minute = now.tm_min;
-            second = now.tm_sec;
-        }
+        hour = now.tm_hour;
+        minute = now.tm_min;
+        second = now.tm_sec;
+    }
 
-        /**
-         * Constructs custom time HH:MM:SS
-         *
-         * @param hour  attribute to be set
-         * @param minute attribute to be set
-         * @param second attribute to be set
-         */
-        Time(unsigned hour, unsigned minute, unsigned second);
+    /**
+     * Constructs custom time HH:MM:SS
+     *
+     * @param hour  attribute to be set
+     * @param minute attribute to be set
+     * @param second attribute to be set
+     */
+    Time(unsigned hour, unsigned minute, unsigned second);
 
-        /**
-         * Sets all class time attributes at once
-         * @param newHour attribute to be set
-         * @param newMinute attribute to be set
-         * @param newSecond attribute to be set
-         * @return
-         */
-        Time& setTime(unsigned newHour, unsigned newMinute, unsigned newSecond);
+    /**
+     * Sets all class time attributes at once
+     * @param newHour attribute to be set
+     * @param newMinute attribute to be set
+     * @param newSecond attribute to be set
+     * @return
+     */
+    Time &setTime(unsigned newHour, unsigned newMinute, unsigned newSecond);
 
-        /**
-         * Gets attribute hour
-         * @return copy of attribute hour
-         */
-        inline unsigned getHour() const{return this->hour;}
+    /**
+     * Gets attribute hour
+     * @return copy of attribute hour
+     */
+    inline unsigned getHour() const { return this->hour; }
 
-        /**
-        * Gets attribute minute
-        * @return copy of attribute minute
-        */
-        inline unsigned getMinute() const{return this->minute;}
+    /**
+    * Gets attribute minute
+    * @return copy of attribute minute
+    */
+    inline unsigned getMinute() const { return this->minute; }
 
-        /**
-        * Gets attribute second
-        * @return copy of attribute second
-        */
-        inline unsigned getSecond() const{return this->second;}
+    /**
+    * Gets attribute second
+    * @return copy of attribute second
+    */
+    inline unsigned getSecond() const { return this->second; }
 
-        /**
-         * Changes attribute newHour and returns the changed object
-         *
-         * @param newHour changing attribute
-         * @return changed object
-         */
-        Time& setHour(unsigned newHour);
+    /**
+     * Changes attribute newHour and returns the changed object
+     *
+     * @param newHour changing attribute
+     * @return changed object
+     */
+    Time &setHour(unsigned newHour);
 
-        /**
-         * Changes attribute newMinute and returns the changed object
-         *
-         * @param newMinute changing attribute
-         * @return changed object
-         */
-        Time& setMinute(unsigned newMinute);
+    /**
+     * Changes attribute newMinute and returns the changed object
+     *
+     * @param newMinute changing attribute
+     * @return changed object
+     */
+    Time &setMinute(unsigned newMinute);
 
-        /**
-        * Changes attribute newSecond and returns the changed object
-        *
-        * @param newSecond changing attribute
-        * @return changed object
-        */
-        Time& setSecond(unsigned newSecond);
-
-
-        /**
-         * Sets and returns a random time in format HH:MM:SS
-         *
-         * @return random time
-         */
-        Time& setRandomTime();
+    /**
+    * Changes attribute newSecond and returns the changed object
+    *
+    * @param newSecond changing attribute
+    * @return changed object
+    */
+    Time &setSecond(unsigned newSecond);
 
 
+    /**
+     * Sets and returns a random time in format HH:MM:SS
+     *
+     * @return random time
+     */
+    Time &setRandomTime();
 
-        std::string getTime() const;
+
+    std::string getTime() const;
 };
 
 /**
@@ -109,8 +108,8 @@ public:
  * @param t2 right side Time object to be compared
  * @return boolean with the result of the comparison
  */
-inline bool operator==(const Time &t1,const Time &t2){
-    return(t1.getMinute()==t2.getMinute() && t1.getSecond()==t2.getSecond() && t1.getHour()==t2.getHour());
+inline bool operator==(const Time &t1, const Time &t2) {
+    return (t1.getMinute() == t2.getMinute() && t1.getSecond() == t2.getSecond() && t1.getHour() == t2.getHour());
 }
 
 
@@ -122,8 +121,8 @@ inline bool operator==(const Time &t1,const Time &t2){
  * @param t2 right side Time object to be compared
  * @return boolean with the result of the comparison
  */
-inline bool operator!=(const Time &t1,const Time &t2){
-    return !(t1.getMinute()==t2.getMinute() && t1.getSecond()==t2.getSecond() && t1.getHour()==t2.getHour());
+inline bool operator!=(const Time &t1, const Time &t2) {
+    return !(t1.getMinute() == t2.getMinute() && t1.getSecond() == t2.getSecond() && t1.getHour() == t2.getHour());
 }
 
 /**
@@ -134,12 +133,12 @@ inline bool operator!=(const Time &t1,const Time &t2){
  * @param t2 right side Time object to be compared
  * @return boolean with the result of the comparison
  */
-inline bool operator<(const Time &t1,const Time &t2){
-    if(t1.getHour()!=t2.getHour())
-        return t1.getHour()<t2.getHour();
-    else if(t1.getMinute()!=t2.getMinute())
-        return t1.getMinute()<t2.getMinute();
-    return t1.getSecond()<t2.getSecond();
+inline bool operator<(const Time &t1, const Time &t2) {
+    if (t1.getHour() != t2.getHour())
+        return t1.getHour() < t2.getHour();
+    else if (t1.getMinute() != t2.getMinute())
+        return t1.getMinute() < t2.getMinute();
+    return t1.getSecond() < t2.getSecond();
 
 }
 
@@ -149,15 +148,15 @@ inline bool operator<(const Time &t1,const Time &t2){
  * @param t2 right side Time object to be compared
  * @return boolean with the result of the comparison
  */
-inline bool operator<=(const Time &t1,const Time &t2){
-    if(t1.getHour()<t2.getHour())
+inline bool operator<=(const Time &t1, const Time &t2) {
+    if (t1.getHour() < t2.getHour())
         return true;
-    else if(t1.getHour()==t2.getHour() && t1.getMinute()<t2.getMinute())
+    else if (t1.getHour() == t2.getHour() && t1.getMinute() < t2.getMinute())
         return true;
-    else if(t1.getHour()==t2.getHour() && t1.getMinute()==t2.getMinute() && t1.getSecond()<t2.getSecond())
+    else if (t1.getHour() == t2.getHour() && t1.getMinute() == t2.getMinute() && t1.getSecond() < t2.getSecond())
         return true;
     else
-        return t1==t2;
+        return t1 == t2;
 }
 
 /**
@@ -168,8 +167,9 @@ inline bool operator<=(const Time &t1,const Time &t2){
  * @param t Time object to be outputted
  * @return ostream used (altered)
  */
-inline std::ostream & operator<<(std::ostream& os,const Time &t){
-    os<<std::setfill('0')<< std::right <<std::setw(2)<<t.getHour()<<":"<<std::setw(2)<<t.getMinute()<<":"<<std::setw(2)<<t.getSecond();
+inline std::ostream &operator<<(std::ostream &os, const Time &t) {
+    os << std::setfill('0') << std::right << std::setw(2) << t.getHour() << ":" << std::setw(2) << t.getMinute() << ":"
+       << std::setw(2) << t.getSecond();
     return os;
 }
 
@@ -180,12 +180,12 @@ inline std::ostream & operator<<(std::ostream& os,const Time &t){
  * @param t Time object that receives the values
  * @return istream used (altered)
  */
-inline std::istream & operator>>(std::istream& is,Time &t){
+inline std::istream &operator>>(std::istream &is, Time &t) {
     unsigned hour, minute, second;
-    char sep1,sep2;
+    char sep1, sep2;
 
-    is>>hour>>sep1>>minute>>sep2>>second;
-    t.setTime(hour,minute,second);
+    is >> hour >> sep1 >> minute >> sep2 >> second;
+    t.setTime(hour, minute, second);
 
     return is;
 }

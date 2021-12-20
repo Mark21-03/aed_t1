@@ -8,52 +8,50 @@ Date::Date(unsigned int year, unsigned int month, unsigned int day) {
         if (!isValid())
             throw invalidDate("Not Valid Date");
     }
-    catch (invalidDate& e) {
-        std::cerr <<"error in constructor -> " << e.what() << std::endl;
-        // throw;
+    catch (invalidDate &e) {
+        std::cerr << "error in constructor -> " << e.what() << std::endl;
+
     }
 }
 
 Date::Date(std::string yearMonthDay) {
 
-    char temp; //not that great
+    char temp;
 
-    try
-    {
+    try {
         std::istringstream ss(yearMonthDay);
 
         ss >> this->year >> temp >> this->month >> temp >> this->day;
         if (!isValid())
             throw invalidDate("Not Valid Date");
     }
-    catch (invalidDate& e)
-    {
+    catch (invalidDate &e) {
         std::cerr << "error in constructor -> " << e.what() << std::endl;
-        // throw;
+
     }
     catch (...) {
         std::cerr << "error in constructor -> " << std::endl;
-        // throw;
+
     }
 }
 
-Date& Date::setYear(unsigned int newYear) {
+Date &Date::setYear(unsigned int newYear) {
     this->year = newYear;
     return *this;
 }
 
-Date& Date::setMonth(unsigned int newMonth) {
+Date &Date::setMonth(unsigned int newMonth) {
     this->month = newMonth;
     return *this;
 }
 
-Date& Date::setDay(unsigned int newDay) {
+Date &Date::setDay(unsigned int newDay) {
     this->day = newDay;
 
     return *this;
 }
 
-Date& Date::setDate(unsigned int newYear, unsigned int newMonth, unsigned int newDay) {
+Date &Date::setDate(unsigned int newYear, unsigned int newMonth, unsigned int newDay) {
     this->year = newYear;
     this->month = newMonth;
     this->day = newDay;
@@ -74,9 +72,9 @@ unsigned int Date::getDay() const {
 
 }
 
-std::string Date::getDate()const {
+std::string Date::getDate() const {
     ostringstream ost;
-    ost<< *this;
+    ost << *this;
 
     return ost.str();
 }
@@ -91,15 +89,14 @@ bool Date::isValid() const {
     return true;
 }
 
-int Date::daysMonth(unsigned int month,unsigned int year) {
+int Date::daysMonth(unsigned int month, unsigned int year) {
     if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
         return 31;
     else if (month == 2 && isLeapYear(year))
         return 29;
     else if (month == 2) {
         return 28;
-    }
-    else
+    } else
         return 30;
 }
 
@@ -109,39 +106,35 @@ bool Date::isLeapYear(unsigned int year) {
     return false;
 }
 
-bool Date::isEqualTo(const Date& date) const {
+bool Date::isEqualTo(const Date &date) const {
     return day == date.day && year == date.year && month == date.month;
 }
 
-bool Date::isNotEqualTo(const Date& date)const {
+bool Date::isNotEqualTo(const Date &date) const {
     return !(Date::isEqualTo(date));
 }
 
-bool Date::isAfter(const Date& date) const {
+bool Date::isAfter(const Date &date) const {
     if (year > date.year) {
         return true;
-    }
-    else if (year < date.year) {
+    } else if (year < date.year) {
         return false;
-    }
-    else {
+    } else {
         if (month > date.month) {
             return true;
-        }
-        else if (month < date.month)
+        } else if (month < date.month)
             return false;
         else {
             if (day > date.day) {
                 return true;
-            }
-            else {
+            } else {
                 return false;
             }
         }
     }
 }
 
-bool Date::isBefore(const Date& date) const {
+bool Date::isBefore(const Date &date) const {
     if (isEqualTo(date))
         return false;
     return !isAfter(date);

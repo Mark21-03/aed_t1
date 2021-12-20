@@ -7,7 +7,7 @@
 #include "../include/Service.h"
 #include "../include/Output.h"
 
-class ServiceManagement{
+class ServiceManagement {
 private:
     list<Service> doneServices;
     queue<Service> toDoServices;
@@ -18,7 +18,7 @@ public:
      * Constructs a ServiceManagement, loading all services in given file path
      * @param path file path where services are stored
      */
-    explicit ServiceManagement(const std::string& path);
+    explicit ServiceManagement(const std::string &path);
 
     /**
      * Default ServiceManagement Constructor
@@ -68,7 +68,7 @@ public:
      * @param service service to be rescheduled
      * @param newDate new rescheduled date to be set
      */
-    void changeTodoServicePriority(const Service& service, const Date& newDate);
+    void changeTodoServicePriority(const Service &service, const Date &newDate);
 
     /**
      * Removes a given service from the to-do queue returning boolean it was deleted
@@ -108,7 +108,7 @@ public:
     /**
      * Saves to file the changes made to the to-do queue or done list
      */
-    void saveToFile() ;
+    void saveToFile();
 };
 
 #endif //AED_T1_SERVICEMANAGEMENT_H
