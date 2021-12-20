@@ -100,7 +100,7 @@ namespace out {
         ostream1 << askText;
         istream1.ignore(numeric_limits<streamsize>::max(), '\n');
         getline(istream1, searchName);
-        regex search(".*" + searchName + ".*");
+        regex search(searchName);
         ostream1 << endl;
 
         return search;

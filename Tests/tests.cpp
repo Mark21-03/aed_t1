@@ -383,7 +383,7 @@ TEST(Test_Flight, inOperatorsFlight) {
     EXPECT_EQ(f.getNumber(), 0);
     EXPECT_EQ(f.getDepartureDate().getDate(), "2022/01/12");
     EXPECT_EQ(f.getDepartureTime(), Time(06, 49, 50));
-    EXPECT_EQ(f.getOccupation(), 157);
+    EXPECT_EQ(f.getOccupation(), 158);
     EXPECT_EQ(f.getDuration(), (float) 2.19535);
     EXPECT_EQ(f.getOrigin(), "Beirut Rafic Hariri International Airport");
     EXPECT_EQ(f.getDestiny(), "Cairo International Airport");

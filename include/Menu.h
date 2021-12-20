@@ -63,6 +63,8 @@ class Menu {
     void updateTransports();
     void doCheckIn();
 
+    bool partialListingType();
+
 
     void subMenu(const string &menuTitle, vector<void (Menu::*)()> funcs);
     void othersSubMenu();
