@@ -77,7 +77,7 @@ public:
      * @param passengerid
      * @return changed ticket reference
      */
-    Ticket &setPassengerId(int passengerid);
+    Ticket &setPassengerId(unsigned int passengerid);
 
     /**
      * Sets a new flight ID for a ticket

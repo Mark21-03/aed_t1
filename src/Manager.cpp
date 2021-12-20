@@ -28,7 +28,7 @@ Manager::Manager() {
 }
 
 
-void Manager::showSortedPassengersBySortOption(ostream& ostream1, const std::string& sortOption, unsigned int min , unsigned int max) { // TODO CHANGE NAME OF METHOD
+void Manager::showSortedPassengersBySortOption(ostream& ostream1, const std::string& sortOption, unsigned int min , unsigned int max) {
 
     out::headerPassengers(ostream1);
 
@@ -568,7 +568,7 @@ void Manager::makeCheckIn(flightNumber flightID) {
 
 }
 
-void Manager::moveBaggageToPlane(flightNumber flightID) { // TODO: FOR SOME REASON THE TICKETS DOES NOT MATCH THE REAL CAPACITY OF THE FLIGHT
+void Manager::moveBaggageToPlane(flightNumber flightID) {
 
     auto finder = [](const Ticket& l, flightNumber flightID){
         return l.getFlightNumber() < flightID;

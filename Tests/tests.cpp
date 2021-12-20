@@ -343,14 +343,14 @@ TEST(Test_Ticket, inOperatorsTicket) {
     Ticket t;
     i >> t;
 
-    // 0 0 101 469.18 5.00 1
+    // 0 40 101 303.61 5.00 2
 
-    Baggage b(5, 1);
+    Baggage b(5, 2);
 
     EXPECT_EQ(t.getFlightNumber(), 0);
-    EXPECT_EQ(t.getPassengerID(), 0);
+    EXPECT_EQ(t.getPassengerID(), 40);
     EXPECT_EQ(t.getTClass(), economic);
-    EXPECT_EQ(t.getPrice(), (float) 469.18);
+    EXPECT_EQ(t.getPrice(), (float) 303.61);
     EXPECT_EQ(t.getBaggage().getQuantity(), b.getQuantity());
     EXPECT_EQ(t.getBaggage().getWeight(), b.getWeight());
 
@@ -802,6 +802,3 @@ TEST(Test_Transport, TestClassTransportCompareOperators) {
 }
 
 //__________________________________________DONE______TESTS_________________________________________________
-
-
-

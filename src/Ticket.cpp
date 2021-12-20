@@ -31,7 +31,7 @@ Ticket &Ticket::setPrice(float newPrice) { this->price=newPrice; return *this;}
 Ticket &Ticket::setBaggage(Baggage baggage) {this->basementBaggage=baggage; return *this;}
 //Ticket &Ticket::setBaggage(Baggage bag1) {this->bag1=bag1; return *this;}
 Ticket &Ticket::setFlightNumber(flightNumber flightNumber) {this->flightnumber=flightNumber; return *this;}
-Ticket &Ticket::setPassengerId(int passengerid) {this->passengerID=passengerid; return *this;}
+Ticket &Ticket::setPassengerId(unsigned int passengerid) {this->passengerID=passengerid; return *this;}
 Ticket &Ticket::setTclass(char newTClass) {
     if (newTClass == 'x')
         this->tClass=executive;
