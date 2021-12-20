@@ -84,7 +84,7 @@ void Menu::funcCreateFlight() {
     cout << "New Flight's destiny (string): ";
     getline(cin, destiny);
 
-    if (menuOperationConfirm()) {
+    if (menuOperationConfirm()) { // TODO: Check the validity of Time and Date provided
         manager.createFlight(departureD, departureT, duration, origin, destiny);
         cout << "\nFlight added!\n";
     }
@@ -385,7 +385,7 @@ void Menu::funcReadPassenger() {
         std::string sortOption;
         out::askOnce<std::string>(cout, cin, sortOption, "Sort by (n - Name | d - Birthdate | i - ID)");
         cout << endl;
-        manager.showSortedPassengersBySortOption(cout, sortOption, 0, 9999);
+        manager.showSortedPassengersBySortOption(cout, sortOption);
         getchar();
         getchar();
     }
@@ -471,7 +471,7 @@ void Menu::funcReadFlight() {
         std::string sortOption;
         out::askOnce<std::string>(cout, cin, sortOption, "Sort by (o - Ocup. | d - Date | t - Time | i - ID)");
         cout << endl;
-        manager.showSortedFlightsBySortOption(cout, sortOption, 0, 9999);
+        manager.showSortedFlightsBySortOption(cout, sortOption);
         getchar();
         getchar();
     }

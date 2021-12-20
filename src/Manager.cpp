@@ -470,6 +470,7 @@ void Manager::readTransports() {
         }
         airportTransports.insert(pair<std::string, BST<Transport>>(airport, tTree));
         ifs_transports.ignore(numeric_limits<streamsize>::max(), '\n');
+
     }
 
     ifs_transports.close();
@@ -549,7 +550,7 @@ bool Manager::searchFlightsDestiny(ostream &ostream1,const regex &exp,const std:
     return foundMatch;
 }
 
-void Manager::makeCheckIn(int flightID) {
+void Manager::makeCheckIn(flightNumber flightID) {
 
     auto finder = [=](const Ticket& t){
         return t.getFlightNumber() == flightID;
@@ -567,13 +568,13 @@ void Manager::makeCheckIn(int flightID) {
 
 }
 
-void Manager::moveBaggageToPlane(int flightID) {
+void Manager::moveBaggageToPlane(flightNumber flightID) { // TODO: FOR SOME REASON THE TICKETS DOES NOT MATCH THE REAL CAPACITY OF THE FLIGHT
 
-    auto finder = [=](const Ticket& t){
-        return t.getFlightNumber() == flightID;
+    auto finder = [](const Ticket& l, flightNumber flightID){
+        return l.getFlightNumber() < flightID;
     };
 
-    auto it = find_if(tickets.begin(),tickets.end(),finder);
+    auto it = lower_bound(tickets.begin(),tickets.end(),flightID ,finder);
 
     BaggageCheckIn bci(4,5,10);
 
@@ -610,11 +611,11 @@ void Manager::moveBaggageToPlane(int flightID) {
 
     cout<<"\nPassing baggage from conveyor belt to the baggage truck...\n";getchar();
 
-    auto FlightFinder = [=](const Flight & f){
+    auto FlightFinder = [=](const Flight & f, flightNumber flightID){
         return f.getNumber() == flightID;
     };
 
-    auto flightIter = find_if(flights.begin(),flights.end(),FlightFinder);
+    auto flightIter = lower_bound(flights.begin(),flights.end(), flightID , FlightFinder);
 
     Baggage aux;
 

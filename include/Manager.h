@@ -85,12 +85,12 @@ public:
 
     bool confirmationPrompt();
 
-    void makeCheckIn(int flightID);
+    void makeCheckIn(flightNumber flightID);
 
     void incrementFlightOccupation(flightNumber ID);
 
 
-    void moveBaggageToPlane(int flightID);
+    void moveBaggageToPlane(flightNumber flightID);
 
 
     void createPassenger(const string &Pname, Date birth);

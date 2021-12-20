@@ -1,6 +1,5 @@
 #include "include/Menu.h"
 #include "include/LoginMenu.h"
-#include <thread>
 
 
 int main() {

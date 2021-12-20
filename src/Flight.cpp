@@ -9,6 +9,7 @@ Flight::Flight(flightNumber number,const Date& departureDate,const Time& departu
     this->departureTime = departureTime;
     this->duration = duration;
     this->occupation = 0;
+    this->maxCapacity = 0; // it still isn't connected to a flight so the max capacity is 0.
 
 
     if (origin.size() > STRING_MAX_VALUE || destiny.size() > STRING_MAX_VALUE) {
