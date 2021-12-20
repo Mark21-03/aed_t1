@@ -513,7 +513,7 @@ void Menu::mainMenu() {
             cout << inputError;
         inputError = "";
 
-        //Start of MENU
+
         cout << "=================" << endl;
         cout << "       Menu      " << endl;
         cout << "=================" << endl;
@@ -525,7 +525,7 @@ void Menu::mainMenu() {
         cout << "  0)  Exit" << endl;
         cout << "================" << endl;
         cout << " > ";
-        //End of MENU
+
 
         if ((cin >> userInput)) {
             //raises error if more than 1 char is written by user

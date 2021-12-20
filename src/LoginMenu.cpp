@@ -15,6 +15,8 @@ void LoginMenu::displayLogin(ostream& os) const {
         }
     }
 
+    os << "                    Transportadora Aérea Feupiana                        \n";
+
     os << defaultc;
 
 }
@@ -43,7 +45,6 @@ LoginMenu::LoginMenu() {
             "g                               \\::/    /r                                 \n"
             "g                                \\/____/r                                  \n"
             "                                                                         \n"
-            "                    Transportadora Aérea Feupiana                        \n"
 
     };
 }
