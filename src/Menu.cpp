@@ -699,8 +699,9 @@ void Menu::addNewTransport() {
     cout << "\nAirport to add Transport: ";
     getline(cin, airport);
 
-    cout << "\nNew Transport Type (T, S, B): ";
-    cin >> c; // TODO: CHECK IF INPUT IS CORRECTED
+    cout << "\nNew Transport Type (T - Train | S - subway | B - bus): ";cin>>c;
+    if (c != 'T' && c != 'S' && c != 'B') return;
+
     cout << "New Transport Distance (float): ";
     cin >> d;
 
@@ -741,8 +742,9 @@ void Menu::removeNearbyTransport() {
     cout << "\nAirport to remove Transport: ";
     getline(cin, airport);
 
-    cout << "\nTransport Type (T, S, B): ";
-    cin >> c;
+    cout << "\nNew Transport Type (T - Train | S - subway | B - bus): ";cin>>c;
+    if (c != 'T' && c != 'S' && c != 'B') return;
+
     cout << "Transport Distance (float): ";
     cin >> d;
 
@@ -760,10 +762,12 @@ void Menu::updateTransports() {
     char c;
     float d;
     std::string airport;
-    cout << "Airport to update Transport ? :" << endl << '>';
+    cout << "\nAirport to update Transport: ";
     getline(cin, airport);
-    cout << "\nTransport Type (T, S, B): ";
-    cin >> c;
+
+    cout << "\nNew Transport Type (T - Train | S - subway | B - bus): ";cin>>c;
+    if (c != 'T' && c != 'S' && c != 'B') return;
+
     cout << "Transport Distance (float): ";
     cin >> d;
 
