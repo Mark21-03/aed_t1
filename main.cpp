@@ -5,6 +5,7 @@
 
 
 int main() {
+    setlocale(LC_ALL, "pt_PT.UTF-8");
     LoginMenu loginMenu;
     loginMenu.displayLogin(cout);
     try {
