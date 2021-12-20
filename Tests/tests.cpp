@@ -572,39 +572,236 @@ TEST(Test_BaggageCheckIn, TestClassBaggageCheckInQueue) {
 
 }
 
+TEST(Test_Date, TestClassDateGettersSetters) {
+    Date d1(2021, 12, 18);
+
+    EXPECT_EQ(d1.getYear(), 2021);
+    EXPECT_EQ(d1.getMonth(), 12);
+    EXPECT_EQ(d1.getDay(), 18);
+
+    d1.setYear(2020);
+    d1.setMonth(10);
+    d1.setDay(3);
+
+    EXPECT_EQ(d1.getYear(), 2020);
+    EXPECT_EQ(d1.getMonth(), 10);
+    EXPECT_EQ(d1.getDay(), 3);
+}
+
+TEST(Test_Date, TestClassDateCompareOperators){
+    Date d1(2020, 2,25);
+
+    Date d2(2020, 2, 25);
+
+    Date d3(2022, 9,15);
+
+    EXPECT_EQ(d1==d2, true);
+
+    d2.setYear(2019);
+    d2.setMonth(1);
+    d2.setDay(30);
+
+    EXPECT_EQ(d2.getYear(), 2019);
+    EXPECT_EQ(d2.getMonth(), 1);
+    EXPECT_EQ(d2.getDay(), 30);
+
+    EXPECT_EQ(d2>d1, false);
+    EXPECT_EQ(d2!=d1, true);
+    EXPECT_EQ(d2<d1, true);
+    EXPECT_EQ(d3>d2, true);
+    EXPECT_EQ(d3==d2, false);
+    EXPECT_EQ(d3<d1, false);
+
+}
+
+TEST(Test_Flight, TestClassFlightGettersSetters){
+    Flight f1(3, Date ("2020/01/18"), Time(20,30,00), 1.5, "Francisco de Sá Carneiro Airport", "Copenhagen Airport");
+    Flight f2(7, Date("2021/12/15"), Time(12, 30, 35), 25, (float) 2.3, "Metropolitan Area", "Beirut Rafic Hariri International Airport", 113);
+
+    EXPECT_EQ(f1.getNumber(), 3);
+    EXPECT_EQ(f1.getDepartureDate().getDate(), "2020/01/18");
+    EXPECT_EQ(f1.getDepartureTime().getTime(), "20:30:00");
+    EXPECT_EQ(f1.getDuration(), 1.5);
+    EXPECT_EQ(f1.getOrigin(), "Francisco de Sá Carneiro Airport");
+    EXPECT_EQ(f1.getDestiny(), "Copenhagen Airport");
+
+    EXPECT_EQ(f2.getNumber(), 7);
+    EXPECT_EQ(f2.getDepartureDate().getDate(), "2021/12/15");
+    EXPECT_EQ(f2.getDepartureTime().getTime(), "12:30:35");
+    EXPECT_EQ(f2.getOccupation(), 25);
+    EXPECT_EQ(f2.getDuration(), (float) 2.3);
+    EXPECT_EQ(f2.getOrigin(), "Metropolitan Area");
+    EXPECT_EQ(f2.getDestiny(), "Beirut Rafic Hariri International Airport");
+    EXPECT_EQ(f2.getMaxCapacity(), 113);
+
+    f1.setNumber(5);
+    f1.setDepartureDate(Date("2021/12/18"));
+    f1.setDepartureTime(Time(21,15,15));
+    f1.setDuration(3);
+    f1.setOrigin("Paris Orly Airport");
+    f1.setDestiny("Metropolitan Area");
+    f1.setOccupation(120);
+
+    EXPECT_EQ(f1.getNumber(), 5);
+    EXPECT_EQ(f1.getDepartureDate().getDate(), "2021/12/18");
+    EXPECT_EQ(f1.getDepartureTime().getTime(), "21:15:15");
+    EXPECT_EQ(f1.getDuration(), 3);
+    EXPECT_EQ(f1.getOrigin(), "Paris Orly Airport");
+    EXPECT_EQ(f1.getDestiny(), "Metropolitan Area");
+    EXPECT_EQ(f1.getOccupation(), 120);
+}
+
+TEST(Test_Flight, TestClassFlightCompareOperators) {
+    Flight f1(10, Date ("2019/01/31"), Time(01,27,34), 1.5, "Dubai International Airport", "Budapest Ferihegy International Airport");
+    Flight f2(10, Date ("2019/01/31"), Time(13,27,34), 1.5, "Dubai International Airport", "Budapest Ferihegy International Airport");
+
+    EXPECT_EQ(f1==f2, true);
+    EXPECT_EQ(f1<f2, false);
+    EXPECT_EQ(f1!=f2, false);
+
+    f2.setNumber(8);
+    f2.setDepartureDate(Date("2021/12/19"));
+    f2.setDepartureTime(Time(20, 45, 30));
+    f2.setDuration((float) 3.14);
+    f2.setOrigin("Francisco de Sá Carneiro Airport");
+    f2.setDestiny("Metropolitan Area");
+
+    EXPECT_EQ(f2.getNumber(), 8);
+    EXPECT_EQ(f2.getDepartureDate().getDate(), "2021/12/19");
+    EXPECT_EQ(f2.getDepartureTime().getTime(), "20:45:30");
+    EXPECT_EQ(f2.getDuration(), (float) 3.14);
+    EXPECT_EQ(f2.getOrigin(), "Francisco de Sá Carneiro Airport");
+    EXPECT_EQ(f2.getDestiny(), "Metropolitan Area");
+
+    EXPECT_EQ(f1==f2, false);
+    EXPECT_EQ(f2<f1, true);
+    EXPECT_EQ(f2!=f1, true);
+
+}
+
+TEST(Test_Ticket, TestClassTicketGettersSetters) {
+    Ticket t1(3, 5, (float) 72.5, Baggage(5,2), economic);
+
+    EXPECT_EQ(t1.getFlightNumber(), 3);
+    EXPECT_EQ(t1.getPassengerID(), 5);
+    EXPECT_EQ(t1.getPrice(), (float) 72.5);
+    EXPECT_EQ(t1.getBaggage().getQuantity(), 2);
+    EXPECT_EQ(t1.getBaggage().getWeight(), 5);
+    EXPECT_EQ(t1.getTClass(), economic);
+
+    t1.setFlightNumber(7);
+    t1.setPassengerId(6);
+    t1.setPrice((float) 100.15);
+    t1.setBaggage(Baggage(7,3, false));
+    t1.setTclass(executive);
+
+    EXPECT_EQ(t1.getFlightNumber(), 7);
+    EXPECT_EQ(t1.getPassengerID(), 6);
+    EXPECT_EQ(t1.getPrice(), (float) 100.15);
+    EXPECT_EQ(t1.getBaggage().getQuantity(), 3);
+    EXPECT_EQ(t1.getBaggage().getWeight(), 7);
+    EXPECT_EQ(t1.getTClass(), executive);
+}
+
+TEST(Test_Ticket, TestClassTicketCompareOperators) {
+    Ticket t1(5, 9, (float) 100.25, Baggage(3,1), economic);
+    Ticket t2(5, 9, (float) 125.23, Baggage(5,2), executive);
+
+    EXPECT_EQ(t1==t2, true);
+    EXPECT_EQ(t1<t2, false);
+
+    t2.setFlightNumber(15);
+    t2.setPassengerId(5);
+    t2.setPrice((float) 98.25);
+    t2.setBaggage(Baggage(8,1));
+    t2.setTclass(economic);
+
+    EXPECT_EQ(t2.getFlightNumber(), 15);
+    EXPECT_EQ(t2.getPassengerID(), 5);
+    EXPECT_EQ(t2.getPrice(), (float) 98.25);
+    EXPECT_EQ(t2.getBaggage().getQuantity(), 1);
+    EXPECT_EQ(t2.getBaggage().getWeight(), 8);
+    EXPECT_EQ(t2.getTClass(), economic);
+
+    EXPECT_EQ(t1==t2, false);
+    EXPECT_EQ(t1<t2, true);
+}
+
+TEST(Test_Time, TestClassTimeGettersSetters) {
+    Time t1(20, 30, 15);
 
 
+    EXPECT_EQ(t1.getTime(), "20:30:15");
+    EXPECT_EQ(t1.getHour(), 20);
+    EXPECT_EQ(t1.getMinute(), 30);
+    EXPECT_EQ(t1.getSecond(), 15);
+
+    t1.setTime(12, 15, 42);
+
+    EXPECT_EQ(t1.getTime(), "12:15:42");
+    EXPECT_EQ(t1.getHour(), 12);
+    EXPECT_EQ(t1.getMinute(), 15);
+    EXPECT_EQ(t1.getSecond(), 42);
+
+    t1.setHour(16);
+    t1.setMinute(23);
+    t1.setSecond(25);
+
+    EXPECT_EQ(t1.getTime(), "16:23:25");
+    EXPECT_EQ(t1.getHour(), 16);
+    EXPECT_EQ(t1.getMinute(), 23);
+    EXPECT_EQ(t1.getSecond(), 25);
+}
+
+TEST(Test_Time, TestClassTimeCompareOperators) {
+    Time t1(23,30,00);
+    Time t2(23,30,00);
+
+    EXPECT_EQ(t1==t2, true);
+    EXPECT_EQ(t1!=t2, false);
+
+    Time t3(12,35,40);
+
+    t2.setHour(12);
+    t2.setMinute(35);
+    t2.setSecond(39);
+
+    EXPECT_EQ(t2.getTime(), "12:35:39");
+
+    EXPECT_EQ(t1<t2, false);
+    EXPECT_EQ(t1<=t2, false);
+    EXPECT_EQ(t2<t3, true);
+    EXPECT_EQ(t2<=t3, true);
+}
+
+TEST(Test_Transport, TestClassTransportGettersSetters) {
+    Transport t1('S', (float) 10.5);
+    Transport t2('T');
+
+    EXPECT_EQ(t1.getType(), 'S');
+    EXPECT_EQ(t1.getDistance(), (float) 10.5);
+    EXPECT_EQ(t2.getType(), 'T');
+    EXPECT_EQ(t2.getDistance(), 0);
+
+    t1.setType('B');
+    t1.setDistance((float) 8.75);
+
+    EXPECT_EQ(t1.getType(), 'B');
+    EXPECT_EQ(t1.getDistance(), (float) 8.75);
+}
+
+TEST(Test_Transport, TestClassTransportCompareOperators) {
+    Transport t1('S');
+    Transport t2('T', (float) 10.1);
+    Transport t3('B');
+
+    EXPECT_EQ(t1<t2, true);
+    EXPECT_EQ(t2<t1, false);
+    EXPECT_EQ(t1<t3, false);
+    EXPECT_EQ(t3<t2, true);
+}
 
 //__________________________________________DONE______TESTS_________________________________________________
 
-
-
-
-
-
-
-
-
-//_____________________________________________TOMAS________________________________________________________
-
-
-// Testar os diferentes construtores,  getters e setters das classes
-
-//Fazer testes à parte tmb para operadores de comparaçao  == , < , != ... caso existam nessas classes
-
-TEST(Test_Date, TestClassDate) {}
-
-TEST(Test_Flight, TestClassFlight) {}
-
-TEST(Test_Ticket, TestClassTicket) {}
-
-TEST(Test_Time, TestClassTime) {}
-
-TEST(Test_Transport, TestClassTransport) {}
-
-
-
-
-//_____________________________________________TOMAS________________________________________________________
 
 
