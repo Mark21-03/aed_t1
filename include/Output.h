@@ -7,10 +7,57 @@
 #include "../include/Passenger.h"
 #include "Plane.h"
 #include "Service.h"
-
+#include<cstdlib>
 
 namespace out {
     #define SEPARATION "--------------------------------------------------------"
+
+    /// ANSI CODES
+    enum Code {
+        FG_BLACK    = 30, /**< ForeGround Black Color  */
+        FG_RED      , /**< ForeGround Red Color */
+        FG_GREEN    , /**< ForeGround Green Color */
+        FG_YELLOW   , /**< ForeGround Yellow Color */
+        FG_BLUE     , /**< ForeGround Blue Color */
+        FG_MAGENTA  , /**< ForeGround Magenta Color */
+        FG_CYAN     , /**< ForeGround Cyan Color */
+        FG_WHITE    , /**< ForeGround White Color */
+        FG_DEFAULT  = 39, /**< ForeGround default Color */
+        BG_BLACK    = 40, /**< BlackGround Black Color */
+        BG_RED      , /**< BlackGround Red Color */
+        BG_GREEN    , /**< BlackGround Green Color */
+        BG_YELLOW   , /**< BlackGround Yellow Color */
+        BG_BLUE     , /**< BlackGround Blue Color */
+        BG_MAGENTA  , /**< BlackGround Magenta Color */
+        BG_CYAN     , /**< BlackGround Cyan Color */
+        BG_WHITE    , /**< BlackGround White Color */
+        BG_DEFAULT  = 49 /**< BlackGround Default Color */
+    };
+
+    /**
+     * A class that functions as a bridge to fastly use Ansi Codes
+     * The class receives a Ansi Code defined in the enum Code and overloads the out operator
+     * so that it can perform the code with an ease and rapidly change between colors, text types, etc..
+     */
+    class Modifier {
+        Code code;
+    public:
+        /**
+         * Modifier Constructor
+         *it creates a instance of the class that performs the change indicated by Code
+         */
+        Modifier(Code pCode) : code(pCode) {}
+        friend std::ostream&
+        /**
+         * activates the Code in the ostream provided
+         */
+        operator<<(std::ostream& os, const Modifier& mod) {
+            #ifdef _WIN32
+            system("color");
+            #endif
+            return os << "\x1b[" << mod.code << "m";
+        }
+    };
 
     /**
      * Outputs flights table (header)
@@ -98,8 +145,6 @@ namespace out {
         ostream1<<left << setw(10) <<setfill(' ') << setw(10) <<nameSetter(it->getType())<< setw(15)
         <<to_string(it->getDistance()) + " km\t  " <<it->getTimeTable()<<endl;
     }
-
-
 }
 
 #endif //AED_T1_OUTPUT_H

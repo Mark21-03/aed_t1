@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.19)
+cmake_minimum_required(VERSION 3.10)
 project(aed_t1)
 
 set(CMAKE_CXX_STANDARD 11)
@@ -19,7 +19,7 @@ if(CMAKE_BUILD_TYPE MATCHES Debug)
         Exceptions/NameToLongException.h src/Ticket.cpp include/Ticket.h
             include/Menu.h include/Manager.h src/Manager.cpp include/ServiceManagement.h src/ServiceManagement.cpp
         include/Time.h Exceptions/InvalidTimeException.h src/Time.cpp src/Menu.cpp include/Output.h src/Output.cpp include/Input.h
-        src/Input.cpp  include/BagaggeCheckIn.h Exceptions/BaggageCheckInExceptions.h include/Baggage.h)
+        src/Input.cpp  include/BagaggeCheckIn.h Exceptions/BaggageCheckInExceptions.h include/Baggage.h src/LoginMenu.cpp include/LoginMenu.h)
 
     target_link_libraries(aed_t1 gtest gtest_main)
     message("Debug mode")
@@ -33,7 +33,7 @@ if (CMAKE_BUILD_TYPE MATCHES Release)
             include/BST.h include/Service.h
             Exceptions/NameToLongException.h src/Ticket.cpp include/Ticket.h
             include/Menu.h src/Manager.cpp include/Manager.h include/Transports.h
-            include/ServiceManagement.h src/ServiceManagement.cpp include/Time.h Exceptions/InvalidTimeException.h src/Time.cpp src/Menu.cpp src/Output.cpp include/Output.h include/Input.h src/Input.cpp include/BagaggeCheckIn.h Exceptions/BaggageCheckInExceptions.h include/Baggage.h)
+            include/ServiceManagement.h src/ServiceManagement.cpp include/Time.h Exceptions/InvalidTimeException.h src/Time.cpp src/Menu.cpp src/Output.cpp include/Output.h include/Input.h src/Input.cpp include/BagaggeCheckIn.h Exceptions/BaggageCheckInExceptions.h include/Baggage.h src/LoginMenu.cpp include/LoginMenu.h)
     message("Release mode")
 
     # Doxygen Build
