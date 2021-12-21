@@ -499,6 +499,8 @@ void Menu::funcReadService() {
 void Menu::subMenu(const string &menuTitle, vector<void (Menu::*)()> funcs) {
     char userInput;
     string inputError;
+    out::Modifier bold(out::BOLD);
+    out::Modifier reset(out::RESET);
 
 
     while (true) {
@@ -509,7 +511,7 @@ void Menu::subMenu(const string &menuTitle, vector<void (Menu::*)()> funcs) {
         inputError = "";
 
         cout << "=================" << endl;
-        cout << menuTitle << endl;
+        cout << bold << menuTitle << reset << endl;
         cout << "=================" << endl;
         cout << "  1)  Passenger" << endl;
         cout << "  2)  Plane" << endl;
@@ -574,6 +576,8 @@ void Menu::subMenu(const string &menuTitle, vector<void (Menu::*)()> funcs) {
 void Menu::mainMenu() {
     char userInput;
     string inputError;
+    out::Modifier bold(out::BOLD);
+    out::Modifier reset(out::RESET);
 
     while (true) {
         int ignoreVar = system(CLEAR);
@@ -583,8 +587,8 @@ void Menu::mainMenu() {
         inputError = "";
 
 
-        cout << "=================" << endl;
-        cout << "    MAIN MENU     " << endl;
+        cout << "=================" << endl << bold;
+        cout << "    MAIN MENU     " << endl << reset;
         cout << "=================" << endl;
         cout << "  1)  Create" << endl;
         cout << "  2)  Read" << endl;
@@ -771,6 +775,8 @@ void Menu::othersSubMenu() {
 
     char userInput;
     string inputError;
+    out::Modifier bold(out::BOLD);
+    out::Modifier reset(out::RESET);
 
 
     while (true) {
@@ -780,8 +786,8 @@ void Menu::othersSubMenu() {
             cout << inputError;
         inputError = "";
 
-        cout << "===============================" << endl;
-        cout << "          OTHERS MENU" << endl;
+        cout << "===============================" << endl << bold;
+        cout << "          OTHERS MENU" << endl << reset;
         cout << "===============================" << endl;
         cout << "  1)  Check In" << endl;
         cout << "  2)  Buy ticket" << endl;

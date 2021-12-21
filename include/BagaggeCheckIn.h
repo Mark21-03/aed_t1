@@ -248,7 +248,7 @@ public:
      * Replaces conveyorBelt queue with given queue object
      * @param bq Given queue to be set
      */
-    inline void setQueue(queue<Baggage> bq) { this->conveyorBelt = bq; }
+    inline void setQueue(const queue<Baggage>& bq) { this->conveyorBelt = bq; }
 
     /**
      * Gives a copy of the current conveyorBelt queue

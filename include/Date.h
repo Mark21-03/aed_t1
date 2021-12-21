@@ -41,7 +41,7 @@ public:
      *
      * @param yearMonthDay string in format YYYY/MM/DD
      */
-    Date(std::string yearMonthDay);
+    explicit Date(std::string yearMonthDay);
 
     /**
      * Compares if two dates are the same
@@ -49,7 +49,7 @@ public:
      * @param right object compared
      * @return comparison result boolean
      */
-    inline bool operator==(const Date &right) {
+    inline bool operator==(const Date &right) const {
         return isEqualTo(right);
     }
 
@@ -59,7 +59,7 @@ public:
      * @param right object compared
      * @return comparison result boolean
      */
-    inline bool operator!=(const Date &right) {
+    inline bool operator!=(const Date &right) const {
         return isNotEqualTo(right);
     }
 
@@ -69,7 +69,7 @@ public:
      * @param right object compared
      * @return comparison result boolean
      */
-    inline bool operator<=(const Date &right) {
+    inline bool operator<=(const Date &right) const {
         return isEqualTo(right) || isBefore(right);
     }
 
@@ -79,7 +79,7 @@ public:
      * @param right object compared
      * @return comparison result boolean
      */
-    inline bool operator<(const Date &right) {
+    inline bool operator<(const Date &right) const {
         return isBefore(right);
     }
 
@@ -89,7 +89,7 @@ public:
      * @param right object compared
      * @return comparison result boolean
      */
-    inline bool operator>=(const Date &right) {
+    inline bool operator>=(const Date &right) const {
         return isEqualTo(right) || isAfter(right);  // could use > and ==
     }
 
@@ -99,7 +99,7 @@ public:
      * @param right object compared
      * @return comparison result boolean
      */
-    inline bool operator>(const Date &right) {
+    inline bool operator>(const Date &right) const {
         return isAfter(right);
     }
 

@@ -11,8 +11,17 @@
 
 namespace out {
 #define SEPARATION "--------------------------------------------------------"
-
+    /**
+     * An Enum of Ansi Codes.
+     */
     enum Code {
+        RESET = 0,/**< All attributes off*/
+        BOLD ,/**< Bold text off*/
+        FAINT,/**< light font weight*/
+        ITALIC,/**< Italic text*/
+        UNDERLINE,/**< underlined text*/
+        S_BLINK,/**< Slowly blink*/
+        R_BLINK,/**< Rapid Blink*/
         FG_BLACK = 30, /**< ForeGround Black Color  */
         FG_RED, /**< ForeGround Red Color */
         FG_GREEN, /**< ForeGround Green Color */
@@ -30,7 +39,8 @@ namespace out {
         BG_MAGENTA, /**< BlackGround Magenta Color */
         BG_CYAN, /**< BlackGround Cyan Color */
         BG_WHITE, /**< BlackGround White Color */
-        BG_DEFAULT = 49 /**< BlackGround Default Color */
+        BG_DEFAULT = 49, /**< BlackGround Default Color */
+        BG_BRIGHT_BLACK = 100
     };
 
     /**
@@ -45,7 +55,7 @@ namespace out {
          * Modifier Constructor
          *it creates a instance of the class that performs the change indicated by Code
          */
-        Modifier(Code pCode) : code(pCode) {}
+        explicit Modifier(Code pCode) : code(pCode) {}
 
         friend std::ostream &
         /**

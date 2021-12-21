@@ -4,7 +4,11 @@ void LoginMenu::displayLogin(ostream &os) const {
     out::Modifier red(out::FG_RED);
     out::Modifier green(out::FG_GREEN);
     out::Modifier defaultc(out::FG_DEFAULT);
+    out::Modifier bold(out::BOLD);
+    out::Modifier reset(out::RESET);
 
+
+    os << bold ;
     for (auto &c: menuImage) {
         if (c == 'g') {
             os << green;
@@ -17,7 +21,7 @@ void LoginMenu::displayLogin(ostream &os) const {
 
     os << "                    Transportadora Aérea Feupiana                        \n";
 
-    os << defaultc;
+    os << defaultc << reset;
 
 }
 
