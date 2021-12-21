@@ -394,7 +394,7 @@ void Menu::funcReadPlane() {
             getchar();
         } else if (option == "t") {
             std::string min;
-            out::askOnce<std::string>(cout, cin, min, "Plate Type");
+            out::askOnce<std::string>(cout, cin, min, "Plane Type");
             cout << endl;
             manager.showSortedPlanesOfType(cout, min);
             getchar();
