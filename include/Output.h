@@ -215,7 +215,7 @@ namespace out {
         using namespace std;
 
         auto roundDist = [](float f) {
-            f = f * 100.0;
+            f = f * 100.0f;
             f += 0.5;
             int n = (int) f;
             return (float) n / 100.0;

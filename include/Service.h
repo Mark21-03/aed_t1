@@ -135,8 +135,8 @@ inline std::ostream &operator<<(std::ostream &os, const Service &s) {
     os << s.getType() << " " << s.getDate().getDate();
 
     string name = s.getEmployee();
-    for (int i = 0; i < LONGEST_ACCEPTED_EMPLOYEE_NAME; ++i) {
-        if (i < name.size())
+    for (unsigned int i = 0; i < LONGEST_ACCEPTED_EMPLOYEE_NAME; ++i) {
+        if ((size_t)i < name.size())
             os << (name[i]);
         else
             os << '\0';

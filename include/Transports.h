@@ -161,7 +161,7 @@ inline istream &operator>>(istream &is, Transport &t) {
 
     TimeTable times;
     Time aux;
-    for (int i = 0; i < numTimes; i++) {
+    for (unsigned int i = 0; i < numTimes; i++) {
         is >> aux;
         times.insert(aux);
     }

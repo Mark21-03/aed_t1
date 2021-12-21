@@ -25,7 +25,7 @@ Manager::Manager() {
     readTickets();
 
     serviceManager = ServiceManagement(servicePath);
-    srand(time(NULL));
+    srand(time(nullptr));
 }
 
 
@@ -272,7 +272,6 @@ void Manager::searchUpdateFlights(int SearchedID) {
         Date deparDate;
         Time deparTime;
         float duration;
-        int occupation;
         std::string origin, destiny;
 
         cout << "Departure Date (YYYY/MM/DD): ";
@@ -400,7 +399,7 @@ Manager::createFlight(const Date &departureDate, const Time &departureTime, cons
 
     unsigned minPlaneUsage = 0;
 
-    for (int i = 0; i < planes.size(); i++)
+    for (unsigned int i = 0; i < planes.size(); i++)
         if (planes[i].getFlightPlan().size() < planes[minPlaneUsage].getFlightPlan().size())
             minPlaneUsage = i;
 

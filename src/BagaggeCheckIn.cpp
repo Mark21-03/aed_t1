@@ -48,7 +48,7 @@ Carriage::Carriage(unsigned stacksNum, unsigned baggageNum) {
     maxStackHeight = baggageNum;
     currentCapacity = 0;
 
-    for (int i = 0; i < stacksNum; i++) {
+    for (unsigned int i = 0; i < stacksNum; i++) {
         BaggageStack s(baggageNum);
         stacks.push_back(s);
     }
