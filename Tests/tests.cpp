@@ -87,17 +87,17 @@ TEST(Test_Service, TestClassServiceGetterSetter) {
 
     EXPECT_EQ(s1.getType(), 'm');
     EXPECT_EQ(s1.getDate().getDate(), "2012/06/29");
-    EXPECT_EQ(s1.getEmployer(), "Joaquim Moreira");
+    EXPECT_EQ(s1.getEmployee(), "Joaquim Moreira");
     EXPECT_EQ(s1.getPlane(), "CS-TKK");
 
     s1.setType(cleaning);
     s1.setDate(Date("1999/12/12"));
-    s1.setEmployer("Maria Eduarda");
+    s1.setEmployee("Maria Eduarda");
     s1.setPlate("CL-BCD");
 
     EXPECT_EQ(s1.getType(), 'c');
     EXPECT_EQ(s1.getDate().getDate(), "1999/12/12");
-    EXPECT_EQ(s1.getEmployer(), "Maria Eduarda");
+    EXPECT_EQ(s1.getEmployee(), "Maria Eduarda");
     EXPECT_EQ(s1.getPlane(), "CL-BCD");
 
 }
@@ -109,7 +109,7 @@ TEST(Test_Service, TestClassServiceCompare) {
 
     s1.setType(cleaning);
     s1.setDate(Date("1999/12/12"));
-    s1.setEmployer("Maria Eduarda");
+    s1.setEmployee("Maria Eduarda");
     s1.setPlate("CL-BCD");
 
     Service s2(cleaning, Date("1999/12/12"), "John Rodriguez", "CL-BCD");
@@ -117,7 +117,7 @@ TEST(Test_Service, TestClassServiceCompare) {
     EXPECT_EQ(s1 == s2, false);
     EXPECT_EQ(s1 != s2, true);
 
-    s2.setEmployer("Maria Eduarda");
+    s2.setEmployee("Maria Eduarda");
 
     EXPECT_EQ(s1 == s2, true);
     EXPECT_EQ(s1 != s2, false);
@@ -361,7 +361,7 @@ TEST(Test_Service, inOperatorsService) {
 
     EXPECT_EQ(s.getType(), cleaning);
     EXPECT_EQ(s.getDate().getDate(), "2021/12/21");
-    EXPECT_EQ(s.getEmployer(), "Denise Alana Cunha Machado");
+    EXPECT_EQ(s.getEmployee(), "Denise Alana Cunha Machado");
     EXPECT_EQ(s.getPlane(), "CS-HLH");
 
 }

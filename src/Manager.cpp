@@ -337,7 +337,7 @@ void Manager::searchUpdatePlanes(const string &searchedPlate) {
 void Manager::searchUpdateServices(char type, Date date, string emp, planePlate plate) {
     char type1;
     Date date1;
-    string employer1;
+    string employee1;
     planePlate plane1;
 
 
@@ -348,8 +348,8 @@ void Manager::searchUpdateServices(char type, Date date, string emp, planePlate 
     if (found) {
         serviceManager.deleteTodoService(findService);
         cout << "\nProvide the new values below:";
-        cout << "\nEmployer: ";
-        getline(cin, employer1);
+        cout << "\nEmployee: ";
+        getline(cin, employee1);
         cout << "Date: ";
         cin >> date1;
         cout << "Type: ";
@@ -359,7 +359,7 @@ void Manager::searchUpdateServices(char type, Date date, string emp, planePlate 
 
         cout << endl;
         if (confirmationPrompt()) {
-            Service newService(type1, date1, employer1, plane1);
+            Service newService(type1, date1, employee1, plane1);
             serviceManager.addToDoService(newService);
             cout << "\nChanges have been saved!\n";
         }

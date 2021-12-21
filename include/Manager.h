@@ -104,7 +104,7 @@ public:
 
     void searchUpdatePlanes(const string &id);
 
-    void searchUpdateServices(char type, Date date, string employer, planePlate plane);
+    void searchUpdateServices(char type, Date date, string employee, planePlate plane);
 
     bool confirmationPrompt();
 

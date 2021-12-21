@@ -6,7 +6,7 @@
 #include "Plane.h"
 #include <queue>
 
-#define LONGEST_ACCEPTED_EMPLOYER_NAME 45
+#define LONGEST_ACCEPTED_EMPLOYEE_NAME 45
 
 enum ServiceType {
     maintenance = 'm',
@@ -14,13 +14,13 @@ enum ServiceType {
     other = 'o'
 };
 
-typedef char employerName[LONGEST_ACCEPTED_EMPLOYER_NAME];
+typedef char employeeName[LONGEST_ACCEPTED_EMPLOYEE_NAME];
 
 class Service {
 private:
     ServiceType type;
     Date date;
-    employerName employer{};
+    employeeName employee{};
     planePlate plane;
 
 public:
@@ -35,10 +35,10 @@ public:
      * who did the service and the plate of the plane where the service happens
      * @param type type of service (m | c | o) - maintenance, cleaning, other
      * @param date date of the service
-     * @param employer who did the service
+     * @param employee who did the service
      * @param plate which plane received the service
      */
-    Service(char type, Date date, const string &employer, string plate);
+    Service(char type, Date date, const string &employee, string plate);
 
     /**
      * Defines new type for a service
@@ -56,10 +56,10 @@ public:
 
     /**
      * Defines new employee for a service
-     * @param newEmployer value to be set
+     * @param newEmployee value to be set
      * @return changed service object
      */
-    Service &setEmployer(const std::string &newEmployer);
+    Service &setEmployee(const std::string &newEmployee);
 
     /**
      * Defines new planePlate for a service
@@ -84,7 +84,7 @@ public:
      * Gives employee who does a service
      * @return service's employee
      */
-    string getEmployer() const;
+    string getEmployee() const;
 
     /**
      * Gives the planePlate of a service
@@ -102,7 +102,7 @@ public:
      * Gives service's employee name as a char[]
      * @return service's employee name
      */
-    char *getEmployerNameC();
+    char *getEmployeeNameC();
 
 };
 
@@ -116,8 +116,8 @@ inline std::ostream &operator<<(std::ostream &os, const Service &s) {
 
     os << s.getType() << " " << s.getDate().getDate();
 
-    string name = s.getEmployer();
-    for (int i = 0; i < LONGEST_ACCEPTED_EMPLOYER_NAME; ++i) {
+    string name = s.getEmployee();
+    for (int i = 0; i < LONGEST_ACCEPTED_EMPLOYEE_NAME; ++i) {
         if (i < name.size())
             os << (name[i]);
         else
@@ -140,15 +140,15 @@ inline std::istream &operator>>(std::istream &is, Service &s) {
 
     int type;
     Date date;
-    std::string employer;
+    std::string employee;
     std::string plane;
 
     is >> type >> date;
 
     s.setType((char) type).setDate(date);
 
-    for (int i = 0; i < LONGEST_ACCEPTED_EMPLOYER_NAME; ++i) {
-        s.getEmployerNameC()[i] = is.get();
+    for (int i = 0; i < LONGEST_ACCEPTED_EMPLOYEE_NAME; ++i) {
+        s.getEmployeeNameC()[i] = is.get();
     }
 
     is >> plane;
@@ -167,7 +167,7 @@ inline std::istream &operator>>(std::istream &is, Service &s) {
  */
 inline bool operator==(const Service &s1, const Service &s2) {
     return (s1.getType() == s2.getType() && s1.getDate() == s2.getDate()
-            && s1.getEmployer() == s2.getEmployer() && s1.getPlane() == s2.getPlane());
+            && s1.getEmployee() == s2.getEmployee() && s1.getPlane() == s2.getPlane());
 }
 
 /**

@@ -3,8 +3,8 @@
 #include <utility>
 #include "../Exceptions/NameToLongException.h"
 
-Service::Service(char type, Date date, const string &employer, string plate) : plane(std::move(plate)), date(date) {
-    setType(type).setEmployer(employer);
+Service::Service(char type, Date date, const string &employee, string plate) : plane(std::move(plate)), date(date) {
+    setType(type).setEmployee(employee);
 }
 
 
@@ -12,11 +12,11 @@ ServiceType Service::getType() const { return this->type; }
 
 Date Service::getDate() const { return this->date; }
 
-string Service::getEmployer() const {
+string Service::getEmployee() const {
     int i = 0;
     string s;
     char c;
-    while ((c = employer[i++]) != '\0') {
+    while ((c = employee[i++]) != '\0') {
         s += c;
     }
     return s;
@@ -41,14 +41,14 @@ Service &Service::setDate(Date newDate) {
     return *this;
 }
 
-Service &Service::setEmployer(const string &newEmployer) {
+Service &Service::setEmployee(const string &newEmployee) {
     int i = 0;
-    for (const auto &c: newEmployer) {
-        if (i > LONGEST_ACCEPTED_EMPLOYER_NAME)
+    for (const auto &c: newEmployee) {
+        if (i > LONGEST_ACCEPTED_EMPLOYEE_NAME)
             throw NameToLongException();
-        this->employer[i++] = c;
+        this->employee[i++] = c;
     }
-    this->employer[i] = '\0';
+    this->employee[i] = '\0';
 
     return *this;
 }
@@ -61,13 +61,13 @@ Service &Service::setPlate(const planePlate &newPlane) {
 std::string Service::getInfo() const {
     ostringstream os;
 
-    os << setw(1) << (char) getType() << "\t" << date.getDate() << '\t' << plane << "\t  " << getEmployer()
+    os << setw(1) << (char) getType() << "\t" << date.getDate() << '\t' << plane << "\t  " << getEmployee()
        << '\r';
 
     return os.str();
 }
 
-char *Service::getEmployerNameC() {
-    return employer;
+char *Service::getEmployeeNameC() {
+    return employee;
 }
 
