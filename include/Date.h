@@ -19,6 +19,9 @@ using namespace std;
 
 #pragma warning(disable : 4996)
 
+/**
+ * A class that represents a Date in gregorian system
+ */
 class Date {
 public:
 
@@ -106,7 +109,7 @@ public:
 
     /**
      * Increments date by one day, changing month and year if necessary to be valid date
-     * @return
+     * @return reference to (this) object.
      */
     inline Date &operator++() {
         day++;
@@ -123,7 +126,7 @@ public:
 
     /**
      * Increments date by one day, changing month and year if necessary to be valid date
-     * @return
+     * @return copy of a this Date incremented by one
      */
     inline Date operator++(int) {
         Date temp = *this;
@@ -133,7 +136,7 @@ public:
 
     /**
      * Gos back to previous day, changing month and year if necessary to be valid date
-     * @return
+     * @return reference to (this) object.
      */
     inline Date &operator--() {
         day--;
@@ -150,7 +153,7 @@ public:
 
     /**
      * Gos back to previous day, changing month and year if necessary to be valid date
-     * @return
+     * @return copy of a this Date decremented by one
      */
     inline Date operator--(int) {
         Date temp = *this;
@@ -272,9 +275,17 @@ private:
      */
     static bool isLeapYear(unsigned int year);
 
-
+    /**
+     * Unsigned int representing the year of the date.
+     */
     unsigned int year;
+    /**
+     * Unsigned int representing the month of the date.
+     */
     unsigned int month;
+    /**
+     * Unsigned int representing the day of the date.
+     */
     unsigned int day;
 };
 

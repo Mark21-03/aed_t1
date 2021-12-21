@@ -13,10 +13,18 @@
 
 using namespace std;
 
-
+/**
+ * A class that represents a stack of baggage's up to a maximum of size.
+ */
 class BaggageStack {
 private:
+    /**
+     * the stack of baggage's.
+     */
     stack<Baggage> s;
+    /**
+     * the maximum size of the stack.
+     */
     unsigned maxSize;
 
 public:
@@ -65,12 +73,26 @@ public:
 
 };
 
-
+/**
+ * A class that represents a group of stacks.
+ */
 class Carriage {
 private:
+    /**
+     * A variable that stands for the maximum stack height.
+     */
     unsigned maxStackHeight = 0;
+    /**
+     * A variable that stands for the maximum of stacks baggage's.
+     */
     unsigned maxCapacity = 0;
+    /**
+     * The current capacity of the carriage.
+     */
     unsigned currentCapacity = 0;
+    /**
+     * A vector with the stacks that represent a carriage.
+     */
     vector<BaggageStack> stacks;
 
 public:
@@ -127,15 +149,35 @@ public:
 
 };
 
-
+/*
+ * A class that represents the transport of baggage's.
+ */
 class BaggageTruck {
 private:
+    /**
+     * A variable that indicates the number of carriages that a truck has.
+     */
     unsigned numCarriages = 0;
+    /**
+     * A variable that indicates the number of stacks that a carriage has.
+     */
     unsigned numStacks = 0;
+    /**
+     * A variable that indicates the number of baggage's that a truck currently has.
+     */
     unsigned numBaggage = 0;
+    /**
+     * A variable that indicates the max capacity of baggage's in the truck.
+     */
     unsigned maxCapacity = 0;
+    /**
+     * A variable that indicates the number of baggage's currently in the truck.
+     */
     unsigned currentCapacity = 0;
 
+    /**
+     * The carriages that make a Truck.
+     */
     vector<Carriage> carriages;
 
 public:
@@ -199,7 +241,13 @@ public:
  */
 class BaggageCheckIn {
 private:
+    /**
+     * A representation of the conveyor belt. The baggage's are uploaded to this queue by order of arrival. After that, they pass to the truck.
+     */
     queue<Baggage> conveyorBelt;
+    /**
+     * The truck responsible for taking the baggage's into the airplane.
+     */
     BaggageTruck truck;
 public:
 
@@ -292,8 +340,6 @@ public:
      * @return Truck object's copy
      */
     inline BaggageTruck getTruck() { return truck; }
-
-
 };
 
 

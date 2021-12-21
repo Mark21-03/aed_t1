@@ -4,10 +4,22 @@
 
 #include <iostream>
 
+/**
+ * A class that represents a baggage or baggage's transported by a passenger.
+ */
 class Baggage {
 private:
+    /**
+     * A variable that represents the weight of a baggage.
+     */
     float weight;
+    /**
+     * A variable that represents the quantity of baggage's transported.
+     */
     unsigned quantity;
+    /**
+     * A Bool telling if the baggage's should go to the airplane basement or not.
+     */
     bool handheld = false;
 public:
 

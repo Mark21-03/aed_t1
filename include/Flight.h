@@ -14,17 +14,43 @@
 
 typedef unsigned int flightNumber;
 
+/**
+ * A class that represents a Flight. It has information about number of seats and origin destiny of flights.
+ */
 class Flight {
 private:
-
+    /**
+     * Private key that identifies a flight.
+     */
     flightNumber number;
+    /**
+     * A date that indicates the departure date of the flight.
+     */
     Date departureDate;
+    /**
+     * The time of the departure of the flight.
+     */
     Time departureTime;
+    /**
+     * The occupation of the flight.
+     */
     int occupation;
+    /**
+     * the duration of the flight given in a float.
+     */
     float duration;
+    /**
+     * the origin and destiny of the flight.
+     */
     char origin[STRING_MAX_VALUE]{}, destiny[STRING_MAX_VALUE]{};
+    /**
+     * the maximum capacity of the flight
+     */
     int maxCapacity;
 
+    /**
+     * Represents the basement of the airplane.
+     */
     queue<Baggage> planeStoredBaggage;
 
 public:
@@ -179,14 +205,14 @@ public:
     int getMaxCapacity() const;
 
     /**
-     *
-     * @return
+     * Gives direct access to the origin name.
+     * @return pointer no origin array of chars
      */
     char *getOriginC();
 
     /**
-     *
-     * @return
+     * Gives direct access to the destiny name.
+     * @return pointer no destiny array of chars
      */
     char *getDestinyC();
 
@@ -310,7 +336,9 @@ inline std::istream &operator>>(std::istream &is, Flight &r) {
 
 }
 
-
+/**
+ * A class that helps to compare flights by departure Date.
+ */
 class CompareFlightsByDepartureDate {
 public:
     /**
@@ -324,7 +352,9 @@ public:
     }
 };
 
-
+/**
+ * A class that helps to compare flights by departure Time.
+ */
 class CompareFlightsByDepartureTime {
 public:
     /**
@@ -338,6 +368,9 @@ public:
     }
 };
 
+/**
+ * A class that helps to compare flights by number of occupation.
+ */
 class CompareFlightsByOccupation {
 public:
     /**

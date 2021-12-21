@@ -40,7 +40,7 @@ namespace out {
         BG_CYAN, /**< BlackGround Cyan Color */
         BG_WHITE, /**< BlackGround White Color */
         BG_DEFAULT = 49, /**< BlackGround Default Color */
-        BG_BRIGHT_BLACK = 100
+        BG_BRIGHT_BLACK = 100 /**< A soft Black */
     };
 
     /**
@@ -84,7 +84,7 @@ namespace out {
      */
     template<typename FlightsPointer>
     inline void flights(ostream &ostream1, FlightsPointer it) {
-        ostream1 << setw(15) << it->getNumber() << setw(15) << it->getDepartureDate().getDate() << setw(20)
+        ostream1 << left << setw(15) << it->getNumber() << setw(15) << it->getDepartureDate().getDate() << setw(20)
                  << it->getDepartureTime().getTime() << setw(15) << it->getOccupation() << setw(20)
                  << it->getMaxCapacity()
                  << setw(50) << it->getOrigin() << "\t-> " << setw(45) << it->getDestiny() << "\n";

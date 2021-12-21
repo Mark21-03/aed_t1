@@ -9,9 +9,14 @@
 
 #pragma warning(disable : 4996)
 
-
+/**
+ * A class that represents Time. It defines all necessary operations.
+ */
 class Time {
 private:
+    /**
+     * Attributes that represent a Time.
+     */
     unsigned hour, minute, second;
 
 public:

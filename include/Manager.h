@@ -18,19 +18,45 @@
 #include "Transports.h"
 #include "BagaggeCheckIn.h"
 
+/**
+ * A class responsible for the management of files.
+ */
 class Manager {
 private:
 
+    /**
+     * A path to the file that has the path of all the data.
+     */
     string filesDir = "../include/filesPaths.txt";
+    /**
+     * The paths taken from the filesDir.
+     */
     string flightsPath, planesPath, passengersPath, servicePath, transportsPath, tickets_path;
 
+    /**
+     * The manager responsible for managing the service files.
+     */
     ServiceManagement serviceManager;
+    /**
+     * It has initially the planes read from the corresponding file.
+     */
     std::vector<Plane> planes;
+    /**
+     * It has initially the passengers read from the corresponding file.
+     */
     std::vector<Passenger> passengers;
+    /**
+     * It has initially the flights read from the corresponding file.
+     */
     std::vector<Flight> flights;
+    /**
+     * It has initially the tickets read from the corresponding file.
+     */
     multiset<Ticket> tickets;
 
-    BST<Transport> transportsTree;
+    /**
+     * A map that connects an airport with the types of transport available at that place.
+     */
     map<std::string, BST<Transport>> airportTransports;
 
     /**
@@ -81,30 +107,18 @@ public:
     ~Manager() = default;
 
     /**
-     * TODO
-     * @param dirs TODO
+     * Constructor of manager accepting a different path for the filesDir
+     * @param dirs the path to the filesDir
      */
     explicit Manager(const std::string &dirs) {
         this->filesDir = dirs;
     }
 
     /**
-     * TODO
-     * @return TODO
+     * Get's the Service Manager that a manager has.
+     * @return a pointer to the service manager.
      */
     inline ServiceManagement *getServiceManager() { return &serviceManager; }
-
-    /**
-     * Gives the BST with the transports
-     * @return BST with transports
-     */
-    inline BST<Transport> *getTransportTree() { return &transportsTree; }
-
-    /**
-     * TODo
-     * @return TODO
-     */
-    inline map<string, BST<Transport>> *getTransportmap() { return &airportTransports; }
 
     /**
      * Shows the passengers sorted by a order that the user chooses
@@ -336,12 +350,6 @@ public:
      * @return Flight wanted
      */
     Flight *getFlightByNumber(flightNumber number);
-
-    /**
-     *TODO i think its never used but i need confirmation form who has done it
-     * @return
-     */
-    inline multiset<Ticket> *getTickets() { return &tickets; }
 
     /**
      * Deletes a passenger with a certain id

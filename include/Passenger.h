@@ -13,11 +13,22 @@
 
 #define LONGEST_ACCEPTED_NAME 60
 
-
+/**
+ * A class that represents a Client of the company
+ */
 class Passenger {
 private:
+    /**
+     * An Id that's unique and identifies a Passenger.
+     */
     unsigned int ID;
+    /**
+     * The birth date of the passenger
+     */
     Date birthDate;
+    /**
+     * The name of the passenger
+     */
     char name[LONGEST_ACCEPTED_NAME]{};
 
 public:

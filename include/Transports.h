@@ -8,10 +8,23 @@ using namespace std;
 
 typedef std::set<Time> TimeTable;
 
+/**
+ * Represents a type of transport that a airport has.
+ * It has information about the timeTable of the transport as well as the distance to the airport.
+ */
 class Transport {
 private:
+    /**
+     * The type of the transport.
+     */
     char type;
+    /**
+     * The Time table of the transports.
+     */
     TimeTable timetable;
+    /**
+     * The distance to the airport.
+     */
     float distance;
 
 public:

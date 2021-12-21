@@ -9,11 +9,26 @@
 
 typedef std::string planePlate;
 
+/**
+ * A class that represents a company airplane.
+ */
 class Plane {
 private:
+    /**
+     * The number plate of the airplane.
+     */
     planePlate numberPlate;
+    /**
+     * The type of the airplane.
+     */
     std::string pType;
+    /**
+     * the max. capacity of the airplane
+     */
     int capacity;
+    /**
+     * The list of flights this plane is responsible for.
+     */
     std::list<flightNumber> flightPlan;
 public:
     friend class ComparePlaneByType;

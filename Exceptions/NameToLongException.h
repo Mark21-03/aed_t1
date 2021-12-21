@@ -1,7 +1,3 @@
-//
-// Created by ricar on 29/11/2021.
-//
-
 #ifndef AED_T1_NAMETOLONGEXCEPTION_H
 #define AED_T1_NAMETOLONGEXCEPTION_H
 

@@ -9,6 +9,9 @@
  */
 class invalidDate {
 public:
+    /**
+     * Default Constructor.
+     */
     invalidDate(std::string reason) : reason(reason) {};
 
     const std::string &what() const {
@@ -16,6 +19,9 @@ public:
     }
 
 private:
+    /**
+     * the reason of the invalid Date exception.
+     */
     std::string reason;
 
 };

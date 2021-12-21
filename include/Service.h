@@ -8,19 +8,37 @@
 
 #define LONGEST_ACCEPTED_EMPLOYEE_NAME 45
 
+/**
+ * An enum representing the types of services available
+ */
 enum ServiceType {
-    maintenance = 'm',
-    cleaning = 'c',
-    other = 'o'
+    maintenance = 'm',/**< A Maintenance service done on an airplane*/
+    cleaning = 'c',/**< A Cleaning service done on an airplane*/
+    other = 'o'/**< A other type of service done on an airplane*/
 };
 
 typedef char employeeName[LONGEST_ACCEPTED_EMPLOYEE_NAME];
 
+/**
+ * A class that represents all the information about a Service.
+ */
 class Service {
 private:
+    /**
+     * The type of the service.
+     */
     ServiceType type;
+    /**
+     * The date in which the service was done or will be done.
+     */
     Date date;
+    /**
+     * The name of the employer responsible for the service.
+     */
     employeeName employee{};
+    /**
+     * The identifier of the plane in which the service will be or was done.
+     */
     planePlate plane;
 
 public:

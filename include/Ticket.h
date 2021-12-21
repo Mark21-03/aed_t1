@@ -4,11 +4,17 @@
 #include "Flight.h"
 #include "Baggage.h"
 
+/**
+ * An enum that represents a the type of a ticket.
+ */
 enum ClassType {
-    executive = 'x',
-    economic = 'e'
+    executive = 'x',/**< An executive ticket*/
+    economic = 'e'/**< An economic ticket*/
 };
 
+/**
+ * A class that serves as a representation of a Ticket.
+ */
 class Ticket {
 public:
 
@@ -94,10 +100,25 @@ public:
     Ticket &setBaggage(Baggage baggage);
 
 private:
+    /**
+     * The flight that the ticket is from.
+     */
     flightNumber flightnumber;
+    /**
+     * The owner of the ticket.
+     */
     unsigned int passengerID;
+    /**
+     * The price of the ticket.
+     */
     float price;
+    /**
+     * The baggage that will be put into the airplane.
+     */
     Baggage basementBaggage;
+    /**
+     * The ticket type.
+     */
     ClassType tClass;
 };
 

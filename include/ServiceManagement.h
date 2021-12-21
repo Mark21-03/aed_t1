@@ -7,10 +7,22 @@
 #include "../include/Service.h"
 #include "../include/Output.h"
 
+/**
+ * A class responsible for managing the service files and the to do or to be done services.
+ */
 class ServiceManagement {
 private:
+    /**
+     * A list of done services.
+     */
     list<Service> doneServices;
+    /**
+     * A queue of the services that are still to be done.
+     */
     queue<Service> toDoServices;
+    /**
+     * The path in which the information is saved.
+     */
     std::string path;
 public:
 

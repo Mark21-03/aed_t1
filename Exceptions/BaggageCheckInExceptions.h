@@ -9,6 +9,9 @@
  */
 class emptyQueueException {
 public:
+    /**
+     * Default Constructor.
+     */
     emptyQueueException() {
         std::cout << "Cant take anything from an empty Queue!\n";
     };
@@ -19,6 +22,9 @@ public:
  */
 class fullTruckException {
 public:
+    /**
+     * Default Constructor.
+     */
     fullTruckException() {
         std::cout << "Truck cant be filled anymore!\n";
     };
@@ -29,6 +35,9 @@ public:
  */
 class emptyTruckException {
 public:
+    /**
+     * Default Constructor.
+     */
     emptyTruckException() {
         std::cout << "Cant take anything from an empty truck!\n";
     };
@@ -39,6 +48,9 @@ public:
  */
 class fullCarriageException {
 public:
+    /**
+     * Default Constructor.
+     */
     fullCarriageException() {
         std::cout << "Carriage cant be filled anymore!\n";
     };
@@ -49,6 +61,9 @@ public:
  */
 class emptyCarriageException {
 public:
+    /**
+     * Default Constructor.
+     */
     emptyCarriageException() {
         std::cout << "Cant take anything from an empty carriage!\n";
     };
@@ -59,6 +74,9 @@ public:
  */
 class fullBaggageStackException {
 public:
+    /**
+     * Default Constructor.
+     */
     fullBaggageStackException() {
         std::cout << "BaggageStack cant be filled anymore!\n";
     };
@@ -69,6 +87,9 @@ public:
  */
 class emptyBaggageStackException {
 public:
+    /**
+     * Default Constructor.
+     */
     emptyBaggageStackException() {
         std::cout << "Cant take anything from an empty BaggageStack!\n";
     };
